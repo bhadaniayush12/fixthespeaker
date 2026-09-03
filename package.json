@@ -1,7 +1,7 @@
 {
-  "name": "fixmyspeaker",
+  "name": "fix-the-speaker",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -12,7 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.2.10"
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^7.2.10",
+    "tailwindcss": "^4.1.0"
   },
   "allowScripts": {
     "esbuild": true

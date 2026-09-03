@@ -1,11 +1,857 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = 'Fix The Speaker: Water Eject & Phone Speaker Cleaner';
+const description =
+  'Free phone speaker cleaner. Play a 165 Hz water eject tone or a high-frequency dust sweep to fix a muffled speaker in 60 seconds. No app needed.';
+
+const modes = [
+  { id: 'water', label: 'Water Eject' },
+  { id: 'dust', label: 'Dust Cleaner' },
+  { id: 'test', label: 'Speaker Test' },
+];
+const defaultSteps = ['Remove case', 'Face speaker down', 'Volume to 100%', 'Start ejection'];
+
+const RING_R = 47;
+const RING_C = (2 * Math.PI * RING_R).toFixed(2);
+
+const faqs = [
+  {
+    q: 'Does the water eject sound really work?',
+    a: 'Yes, for water trapped in the speaker grille. The 165 Hz pulsing tone moves the speaker diaphragm in large strokes that physically push droplets out through the grille holes. It does not dry components inside the phone.',
+  },
+  {
+    q: 'Is it safe for my phone?',
+    a: 'Yes. Playing a tone at full volume is a normal operation for any speaker, and 165 Hz is well inside the range your phone is built to reproduce. During the Dust Cleaner sweep keep the phone away from your ears, as the frequencies are high-pitched.',
+  },
+  {
+    q: 'How long should I run the water eject tone?',
+    a: 'One 60-second cycle clears most cases. If audio is still muffled, wipe the grille, wait a minute for surface water to evaporate, and run a second or third cycle.',
+  },
+  {
+    q: 'Why does my speaker still sound muffled afterwards?',
+    a: 'Water may have travelled past the grille, or dried minerals and lint may be blocking it. Run Dust Cleaner, then use Speaker Test to confirm both channels. If a channel stays quiet or crackles after several dry cycles, the speaker likely has hardware damage and needs inspection.',
+  },
+  {
+    q: 'Does it work on iPhone and Android?',
+    a: 'Yes. It runs in any modern browser, including Safari, Chrome, Firefox and Edge, on iPhone, Android, iPad, tablets and laptops. There is nothing to install.',
+  },
+  {
+    q: 'Can I use it on earbuds or a Bluetooth speaker?',
+    a: 'Yes, as long as your browser is routing audio to that device. Take earbuds out of your ears first and lower the volume before starting.',
+  },
+  {
+    q: 'Does the site record anything or need microphone access?',
+    a: 'No. Every tone is generated on your device with the Web Audio API. The tool never requests the microphone and nothing is uploaded.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://fixthespeaker.com/#website',
+      url: 'https://fixthespeaker.com/',
+      name: 'Fix The Speaker',
+      description,
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://fixthespeaker.com/#app',
+      name: 'Fix The Speaker',
+      url: 'https://fixthespeaker.com/',
+      description,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Any',
+      browserRequirements: 'Requires a modern browser with Web Audio API support',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: [
+        'Water eject tone (165 Hz pulsing square wave)',
+        'Dust cleaner (10 kHz to 15 kHz sweep)',
+        'Speaker verification test (left, right, stereo)',
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://fixthespeaker.com/#faq',
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout title={title} description={description} jsonLd={jsonLd}>
+  <main id="main" class="flex-1">
+    
+    <section class="relative overflow-hidden" aria-labelledby="hero-heading">
+      <div class="bg-mesh pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+      <div class="bg-grid pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+
+      <div class="container-site relative pt-14 pb-2 text-center sm:pt-24">
+        <p class="animate-rise font-mono text-xs uppercase tracking-[0.14em] text-primary">
+          Free · No app · Runs in your browser
+        </p>
+        <h1
+          id="hero-heading"
+          class="text-shine animate-rise mx-auto mt-4 max-w-2xl text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.045em] [animation-delay:80ms] sm:text-6xl"
+        >
+          Clean Your Speaker
+        </h1>
+        <p class="animate-rise mx-auto mt-4 max-w-md text-lg leading-7 text-body [animation-delay:160ms]">
+          Remove water, dust &amp; unwanted particles with sound.
+        </p>
+
+        <ul class="animate-rise mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms]" aria-label="Compatibility">
+          <li>iPhone</li><li>Samsung</li><li>Pixel</li><li>iPad</li><li>Laptops</li>
+          <li class="text-primary/80">No microphone · Nothing uploaded</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tool" class="container-site pt-8 pb-16 sm:pt-12 sm:pb-20 scroll-mt-24" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">Speaker cleaning tool</h2>
+
+      <div
+        role="tablist"
+        aria-label="Cleaning mode"
+        class="animate-rise mx-auto flex w-full max-w-md rounded-pill border border-hairline bg-elevated p-1 [animation-delay:320ms]"
+      >
+        {modes.map((m, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${m.id}`}
+            data-mode={m.id}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls="tool-panel"
+            tabindex={i === 0 ? 0 : -1}
+            class="flex-1 rounded-pill px-2 py-2.5 text-sm font-medium text-body transition-colors active:scale-[0.98] duration-200 hover:text-ink aria-selected:bg-primary/10 aria-selected:text-primary"
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+
+      <div id="tool-panel" role="tabpanel" aria-labelledby="tab-water" class="mt-8 flex flex-col items-center sm:mt-10">
+        <p id="mode-hint" class="font-mono text-xs uppercase tracking-[0.14em] text-mute">165 Hz pulse · 60 s</p>
+
+        <div id="stage" data-state="idle" data-mode="water" class="animate-rise group relative mt-6 grid size-[19rem] place-items-center sm:size-[22rem] [animation-delay:320ms]">
+          <canvas id="wave" class="absolute inset-0 size-full motion-reduce:hidden" aria-hidden="true"></canvas>
+
+          <span class="absolute inset-12 hidden rounded-full border border-primary/40 animate-ripple group-data-[state=running]:block motion-reduce:hidden sm:inset-14" aria-hidden="true"></span>
+          <span class="absolute inset-12 hidden rounded-full border border-primary/25 animate-ripple [animation-delay:1.2s] group-data-[state=running]:block motion-reduce:hidden sm:inset-14" aria-hidden="true"></span>
+
+          <svg class="absolute inset-[2.125rem] -rotate-90 sm:inset-[2.625rem]" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <circle cx="50" cy="50" r={RING_R} fill="none" stroke="var(--color-hairline)" stroke-width="1.5" />
+            <circle
+              id="ring-progress"
+              cx="50"
+              cy="50"
+              r={RING_R}
+              fill="none"
+              stroke="var(--color-primary)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-dasharray={RING_C}
+              stroke-dashoffset={RING_C}
+              class="transition-[stroke-dashoffset] duration-200 ease-linear"
+            />
+          </svg>
+
+          <span
+            class="pointer-events-none absolute inset-[2.75rem] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgb(6_182_212/0.9)_22%,transparent_45%)] opacity-0 transition-opacity duration-500 [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] animate-spin-slow motion-reduce:animate-none group-data-[state=running]:opacity-100 sm:inset-[3.25rem]"
+            aria-hidden="true"
+          ></span>
+
+          <span class="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 group-data-[mode=water]:group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true">
+            <span class="absolute -left-6 size-2 rounded-full bg-primary/80 animate-drip"></span>
+            <span class="absolute left-0 size-1.5 rounded-full bg-primary/70 animate-drip [animation-delay:0.5s]"></span>
+            <span class="absolute left-6 size-2 rounded-full bg-primary/60 animate-drip [animation-delay:1s]"></span>
+          </span>
+
+          <button
+            id="power"
+            type="button"
+            aria-pressed="false"
+            aria-describedby="status"
+            class="relative z-10 grid size-52 place-items-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_28%,#1a2337_0%,#0f141f_68%)] text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-12px_24px_rgb(0_0_0/0.35),0_28px_70px_-24px_rgb(0_0_0/0.9)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0 active:scale-[0.97] group-data-[state=running]:border-primary/60 group-data-[state=running]:shadow-glow group-data-[state=done]:border-primary sm:size-60"
+          >
+            <span id="power-idle" class="flex flex-col items-center gap-3">
+              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-[0_0_0_8px_rgb(6_182_212/0.12)] animate-breathe motion-reduce:animate-none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="ml-0.5 size-7" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" />
+                </svg>
+              </span>
+              <span id="power-label" class="text-sm font-medium tracking-[-0.01em]">Start Ejection</span>
+            </span>
+            <span id="power-run" class="hidden flex-col items-center gap-1">
+              <span id="count" class="font-mono text-6xl font-medium tabular-nums tracking-[-0.04em] text-ink [text-shadow:0_0_24px_rgb(6_182_212/0.35)]">60</span>
+              <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-mute">tap to stop</span>
+            </span>
+            <span id="power-done" class="hidden flex-col items-center gap-2">
+              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-glow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+              </span>
+              <span class="text-sm font-medium">Done</span>
+            </span>
+          </button>
+        </div>
+
+        <p id="status" role="status" aria-live="polite" class="mt-7 min-h-12 max-w-sm text-center text-[15px] leading-6 text-body">
+          Tap the button to play a 60-second, 165 Hz pulsing tone that pushes water out of the speaker grille.
+        </p>
+
+        <div id="channels" class="mt-2 hidden items-center gap-2" aria-hidden="true">
+          <span data-ch="L" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">L</span>
+          <span data-ch="R" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">R</span>
+        </div>
+
+        <ol id="steps" class="mt-10 grid w-full max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3" aria-label="How to use">
+          {defaultSteps.map((s, i) => (
+            <li
+              data-index={i}
+              class="group/step rounded-xl border border-hairline bg-elevated/60 p-3.5 transition-colors data-active:border-primary/50 data-active:bg-primary/5 data-active:shadow-[0_0_0_1px_rgb(6_182_212/0.25)]"
+            >
+              <span class="flex items-center justify-between font-mono text-[11px] tracking-[0.14em] text-faint group-data-active/step:text-primary">
+                <span>0{i + 1}</span>
+                <svg viewBox="0 0 16 16" class="hidden size-3.5 text-primary group-data-done/step:block" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="m3.5 8.5 3 3 6-7" />
+                </svg>
+              </span>
+              <span class="step-label mt-1.5 block text-sm font-medium text-ink">{s}</span>
+            </li>
+          ))}
+        </ol>
+
+        <p class="mt-8 max-w-md text-center text-sm leading-6 text-mute">
+          This tool ejects water from the speaker grille. It does not repair internal hardware damage.
+        </p>
+        <p class="mt-2 text-center font-mono text-[10px] text-faint">
+          Built with the Web Audio API · Open in any browser · No account
+        </p>
+      </div>
+    </section>
+
+    <section class="container-site pb-16 sm:pb-20" aria-labelledby="modes-heading">
+      <h2 id="modes-heading" class="sr-only">Cleaning modes</h2>
+      <div class="grid gap-3 sm:grid-cols-3">
+        {[
+          { mode: 'water', title: 'Water Eject', spec: '165 Hz · pulsed · 60 s', text: 'Low-frequency pulses push trapped droplets out through the grille.', icon: 'M12 3s5 6.2 5 10a5 5 0 0 1-10 0c0-3.8 5-10 5-10Z' },
+          { mode: 'dust', title: 'Dust Cleaner', spec: '10–15 kHz · sweep · 60 s', text: 'A high sweep vibrates lint and dust loose so you can brush it away.', icon: 'M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.2 2.2M16.2 16.2l2.2 2.2M5.6 18.4l2.2-2.2M16.2 7.8l2.2-2.2' },
+          { mode: 'test', title: 'Speaker Test', spec: 'Left · Right · Stereo', text: 'Hear each channel alone to find the side that needs cleaning.', icon: 'M4 12h2l2-5 3 10 3-8 2 3h4' },
+        ].map((c) => (
+          <button
+            type="button"
+            data-select-mode={c.mode}
+            class="group/card rounded-2xl border border-hairline bg-elevated/60 p-5 text-left transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-elevated"
+          >
+            <span class="grid size-10 place-items-center rounded-xl border border-hairline bg-canvas text-primary transition-colors group-hover/card:border-primary/40" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={c.icon} /></svg>
+            </span>
+            <span class="mt-4 block text-[15px] font-semibold tracking-[-0.01em] text-ink">{c.title}</span>
+            <span class="mt-1 block font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{c.spec}</span>
+            <span class="mt-3 block text-sm leading-6 text-body">{c.text}</span>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary">
+              Use this mode
+              <svg viewBox="0 0 16 16" class="size-3.5 transition-transform group-hover/card:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <article class="container-site border-t border-hairline py-16 sm:py-20 bg-[linear-gradient(180deg,rgb(255_255_255/0.015),transparent)]" aria-labelledby="guide-heading">
+      <div class="mx-auto max-w-2xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Guide</p>
+        <div class="rich-text mt-3">
+          <h2 id="guide-heading">How a water eject tone cleans your phone speaker</h2>
+          <p>
+            Phone speakers sit behind a fine metal or fabric grille. When your phone gets wet, surface tension traps
+            droplets in those tiny holes and the sound has to fight its way through a layer of water. That is why audio
+            sounds muffled, distant or crackly after a swim, a shower or a spilled drink, even when the phone itself is
+            perfectly fine.
+          </p>
+          <p>
+            A <strong>water eject</strong> tone solves this mechanically. Fix The Speaker plays a 165 Hz square wave that
+            pulses several times per second. At that frequency the speaker diaphragm moves a large amount of air with
+            each stroke, and the pulses turn that motion into hundreds of tiny pushes. Each push shoves a little water
+            out through the grille, where gravity does the rest if the speaker is facing down.
+          </p>
+
+          <h2>Water eject vs. dust cleaner: which mode to use</h2>
+          <p>
+            <strong>Water Eject</strong> is the mode to use after any contact with liquid: rain, a pool, a sink, sweat
+            from a workout or condensation from a cold drink. Run the full 60-second cycle with the speaker facing down
+            and the volume at maximum. The tone is low, so it is loud but not unpleasant.
+          </p>
+          <p>
+            <strong>Dust Cleaner</strong> targets the dry problem. Pocket lint, sand and dust build up in the grille
+            over months and slowly choke the sound. This mode plays a high-frequency sweep between 10,000 and 15,000 Hz.
+            Those frequencies make the diaphragm vibrate very quickly with small strokes, which loosens particles so
+            they can be brushed off. Face the speaker up so debris comes toward you rather than falling deeper, and
+            keep the phone away from your ears while it runs.
+          </p>
+
+          <h2>How to fix a muffled speaker in 60 seconds</h2>
+          <ol>
+            <li><strong>Remove the case.</strong> Cases trap water against the grille and block the airflow the tone relies on.</li>
+            <li><strong>Face the speaker down.</strong> Hold the phone over a towel with the speaker pointing at the floor so ejected water falls away from the phone.</li>
+            <li><strong>Turn the volume to 100%.</strong> The effect depends on how far the diaphragm moves, so a quiet tone does very little.</li>
+            <li><strong>Start the ejection and let it finish.</strong> Wipe the grille with a dry, lint-free cloth and play a song. If it still sounds muffled, run a second cycle.</li>
+          </ol>
+        </div>
+      </div>
+    </article>
+
+    <section class="container-site pb-20" aria-labelledby="faq-heading">
+      <div class="mx-auto max-w-2xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">FAQ</p>
+        <h2 id="faq-heading" class="mt-3 text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">
+          Frequently asked questions
+        </h2>
+        <div class="mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
+          {faqs.map(({ q, a }) => (
+            <details class="group px-5 sm:px-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-[15px] font-medium text-ink [&::-webkit-details-marker]:hidden">
+                <span>{q}</span>
+                <svg viewBox="0 0 16 16" class="size-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
+                  <path d="M8 2.5v11M2.5 8h11" />
+                </svg>
+              </summary>
+              <p class="pb-5 text-[15px] leading-7 text-body">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<script>
+  /** @typedef {'water' | 'dust' | 'test'} ModeId */
+
+  const MODES = {
+    water: {
+      hint: '165 Hz pulse · 60 s',
+      duration: 60,
+      gain: 1.0, // Keeping our max volume fix!
+      cta: 'Start Ejection',
+      steps: ['Remove case', 'Face speaker down', 'Volume to 100%', 'Start ejection'],
+      idle: 'Tap the button to play a 60-second, 165 Hz pulsing tone that pushes water out of the speaker grille.',
+      running: 'Ejecting water. Keep the speaker facing down and let the full cycle finish.',
+      done: 'Wipe the grille dry. Still muffled? Run another cycle, or verify both channels with Speaker Test.',
+      next: { mode: 'test', label: 'Verify with Speaker Test' },
+    },
+    dust: {
+      hint: '10–15 kHz sweep · 60 s',
+      duration: 60,
+      gain: 1.0, // Keeping our max volume fix!
+      cta: 'Start Cleaning',
+      steps: ['Remove case', 'Face speaker up', 'Volume to 100%', 'Start cleaning'],
+      idle: 'Tap to play a high-frequency sweep that loosens dust and lint trapped in the grille.',
+      running: 'Cleaning. The sweep is intentionally high-pitched; keep the phone away from your ears.',
+      done: 'Brush the grille gently with a soft, dry toothbrush, then verify with Speaker Test.',
+      next: { mode: 'test', label: 'Verify with Speaker Test' },
+    },
+    test: {
+      hint: 'Left · Right · Stereo · 9 s',
+      duration: 9,
+      gain: 1.0, // Keeping our max volume fix!
+      cta: 'Start Test',
+      steps: ['Unplug headphones', 'Volume to 50%', 'Listen to each side', 'Start test'],
+      idle: 'Tap to play a tone through the left channel, then the right, then both together.',
+      running: 'Testing channels. Listen for which side is playing.',
+      done: 'Test complete. If one side was quiet or silent, clean that grille and test again.',
+      next: { mode: 'water', label: 'Clean with Water Eject' },
+    },
+  };
+  const MODE_IDS = ['water', 'dust', 'test'];
+  const TEST_SEGMENT = 3; // seconds per channel in Speaker Test
+
+  /** @param {string} id */
+  const $ = (id) => document.getElementById(id);
+
+  const tabs = Array.from(document.querySelectorAll('[role="tab"][data-mode]'));
+  const panel = $('tool-panel');
+  const hint = $('mode-hint');
+  const stage = $('stage');
+  const power = $('power');
+  const powerIdle = $('power-idle');
+  const powerRun = $('power-run');
+  const powerDone = $('power-done');
+  const powerLabel = $('power-label');
+  const count = $('count');
+  const status = $('status');
+  // Optional elements from Fable's script that we don't strictly have in HTML yet, but won't break anything
+  const iosTip = $('ios-tip');
+  const ring = $('ring-progress');
+  const channels = $('channels');
+  const chL = channels.querySelector('[data-ch="L"]');
+  const chR = channels.querySelector('[data-ch="R"]');
+  const next = $('next');
+  const nextAgain = $('next-again');
+  const nextMode = $('next-mode');
+  const share = $('share');
+  const shareLabel = $('share-label');
+  const stepEls = Array.from(document.querySelectorAll('#steps > li'));
+  const canvas = $('wave');
+  const c2d = canvas.getContext('2d');
+  const RING_C = parseFloat(ring.getAttribute('stroke-dasharray') || '295.31');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isApple =
+    /iP(hone|ad|od)/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  /** @type {ModeId} */
+  let mode = 'water';
+  let running = false;
+  /** @type {AudioContext | null} */
+  let ctx = null;
+  /** @type {GainNode | null} */
+  let master = null;
+  /** @type {AnalyserNode | null} */
+  let analyser = null;
+  /** @type {AudioScheduledSourceNode[]} */
+  let live = [];
+  let td = new Uint8Array(0);
+  let runStart = 0;
+  let endTimer = 0;
+  let raf = 0;
+  let stepTimer = 0;
+  let stepIdx = 0;
+  let quickTimer = 0;
+  let doneTimer = 0;
+  let wakeLock = null;
+  const cycles = { water: 0, dust: 0, test: 0 };
+
+  /* ---------- Audio engine ---------- */
+
+  function ensureAudio() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+
+      master = ctx.createGain();
+      master.gain.value = 0;
+
+      const limiter = ctx.createDynamicsCompressor();
+      limiter.threshold.value = -6;
+      limiter.knee.value = 6;
+      limiter.ratio.value = 4;
+      limiter.attack.value = 0.003;
+      limiter.release.value = 0.1;
+
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 512;
+      td = new Uint8Array(analyser.fftSize);
+
+      master.connect(limiter);
+      limiter.connect(analyser);
+      analyser.connect(ctx.destination);
+
+      ctx.onstatechange = () => {
+        if (running && ctx && ctx.state !== 'running') {
+          stop(true);
+          status.textContent =
+            'Playback was interrupted by the system. Check Silent mode and volume, then tap to start again.';
+        }
+      };
+    }
+    return ctx;
+  }
+
+  // Our square wave fix for MAXIMUM vibration
+  function buildWater(ac, t0, out) {
+    const osc = ac.createOscillator();
+    osc.type = 'square';
+    osc.frequency.value = 165;
+
+    const pulse = ac.createGain();
+    pulse.gain.value = 0.5;
+
+    const lfo = ac.createOscillator();
+    lfo.type = 'square';
+    lfo.frequency.value = 3;
+    const smooth = ac.createBiquadFilter();
+    smooth.type = 'lowpass';
+    smooth.frequency.value = 12;
+    const depth = ac.createGain();
+    depth.gain.value = 0.5;
+
+    lfo.connect(smooth).connect(depth).connect(pulse.gain);
+    osc.connect(pulse).connect(out);
+    osc.start(t0);
+    lfo.start(t0);
+    return [osc, lfo];
+  }
+
+  function buildDust(ac, t0, out) {
+    const osc = ac.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = 12500;
+    const lfo = ac.createOscillator();
+    lfo.type = 'triangle';
+    lfo.frequency.value = 0.25;
+    const depth = ac.createGain();
+    depth.gain.value = 2500;
+    lfo.connect(depth).connect(osc.frequency);
+    osc.connect(out);
+    osc.start(t0);
+    lfo.start(t0);
+    return [osc, lfo];
+  }
+
+  function stereoTone(ac, out, freq = 440) {
+    const osc = ac.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    const left = ac.createGain();
+    const right = ac.createGain();
+    const merger = ac.createChannelMerger(2);
+    osc.connect(left).connect(merger, 0, 0);
+    osc.connect(right).connect(merger, 0, 1);
+    merger.connect(out);
+    return { osc, left, right };
+  }
+
+  function buildTest(ac, t0, out) {
+    const { osc, left, right } = stereoTone(ac, out);
+    left.gain.setValueAtTime(1, t0);
+    right.gain.setValueAtTime(0, t0);
+    left.gain.setTargetAtTime(0, t0 + TEST_SEGMENT, 0.01);
+    right.gain.setTargetAtTime(1, t0 + TEST_SEGMENT, 0.01);
+    left.gain.setTargetAtTime(1, t0 + TEST_SEGMENT * 2, 0.01);
+    osc.start(t0);
+    return [osc];
+  }
+
+  const BUILD = { water: buildWater, dust: buildDust, test: buildTest };
+
+  function scheduleMaster(g, level, t0, tEnd) {
+    g.cancelScheduledValues(t0);
+    g.setValueAtTime(0, t0);
+    g.linearRampToValueAtTime(level, t0 + 0.35);
+    g.setValueAtTime(level, tEnd - 0.35);
+    g.linearRampToValueAtTime(0, tEnd);
+  }
+
+  async function start() {
+    if (running) return;
+    const ac = ensureAudio();
+    try { await ac.resume(); } catch (_) { /* ignore */ }
+    if (!master || ac.state !== 'running') {
+      status.textContent = 'Audio could not start. Check Silent mode and volume, then tap again.';
+      return;
+    }
+    clearTimeout(quickTimer);
+    clearTimeout(doneTimer);
+
+    const cfg = MODES[mode];
+    const t0 = ac.currentTime + 0.05;
+    const tEnd = t0 + cfg.duration;
+
+    live = BUILD[mode](ac, t0, master);
+    scheduleMaster(master.gain, cfg.gain, t0, tEnd);
+    live.forEach((n) => n.stop(tEnd + 0.05));
+    live[0].onended = () => { if (running) stop(false); };
+
+    running = true;
+    runStart = t0;
+    setRunningUI(true);
+    status.textContent = cfg.running;
+    hideNext();
+
+    if (mode === 'water' && 'vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+    requestWakeLock();
+
+    endTimer = window.setTimeout(() => { if (running) stop(false); }, cfg.duration * 1000 + 400);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stop(manual) {
+    if (!running || !ctx || !master) return;
+    running = false;
+
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.setValueAtTime(master.gain.value, t);
+    master.gain.linearRampToValueAtTime(0, t + 0.12);
+    for (const n of live) {
+      n.onended = null;
+      try { n.stop(t + 0.15); } catch (_) { /* already stopped */ }
+    }
+    live = [];
+
+    clearTimeout(endTimer);
+    cancelAnimationFrame(raf);
+    releaseWakeLock();
+
+    const cfg = MODES[mode];
+    setRunningUI(false);
+    if(ring) ring.style.strokeDashoffset = manual ? String(RING_C) : '0';
+    if(count) count.textContent = String(cfg.duration);
+    updateChannels(-1);
+    if (c2d) c2d.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (manual) {
+      status.textContent = cfg.idle;
+    } else {
+      cycles[mode] += 1;
+      const prefix = mode === 'test' ? '' : `Cycle ${cycles[mode]} complete. `;
+      status.textContent = prefix + cfg.done;
+      showNext();
+      showDone();
+    }
+    startStepCycle();
+  }
+
+  async function quickChannel(side) {
+    if (running) return;
+    const ac = ensureAudio();
+    try { await ac.resume(); } catch (_) { /* ignore */ }
+    if (!master || ac.state !== 'running') return;
+
+    clearTimeout(quickTimer);
+    const t0 = ac.currentTime + 0.02;
+    const tEnd = t0 + 1.5;
+    const { osc, left, right } = stereoTone(ac, master);
+    left.gain.value = side === 'L' ? 1 : 0;
+    right.gain.value = side === 'R' ? 1 : 0;
+    scheduleMaster(master.gain, MODES.test.gain, t0, tEnd);
+    osc.start(t0);
+    osc.stop(tEnd + 0.05);
+
+    updateChannels(side === 'L' ? 0 : 1);
+    status.textContent = side === 'L' ? 'Playing on the left channel only.' : 'Playing on the right channel only.';
+    quickTimer = window.setTimeout(() => {
+      updateChannels(-1);
+      if (!running) status.textContent = MODES.test.idle;
+    }, 1600);
+  }
+
+  /* ---------- UI ---------- */
+
+  function tick() {
+    if (!running || !ctx) return;
+    const cfg = MODES[mode];
+    const elapsed = Math.min(cfg.duration, Math.max(0, ctx.currentTime - runStart));
+    if(count) count.textContent = String(Math.max(0, Math.ceil(cfg.duration - elapsed)));
+    if(ring) ring.style.strokeDashoffset = String(RING_C * (1 - elapsed / cfg.duration));
+    if (mode === 'test') updateChannels(Math.min(2, Math.floor(elapsed / TEST_SEGMENT)));
+    if (!reduceMotion) drawWave();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function drawWave() {
+    if (!c2d || !analyser) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    const cx = w / 2;
+    const cy = h / 2;
+    const dpr = canvas.clientWidth ? w / canvas.clientWidth : 1;
+    c2d.clearRect(0, 0, w, h);
+    analyser.getByteTimeDomainData(td);
+
+    const base = (power.offsetWidth / 2 + 22) * dpr;
+    const maxLen = Math.max(8 * dpr, cx - base - 4 * dpr);
+    const bars = 72;
+    c2d.lineWidth = 2 * dpr;
+    c2d.lineCap = 'round';
+
+    for (let i = 0; i < bars; i++) {
+      const a = (i / bars) * Math.PI * 2 - Math.PI / 2;
+      const sample = td[Math.floor((i / bars) * td.length)];
+      const dev = Math.abs(sample - 128) / 128;
+      const len = 3 * dpr + dev * maxLen;
+      c2d.strokeStyle = `rgba(6,182,212,${(0.18 + dev * 0.7).toFixed(3)})`;
+      c2d.beginPath();
+      c2d.moveTo(cx + Math.cos(a) * base, cy + Math.sin(a) * base);
+      c2d.lineTo(cx + Math.cos(a) * (base + len), cy + Math.sin(a) * (base + len));
+      c2d.stroke();
+    }
+  }
+
+  function resizeCanvas() {
+    if(!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+  }
+
+  function setFlex(el, visible) {
+    if (!el) return;
+    el.classList.toggle('hidden', !visible);
+    el.classList.toggle('flex', visible);
+  }
+
+  function setRunningUI(on) {
+    stage.dataset.state = on ? 'running' : 'idle';
+    power.setAttribute('aria-pressed', String(on));
+    power.setAttribute('aria-label', on ? 'Stop' : MODES[mode].cta);
+    setFlex(powerIdle, !on);
+    setFlex(powerRun, on);
+    setFlex(powerDone, false);
+    if(chL) chL.disabled = on;
+    if(chR) chR.disabled = on;
+    renderSteps();
+  }
+
+  function showDone() {
+    if (!powerDone) return;
+    stage.dataset.state = 'done';
+    setFlex(powerIdle, false);
+    setFlex(powerDone, true);
+    if ('vibrate' in navigator) navigator.vibrate(60);
+    clearTimeout(doneTimer);
+    doneTimer = window.setTimeout(() => {
+      if (running) return;
+      stage.dataset.state = 'idle';
+      setFlex(powerDone, false);
+      setFlex(powerIdle, true);
+    }, 1800);
+  }
+
+  function updateChannels(phase) {
+    if(chL) chL.toggleAttribute('data-on', phase === 0 || phase === 2);
+    if(chR) chR.toggleAttribute('data-on', phase === 1 || phase === 2);
+  }
+
+  function showNext() {
+    if(nextMode && next) {
+        const cfg = MODES[mode];
+        nextMode.dataset.mode = cfg.next.mode;
+        nextMode.textContent = cfg.next.label;
+        setFlex(next, true);
+    }
+  }
+  function hideNext() {
+    setFlex(next, false);
+  }
+
+  function renderSteps() {
+    stepEls.forEach((li, i) => {
+      li.toggleAttribute('data-active', running ? i === 3 : i === stepIdx);
+      li.toggleAttribute('data-done', running && i < 3);
+    });
+  }
+
+  function startStepCycle() {
+    clearInterval(stepTimer);
+    stepIdx = 0;
+    renderSteps();
+    // Intentionally not auto-cycling based on previous preference
+  }
+
+  function setMode(nextId) {
+    if(!nextId) return;
+    if (running) stop(true);
+    clearTimeout(quickTimer);
+    clearTimeout(doneTimer);
+    mode = nextId;
+    const cfg = MODES[mode];
+
+    tabs.forEach((t) => {
+      const on = t.dataset.mode === mode;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    if(panel) panel.setAttribute('aria-labelledby', `tab-${mode}`);
+    if(stage) {
+        stage.dataset.mode = mode;
+        stage.dataset.state = 'idle';
+    }
+    if(hint) hint.textContent = cfg.hint;
+    if(powerLabel) powerLabel.textContent = cfg.cta;
+    if(power) power.setAttribute('aria-label', cfg.cta);
+    if(status) status.textContent = cfg.idle;
+    if(count) count.textContent = String(cfg.duration);
+    if(ring) ring.style.strokeDashoffset = String(RING_C);
+    updateChannels(-1);
+    setFlex(channels, mode === 'test');
+    setFlex(powerDone, false);
+    setFlex(powerIdle, true);
+    hideNext();
+    stepEls.forEach((li, i) => {
+      const label = li.querySelector('.step-label');
+      if (label) label.textContent = cfg.steps[i];
+    });
+    startStepCycle();
+  }
+
+  async function requestWakeLock() {
+    try {
+      if (navigator.wakeLock) wakeLock = await navigator.wakeLock.request('screen');
+    } catch (_) { /* unsupported or denied */ }
+  }
+  function releaseWakeLock() {
+    if (wakeLock) wakeLock.release().catch(() => {});
+    wakeLock = null;
+  }
+
+  async function shareTool() {
+    const data = {
+      title: 'Fix The Speaker',
+      text: 'Free tool that ejects water and dust from a phone speaker with sound.',
+      url: 'https://fixthespeaker.com/',
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(data);
+        return;
+      }
+      await navigator.clipboard.writeText(data.url);
+      if(shareLabel) shareLabel.textContent = 'Link copied';
+      setTimeout(() => { if(shareLabel) shareLabel.textContent = 'Share this tool'; }, 2000);
+    } catch (_) { /* user cancelled */ }
+  }
+
+  /* ---------- Events ---------- */
+
+  if(power) power.addEventListener('click', () => (running ? stop(true) : start()));
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => setMode(tab.dataset.mode));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const n = (i + (e.key === 'ArrowRight' ? 1 : MODE_IDS.length - 1)) % MODE_IDS.length;
+      tabs[n].focus();
+      setMode(MODE_IDS[n]);
+    });
+  });
+
+  if(chL) chL.addEventListener('click', () => quickChannel('L'));
+  if(chR) chR.addEventListener('click', () => quickChannel('R'));
+
+  if(nextAgain) nextAgain.addEventListener('click', () => start());
+  if(nextMode) nextMode.addEventListener('click', () => {
+    setMode(nextMode.dataset.mode);
+    start();
+  });
+
+  document.querySelectorAll('[data-select-mode]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setMode(btn.dataset.selectMode);
+      const tool = document.getElementById('tool');
+      if (tool) tool.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if(power) power.focus({ preventScroll: true });
+    });
+  });
+
+  if(share) share.addEventListener('click', shareTool);
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  window.addEventListener('pagehide', () => stop(true));
+
+  if (isApple && iosTip) iosTip.classList.remove('hidden');
+  resizeCanvas();
+  setMode('water');
+</script>
