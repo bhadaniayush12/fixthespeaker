@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "astro build && wrangler deploy",
+    "pages:deploy": "astro build && wrangler pages deploy dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.0",
