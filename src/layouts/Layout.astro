@@ -40,19 +40,22 @@ const ogImage = new URL('/og-image.png', base).href;
 const currentPath = cleanPath;
 const year = new Date().getFullYear();
 
+const pathSegments = cleanPath.split('/').filter(Boolean);
+const hasLangPrefix = pathSegments.length > 0 && pathSegments[0] in languages && pathSegments[0] !== defaultLang;
+const subpageSlug = hasLangPrefix ? '/' + pathSegments.slice(1).join('/') : cleanPath === '/' ? '' : cleanPath;
+
 const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>`;
 
-// Hreflang alternates
+// Dynamic Hreflang alternates for current page
 const hreflangs: { lang: string; href: string }[] = [
-  { lang: 'x-default', href: `${SITE_URL}/` },
-  { lang: 'en', href: `${SITE_URL}/` },
-  { lang: 'es', href: `${SITE_URL}/es` },
-  { lang: 'ja', href: `${SITE_URL}/ja` },
-  { lang: 'fr', href: `${SITE_URL}/fr` },
-  { lang: 'de', href: `${SITE_URL}/de` },
-  { lang: 'pt', href: `${SITE_URL}/pt` },
-  { lang: 'ko', href: `${SITE_URL}/ko` },
-  { lang: 'it', href: `${SITE_URL}/it` },
+  { lang: 'x-default', href: `${SITE_URL}${subpageSlug || '/'}` },
+  { lang: 'en', href: `${SITE_URL}${subpageSlug || '/'}` },
+  ...Object.keys(languages)
+    .filter((l) => l !== defaultLang)
+    .map((l) => ({
+      lang: l,
+      href: `${SITE_URL}/${l}${subpageSlug}`,
+    })),
 ];
 ---
 
@@ -189,7 +192,7 @@ const hreflangs: { lang: string; href: string }[] = [
             >
               {Object.entries(languages).map(([k, v]) => (
                 <a
-                  href={k === defaultLang ? '/' : `/${k}`}
+                  href={k === defaultLang ? (subpageSlug || '/') : `/${k}${subpageSlug}`}
                   class={`flex min-h-[44px] items-center justify-between rounded-xl px-3 py-2.5 text-xs transition-colors hover:bg-canvas hover:text-ink touch-manipulation cursor-pointer ${
                     k === lang ? 'bg-primary/10 font-semibold text-primary' : 'text-body'
                   }`}
@@ -266,7 +269,7 @@ const hreflangs: { lang: string; href: string }[] = [
                 {Object.entries(languages).map(([k, v]) => (
                   <li>
                     <a
-                      href={k === defaultLang ? '/' : `/${k}`}
+                      href={k === defaultLang ? (subpageSlug || '/') : `/${k}${subpageSlug}`}
                       class={`inline-flex min-h-[36px] items-center gap-1.5 py-1 transition-colors ${
                         k === lang ? 'font-semibold text-primary' : 'text-body hover:text-ink'
                       }`}
