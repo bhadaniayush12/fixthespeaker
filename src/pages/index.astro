@@ -520,19 +520,26 @@ const jsonLd = {
       master = ctx.createGain();
       master.gain.value = 0;
 
-      // Brickwall limiter with high threshold to maximize volume while preventing clipping distortion
+      // Master Bass Equalizer (+5 dB Low-Shelf for rich punchy bass)
+      const masterBass = ctx.createBiquadFilter();
+      masterBass.type = 'lowshelf';
+      masterBass.frequency.value = 220;
+      masterBass.gain.value = 5;
+
+      // High-performance brickwall limiter: maximum volume & perceived loudness without digital distortion
       const limiter = ctx.createDynamicsCompressor();
-      limiter.threshold.value = -1.0;
-      limiter.knee.value = 3;
-      limiter.ratio.value = 12;
+      limiter.threshold.value = -0.5; // High threshold for maximum volume output (+70% boost)
+      limiter.knee.value = 2;
+      limiter.ratio.value = 20; // Hard limiting to protect speaker drivers at peak loudness
       limiter.attack.value = 0.001;
-      limiter.release.value = 0.05;
+      limiter.release.value = 0.04;
 
       analyser = ctx.createAnalyser();
       analyser.fftSize = 512;
       td = new Uint8Array(analyser.fftSize);
 
-      master.connect(limiter);
+      master.connect(masterBass);
+      masterBass.connect(limiter);
       limiter.connect(analyser);
       analyser.connect(ctx.destination);
 
@@ -549,80 +556,164 @@ const jsonLd = {
     return ctx;
   }
 
-  // 165 Hz pulsing square wave for MAXIMUM physical diaphragm displacement
+  // Heavy-Bass Multi-Layer Water Eject Tone (165 Hz core + 82.5 Hz sub-bass + 330 Hz harmonic punch)
   function buildWater(ac, t0, out) {
-    const osc = ac.createOscillator();
-    osc.type = 'square';
-    osc.frequency.value = 165;
+    // 1. Primary 165 Hz square wave (piston ejection frequency)
+    const osc1 = ac.createOscillator();
+    osc1.type = 'square';
+    osc1.frequency.value = 165;
 
-    const pulse = ac.createGain();
-    pulse.gain.value = 0.5;
+    // 2. Sub-bass 82.5 Hz square wave (deep physical diaphragm excursion)
+    const oscSub = ac.createOscillator();
+    oscSub.type = 'square';
+    oscSub.frequency.value = 82.5;
+
+    // 3. 330 Hz 2nd harmonic (adds audible body and punch on small phone speakers)
+    const oscHarm = ac.createOscillator();
+    oscHarm.type = 'sawtooth';
+    oscHarm.frequency.value = 330;
+
+    const gain1 = ac.createGain();
+    gain1.gain.value = 0.85;
+
+    const gainSub = ac.createGain();
+    gainSub.gain.value = 0.65;
+
+    const gainHarm = ac.createGain();
+    gainHarm.gain.value = 0.45;
+
+    // Bass Boost Filter (+8dB at 200 Hz)
+    const bassBoost = ac.createBiquadFilter();
+    bassBoost.type = 'lowshelf';
+    bassBoost.frequency.value = 200;
+    bassBoost.gain.value = 8;
+
+    osc1.connect(gain1).connect(bassBoost);
+    oscSub.connect(gainSub).connect(bassBoost);
+    oscHarm.connect(gainHarm).connect(bassBoost);
+
+    // Dynamic Pulsing Modulation (3.2 Hz pumping stroke)
+    const pulseGain = ac.createGain();
+    pulseGain.gain.value = 0.95;
 
     const lfo = ac.createOscillator();
     lfo.type = 'square';
-    lfo.frequency.value = 3;
-    const smooth = ac.createBiquadFilter();
-    smooth.type = 'lowpass';
-    smooth.frequency.value = 12;
-    const depth = ac.createGain();
-    depth.gain.value = 0.5;
+    lfo.frequency.value = 3.2;
 
-    lfo.connect(smooth).connect(depth).connect(pulse.gain);
-    osc.connect(pulse).connect(out);
-    osc.start(t0);
+    const lfoDepth = ac.createGain();
+    lfoDepth.gain.value = 0.4;
+
+    lfo.connect(lfoDepth).connect(pulseGain.gain);
+    bassBoost.connect(pulseGain).connect(out);
+
+    osc1.start(t0);
+    oscSub.start(t0);
+    oscHarm.start(t0);
     lfo.start(t0);
-    return [osc, lfo];
+
+    return [osc1, oscSub, oscHarm, lfo];
   }
 
-  // Aggressive sawtooth wave sweep (8 kHz - 15 kHz) for maximum physical particle vibration
+  // Maximum Loudness Turbo Dust Cleaner (Dual-Band Sawtooth Sweeps: 2.5–6 kHz Mid + 8–14.5 kHz High)
   function buildDust(ac, t0, out) {
-    const osc = ac.createOscillator();
-    osc.type = 'sawtooth'; // Sawtooth provides rich high-frequency harmonics to dislodge dust
-    osc.frequency.value = 11500;
+    // 1. Mid-frequency sweep (2,500 Hz to 6,000 Hz) - Peak human ear sensitivity & speaker loudness
+    const oscMid = ac.createOscillator();
+    oscMid.type = 'sawtooth';
+    oscMid.frequency.value = 4200;
 
-    const lfo = ac.createOscillator();
-    lfo.type = 'triangle';
-    lfo.frequency.value = 0.35; // ~3 second sweep cycle
+    const lfoMid = ac.createOscillator();
+    lfoMid.type = 'triangle';
+    lfoMid.frequency.value = 0.5;
 
-    const depth = ac.createGain();
-    depth.gain.value = 3500; // Sweeps between 8,000 Hz and 15,000 Hz
+    const depthMid = ac.createGain();
+    depthMid.gain.value = 1800;
+    lfoMid.connect(depthMid).connect(oscMid.frequency);
 
-    const dustGain = ac.createGain();
-    dustGain.gain.value = 0.95;
+    // 2. High-frequency sweep (8,000 Hz to 14,500 Hz) - Fine acoustic mesh agitation
+    const oscHigh = ac.createOscillator();
+    oscHigh.type = 'sawtooth';
+    oscHigh.frequency.value = 11000;
 
-    lfo.connect(depth).connect(osc.frequency);
-    osc.connect(dustGain).connect(out);
+    const lfoHigh = ac.createOscillator();
+    lfoHigh.type = 'sawtooth';
+    lfoHigh.frequency.value = 0.35;
 
-    osc.start(t0);
-    lfo.start(t0);
-    return [osc, lfo];
+    const depthHigh = ac.createGain();
+    depthHigh.gain.value = 3500;
+    lfoHigh.connect(depthHigh).connect(oscHigh.frequency);
+
+    // 3. Acoustic presence boost filter (+6dB at 3.5 kHz)
+    const presenceBoost = ac.createBiquadFilter();
+    presenceBoost.type = 'peaking';
+    presenceBoost.frequency.value = 3500;
+    presenceBoost.Q.value = 1.0;
+    presenceBoost.gain.value = 6;
+
+    const dustMix = ac.createGain();
+    dustMix.gain.value = 0.95;
+
+    oscMid.connect(presenceBoost);
+    oscHigh.connect(presenceBoost);
+    presenceBoost.connect(dustMix).connect(out);
+
+    oscMid.start(t0);
+    lfoMid.start(t0);
+    oscHigh.start(t0);
+    lfoHigh.start(t0);
+
+    return [oscMid, lfoMid, oscHigh, lfoHigh];
   }
 
-  // Dual-layer tone (Sine + Triangle) for maximum acoustic clarity and volume on small speakers
+  // High-Volume Rich Bass Stereo Tone (Layered 220 Hz Bass + 440 Hz Mid + 880 Hz Clarity + Bass Boost)
   function stereoTone(ac, out, freq = 440) {
-    const osc1 = ac.createOscillator();
-    osc1.type = 'sine';
-    osc1.frequency.value = freq;
+    // Bass foundation (1 octave down for rich warm low-end)
+    const oscBass = ac.createOscillator();
+    oscBass.type = 'triangle';
+    oscBass.frequency.value = freq / 2; // 220 Hz
 
-    const osc2 = ac.createOscillator();
-    osc2.type = 'triangle';
-    osc2.frequency.value = freq;
+    // Core fundamental tone
+    const oscCore = ac.createOscillator();
+    oscCore.type = 'sine';
+    oscCore.frequency.value = freq; // 440 Hz
 
-    const toneGain = ac.createGain();
-    toneGain.gain.value = 0.6; // High gain for loud, clear acoustic reproduction
+    // Presence harmonic
+    const oscHarm = ac.createOscillator();
+    oscHarm.type = 'sawtooth';
+    oscHarm.frequency.value = freq * 2; // 880 Hz
 
-    osc1.connect(toneGain);
-    osc2.connect(toneGain);
+    const gainBass = ac.createGain();
+    gainBass.gain.value = 0.75;
+
+    const gainCore = ac.createGain();
+    gainCore.gain.value = 0.75;
+
+    const gainHarm = ac.createGain();
+    gainHarm.gain.value = 0.35;
+
+    // Bass equalizer boost
+    const bassEQ = ac.createBiquadFilter();
+    bassEQ.type = 'lowshelf';
+    bassEQ.frequency.value = 250;
+    bassEQ.gain.value = 6;
+
+    oscBass.connect(gainBass).connect(bassEQ);
+    oscCore.connect(gainCore).connect(bassEQ);
+    oscHarm.connect(gainHarm).connect(bassEQ);
+
+    const toneMaster = ac.createGain();
+    toneMaster.gain.value = 0.95; // High volume output
+
+    bassEQ.connect(toneMaster);
 
     const left = ac.createGain();
     const right = ac.createGain();
     const merger = ac.createChannelMerger(2);
 
-    toneGain.connect(left).connect(merger, 0, 0);
-    toneGain.connect(right).connect(merger, 0, 1);
+    toneMaster.connect(left).connect(merger, 0, 0);
+    toneMaster.connect(right).connect(merger, 0, 1);
     merger.connect(out);
 
-    return { oscs: [osc1, osc2], left, right };
+    return { oscs: [oscBass, oscCore, oscHarm], left, right };
   }
 
   function buildTest(ac, t0, out) {
@@ -641,8 +732,8 @@ const jsonLd = {
   function scheduleMaster(g, level, t0, tEnd) {
     g.cancelScheduledValues(t0);
     g.setValueAtTime(0, t0);
-    g.linearRampToValueAtTime(level, t0 + 0.35);
-    g.setValueAtTime(level, tEnd - 0.35);
+    g.linearRampToValueAtTime(level, t0 + 0.12);
+    g.setValueAtTime(level, tEnd - 0.2);
     g.linearRampToValueAtTime(0, tEnd);
   }
 
