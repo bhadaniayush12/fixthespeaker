@@ -1,57 +1,44 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
-import { defaultLang, type SupportedLang, useTranslations } from '../../i18n/ui';
+import { defaultLang, type SupportedLang } from '../../i18n/ui';
+import { subpagesContent } from '../../i18n/subpages';
 
 export interface Props {
   lang?: SupportedLang;
 }
 
 const { lang = defaultLang } = Astro.props;
-const t = useTranslations(lang);
+const content = subpagesContent[lang]?.about || subpagesContent[defaultLang].about;
 const navPrefix = lang === defaultLang ? '' : `/${lang}`;
 ---
 
 <ContentLayout
-  title={`About Fix The Speaker: Free Phone Speaker Cleaner`}
-  description="Fix The Speaker is a free, browser-based phone speaker cleaner that uses sound to eject water and loosen dust. Learn how and why it was built."
-  heading={`About Fix The Speaker`}
-  eyebrow={t.navAbout}
+  title={content.title}
+  description={content.description}
+  heading={content.heading}
+  eyebrow={content.eyebrow}
   lang={lang}
 >
-  <p>
-    Fix The Speaker is a free micro-tool that does one thing well: it uses sound to clear a phone speaker grille. Play a
-    tone, hold the phone speaker-down, and trapped water is pushed out in about a minute. A second mode loosens dust
-    and lint, and a third checks that both channels are working.
-  </p>
+  <p>{content.intro}</p>
 
-  <h2>Why it exists</h2>
-  <p>
-    Almost every phone sounds muffled at some point, usually after rain, a shower or a spilled drink. The fix is
-    simple physics, yet most people are told to bury their phone in rice or wait it out. We wanted a tool that is honest
-    about what it can do, works instantly on any device, and does not bury the button under ads and clutter.
-  </p>
+  {content.sections.map((section) => (
+    <>
+      {section.title && <h2>{section.title}</h2>}
+      {section.paragraphs.map((p) => (
+        <p>{p}</p>
+      ))}
+      {section.list && (
+        <ul>
+          {section.list.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      )}
+    </>
+  ))}
 
-  <h2>How it works</h2>
-  <ul>
-    <li><strong>{t.modeWater}</strong> plays a 165 Hz pulsing sine wave that moves the diaphragm in large strokes, pushing droplets out through the grille.</li>
-    <li><strong>{t.modeDust}</strong> sweeps between 10 kHz and 15 kHz to vibrate loose particles so they can be brushed off.</li>
-    <li><strong>{t.modeTest}</strong> plays a tone through the left channel, the right channel and then both, so you can hear which side needs attention.</li>
-  </ul>
+  <h2>{lang === 'es' ? 'Contacto' : lang === 'ja' ? 'お問い合わせ' : lang === 'fr' ? 'Contact' : lang === 'de' ? 'Kontakt' : lang === 'pt' ? 'Contato' : lang === 'ko' ? '문의하기' : lang === 'it' ? 'Contatti' : 'Get in touch'}</h2>
   <p>
-    Every tone is generated in your browser with the Web Audio API. Nothing is downloaded, nothing is recorded and the
-    tool never asks for microphone access.
-  </p>
-
-  <h2>What it will not do</h2>
-  <p>
-    This tool ejects water from the speaker grille. It does not repair internal hardware damage. If your phone was
-    submerged, shows a liquid warning in the charging port, or still crackles after several dry cycles, have it inspected
-    by a professional.
-  </p>
-
-  <h2>Get in touch</h2>
-  <p>
-    Questions, bug reports and suggestions are welcome on the <a href={`${navPrefix}/contact`}>contact page</a>. You can also read
-    our <a href={`${navPrefix}/privacy`}>privacy policy</a> and <a href={`${navPrefix}/terms`}>terms of use</a>.
+    <a href={`${navPrefix}/contact`}>{lang === 'es' ? 'Página de contacto' : lang === 'ja' ? 'お問い合わせページ' : lang === 'fr' ? 'Page de contact' : lang === 'de' ? 'Kontaktseite' : lang === 'pt' ? 'Página de contato' : lang === 'ko' ? '문의 페이지' : lang === 'it' ? 'Pagina contatti' : 'Contact page'}</a> &bull; <a href={`${navPrefix}/privacy`}>{lang === 'es' ? 'Política de Privacidad' : lang === 'ja' ? 'プライバシーポリシー' : lang === 'fr' ? 'Confidentialité' : lang === 'de' ? 'Datenschutz' : lang === 'pt' ? 'Privacidade' : lang === 'ko' ? '개인정보처리방침' : lang === 'it' ? 'Privacy' : 'Privacy Policy'}</a> &bull; <a href={`${navPrefix}/terms`}>{lang === 'es' ? 'Términos' : lang === 'ja' ? '利用規約' : lang === 'fr' ? 'Conditions' : lang === 'de' ? 'Bedingungen' : lang === 'pt' ? 'Termos' : lang === 'ko' ? '이용약관' : lang === 'it' ? 'Termini' : 'Terms'}</a>
   </p>
 </ContentLayout>
