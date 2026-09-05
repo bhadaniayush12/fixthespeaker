@@ -359,6 +359,10 @@ const i18nConfig = {
 
           <div class="lg:col-span-5">
             <form id="subscribe-form" class="space-y-3">
+              <!-- Bot protection honeypot & timing fields -->
+              <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" style="display:none !important;" />
+              <input type="hidden" name="formLoadedAt" id="sub-loaded-at" value="" />
+
               <div>
                 <label for="sub-name" class="sr-only">{t.namePlaceholder}</label>
                 <input
@@ -389,6 +393,8 @@ const i18nConfig = {
               </button>
               <p id="sub-feedback" class="hidden text-center text-xs font-medium text-primary mt-2">
                 {t.subscribeSuccess}
+              </p>
+              <p id="sub-error" class="hidden text-center text-xs font-medium text-rose-500 mt-2">
               </p>
             </form>
           </div>
@@ -924,19 +930,71 @@ const i18nConfig = {
     });
   });
 
-  // Subscribe form handler
+  // Subscribe form handler with bot protection and serverless submission
   const subForm = document.getElementById('subscribe-form');
   const subFeedback = document.getElementById('sub-feedback');
+  const subError = document.getElementById('sub-error');
   const subButton = document.getElementById('sub-button');
+  const subLoadedAt = document.getElementById('sub-loaded-at') as HTMLInputElement | null;
+
+  if (subLoadedAt) {
+    subLoadedAt.value = String(Date.now());
+  }
+
   if (subForm) {
-    subForm.addEventListener('submit', (e) => {
+    subForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (subButton) {
-        subButton.textContent = 'Subscribed!';
-        subButton.setAttribute('disabled', 'true');
-      }
-      if (subFeedback) {
-        subFeedback.classList.remove('hidden');
+      if (!subButton) return;
+
+      const nameInput = document.getElementById('sub-name') as HTMLInputElement | null;
+      const emailInput = document.getElementById('sub-email') as HTMLInputElement | null;
+      const gotchaInput = subForm.querySelector('input[name="_gotcha"]') as HTMLInputElement | null;
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const _gotcha = gotchaInput ? gotchaInput.value.trim() : '';
+      const formLoadedAt = subLoadedAt ? Number(subLoadedAt.value) || Date.now() : Date.now();
+
+      if (!email) return;
+
+      const originalBtnText = subButton.textContent || 'Subscribe';
+      subButton.textContent = 'Subscribing...';
+      subButton.setAttribute('disabled', 'true');
+      if (subFeedback) subFeedback.classList.add('hidden');
+      if (subError) subError.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, _gotcha, formLoadedAt }),
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.success) {
+          subButton.textContent = 'Subscribed ✓';
+          if (subFeedback) {
+            subFeedback.textContent = data.message || '✓ Thank you! You have been subscribed.';
+            subFeedback.classList.remove('hidden');
+          }
+          if (nameInput) nameInput.value = '';
+          if (emailInput) emailInput.value = '';
+        } else {
+          subButton.textContent = originalBtnText;
+          subButton.removeAttribute('disabled');
+          if (subError) {
+            subError.textContent = data.error || 'Subscription failed. Please check your email and try again.';
+            subError.classList.remove('hidden');
+          }
+        }
+      } catch (err) {
+        subButton.textContent = originalBtnText;
+        subButton.removeAttribute('disabled');
+        if (subError) {
+          subError.textContent = 'Network error. Please try again.';
+          subError.classList.remove('hidden');
+        }
       }
     });
   }
