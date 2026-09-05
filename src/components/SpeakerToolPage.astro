@@ -103,26 +103,26 @@ const i18nConfig = {
 
 <Layout title={content.title} description={content.description} lang={lang} jsonLd={jsonLd}>
   <main id="main" class="flex-1">
-    <!-- Hero Section -->
+    <!-- Hero Section: Decluttered with comfortable mobile breathing room -->
     <section class="relative overflow-hidden" aria-labelledby="hero-heading">
       <div class="bg-mesh pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
       <div class="bg-grid pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
 
-      <div class="container-site relative pt-14 pb-2 text-center sm:pt-24">
-        <p class="animate-rise font-mono text-xs uppercase tracking-[0.14em] text-primary">
+      <div class="container-site relative pt-10 pb-6 text-center sm:pt-20 sm:pb-8">
+        <p class="animate-rise font-mono text-[11px] uppercase tracking-[0.14em] text-primary sm:text-xs">
           {t.heroBadge}
         </p>
         <h1
           id="hero-heading"
-          class="text-shine animate-rise mx-auto mt-4 max-w-2xl text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.045em] [animation-delay:80ms] sm:text-6xl"
+          class="text-shine animate-rise mx-auto mt-3 max-w-2xl text-3xl font-semibold leading-[1.12] tracking-[-0.035em] [animation-delay:80ms] sm:text-5xl md:text-6xl sm:leading-[1.02]"
         >
           {t.heroTitle}
         </h1>
-        <p class="animate-rise mx-auto mt-4 max-w-md text-lg leading-7 text-body [animation-delay:160ms]">
+        <p class="animate-rise mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-body [animation-delay:160ms] sm:text-lg sm:leading-7 sm:mt-4">
           {t.heroSubtitle}
         </p>
 
-        <div class="animate-rise mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms]">
+        <div class="animate-rise mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms] sm:mt-6 sm:gap-x-4">
           <span class="inline-flex items-center gap-1.5 text-body">
             <svg viewBox="0 0 16 16" class="size-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="m5.5 8 2 2 3.5-3.5"/></svg>
             {t.compatibility}
@@ -133,14 +133,14 @@ const i18nConfig = {
       </div>
     </section>
 
-    <!-- Main Tool Section -->
-    <section id="tool" class="container-site pt-8 pb-16 sm:pt-12 sm:pb-20 scroll-mt-24" aria-labelledby="tool-heading">
+    <!-- Main Tool Section: 44px Touch Targets & Generous Padding for Mobile -->
+    <section id="tool" class="container-site pt-6 pb-16 sm:pt-12 sm:pb-20 scroll-mt-24" aria-labelledby="tool-heading">
       <h2 id="tool-heading" class="sr-only">Speaker cleaning tool</h2>
 
       <div
         role="tablist"
         aria-label="Cleaning mode"
-        class="animate-rise mx-auto flex w-full max-w-md rounded-pill border border-hairline bg-elevated p-1 [animation-delay:320ms]"
+        class="animate-rise mx-auto flex w-full max-w-sm sm:max-w-md rounded-pill border border-hairline bg-elevated p-1.5 [animation-delay:320ms]"
       >
         {modes.map((m, i) => (
           <button
@@ -151,23 +151,23 @@ const i18nConfig = {
             aria-selected={i === 0 ? 'true' : 'false'}
             aria-controls="tool-panel"
             tabindex={i === 0 ? 0 : -1}
-            class="flex-1 rounded-pill px-2 py-2.5 text-sm font-medium text-body transition-colors active:scale-[0.98] duration-200 hover:text-ink aria-selected:bg-primary/10 aria-selected:text-primary"
+            class="flex-1 min-h-[44px] flex items-center justify-center rounded-pill px-2.5 py-2 text-xs sm:text-sm font-medium text-body transition-colors active:scale-[0.98] duration-200 hover:text-ink aria-selected:bg-primary/10 aria-selected:text-primary cursor-pointer touch-manipulation"
           >
             {m.label}
           </button>
         ))}
       </div>
 
-      <div id="tool-panel" role="tabpanel" aria-labelledby="tab-water" class="mt-8 flex flex-col items-center sm:mt-10">
-        <p id="mode-hint" class="font-mono text-xs uppercase tracking-[0.14em] text-mute">{t.modeHintWater}</p>
+      <div id="tool-panel" role="tabpanel" aria-labelledby="tab-water" class="mt-7 flex flex-col items-center sm:mt-10">
+        <p id="mode-hint" class="font-mono text-xs uppercase tracking-[0.14em] text-mute mb-1 sm:mb-2">{t.modeHintWater}</p>
 
-        <div id="stage" data-state="idle" data-mode="water" class="animate-rise group relative mt-6 grid size-[19rem] place-items-center sm:size-[22rem] [animation-delay:320ms]">
+        <div id="stage" data-state="idle" data-mode="water" class="animate-rise group relative mt-4 grid size-[17.5rem] sm:size-[22rem] place-items-center [animation-delay:320ms]">
           <canvas id="wave" class="absolute inset-0 size-full motion-reduce:hidden" aria-hidden="true"></canvas>
 
-          <span class="pointer-events-none absolute inset-0 m-auto hidden size-52 rounded-full border border-primary/40 animate-ripple group-data-[state=running]:block motion-reduce:hidden sm:size-60" aria-hidden="true"></span>
-          <span class="pointer-events-none absolute inset-0 m-auto hidden size-52 rounded-full border border-primary/25 animate-ripple [animation-delay:1.2s] group-data-[state=running]:block motion-reduce:hidden sm:size-60" aria-hidden="true"></span>
+          <span class="pointer-events-none absolute inset-0 m-auto hidden size-44 sm:size-60 rounded-full border border-primary/40 animate-ripple group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true"></span>
+          <span class="pointer-events-none absolute inset-0 m-auto hidden size-44 sm:size-60 rounded-full border border-primary/25 animate-ripple [animation-delay:1.2s] group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true"></span>
 
-          <svg class="pointer-events-none absolute inset-0 m-auto size-[14.75rem] -rotate-90 sm:size-[16.75rem]" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+          <svg class="pointer-events-none absolute inset-0 m-auto size-[13.5rem] sm:size-[16.75rem] -rotate-90" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
             <circle cx="50" cy="50" r={RING_R} fill="none" stroke="var(--color-hairline)" stroke-width="1.5" />
             <circle
               id="ring-progress"
@@ -185,11 +185,11 @@ const i18nConfig = {
           </svg>
 
           <span
-            class="pointer-events-none absolute inset-0 m-auto size-[13.5rem] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgb(6_182_212/0.9)_22%,transparent_45%)] opacity-0 transition-opacity duration-500 [-webkit-mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] animate-spin-slow motion-reduce:animate-none group-data-[state=running]:opacity-100 sm:size-[15.5rem]"
+            class="pointer-events-none absolute inset-0 m-auto size-[12rem] sm:size-[15.5rem] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgb(6_182_212/0.9)_22%,transparent_45%)] opacity-0 transition-opacity duration-500 [-webkit-mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] animate-spin-slow motion-reduce:animate-none group-data-[state=running]:opacity-100"
             aria-hidden="true"
           ></span>
 
-          <span class="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 group-data-[mode=water]:group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true">
+          <span class="pointer-events-none absolute bottom-5 sm:bottom-6 left-1/2 hidden -translate-x-1/2 group-data-[mode=water]:group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true">
             <span class="absolute -left-6 size-2 rounded-full bg-primary/80 animate-drip"></span>
             <span class="absolute left-0 size-1.5 rounded-full bg-primary/70 animate-drip [animation-delay:0.5s]"></span>
             <span class="absolute left-6 size-2 rounded-full bg-primary/60 animate-drip [animation-delay:1s]"></span>
@@ -200,30 +200,30 @@ const i18nConfig = {
             type="button"
             aria-pressed="false"
             aria-describedby="status"
-            class="relative z-10 grid size-52 place-items-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_28%,#1a2337_0%,#0f141f_68%)] text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-12px_24px_rgb(0_0_0/0.35),0_28px_70px_-24px_rgb(0_0_0/0.9)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0 active:scale-[0.97] group-data-[state=running]:border-primary/60 group-data-[state=running]:shadow-glow group-data-[state=done]:border-primary sm:size-60"
+            class="relative z-10 grid size-44 sm:size-60 min-h-[44px] min-w-[44px] place-items-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_28%,#1a2337_0%,#0f141f_68%)] text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-12px_24px_rgb(0_0_0/0.35),0_28px_70px_-24px_rgb(0_0_0/0.9)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0 active:scale-[0.97] group-data-[state=running]:border-primary/60 group-data-[state=running]:shadow-glow group-data-[state=done]:border-primary cursor-pointer touch-manipulation"
           >
-            <span id="power-idle" class="flex flex-col items-center gap-3">
-              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-[0_0_0_8px_rgb(6_182_212/0.12)] animate-breathe motion-reduce:animate-none" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="ml-0.5 size-7" fill="currentColor" aria-hidden="true" focusable="false">
+            <span id="power-idle" class="flex flex-col items-center gap-2.5 sm:gap-3">
+              <span class="grid size-14 sm:size-16 place-items-center rounded-full bg-primary text-on-primary shadow-[0_0_0_8px_rgb(6_182_212/0.12)] animate-breathe motion-reduce:animate-none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="ml-0.5 size-6 sm:size-7" fill="currentColor" aria-hidden="true" focusable="false">
                   <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" />
                 </svg>
               </span>
-              <span id="power-label" class="text-sm font-medium tracking-[-0.01em]">{t.ctaWater}</span>
+              <span id="power-label" class="text-xs sm:text-sm font-medium tracking-[-0.01em]">{t.ctaWater}</span>
             </span>
             <span id="power-run" class="hidden flex-col items-center gap-1">
-              <span id="count" class="font-mono text-6xl font-medium tabular-nums tracking-[-0.04em] text-ink [text-shadow:0_0_24px_rgb(6_182_212/0.35)]">60</span>
-              <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-mute">{t.tapToStop}</span>
+              <span id="count" class="font-mono text-5xl sm:text-6xl font-medium tabular-nums tracking-[-0.04em] text-ink [text-shadow:0_0_24px_rgb(6_182_212/0.35)]">60</span>
+              <span class="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-mute">{t.tapToStop}</span>
             </span>
             <span id="power-done" class="hidden flex-col items-center gap-2">
-              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-glow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="size-8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+              <span class="grid size-14 sm:size-16 place-items-center rounded-full bg-primary text-on-primary shadow-glow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-7 sm:size-8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
               </span>
-              <span class="text-sm font-medium">{t.done}</span>
+              <span class="text-xs sm:text-sm font-medium">{t.done}</span>
             </span>
           </button>
         </div>
 
-        <p id="status" role="status" aria-live="polite" class="mt-7 min-h-12 max-w-sm text-center text-[15px] leading-6 text-body">
+        <p id="status" role="status" aria-live="polite" class="mt-6 min-h-12 max-w-sm text-center text-sm sm:text-[15px] leading-relaxed text-body px-3">
           {t.waterIdleStatus}
         </p>
 
@@ -232,17 +232,18 @@ const i18nConfig = {
           <span data-ch="R" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">R</span>
         </div>
 
-        <div class="mt-10 w-full max-w-2xl text-left">
+        <!-- 4-Step Guide with Clear Mobile Separation -->
+        <div class="mt-9 sm:mt-12 w-full max-w-2xl text-left px-1">
           <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-primary">
             {t.followSteps}
           </h3>
         </div>
 
-        <ol id="steps" class="mt-3 grid w-full max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3" aria-label="How to use">
+        <ol id="steps" class="mt-3.5 grid w-full max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-3.5" aria-label="How to use">
           {t.stepsWater.map((s, i) => (
             <li
               data-index={i}
-              class="group/step rounded-xl border border-hairline bg-elevated/60 p-3.5 transition-colors data-active:border-primary/50 data-active:bg-primary/5 data-active:shadow-[0_0_0_1px_rgb(6_182_212/0.25)]"
+              class="group/step rounded-2xl border border-hairline bg-elevated/60 p-3.5 sm:p-4 transition-colors data-active:border-primary/50 data-active:bg-primary/5 data-active:shadow-[0_0_0_1px_rgb(6_182_212/0.25)] min-h-[44px]"
             >
               <span class="flex items-center justify-between font-mono text-[11px] tracking-[0.14em] text-faint group-data-active/step:text-primary">
                 <span>0{i + 1}</span>
@@ -250,12 +251,12 @@ const i18nConfig = {
                   <path d="m3.5 8.5 3 3 6-7" />
                 </svg>
               </span>
-              <span class="step-label mt-1.5 block text-sm font-medium text-ink">{s}</span>
+              <span class="step-label mt-1.5 block text-xs sm:text-sm font-medium text-ink leading-snug">{s}</span>
             </li>
           ))}
         </ol>
 
-        <p class="mt-8 max-w-md text-center text-sm leading-6 text-mute">
+        <p class="mt-7 sm:mt-9 max-w-md text-center text-xs sm:text-sm leading-relaxed text-mute px-3">
           {t.disclaimer}
         </p>
         <p class="mt-2 text-center font-mono text-[10px] text-faint">
@@ -264,10 +265,10 @@ const i18nConfig = {
       </div>
     </section>
 
-    <!-- Cleaning Modes Section -->
+    <!-- Cleaning Modes Section with Improved Spacing -->
     <section class="container-site pb-16 sm:pb-20" aria-labelledby="modes-heading">
       <h2 id="modes-heading" class="sr-only">{t.modesHeading}</h2>
-      <div class="grid gap-3 sm:grid-cols-3">
+      <div class="grid gap-3.5 sm:gap-4 sm:grid-cols-3">
         {[
           { mode: 'water', title: t.modeWater, spec: t.cardWaterSpec, text: t.cardWaterText, icon: 'M12 3s5 6.2 5 10a5 5 0 0 1-10 0c0-3.8 5-10 5-10Z' },
           { mode: 'dust', title: t.modeDust, spec: t.cardDustSpec, text: t.cardDustText, icon: 'M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.2 2.2M16.2 16.2l2.2 2.2M5.6 18.4l2.2-2.2M16.2 7.8l2.2-2.2' },
@@ -276,7 +277,7 @@ const i18nConfig = {
           <button
             type="button"
             data-select-mode={c.mode}
-            class="group/card rounded-2xl border border-hairline bg-elevated/60 p-5 text-left transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-elevated cursor-pointer"
+            class="group/card rounded-2xl border border-hairline bg-elevated/60 p-5 sm:p-6 text-left transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-elevated cursor-pointer touch-manipulation min-h-[44px]"
           >
             <span class="grid size-10 place-items-center rounded-xl border border-hairline bg-canvas text-primary transition-colors group-hover/card:border-primary/40" aria-hidden="true">
               <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={c.icon} /></svg>
@@ -294,12 +295,12 @@ const i18nConfig = {
     </section>
 
     <!-- Deep SEO Article Section (800-1200+ Words Rich Guide) -->
-    <article class="container-site border-t border-hairline py-16 sm:py-20 bg-[linear-gradient(180deg,rgb(255_255_255/0.015),transparent)]" aria-labelledby="guide-heading">
+    <article class="container-site border-t border-hairline py-14 sm:py-20 bg-[linear-gradient(180deg,rgb(255_255_255/0.015),transparent)]" aria-labelledby="guide-heading">
       <div class="mx-auto max-w-3xl">
         <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.guideEyebrow}</p>
         <div class="rich-text mt-3">
           <h2 id="guide-heading">{content.articleHeading}</h2>
-          <p class="text-lg leading-relaxed text-body">{content.articleIntro}</p>
+          <p class="text-base sm:text-lg leading-relaxed text-body">{content.articleIntro}</p>
 
           {content.sections.map((sec) => (
             <div>
@@ -328,7 +329,7 @@ const i18nConfig = {
     </article>
 
     <!-- Email Collection / Newsletter Section -->
-    <section class="container-site pb-16 sm:pb-20" aria-labelledby="subscribe-heading">
+    <section class="container-site pb-14 sm:pb-20" aria-labelledby="subscribe-heading">
       <div class="relative overflow-hidden rounded-3xl border border-hairline bg-elevated/70 p-6 sm:p-10 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset] backdrop-blur-sm transition-colors hover:border-primary/30">
         <div class="pointer-events-none absolute -right-20 -top-20 size-60 rounded-full bg-primary/10 blur-3xl" aria-hidden="true"></div>
         <div class="pointer-events-none absolute -bottom-20 -left-20 size-60 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
@@ -365,7 +366,7 @@ const i18nConfig = {
                   type="text"
                   name="name"
                   placeholder={t.namePlaceholder}
-                  class="w-full rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  class="w-full min-h-[44px] rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <div>
@@ -376,13 +377,13 @@ const i18nConfig = {
                   name="email"
                   required
                   placeholder={t.emailPlaceholder}
-                  class="w-full rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  class="w-full min-h-[44px] rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
               </div>
               <button
                 type="submit"
                 id="sub-button"
-                class="w-full rounded-xl bg-ink py-3 text-sm font-semibold text-canvas transition-all hover:bg-primary hover:text-on-primary active:scale-[0.99] dark:bg-white dark:text-black dark:hover:bg-primary-bright dark:hover:text-black cursor-pointer"
+                class="w-full min-h-[44px] rounded-xl bg-ink py-3 text-sm font-semibold text-canvas transition-all hover:bg-primary hover:text-on-primary active:scale-[0.99] dark:bg-white dark:text-black dark:hover:bg-primary-bright dark:hover:text-black cursor-pointer touch-manipulation"
               >
                 {t.subscribeBtn}
               </button>
@@ -396,22 +397,22 @@ const i18nConfig = {
     </section>
 
     <!-- Comprehensive FAQ Section with Schema.org Integration -->
-    <section class="container-site pb-20" aria-labelledby="faq-heading">
+    <section class="container-site pb-16 sm:pb-20" aria-labelledby="faq-heading">
       <div class="mx-auto max-w-2xl">
         <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.faqEyebrow}</p>
         <h2 id="faq-heading" class="mt-3 text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">
           {t.faqHeading}
         </h2>
-        <div class="mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
+        <div class="mt-6 sm:mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
           {content.faqs.map(({ q, a }) => (
             <details class="group px-5 sm:px-6">
-              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-[15px] font-medium text-ink [&::-webkit-details-marker]:hidden">
+              <summary class="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 py-4 sm:py-5 text-left text-[15px] font-medium text-ink touch-manipulation [&::-webkit-details-marker]:hidden">
                 <span>{q}</span>
                 <svg viewBox="0 0 16 16" class="size-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
                   <path d="M8 2.5v11M2.5 8h11" />
                 </svg>
               </summary>
-              <p class="pb-5 text-[15px] leading-7 text-body">{a}</p>
+              <p class="pb-4 sm:pb-5 text-[15px] leading-relaxed text-body">{a}</p>
             </details>
           ))}
         </div>
