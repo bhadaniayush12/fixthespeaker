@@ -1,0 +1,63 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  sizes?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  class: className = '',
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority = loading === 'eager' ? 'high' : 'auto',
+  sizes,
+} = Astro.props;
+
+// Compute aspect ratio style to enforce zero CLS even before image downloads
+const aspectRatio = `${width} / ${height}`;
+
+// Derive WebP / AVIF paths if available or clean src
+const isRaster = /\.(png|jpe?g)$/i.test(src);
+const avifSrc = isRaster ? src.replace(/\.(png|jpe?g)$/i, '.avif') : null;
+const webpSrc = isRaster ? src.replace(/\.(png|jpe?g)$/i, '.webp') : null;
+---
+
+{isRaster && (avifSrc || webpSrc) ? (
+  <picture class="inline-block" style={`aspect-ratio: ${aspectRatio};`}>
+    {avifSrc && <source srcset={avifSrc} type="image/avif" sizes={sizes} />}
+    {webpSrc && <source srcset={webpSrc} type="image/webp" sizes={sizes} />}
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding={decoding}
+      fetchpriority={fetchpriority}
+      class={className}
+      style={`aspect-ratio: ${aspectRatio}; max-width: 100%; height: auto;`}
+    />
+  </picture>
+) : (
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    class={className}
+    style={`aspect-ratio: ${aspectRatio}; max-width: 100%; height: auto;`}
+  />
+)}

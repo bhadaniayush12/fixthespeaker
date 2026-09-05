@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 
@@ -52,6 +54,10 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 <!doctype html>
 <html lang={lang} class="h-full">
   <head>
+    <!-- Resource Hints for Core Web Vitals (Fast FCP & LCP) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -114,10 +120,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" />
 
     {jsonLd && (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
@@ -340,8 +342,8 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
   @import 'tailwindcss';
 
   @theme {
-    --font-sans: 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
+    --font-sans: 'Geist Variable', 'Geist', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, SFMono-Regular, monospace;
 
     --color-canvas: #0b0f19;
     --color-elevated: #111624;
