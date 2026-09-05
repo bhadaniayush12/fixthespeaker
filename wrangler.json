@@ -6,5 +6,11 @@
     "directory": "./dist",
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "SUBSCRIBERS",
+      "id": "59c637ffe94b47118273e947c6f7ded2"
+    }
+  ]
 }
