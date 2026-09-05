@@ -1,0 +1,60 @@
+# ==============================================================================
+# Cloudflare 301 Redirects: Trailing Slash Enforcement & URL Canonicalization
+# ==============================================================================
+
+# Root English Subpages
+/about/ /about 301
+/privacy/ /privacy 301
+/terms/ /terms 301
+/contact/ /contact 301
+
+# Localized Root Directories
+/es/ /es 301
+/ja/ /ja 301
+/fr/ /fr 301
+/de/ /de 301
+/pt/ /pt 301
+/ko/ /ko 301
+/it/ /it 301
+
+# Spanish (es) Subpages
+/es/about/ /es/about 301
+/es/privacy/ /es/privacy 301
+/es/terms/ /es/terms 301
+/es/contact/ /es/contact 301
+
+# Japanese (ja) Subpages
+/ja/about/ /ja/about 301
+/ja/privacy/ /ja/privacy 301
+/ja/terms/ /ja/terms 301
+/ja/contact/ /ja/contact 301
+
+# French (fr) Subpages
+/fr/about/ /fr/about 301
+/fr/privacy/ /fr/privacy 301
+/fr/terms/ /fr/terms 301
+/fr/contact/ /fr/contact 301
+
+# German (de) Subpages
+/de/about/ /de/about 301
+/de/privacy/ /de/privacy 301
+/de/terms/ /de/terms 301
+/de/contact/ /de/contact 301
+
+# Portuguese (pt) Subpages
+/pt/about/ /pt/about 301
+/pt/privacy/ /pt/privacy 301
+/pt/terms/ /pt/terms 301
+/pt/contact/ /pt/contact 301
+
+# Korean (ko) Subpages
+/ko/about/ /ko/about 301
+/ko/privacy/ /ko/privacy 301
+/ko/terms/ /ko/terms 301
+/ko/contact/ /ko/contact 301
+
+# Italian (it) Subpages
+/it/about/ /it/about 301
+/it/privacy/ /it/privacy 301
+/it/terms/ /it/terms 301
+/it/contact/ /it/contact 301
