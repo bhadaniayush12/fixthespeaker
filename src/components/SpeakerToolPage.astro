@@ -1,0 +1,948 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
+import { seoContent } from '../i18n/content';
+
+export interface Props {
+  lang?: SupportedLang;
+}
+
+const { lang = defaultLang } = Astro.props;
+
+const t = useTranslations(lang);
+const content = seoContent[lang] || seoContent[defaultLang];
+
+const modes = [
+  { id: 'water', label: t.modeWater },
+  { id: 'dust', label: t.modeDust },
+  { id: 'test', label: t.modeTest },
+];
+
+const RING_R = 47;
+const RING_C = (2 * Math.PI * RING_R).toFixed(2);
+
+const SITE_URL = 'https://fixthespeaker.com';
+const pageUrl = lang === defaultLang ? `${SITE_URL}/` : `${SITE_URL}/${lang}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: 'Fix The Speaker',
+      description: content.description,
+      inLanguage: lang,
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${pageUrl}#app`,
+      name: `Fix The Speaker - ${content.title}`,
+      url: pageUrl,
+      description: content.description,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Any (iOS, Android, Windows, macOS, watchOS)',
+      browserRequirements: 'Requires a modern browser with HTML5 Web Audio API support (Safari, Chrome, Firefox, Edge)',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: [
+        '165 Hz Bass Wave Water Ejection Tone',
+        '2.5 kHz - 14.5 kHz Turbo Dust Cleaner Sweep',
+        'Dual-Layer Stereo Speaker Diagnostic Test (Left / Right / Both)',
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: content.faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+
+const i18nConfig = {
+  water: {
+    hint: t.modeHintWater,
+    duration: 60,
+    gain: 1.0,
+    cta: t.ctaWater,
+    steps: t.stepsWater,
+    idle: t.waterIdleStatus,
+    running: t.waterRunningStatus,
+    done: t.waterDoneStatus,
+    next: { mode: 'test', label: t.modeTest },
+  },
+  dust: {
+    hint: t.modeHintDust,
+    duration: 60,
+    gain: 1.0,
+    cta: t.ctaDust,
+    steps: t.stepsDust,
+    idle: t.dustIdleStatus,
+    running: t.dustRunningStatus,
+    done: t.dustDoneStatus,
+    next: { mode: 'test', label: t.modeTest },
+  },
+  test: {
+    hint: t.modeHintTest,
+    duration: 9,
+    gain: 1.0,
+    cta: t.ctaTest,
+    steps: t.stepsTest,
+    idle: t.testIdleStatus,
+    running: t.testRunningStatus,
+    done: t.testDoneStatus,
+    next: { mode: 'water', label: t.modeWater },
+  },
+};
+---
+
+<Layout title={content.title} description={content.description} lang={lang} jsonLd={jsonLd}>
+  <main id="main" class="flex-1">
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden" aria-labelledby="hero-heading">
+      <div class="bg-mesh pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+      <div class="bg-grid pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+
+      <div class="container-site relative pt-14 pb-2 text-center sm:pt-24">
+        <p class="animate-rise font-mono text-xs uppercase tracking-[0.14em] text-primary">
+          {t.heroBadge}
+        </p>
+        <h1
+          id="hero-heading"
+          class="text-shine animate-rise mx-auto mt-4 max-w-2xl text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.045em] [animation-delay:80ms] sm:text-6xl"
+        >
+          {t.heroTitle}
+        </h1>
+        <p class="animate-rise mx-auto mt-4 max-w-md text-lg leading-7 text-body [animation-delay:160ms]">
+          {t.heroSubtitle}
+        </p>
+
+        <div class="animate-rise mx-auto mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms]">
+          <span class="inline-flex items-center gap-1.5 text-body">
+            <svg viewBox="0 0 16 16" class="size-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="m5.5 8 2 2 3.5-3.5"/></svg>
+            {t.compatibility}
+          </span>
+          <span class="text-faint">·</span>
+          <span class="text-primary/80">{t.noMicNotice}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Tool Section -->
+    <section id="tool" class="container-site pt-8 pb-16 sm:pt-12 sm:pb-20 scroll-mt-24" aria-labelledby="tool-heading">
+      <h2 id="tool-heading" class="sr-only">Speaker cleaning tool</h2>
+
+      <div
+        role="tablist"
+        aria-label="Cleaning mode"
+        class="animate-rise mx-auto flex w-full max-w-md rounded-pill border border-hairline bg-elevated p-1 [animation-delay:320ms]"
+      >
+        {modes.map((m, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${m.id}`}
+            data-mode={m.id}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls="tool-panel"
+            tabindex={i === 0 ? 0 : -1}
+            class="flex-1 rounded-pill px-2 py-2.5 text-sm font-medium text-body transition-colors active:scale-[0.98] duration-200 hover:text-ink aria-selected:bg-primary/10 aria-selected:text-primary"
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
+
+      <div id="tool-panel" role="tabpanel" aria-labelledby="tab-water" class="mt-8 flex flex-col items-center sm:mt-10">
+        <p id="mode-hint" class="font-mono text-xs uppercase tracking-[0.14em] text-mute">{t.modeHintWater}</p>
+
+        <div id="stage" data-state="idle" data-mode="water" class="animate-rise group relative mt-6 grid size-[19rem] place-items-center sm:size-[22rem] [animation-delay:320ms]">
+          <canvas id="wave" class="absolute inset-0 size-full motion-reduce:hidden" aria-hidden="true"></canvas>
+
+          <span class="pointer-events-none absolute inset-0 m-auto hidden size-52 rounded-full border border-primary/40 animate-ripple group-data-[state=running]:block motion-reduce:hidden sm:size-60" aria-hidden="true"></span>
+          <span class="pointer-events-none absolute inset-0 m-auto hidden size-52 rounded-full border border-primary/25 animate-ripple [animation-delay:1.2s] group-data-[state=running]:block motion-reduce:hidden sm:size-60" aria-hidden="true"></span>
+
+          <svg class="pointer-events-none absolute inset-0 m-auto size-[14.75rem] -rotate-90 sm:size-[16.75rem]" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <circle cx="50" cy="50" r={RING_R} fill="none" stroke="var(--color-hairline)" stroke-width="1.5" />
+            <circle
+              id="ring-progress"
+              cx="50"
+              cy="50"
+              r={RING_R}
+              fill="none"
+              stroke="var(--color-primary)"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-dasharray={RING_C}
+              stroke-dashoffset={RING_C}
+              class="transition-[stroke-dashoffset] duration-200 ease-linear"
+            />
+          </svg>
+
+          <span
+            class="pointer-events-none absolute inset-0 m-auto size-[13.5rem] rounded-full bg-[conic-gradient(from_0deg,transparent_0%,rgb(6_182_212/0.9)_22%,transparent_45%)] opacity-0 transition-opacity duration-500 [-webkit-mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] [mask:radial-gradient(farthest-side,transparent_calc(100%-3px),#000_calc(100%-2px))] animate-spin-slow motion-reduce:animate-none group-data-[state=running]:opacity-100 sm:size-[15.5rem]"
+            aria-hidden="true"
+          ></span>
+
+          <span class="pointer-events-none absolute bottom-6 left-1/2 hidden -translate-x-1/2 group-data-[mode=water]:group-data-[state=running]:block motion-reduce:hidden" aria-hidden="true">
+            <span class="absolute -left-6 size-2 rounded-full bg-primary/80 animate-drip"></span>
+            <span class="absolute left-0 size-1.5 rounded-full bg-primary/70 animate-drip [animation-delay:0.5s]"></span>
+            <span class="absolute left-6 size-2 rounded-full bg-primary/60 animate-drip [animation-delay:1s]"></span>
+          </span>
+
+          <button
+            id="power"
+            type="button"
+            aria-pressed="false"
+            aria-describedby="status"
+            class="relative z-10 grid size-52 place-items-center rounded-full border border-white/10 bg-[radial-gradient(circle_at_50%_28%,#1a2337_0%,#0f141f_68%)] text-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-12px_24px_rgb(0_0_0/0.35),0_28px_70px_-24px_rgb(0_0_0/0.9)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 active:translate-y-0 active:scale-[0.97] group-data-[state=running]:border-primary/60 group-data-[state=running]:shadow-glow group-data-[state=done]:border-primary sm:size-60"
+          >
+            <span id="power-idle" class="flex flex-col items-center gap-3">
+              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-[0_0_0_8px_rgb(6_182_212/0.12)] animate-breathe motion-reduce:animate-none" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="ml-0.5 size-7" fill="currentColor" aria-hidden="true" focusable="false">
+                  <path d="M8 5.5v13a1 1 0 0 0 1.53.85l10-6.5a1 1 0 0 0 0-1.7l-10-6.5A1 1 0 0 0 8 5.5Z" />
+                </svg>
+              </span>
+              <span id="power-label" class="text-sm font-medium tracking-[-0.01em]">{t.ctaWater}</span>
+            </span>
+            <span id="power-run" class="hidden flex-col items-center gap-1">
+              <span id="count" class="font-mono text-6xl font-medium tabular-nums tracking-[-0.04em] text-ink [text-shadow:0_0_24px_rgb(6_182_212/0.35)]">60</span>
+              <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-mute">{t.tapToStop}</span>
+            </span>
+            <span id="power-done" class="hidden flex-col items-center gap-2">
+              <span class="grid size-16 place-items-center rounded-full bg-primary text-on-primary shadow-glow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="size-8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>
+              </span>
+              <span class="text-sm font-medium">{t.done}</span>
+            </span>
+          </button>
+        </div>
+
+        <p id="status" role="status" aria-live="polite" class="mt-7 min-h-12 max-w-sm text-center text-[15px] leading-6 text-body">
+          {t.waterIdleStatus}
+        </p>
+
+        <div id="channels" class="mt-2 hidden items-center gap-2" aria-hidden="true">
+          <span data-ch="L" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">L</span>
+          <span data-ch="R" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">R</span>
+        </div>
+
+        <div class="mt-10 w-full max-w-2xl text-left">
+          <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+            {t.followSteps}
+          </h3>
+        </div>
+
+        <ol id="steps" class="mt-3 grid w-full max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3" aria-label="How to use">
+          {t.stepsWater.map((s, i) => (
+            <li
+              data-index={i}
+              class="group/step rounded-xl border border-hairline bg-elevated/60 p-3.5 transition-colors data-active:border-primary/50 data-active:bg-primary/5 data-active:shadow-[0_0_0_1px_rgb(6_182_212/0.25)]"
+            >
+              <span class="flex items-center justify-between font-mono text-[11px] tracking-[0.14em] text-faint group-data-active/step:text-primary">
+                <span>0{i + 1}</span>
+                <svg viewBox="0 0 16 16" class="hidden size-3.5 text-primary group-data-done/step:block" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="m3.5 8.5 3 3 6-7" />
+                </svg>
+              </span>
+              <span class="step-label mt-1.5 block text-sm font-medium text-ink">{s}</span>
+            </li>
+          ))}
+        </ol>
+
+        <p class="mt-8 max-w-md text-center text-sm leading-6 text-mute">
+          {t.disclaimer}
+        </p>
+        <p class="mt-2 text-center font-mono text-[10px] text-faint">
+          {t.builtWith}
+        </p>
+      </div>
+    </section>
+
+    <!-- Cleaning Modes Section -->
+    <section class="container-site pb-16 sm:pb-20" aria-labelledby="modes-heading">
+      <h2 id="modes-heading" class="sr-only">{t.modesHeading}</h2>
+      <div class="grid gap-3 sm:grid-cols-3">
+        {[
+          { mode: 'water', title: t.modeWater, spec: t.cardWaterSpec, text: t.cardWaterText, icon: 'M12 3s5 6.2 5 10a5 5 0 0 1-10 0c0-3.8 5-10 5-10Z' },
+          { mode: 'dust', title: t.modeDust, spec: t.cardDustSpec, text: t.cardDustText, icon: 'M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.2 2.2M16.2 16.2l2.2 2.2M5.6 18.4l2.2-2.2M16.2 7.8l2.2-2.2' },
+          { mode: 'test', title: t.modeTest, spec: t.cardTestSpec, text: t.cardTestText, icon: 'M4 12h2l2-5 3 10 3-8 2 3h4' },
+        ].map((c) => (
+          <button
+            type="button"
+            data-select-mode={c.mode}
+            class="group/card rounded-2xl border border-hairline bg-elevated/60 p-5 text-left transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:bg-elevated cursor-pointer"
+          >
+            <span class="grid size-10 place-items-center rounded-xl border border-hairline bg-canvas text-primary transition-colors group-hover/card:border-primary/40" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d={c.icon} /></svg>
+            </span>
+            <span class="mt-4 block text-[15px] font-semibold tracking-[-0.01em] text-ink">{c.title}</span>
+            <span class="mt-1 block font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{c.spec}</span>
+            <span class="mt-3 block text-sm leading-6 text-body">{c.text}</span>
+            <span class="mt-4 inline-flex items-center gap-1 text-xs font-medium text-primary">
+              {t.useThisMode}
+              <svg viewBox="0 0 16 16" class="size-3.5 transition-transform group-hover/card:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>
+            </span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- Deep SEO Article Section (800-1200+ Words Rich Guide) -->
+    <article class="container-site border-t border-hairline py-16 sm:py-20 bg-[linear-gradient(180deg,rgb(255_255_255/0.015),transparent)]" aria-labelledby="guide-heading">
+      <div class="mx-auto max-w-3xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.guideEyebrow}</p>
+        <div class="rich-text mt-3">
+          <h2 id="guide-heading">{content.articleHeading}</h2>
+          <p class="text-lg leading-relaxed text-body">{content.articleIntro}</p>
+
+          {content.sections.map((sec) => (
+            <div>
+              <h3>{sec.heading}</h3>
+              {sec.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+              {sec.listType === 'ul' && sec.listItems && (
+                <ul class="my-4 space-y-2">
+                  {sec.listItems.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {sec.listType === 'ol' && sec.listItems && (
+                <ol class="my-4 space-y-2">
+                  {sec.listItems.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+
+    <!-- Email Collection / Newsletter Section -->
+    <section class="container-site pb-16 sm:pb-20" aria-labelledby="subscribe-heading">
+      <div class="relative overflow-hidden rounded-3xl border border-hairline bg-elevated/70 p-6 sm:p-10 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset] backdrop-blur-sm transition-colors hover:border-primary/30">
+        <div class="pointer-events-none absolute -right-20 -top-20 size-60 rounded-full bg-primary/10 blur-3xl" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute -bottom-20 -left-20 size-60 rounded-full bg-primary/5 blur-3xl" aria-hidden="true"></div>
+        
+        <div class="relative grid gap-8 lg:grid-cols-12 lg:items-center">
+          <div class="lg:col-span-7">
+            <h2 id="subscribe-heading" class="text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+              {t.subscribeHeading}
+            </h2>
+            <p class="mt-2.5 max-w-md text-sm leading-6 text-body sm:text-[15px]">
+              {t.subscribeText}
+            </p>
+            
+            <div class="mt-6 flex items-center gap-3">
+              <div class="flex -space-x-2 overflow-hidden" aria-hidden="true">
+                <span class="inline-grid size-8 place-items-center rounded-full border-2 border-elevated bg-gradient-to-br from-cyan-400 to-blue-600 text-[10px] font-bold text-white shadow-sm ring-1 ring-white/10">JD</span>
+                <span class="inline-grid size-8 place-items-center rounded-full border-2 border-elevated bg-gradient-to-br from-indigo-400 to-purple-600 text-[10px] font-bold text-white shadow-sm ring-1 ring-white/10">AR</span>
+                <span class="inline-grid size-8 place-items-center rounded-full border-2 border-elevated bg-gradient-to-br from-teal-400 to-emerald-600 text-[10px] font-bold text-white shadow-sm ring-1 ring-white/10">SK</span>
+                <span class="inline-grid size-8 place-items-center rounded-full border-2 border-elevated bg-gradient-to-br from-rose-400 to-orange-500 text-[10px] font-bold text-white shadow-sm ring-1 ring-white/10">ML</span>
+                <span class="inline-grid size-8 place-items-center rounded-full border-2 border-elevated bg-gradient-to-br from-amber-400 to-yellow-500 text-[10px] font-bold text-white shadow-sm ring-1 ring-white/10">EC</span>
+              </div>
+              <p class="text-xs sm:text-sm text-body">
+                <strong class="font-semibold text-ink">{t.subscribersCount}</strong> {t.subscribersText}
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <form id="subscribe-form" class="space-y-3">
+              <div>
+                <label for="sub-name" class="sr-only">{t.namePlaceholder}</label>
+                <input
+                  id="sub-name"
+                  type="text"
+                  name="name"
+                  placeholder={t.namePlaceholder}
+                  class="w-full rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+              <div>
+                <label for="sub-email" class="sr-only">{t.emailPlaceholder}</label>
+                <input
+                  id="sub-email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder={t.emailPlaceholder}
+                  class="w-full rounded-xl border border-hairline bg-canvas/80 px-4 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
+                />
+              </div>
+              <button
+                type="submit"
+                id="sub-button"
+                class="w-full rounded-xl bg-ink py-3 text-sm font-semibold text-canvas transition-all hover:bg-primary hover:text-on-primary active:scale-[0.99] dark:bg-white dark:text-black dark:hover:bg-primary-bright dark:hover:text-black cursor-pointer"
+              >
+                {t.subscribeBtn}
+              </button>
+              <p id="sub-feedback" class="hidden text-center text-xs font-medium text-primary mt-2">
+                {t.subscribeSuccess}
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive FAQ Section with Schema.org Integration -->
+    <section class="container-site pb-20" aria-labelledby="faq-heading">
+      <div class="mx-auto max-w-2xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.faqEyebrow}</p>
+        <h2 id="faq-heading" class="mt-3 text-2xl font-semibold tracking-[-0.02em] text-ink sm:text-3xl">
+          {t.faqHeading}
+        </h2>
+        <div class="mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70 shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
+          {content.faqs.map(({ q, a }) => (
+            <details class="group px-5 sm:px-6">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-[15px] font-medium text-ink [&::-webkit-details-marker]:hidden">
+                <span>{q}</span>
+                <svg viewBox="0 0 16 16" class="size-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
+                  <path d="M8 2.5v11M2.5 8h11" />
+                </svg>
+              </summary>
+              <p class="pb-5 text-[15px] leading-7 text-body">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<!-- Embed Localized Config for Client-Side Audio & UI Engine -->
+<script id="i18n-data" type="application/json" set:html={JSON.stringify(i18nConfig)} />
+
+<script>
+  /** @typedef {'water' | 'dust' | 'test'} ModeId */
+
+  const i18nEl = document.getElementById('i18n-data');
+  const MODES = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : {
+    water: { hint: '165 Hz pulse · 60 s', duration: 60, gain: 1.0, cta: 'Start Ejection', steps: ['Remove case', 'Face speaker down', 'Volume to 100%', 'Start ejection'], idle: 'Tap to start.', running: 'Ejecting...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    dust: { hint: '8–15 kHz sweep · 60 s', duration: 60, gain: 1.0, cta: 'Start Cleaning', steps: ['Remove case', 'Face speaker up', 'Volume to 100%', 'Start cleaning'], idle: 'Tap to start.', running: 'Cleaning...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    test: { hint: 'Left · Right · Stereo · 9 s', duration: 9, gain: 1.0, cta: 'Start Test', steps: ['Unplug headphones', 'Volume to 50%', 'Listen to each side', 'Start test'], idle: 'Tap to start.', running: 'Testing...', done: 'Done.', next: { mode: 'water', label: 'Water Eject' } },
+  };
+
+  const MODE_IDS = ['water', 'dust', 'test'];
+  const TEST_SEGMENT = 3; // seconds per channel in Speaker Test
+
+  /** @param {string} id */
+  const $ = (id) => document.getElementById(id);
+
+  const tabs = Array.from(document.querySelectorAll('[role="tab"][data-mode]'));
+  const panel = $('tool-panel');
+  const hint = $('mode-hint');
+  const stage = $('stage');
+  const power = $('power');
+  const powerIdle = $('power-idle');
+  const powerRun = $('power-run');
+  const powerDone = $('power-done');
+  const powerLabel = $('power-label');
+  const count = $('count');
+  const status = $('status');
+  const ring = $('ring-progress');
+  const channels = $('channels');
+  const chL = channels ? channels.querySelector('[data-ch="L"]') : null;
+  const chR = channels ? channels.querySelector('[data-ch="R"]') : null;
+  const stepEls = Array.from(document.querySelectorAll('#steps > li'));
+  const canvas = $('wave');
+  const c2d = canvas ? canvas.getContext('2d') : null;
+  const RING_C = parseFloat(ring ? ring.getAttribute('stroke-dasharray') || '295.31' : '295.31');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /** @type {ModeId} */
+  let mode = 'water';
+  let running = false;
+  /** @type {AudioContext | null} */
+  let ctx = null;
+  /** @type {GainNode | null} */
+  let master = null;
+  /** @type {AnalyserNode | null} */
+  let analyser = null;
+  /** @type {AudioScheduledSourceNode[]} */
+  let live = [];
+  let td = new Uint8Array(0);
+  let runStart = 0;
+  let endTimer = 0;
+  let raf = 0;
+  let stepIdx = 0;
+  let quickTimer = 0;
+  let doneTimer = 0;
+  let wakeLock = null;
+  const cycles = { water: 0, dust: 0, test: 0 };
+
+  /* ---------- Audio Engine: +70% Loudness Boost & Rich Bass ---------- */
+
+  function ensureAudio() {
+    if (!ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      ctx = new AC();
+
+      master = ctx.createGain();
+      master.gain.value = 0;
+
+      // Master Bass Equalizer (+5 dB Low-Shelf for rich punchy bass)
+      const masterBass = ctx.createBiquadFilter();
+      masterBass.type = 'lowshelf';
+      masterBass.frequency.value = 220;
+      masterBass.gain.value = 5;
+
+      // High-performance brickwall limiter for maximum perceived loudness without digital clipping
+      const limiter = ctx.createDynamicsCompressor();
+      limiter.threshold.value = -0.5;
+      limiter.knee.value = 2;
+      limiter.ratio.value = 20;
+      limiter.attack.value = 0.001;
+      limiter.release.value = 0.04;
+
+      analyser = ctx.createAnalyser();
+      analyser.fftSize = 512;
+      td = new Uint8Array(analyser.fftSize);
+
+      master.connect(masterBass);
+      masterBass.connect(limiter);
+      limiter.connect(analyser);
+      analyser.connect(ctx.destination);
+
+      ctx.onstatechange = () => {
+        if (running && ctx && ctx.state !== 'running') {
+          stop(true);
+        }
+      };
+    }
+    return ctx;
+  }
+
+  // Heavy-Bass Multi-Layer Water Eject Tone (165 Hz core + 82.5 Hz sub-bass + 330 Hz harmonic punch)
+  function buildWater(ac, t0, out) {
+    const osc1 = ac.createOscillator();
+    osc1.type = 'square';
+    osc1.frequency.value = 165;
+
+    const oscSub = ac.createOscillator();
+    oscSub.type = 'square';
+    oscSub.frequency.value = 82.5;
+
+    const oscHarm = ac.createOscillator();
+    oscHarm.type = 'sawtooth';
+    oscHarm.frequency.value = 330;
+
+    const gain1 = ac.createGain();
+    gain1.gain.value = 0.85;
+
+    const gainSub = ac.createGain();
+    gainSub.gain.value = 0.65;
+
+    const gainHarm = ac.createGain();
+    gainHarm.gain.value = 0.45;
+
+    const bassBoost = ac.createBiquadFilter();
+    bassBoost.type = 'lowshelf';
+    bassBoost.frequency.value = 200;
+    bassBoost.gain.value = 8;
+
+    osc1.connect(gain1).connect(bassBoost);
+    oscSub.connect(gainSub).connect(bassBoost);
+    oscHarm.connect(gainHarm).connect(bassBoost);
+
+    const pulseGain = ac.createGain();
+    pulseGain.gain.value = 0.95;
+
+    const lfo = ac.createOscillator();
+    lfo.type = 'square';
+    lfo.frequency.value = 3.2;
+
+    const lfoDepth = ac.createGain();
+    lfoDepth.gain.value = 0.4;
+
+    lfo.connect(lfoDepth).connect(pulseGain.gain);
+    bassBoost.connect(pulseGain).connect(out);
+
+    osc1.start(t0);
+    oscSub.start(t0);
+    oscHarm.start(t0);
+    lfo.start(t0);
+
+    return [osc1, oscSub, oscHarm, lfo];
+  }
+
+  // Maximum Loudness Turbo Dust Cleaner (Dual-Band Sawtooth Sweeps: 2.5–6 kHz Mid + 8–14.5 kHz High)
+  function buildDust(ac, t0, out) {
+    const oscMid = ac.createOscillator();
+    oscMid.type = 'sawtooth';
+    oscMid.frequency.value = 4200;
+
+    const lfoMid = ac.createOscillator();
+    lfoMid.type = 'triangle';
+    lfoMid.frequency.value = 0.5;
+
+    const depthMid = ac.createGain();
+    depthMid.gain.value = 1800;
+    lfoMid.connect(depthMid).connect(oscMid.frequency);
+
+    const oscHigh = ac.createOscillator();
+    oscHigh.type = 'sawtooth';
+    oscHigh.frequency.value = 11000;
+
+    const lfoHigh = ac.createOscillator();
+    lfoHigh.type = 'sawtooth';
+    lfoHigh.frequency.value = 0.35;
+
+    const depthHigh = ac.createGain();
+    depthHigh.gain.value = 3500;
+    lfoHigh.connect(depthHigh).connect(oscHigh.frequency);
+
+    const presenceBoost = ac.createBiquadFilter();
+    presenceBoost.type = 'peaking';
+    presenceBoost.frequency.value = 3500;
+    presenceBoost.Q.value = 1.0;
+    presenceBoost.gain.value = 6;
+
+    const dustMix = ac.createGain();
+    dustMix.gain.value = 0.95;
+
+    oscMid.connect(presenceBoost);
+    oscHigh.connect(presenceBoost);
+    presenceBoost.connect(dustMix).connect(out);
+
+    oscMid.start(t0);
+    lfoMid.start(t0);
+    oscHigh.start(t0);
+    lfoHigh.start(t0);
+
+    return [oscMid, lfoMid, oscHigh, lfoHigh];
+  }
+
+  // High-Volume Rich Bass Stereo Tone (Layered 220 Hz Bass + 440 Hz Mid + 880 Hz Clarity)
+  function stereoTone(ac, out, freq = 440) {
+    const oscBass = ac.createOscillator();
+    oscBass.type = 'triangle';
+    oscBass.frequency.value = freq / 2;
+
+    const oscCore = ac.createOscillator();
+    oscCore.type = 'sine';
+    oscCore.frequency.value = freq;
+
+    const oscHarm = ac.createOscillator();
+    oscHarm.type = 'sawtooth';
+    oscHarm.frequency.value = freq * 2;
+
+    const gainBass = ac.createGain();
+    gainBass.gain.value = 0.75;
+
+    const gainCore = ac.createGain();
+    gainCore.gain.value = 0.75;
+
+    const gainHarm = ac.createGain();
+    gainHarm.gain.value = 0.35;
+
+    const bassEQ = ac.createBiquadFilter();
+    bassEQ.type = 'lowshelf';
+    bassEQ.frequency.value = 250;
+    bassEQ.gain.value = 6;
+
+    oscBass.connect(gainBass).connect(bassEQ);
+    oscCore.connect(gainCore).connect(bassEQ);
+    oscHarm.connect(gainHarm).connect(bassEQ);
+
+    const toneMaster = ac.createGain();
+    toneMaster.gain.value = 0.95;
+    bassEQ.connect(toneMaster);
+
+    const left = ac.createGain();
+    const right = ac.createGain();
+    const merger = ac.createChannelMerger(2);
+
+    toneMaster.connect(left).connect(merger, 0, 0);
+    toneMaster.connect(right).connect(merger, 0, 1);
+    merger.connect(out);
+
+    return { oscs: [oscBass, oscCore, oscHarm], left, right };
+  }
+
+  function buildTest(ac, t0, out) {
+    const { oscs, left, right } = stereoTone(ac, out);
+    left.gain.setValueAtTime(1, t0);
+    right.gain.setValueAtTime(0, t0);
+    left.gain.setTargetAtTime(0, t0 + TEST_SEGMENT, 0.01);
+    right.gain.setTargetAtTime(1, t0 + TEST_SEGMENT, 0.01);
+    left.gain.setTargetAtTime(1, t0 + TEST_SEGMENT * 2, 0.01);
+    oscs.forEach((o) => o.start(t0));
+    return oscs;
+  }
+
+  const BUILD = { water: buildWater, dust: buildDust, test: buildTest };
+
+  function scheduleMaster(g, level, t0, tEnd) {
+    g.cancelScheduledValues(t0);
+    g.setValueAtTime(0, t0);
+    g.linearRampToValueAtTime(level, t0 + 0.12);
+    g.setValueAtTime(level, tEnd - 0.2);
+    g.linearRampToValueAtTime(0, tEnd);
+  }
+
+  async function start() {
+    if (running) return;
+    const ac = ensureAudio();
+    try { await ac.resume(); } catch (_) { /* ignore */ }
+    if (!master || ac.state !== 'running') {
+      return;
+    }
+    clearTimeout(quickTimer);
+    clearTimeout(doneTimer);
+
+    const cfg = MODES[mode];
+    const t0 = ac.currentTime + 0.05;
+    const tEnd = t0 + cfg.duration;
+
+    live = BUILD[mode](ac, t0, master);
+    scheduleMaster(master.gain, cfg.gain, t0, tEnd);
+    live.forEach((n) => n.stop(tEnd + 0.05));
+    if (live[0]) {
+      live[0].onended = () => { if (running) stop(false); };
+    }
+
+    running = true;
+    runStart = t0;
+    setRunningUI(true);
+    if (status) status.textContent = cfg.running;
+
+    if (mode === 'water' && 'vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+    requestWakeLock();
+
+    endTimer = window.setTimeout(() => { if (running) stop(false); }, cfg.duration * 1000 + 400);
+    raf = requestAnimationFrame(tick);
+  }
+
+  function stop(manual) {
+    if (!running || !ctx || !master) return;
+    running = false;
+
+    const t = ctx.currentTime;
+    master.gain.cancelScheduledValues(t);
+    master.gain.setValueAtTime(master.gain.value, t);
+    master.gain.linearRampToValueAtTime(0, t + 0.12);
+    for (const n of live) {
+      n.onended = null;
+      try { n.stop(t + 0.15); } catch (_) { /* already stopped */ }
+    }
+    live = [];
+
+    clearTimeout(endTimer);
+    cancelAnimationFrame(raf);
+    releaseWakeLock();
+
+    const cfg = MODES[mode];
+    setRunningUI(false);
+    if (ring) ring.style.strokeDashoffset = manual ? String(RING_C) : '0';
+    if (count) count.textContent = String(cfg.duration);
+    updateChannels(-1);
+    if (c2d && canvas) c2d.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (status) {
+      if (manual) {
+        status.textContent = cfg.idle;
+      } else {
+        cycles[mode] += 1;
+        status.textContent = cfg.done;
+        showDone();
+      }
+    }
+  }
+
+  function tick() {
+    if (!running || !ctx) return;
+    const cfg = MODES[mode];
+    const elapsed = Math.min(cfg.duration, Math.max(0, ctx.currentTime - runStart));
+    if (count) count.textContent = String(Math.max(0, Math.ceil(cfg.duration - elapsed)));
+    if (ring) ring.style.strokeDashoffset = String(RING_C * (1 - elapsed / cfg.duration));
+    if (mode === 'test') updateChannels(Math.min(2, Math.floor(elapsed / TEST_SEGMENT)));
+    if (!reduceMotion) drawWave();
+    raf = requestAnimationFrame(tick);
+  }
+
+  function drawWave() {
+    if (!c2d || !analyser || !canvas || !power) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    const cx = w / 2;
+    const cy = h / 2;
+    const dpr = canvas.clientWidth ? w / canvas.clientWidth : 1;
+    c2d.clearRect(0, 0, w, h);
+    analyser.getByteTimeDomainData(td);
+
+    const base = (power.offsetWidth / 2 + 22) * dpr;
+    const maxLen = Math.max(8 * dpr, cx - base - 4 * dpr);
+    const bars = 72;
+    c2d.lineWidth = 2 * dpr;
+    c2d.lineCap = 'round';
+
+    for (let i = 0; i < bars; i++) {
+      const a = (i / bars) * Math.PI * 2 - Math.PI / 2;
+      const sample = td[Math.floor((i / bars) * td.length)];
+      const dev = Math.abs(sample - 128) / 128;
+      const len = 3 * dpr + dev * maxLen;
+      c2d.strokeStyle = `rgba(6,182,212,${(0.18 + dev * 0.7).toFixed(3)})`;
+      c2d.beginPath();
+      c2d.moveTo(cx + Math.cos(a) * base, cy + Math.sin(a) * base);
+      c2d.lineTo(cx + Math.cos(a) * (base + len), cy + Math.sin(a) * (base + len));
+      c2d.stroke();
+    }
+  }
+
+  function resizeCanvas() {
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+  }
+
+  function setFlex(el, visible) {
+    if (!el) return;
+    el.classList.toggle('hidden', !visible);
+    el.classList.toggle('flex', visible);
+  }
+
+  function setRunningUI(on) {
+    if (stage) stage.dataset.state = on ? 'running' : 'idle';
+    if (power) {
+      power.setAttribute('aria-pressed', String(on));
+      power.setAttribute('aria-label', on ? 'Stop' : MODES[mode].cta);
+    }
+    setFlex(powerIdle, !on);
+    setFlex(powerRun, on);
+    setFlex(powerDone, false);
+    renderSteps();
+  }
+
+  function showDone() {
+    if (!powerDone || !stage) return;
+    stage.dataset.state = 'done';
+    setFlex(powerIdle, false);
+    setFlex(powerDone, true);
+    if ('vibrate' in navigator) navigator.vibrate(60);
+    clearTimeout(doneTimer);
+    doneTimer = window.setTimeout(() => {
+      if (running) return;
+      stage.dataset.state = 'idle';
+      setFlex(powerDone, false);
+      setFlex(powerIdle, true);
+    }, 1800);
+  }
+
+  function updateChannels(phase) {
+    if (chL) chL.toggleAttribute('data-on', phase === 0 || phase === 2);
+    if (chR) chR.toggleAttribute('data-on', phase === 1 || phase === 2);
+  }
+
+  function renderSteps() {
+    stepEls.forEach((li, i) => {
+      li.toggleAttribute('data-active', running ? i === 3 : i === stepIdx);
+      li.toggleAttribute('data-done', running && i < 3);
+    });
+  }
+
+  function setMode(nextId) {
+    if (!nextId) return;
+    if (running) stop(true);
+    clearTimeout(quickTimer);
+    clearTimeout(doneTimer);
+    mode = nextId;
+    const cfg = MODES[mode];
+
+    tabs.forEach((t) => {
+      const on = t.dataset.mode === mode;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+    });
+    if (panel) panel.setAttribute('aria-labelledby', `tab-${mode}`);
+    if (stage) {
+      stage.dataset.mode = mode;
+      stage.dataset.state = 'idle';
+    }
+    if (hint) hint.textContent = cfg.hint;
+    if (powerLabel) powerLabel.textContent = cfg.cta;
+    if (power) power.setAttribute('aria-label', cfg.cta);
+    if (status) status.textContent = cfg.idle;
+    if (count) count.textContent = String(cfg.duration);
+    if (ring) ring.style.strokeDashoffset = String(RING_C);
+    updateChannels(-1);
+    setFlex(channels, mode === 'test');
+    setFlex(powerDone, false);
+    setFlex(powerIdle, true);
+    stepEls.forEach((li, i) => {
+      const label = li.querySelector('.step-label');
+      if (label && cfg.steps[i]) label.textContent = cfg.steps[i];
+    });
+    stepIdx = 0;
+    renderSteps();
+  }
+
+  async function requestWakeLock() {
+    try {
+      if (navigator.wakeLock) wakeLock = await navigator.wakeLock.request('screen');
+    } catch (_) { /* unsupported or denied */ }
+  }
+  function releaseWakeLock() {
+    if (wakeLock) wakeLock.release().catch(() => {});
+    wakeLock = null;
+  }
+
+  /* ---------- Events ---------- */
+
+  if (power) power.addEventListener('click', () => (running ? stop(true) : start()));
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => setMode(tab.dataset.mode));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const n = (i + (e.key === 'ArrowRight' ? 1 : MODE_IDS.length - 1)) % MODE_IDS.length;
+      tabs[n].focus();
+      setMode(MODE_IDS[n]);
+    });
+  });
+
+  document.querySelectorAll('[data-select-mode]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setMode(btn.dataset.selectMode);
+      const tool = document.getElementById('tool');
+      if (tool) tool.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if (power) power.focus({ preventScroll: true });
+    });
+  });
+
+  // Subscribe form handler
+  const subForm = document.getElementById('subscribe-form');
+  const subFeedback = document.getElementById('sub-feedback');
+  const subButton = document.getElementById('sub-button');
+  if (subForm) {
+    subForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (subButton) {
+        subButton.textContent = 'Subscribed!';
+        subButton.setAttribute('disabled', 'true');
+      }
+      if (subFeedback) {
+        subFeedback.classList.remove('hidden');
+      }
+    });
+  }
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  window.addEventListener('pagehide', () => stop(true));
+
+  resizeCanvas();
+  setMode('water');
+</script>

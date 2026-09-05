@@ -1,7 +1,10 @@
 ---
+import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
+
 export interface Props {
   title: string;
   description: string;
+  lang?: SupportedLang;
   noindex?: boolean;
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
@@ -9,30 +12,52 @@ export interface Props {
 
 const SITE_NAME = 'Fix The Speaker';
 const SITE_URL = 'https://fixthespeaker.com';
+
+const {
+  title,
+  description,
+  lang = defaultLang,
+  noindex = false,
+  ogType = 'website',
+  jsonLd,
+} = Astro.props;
+
+const t = useTranslations(lang);
+const langMeta = languages[lang] || languages[defaultLang];
+
+const navPrefix = lang === defaultLang ? '' : `/${lang}`;
 const NAV = [
-  { href: '/about', label: 'About' },
-  { href: '/privacy', label: 'Privacy' },
-  { href: '/terms', label: 'Terms' },
-  { href: '/contact', label: 'Contact' },
+  { href: `${navPrefix}/about`, label: t.navAbout },
+  { href: `${navPrefix}/privacy`, label: t.navPrivacy },
+  { href: `${navPrefix}/terms`, label: t.navTerms },
+  { href: `${navPrefix}/contact`, label: t.navContact },
 ];
 
-const { title, description, noindex = false, ogType = 'website', jsonLd } = Astro.props;
-
-if (import.meta.env.DEV && description.length > 160) {
-  console.warn(`[SEO] Meta description is ${description.length} chars: ${Astro.url.pathname}`);
-}
-
 const base = Astro.site ?? new URL(SITE_URL);
-const canonical = new URL(Astro.url.pathname, base).href;
+const cleanPath = Astro.url.pathname.replace(/\/index(\.html)?$/, '').replace(/\.html$/, '') || '/';
+const canonical = new URL(cleanPath, base).href;
 const ogImage = new URL('/og-image.png', base).href;
-const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const currentPath = cleanPath;
 const year = new Date().getFullYear();
 
 const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>`;
+
+// Hreflang alternates
+const hreflangs: { lang: string; href: string }[] = [
+  { lang: 'x-default', href: `${SITE_URL}/` },
+  { lang: 'en', href: `${SITE_URL}/` },
+  { lang: 'es', href: `${SITE_URL}/es` },
+  { lang: 'ja', href: `${SITE_URL}/ja` },
+  { lang: 'fr', href: `${SITE_URL}/fr` },
+  { lang: 'de', href: `${SITE_URL}/de` },
+  { lang: 'pt', href: `${SITE_URL}/pt` },
+  { lang: 'ko', href: `${SITE_URL}/ko` },
+  { lang: 'it', href: `${SITE_URL}/it` },
+];
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang={lang} class="h-full">
   <head>
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -68,6 +93,11 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="generator" content={Astro.generator} />
 
+    {/* Multilingual Hreflang Alternates for Global SEO */}
+    {hreflangs.map((h) => (
+      <link rel="alternate" hreflang={h.lang} href={h.href} />
+    ))}
+
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={title} />
@@ -76,8 +106,13 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Fix The Speaker: free water eject tool" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:image:alt" content="Fix The Speaker: free water eject & speaker cleaner tool" />
+    <meta property="og:locale" content={langMeta.ogLocale} />
+    {Object.entries(languages)
+      .filter(([k]) => k !== lang)
+      .map(([, v]) => (
+        <meta property="og:locale:alternate" content={v.ogLocale} />
+      ))}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -109,25 +144,62 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     </a>
 
     <header class="sticky top-0 z-40 border-b border-hairline bg-canvas/85 backdrop-blur-md transition-shadow shadow-[0_1px_0_rgb(255_255_255/0.04)]">
-      <div class="container-site flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-3">
-        <a href="/" class="flex items-center gap-2.5 rounded-pill text-ink" aria-label="Fix The Speaker, home">
+      <div class="container-site flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3">
+        <a href={lang === defaultLang ? '/' : `/${lang}`} class="flex items-center gap-2.5 rounded-pill text-ink" aria-label="Fix The Speaker, home">
           <span class="grid size-8 place-items-center rounded-lg bg-primary text-on-primary [&>svg]:size-[18px]" set:html={logo} />
           <span class="text-[15px] font-semibold tracking-[-0.02em]">{SITE_NAME}</span>
         </a>
-        <nav aria-label="Primary" class="flex items-center gap-3 sm:gap-4">
-          <ul class="-mx-2 flex items-center gap-0.5 text-sm">
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <nav aria-label="Primary" class="hidden md:flex items-center gap-1 text-sm">
             {NAV.map(({ href, label }) => (
-              <li>
-                <a
-                  href={href}
-                  aria-current={currentPath === href ? 'page' : undefined}
-                  class="block rounded-pill px-3 py-2 text-body transition-colors hover:text-ink aria-[current=page]:bg-elevated aria-[current=page]:text-ink"
-                >
-                  {label}
-                </a>
-              </li>
+              <a
+                href={href}
+                aria-current={currentPath === href ? 'page' : undefined}
+                class="rounded-pill px-3 py-1.5 text-body transition-colors hover:text-ink aria-[current=page]:bg-elevated aria-[current=page]:text-ink"
+              >
+                {label}
+              </a>
             ))}
-          </ul>
+          </nav>
+
+          {/* Language Selector Dropdown */}
+          <div class="relative group/lang">
+            <button
+              type="button"
+              id="lang-menu-btn"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-label={t.selectLanguage}
+              class="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-elevated px-2.5 py-1.5 text-xs font-medium text-ink transition-colors hover:border-faint focus:outline-none"
+            >
+              <span class="text-sm">{langMeta.flag}</span>
+              <span class="hidden sm:inline font-medium">{langMeta.name}</span>
+              <svg viewBox="0 0 16 16" class="size-3 text-mute transition-transform group-hover/lang:rotate-180" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+            </button>
+
+            <div
+              id="lang-menu-dropdown"
+              class="invisible group-hover/lang:visible group-focus-within/lang:visible opacity-0 group-hover/lang:opacity-100 group-focus-within/lang:opacity-100 transition-all duration-150 absolute right-0 top-full mt-1.5 w-40 rounded-2xl border border-hairline bg-elevated/95 p-1.5 shadow-xl backdrop-blur-md z-50"
+            >
+              {Object.entries(languages).map(([k, v]) => (
+                <a
+                  href={k === defaultLang ? '/' : `/${k}`}
+                  class={`flex items-center justify-between rounded-xl px-2.5 py-2 text-xs transition-colors hover:bg-canvas hover:text-ink ${
+                    k === lang ? 'bg-primary/10 font-semibold text-primary' : 'text-body'
+                  }`}
+                >
+                  <span class="flex items-center gap-2">
+                    <span>{v.flag}</span>
+                    <span>{v.name}</span>
+                  </span>
+                  {k === lang && (
+                    <svg viewBox="0 0 16 16" class="size-3 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
 
           <button
             id="theme-toggle"
@@ -145,8 +217,10 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
             </svg>
           </button>
 
-          <a href="/#tool" class="btn btn-primary min-h-9 px-4 text-sm hidden sm:inline-flex">Start</a>
-        </nav>
+          <a href={`${lang === defaultLang ? '' : `/${lang}`}#tool`} class="btn btn-primary min-h-8 px-3.5 text-xs font-medium hidden sm:inline-flex">
+            {t.navStart}
+          </a>
+        </div>
       </div>
     </header>
 
@@ -157,30 +231,51 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       <div class="container-site py-12">
         <div class="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div class="max-w-sm">
-            <a href="/" class="inline-flex items-center gap-2.5 text-ink" aria-label="Fix The Speaker, home">
+            <a href={lang === defaultLang ? '/' : `/${lang}`} class="inline-flex items-center gap-2.5 text-ink" aria-label="Fix The Speaker, home">
               <span class="grid size-8 place-items-center rounded-lg bg-primary text-on-primary [&>svg]:size-[18px]" set:html={logo} />
               <span class="text-[15px] font-semibold tracking-[-0.02em]">{SITE_NAME}</span>
             </a>
             <p class="mt-4 text-sm leading-6 text-mute">
-              Free, browser-based phone speaker cleaner. Water eject, dust sweep and channel test,
-              generated on your device with the Web Audio API. Nothing is recorded or uploaded.
+              {t.footerDesc}
             </p>
           </div>
-          <nav aria-label="Footer">
-            <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">Pages</p>
-            <ul class="mt-3 grid grid-cols-2 gap-x-10 gap-y-2 text-sm sm:grid-cols-1">
-              <li><a href="/" class="text-body transition-colors hover:text-ink">Home</a></li>
-              {NAV.map(({ href, label }) => (
-                <li><a href={href} class="text-body transition-colors hover:text-ink">{label}</a></li>
-              ))}
-            </ul>
-          </nav>
+          
+          <div class="grid grid-cols-2 gap-8 sm:gap-12">
+            <nav aria-label="Footer Pages">
+              <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">{t.footerPages}</p>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li><a href={lang === defaultLang ? '/' : `/${lang}`} class="text-body transition-colors hover:text-ink">Home</a></li>
+                {NAV.map(({ href, label }) => (
+                  <li><a href={href} class="text-body transition-colors hover:text-ink">{label}</a></li>
+                ))}
+              </ul>
+            </nav>
+
+            <div>
+              <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">{t.selectLanguage}</p>
+              <ul class="mt-3 grid grid-cols-1 gap-2 text-xs">
+                {Object.entries(languages).map(([k, v]) => (
+                  <li>
+                    <a
+                      href={k === defaultLang ? '/' : `/${k}`}
+                      class={`inline-flex items-center gap-1.5 transition-colors ${
+                        k === lang ? 'font-semibold text-primary' : 'text-body hover:text-ink'
+                      }`}
+                    >
+                      <span>{v.flag}</span>
+                      <span>{v.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
+
         <div class="mt-10 flex flex-col gap-3 border-t border-hairline pt-6 text-xs leading-5 text-faint sm:flex-row sm:items-start sm:justify-between">
-          <p>&copy; {year} {SITE_NAME}. All rights reserved.</p>
+          <p>&copy; {year} {SITE_NAME}. {t.footerCopyright}</p>
           <p class="sm:max-w-md sm:text-right">
-            This tool ejects water from the speaker grille. It does not repair internal hardware damage.
-            Not affiliated with Apple, Samsung or Google.
+            {t.disclaimer} {t.footerDisclaimer}
           </p>
         </div>
       </div>
@@ -262,15 +357,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     }
   }
 
-  /*
-   * Theming model
-   * -------------
-   * The @theme tokens above ARE the dark palette and are left untouched, so dark
-   * mode renders exactly as before. Light mode is layered on with an unlayered
-   * `html:not(.dark)` rule — its specificity (0,1,1) beats Tailwind's `:root`
-   * (0,1,0), so the light values win whenever <html> is missing the `.dark` class.
-   * Decorative surfaces read theme-scoped vars (--grid-line / --mesh-* / --shine-*).
-   */
   :root {
     color-scheme: dark;
     --grid-line: rgb(255 255 255 / 0.035);
