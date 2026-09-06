@@ -1,6 +1,7 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
-import { defaultLang, type SupportedLang } from '../../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLang, type SupportedLang, useTranslations } from '../../i18n/ui';
 import { subpagesContent } from '../../i18n/subpages';
 
 export interface Props {
@@ -9,8 +10,7 @@ export interface Props {
 
 const { lang = defaultLang } = Astro.props;
 const content = subpagesContent[lang]?.contact || subpagesContent[defaultLang].contact;
-const navPrefix = lang === defaultLang ? '' : `/${lang}`;
-const EMAIL = 'hello@fixthespeaker.com';
+const EMAIL = 'support@fixthespeaker.com';
 ---
 
 <ContentLayout
@@ -45,6 +45,6 @@ const EMAIL = 'hello@fixthespeaker.com';
   <h2>{content.beforeTitle}</h2>
   <p>{content.beforeText}</p>
   <p>
-    <a href={`${navPrefix}/privacy`}>{lang === 'es' ? 'Política de Privacidad' : lang === 'ja' ? 'プライバシーポリシー' : lang === 'fr' ? 'Confidentialité' : lang === 'de' ? 'Datenschutz' : lang === 'pt' ? 'Privacidade' : lang === 'ko' ? '개인정보처리방침' : lang === 'it' ? 'Privacy' : 'Privacy Policy'}</a> &bull; <a href={`${navPrefix}/terms`}>{lang === 'es' ? 'Términos' : lang === 'ja' ? '利用規約' : lang === 'fr' ? 'Conditions' : lang === 'de' ? 'Bedingungen' : lang === 'pt' ? 'Termos' : lang === 'ko' ? '이용약관' : lang === 'it' ? 'Termini' : 'Terms'}</a>
+    <a href={getRelativeLocaleUrl(lang, 'privacy')}>{useTranslations(lang).navPrivacy}</a> &bull; <a href={getRelativeLocaleUrl(lang, 'terms')}>{useTranslations(lang).navTerms}</a>
   </p>
 </ContentLayout>

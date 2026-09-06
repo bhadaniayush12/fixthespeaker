@@ -1,6 +1,7 @@
 ---
 import ContentLayout from '../../layouts/ContentLayout.astro';
-import { defaultLang, type SupportedLang } from '../../i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLang, type SupportedLang, useTranslations } from '../../i18n/ui';
 import { subpagesContent } from '../../i18n/subpages';
 
 export interface Props {
@@ -9,7 +10,6 @@ export interface Props {
 
 const { lang = defaultLang } = Astro.props;
 const content = subpagesContent[lang]?.about || subpagesContent[defaultLang].about;
-const navPrefix = lang === defaultLang ? '' : `/${lang}`;
 ---
 
 <ContentLayout
@@ -37,8 +37,8 @@ const navPrefix = lang === defaultLang ? '' : `/${lang}`;
     </>
   ))}
 
-  <h2>{lang === 'es' ? 'Contacto' : lang === 'ja' ? 'お問い合わせ' : lang === 'fr' ? 'Contact' : lang === 'de' ? 'Kontakt' : lang === 'pt' ? 'Contato' : lang === 'ko' ? '문의하기' : lang === 'it' ? 'Contatti' : 'Get in touch'}</h2>
+  <h2>{useTranslations(lang).navContact}</h2>
   <p>
-    <a href={`${navPrefix}/contact`}>{lang === 'es' ? 'Página de contacto' : lang === 'ja' ? 'お問い合わせページ' : lang === 'fr' ? 'Page de contact' : lang === 'de' ? 'Kontaktseite' : lang === 'pt' ? 'Página de contato' : lang === 'ko' ? '문의 페이지' : lang === 'it' ? 'Pagina contatti' : 'Contact page'}</a> &bull; <a href={`${navPrefix}/privacy`}>{lang === 'es' ? 'Política de Privacidad' : lang === 'ja' ? 'プライバシーポリシー' : lang === 'fr' ? 'Confidentialité' : lang === 'de' ? 'Datenschutz' : lang === 'pt' ? 'Privacidade' : lang === 'ko' ? '개인정보처리방침' : lang === 'it' ? 'Privacy' : 'Privacy Policy'}</a> &bull; <a href={`${navPrefix}/terms`}>{lang === 'es' ? 'Términos' : lang === 'ja' ? '利用規約' : lang === 'fr' ? 'Conditions' : lang === 'de' ? 'Bedingungen' : lang === 'pt' ? 'Termos' : lang === 'ko' ? '이용약관' : lang === 'it' ? 'Termini' : 'Terms'}</a>
+    <a href={getRelativeLocaleUrl(lang, 'contact')}>{useTranslations(lang).navContact}</a> &bull; <a href={getRelativeLocaleUrl(lang, 'privacy')}>{useTranslations(lang).navPrivacy}</a> &bull; <a href={getRelativeLocaleUrl(lang, 'terms')}>{useTranslations(lang).navTerms}</a>
   </p>
 </ContentLayout>

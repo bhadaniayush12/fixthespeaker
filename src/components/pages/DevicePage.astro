@@ -1,0 +1,301 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SpeakerTool from '../SpeakerTool.astro';
+import DeviceDirectory from '../DeviceDirectory.astro';
+import { type SupportedLang, defaultLang, useTranslations } from '../../i18n/ui';
+import { type DeviceData, devices } from '../../data/devices';
+import { getLocalizedDevice } from '../../i18n/deviceTranslations';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+export interface Props {
+  device: DeviceData;
+  lang?: SupportedLang;
+}
+
+const { device, lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const localizedDevice = getLocalizedDevice(device, lang);
+
+const SITE_URL = 'https://fixthespeaker.com';
+const pageUrl = lang === defaultLang 
+  ? `${SITE_URL}/${localizedDevice.slug}` 
+  : `${SITE_URL}/${lang}/${localizedDevice.slug}`;
+
+const homeUrl = getRelativeLocaleUrl(lang);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: `${SITE_URL}/`,
+      name: 'Fix The Speaker',
+      description: 'Free online tool to fix muffled smartphone and laptop speakers using 165 Hz water eject sound.',
+      inLanguage: lang,
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${pageUrl}#app`,
+      name: `${localizedDevice.name} Water Eject & Speaker Cleaner`,
+      url: pageUrl,
+      description: localizedDevice.metaDescription,
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: localizedDevice.name,
+      browserRequirements: 'Requires a modern web browser with HTML5 Web Audio API support',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      featureList: [
+        '165 Hz Multi-Layer Water Eject Tone',
+        '2.5 kHz - 14.5 kHz High-Frequency Dust Cleaner Sweep',
+        'Stereo Channel Diagnostic Speaker Test',
+      ],
+    },
+    {
+      '@type': 'HowTo',
+      '@id': `${pageUrl}#howto`,
+      name: `${t.howToCleanPrefix} ${localizedDevice.shortName}`,
+      description: localizedDevice.metaDescription,
+      totalTime: 'PT2M',
+      step: localizedDevice.steps.map((step, i) => ({
+        '@type': 'HowToStep',
+        position: i + 1,
+        name: step.name,
+        text: step.text,
+        url: `${pageUrl}#step-${i + 1}`,
+      })),
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${pageUrl}#faq`,
+      mainEntity: localizedDevice.faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: { '@type': 'Answer', text: a },
+      })),
+    },
+  ],
+};
+
+const relatedDevices = localizedDevice.relatedSlugs
+  .map((slug) => devices[slug])
+  .filter(Boolean)
+  .map((dev) => getLocalizedDevice(dev, lang));
+---
+
+<Layout title={localizedDevice.metaTitle} description={localizedDevice.metaDescription} lang={lang} jsonLd={jsonLd}>
+  <main id="main" class="flex-1">
+    
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden" aria-labelledby="hero-heading">
+      <div class="bg-mesh pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+      <div class="bg-grid pointer-events-none absolute inset-x-0 top-0 h-[32rem]" aria-hidden="true"></div>
+
+      <div class="container-site relative pt-10 pb-4 text-center sm:pt-16 sm:pb-6">
+        
+        <!-- Breadcrumb / Back Link -->
+        <nav aria-label="Breadcrumb" class="mb-4 inline-flex items-center gap-2 text-xs text-mute font-mono">
+          <a href={homeUrl} class="transition-colors hover:text-ink">{t.navHome}</a>
+          <span>/</span>
+          <span class="text-primary">{localizedDevice.shortName}</span>
+        </nav>
+
+        <p class="animate-rise font-mono text-[11px] uppercase tracking-[0.14em] text-primary sm:text-xs">
+          {localizedDevice.badge}
+        </p>
+
+        <h1
+          id="hero-heading"
+          class="text-shine animate-rise mx-auto mt-3 max-w-3xl text-3xl font-semibold leading-[1.12] tracking-[-0.035em] [animation-delay:80ms] sm:text-5xl md:text-6xl sm:leading-[1.02]"
+        >
+          {localizedDevice.heroHeading}
+        </h1>
+
+        <p class="animate-rise mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-body [animation-delay:160ms] sm:text-lg sm:leading-7 sm:mt-4">
+          {localizedDevice.heroSubtitle}
+        </p>
+
+        <!-- Hardware Tags -->
+        <div class="animate-rise mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms] sm:mt-6 sm:gap-x-4">
+          <span class="inline-flex items-center gap-1.5 text-body">
+            <svg viewBox="0 0 16 16" class="size-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="m5.5 8 2 2 3.5-3.5"/></svg>
+            {localizedDevice.ipRating.split('(')[0].trim()}
+          </span>
+          <span class="text-faint">·</span>
+          <span class="text-body">{localizedDevice.acousticFreq.split('+')[0].trim()}</span>
+          <span class="text-faint">·</span>
+          <span class="text-primary/90">{t.noAppRequired}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Tool Component -->
+    <SpeakerTool lang={lang} customSteps={localizedDevice.steps} />
+
+    <!-- Device Hardware Specifications Profile Card -->
+    <section class="container-site pb-14 sm:pb-20" aria-labelledby="specs-heading">
+      <div class="rounded-3xl border border-hairline bg-elevated/70 p-6 sm:p-8 backdrop-blur-sm shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
+        <h2 id="specs-heading" class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-primary">
+          {t.hardwareProfileHeading}
+        </h2>
+        <h3 class="mt-2 text-xl font-semibold tracking-[-0.02em] text-ink sm:text-2xl">
+          {localizedDevice.name}
+        </h3>
+
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
+            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.waterProtectionLabel}</p>
+            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.ipRating}</p>
+          </div>
+          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
+            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.acousticGrilleLabel}</p>
+            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.grilleSpecs}</p>
+          </div>
+          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
+            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.optimalFreqLabel}</p>
+            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.acousticFreq}</p>
+          </div>
+          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
+            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.cleaningDurationLabel}</p>
+            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.recommendedDuration}</p>
+          </div>
+        </div>
+
+        <div class="mt-6 border-t border-hairline pt-6">
+          <p class="text-xs font-mono uppercase tracking-[0.12em] text-faint mb-3">{t.compatibleModelsLabel}</p>
+          <div class="flex flex-wrap gap-2">
+            {localizedDevice.compatibilityList.map((model) => (
+              <span class="rounded-pill border border-hairline bg-canvas/60 px-3 py-1 text-xs text-body">
+                {model}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step-by-Step How-To Guide -->
+    <section class="container-site pb-14 sm:pb-20" aria-labelledby="howto-heading">
+      <div class="mx-auto max-w-3xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.cleaningProtocolEyebrow}</p>
+        <h2 id="howto-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+          {t.howToCleanPrefix} {localizedDevice.shortName}
+        </h2>
+        
+        <div class="mt-8 space-y-4">
+          {localizedDevice.steps.map((step, idx) => (
+            <div id={`step-${idx + 1}`} class="group rounded-2xl border border-hairline bg-elevated/60 p-5 sm:p-6 transition-colors hover:border-primary/40">
+              <div class="flex items-start gap-4">
+                <span class="flex size-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 font-mono text-xs font-bold text-primary">
+                  0{idx + 1}
+                </span>
+                <div>
+                  <h3 class="text-base font-semibold text-ink">{step.name}</h3>
+                  <p class="mt-1.5 text-sm leading-relaxed text-body">{step.text}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Tips & Warnings -->
+    <section class="container-site pb-14 sm:pb-20" aria-labelledby="tips-heading">
+      <div class="mx-auto max-w-3xl rounded-3xl border border-hairline bg-elevated/40 p-6 sm:p-8">
+        <div class="flex items-center gap-2.5 text-amber-400">
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <h2 id="tips-heading" class="text-base font-semibold text-ink">{t.safetyTipsHeading}</h2>
+        </div>
+        <ul class="mt-4 space-y-3">
+          {localizedDevice.technicalTips.map((tip) => (
+            <li class="flex items-start gap-3 text-sm leading-relaxed text-body">
+              <span class="text-primary mt-0.5">•</span>
+              <span>{tip}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Device-Specific FAQ Section -->
+    <section class="container-site pb-16 sm:pb-20" aria-labelledby="device-faq-heading">
+      <div class="mx-auto max-w-3xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.faqEyebrow}</p>
+        <h2 id="device-faq-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+          {localizedDevice.shortName} {t.deviceFaqHeadingSuffix}
+        </h2>
+        
+        <div class="mt-6 sm:mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70">
+          {localizedDevice.faqs.map(({ q, a }) => (
+            <details class="group px-5 sm:px-6">
+              <summary class="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 py-4 sm:py-5 text-left text-[15px] font-medium text-ink touch-manipulation [&::-webkit-details-marker]:hidden">
+                <span>{q}</span>
+                <svg viewBox="0 0 16 16" class="size-4 shrink-0 text-mute transition-transform duration-200 group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" focusable="false">
+                  <path d="M8 2.5v11M2.5 8h11" />
+                </svg>
+              </summary>
+              <p class="pb-4 sm:pb-5 text-[15px] leading-relaxed text-body">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-Device Linking Section -->
+    <section class="container-site border-t border-hairline py-14 sm:py-20" aria-labelledby="crosslinks-heading">
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.otherDevicesEyebrow}</p>
+        <h2 id="crosslinks-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+          {t.otherDevicesHeading}
+        </h2>
+        <p class="mt-2 text-sm text-mute">
+          {t.otherDevicesSubtitle}
+        </p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
+          {relatedDevices.map((rel) => (
+            <a
+              href={lang === defaultLang ? `/${rel.slug}` : `/${lang}/${rel.slug}`}
+              class="group rounded-2xl border border-hairline bg-elevated/60 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
+            >
+              <span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M11 5 6 9H3v6h3l5 4V5z" />
+                  <path d="M15.5 8.5a5 5 0 0 1 0 7" />
+                </svg>
+              </span>
+              <p class="mt-3 text-sm font-semibold text-ink group-hover:text-primary transition-colors">
+                {rel.shortName}
+              </p>
+              <p class="mt-1 text-xs text-mute line-clamp-2">
+                {rel.metaDescription}
+              </p>
+              <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
+                {t.ejectWaterCta}
+                <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- All Devices Searchable Directory -->
+    <div class="border-t border-hairline pt-8">
+      <DeviceDirectory
+        lang={lang}
+        title={t.searchDirectoryTitle}
+        subtitle={t.searchDirectorySubtitle}
+      />
+    </div>
+
+  </main>
+</Layout>
+

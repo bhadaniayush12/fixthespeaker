@@ -1,0 +1,308 @@
+---
+import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
+import { deviceList } from '../data/devices';
+import { getLocalizedDevice } from '../i18n/deviceTranslations';
+
+export interface Props {
+  lang?: SupportedLang;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  lang = defaultLang,
+  title,
+  subtitle,
+} = Astro.props;
+
+const t = useTranslations(lang);
+const displayTitle = title || t.searchDirectoryTitle;
+const displaySubtitle = subtitle || t.searchDirectorySubtitle;
+
+// Sort devices: hubs first, then Apple, Samsung, Google, Xiaomi, OnePlus, others
+const brandOrder = ['Universal', 'Apple', 'Samsung', 'Google', 'Xiaomi', 'OnePlus', 'Vivo', 'Oppo', 'Realme', 'Motorola'];
+const sortedDevices = [...deviceList]
+  .map((dev) => getLocalizedDevice(dev, lang))
+  .sort((a, b) => {
+    const brandA = brandOrder.indexOf(a.brand);
+    const brandB = brandOrder.indexOf(b.brand);
+    if (brandA !== brandB) return (brandA === -1 ? 99 : brandA) - (brandB === -1 ? 99 : brandB);
+    return a.name.localeCompare(b.name);
+  });
+---
+
+<section id="device-directory" class="container-site pb-16 sm:pb-24 scroll-mt-20" aria-labelledby="directory-heading">
+  <div class="rounded-3xl border border-hairline bg-elevated/60 p-6 sm:p-10 backdrop-blur-sm shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl">
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.searchDirectoryEyebrow}</p>
+      <h2 id="directory-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+        {displayTitle}
+      </h2>
+      <p class="mt-2 text-sm sm:text-base text-body leading-relaxed">
+        {displaySubtitle}
+      </p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="mt-8 space-y-4">
+      <!-- Live Search Bar -->
+      <div class="relative max-w-xl">
+        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-mute">
+          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </div>
+        <input
+          id="device-search-input"
+          type="search"
+          placeholder={t.searchDirectoryPlaceholder}
+          class="w-full min-h-[48px] rounded-2xl border border-hairline bg-canvas/90 pl-11 pr-10 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
+          autocomplete="off"
+        />
+        <button
+          id="device-search-clear"
+          type="button"
+          aria-label="Clear search"
+          class="hidden absolute inset-y-0 right-0 items-center pr-3.5 text-mute hover:text-ink transition-colors cursor-pointer"
+        >
+          <svg viewBox="0 0 20 20" class="size-4" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Brand Filter Tabs -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none text-xs">
+        {[
+          { id: 'all', label: t.tabAllBrands },
+          { id: 'Apple', label: t.tabApple },
+          { id: 'Samsung', label: t.tabSamsung },
+          { id: 'Google', label: t.tabGoogle },
+          { id: 'Xiaomi', label: t.tabXiaomi },
+          { id: 'OnePlus', label: t.tabOnePlus },
+          { id: 'audio-wearables', label: t.tabWearablesAudio },
+          { id: 'others', label: t.tabOthers },
+        ].map((tab, idx) => (
+          <button
+            type="button"
+            data-brand-tab={tab.id}
+            class={`shrink-0 rounded-pill border px-3.5 py-2 font-medium transition-all cursor-pointer touch-manipulation min-h-[38px] ${
+              idx === 0
+                ? 'border-primary/60 bg-primary/10 text-primary active-tab'
+                : 'border-hairline bg-canvas/60 text-body hover:border-hairline/80 hover:text-ink'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Active Count -->
+      <div class="flex items-center justify-between text-xs text-mute font-mono pt-1">
+        <span>
+          {t.showingText} <strong id="visible-count" class="text-ink">{sortedDevices.length}</strong> {t.ofText} {sortedDevices.length} {t.modelsText}
+        </span>
+        <span class="text-faint hidden sm:inline">{t.directoryBadge}</span>
+      </div>
+    </div>
+
+    <!-- Device Cards Grid -->
+    <div
+      id="device-grid"
+      class="mt-6 grid gap-3.5 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {sortedDevices.map((dev) => {
+        const targetUrl = lang === defaultLang ? `/${dev.slug}` : `/${lang}/${dev.slug}`;
+        const isWearableOrAudio = dev.category === 'earbuds' || dev.category === 'smartwatch';
+        const isOtherBrand = ['Vivo', 'Oppo', 'Realme', 'Motorola'].includes(dev.brand);
+
+        return (
+          <a
+            href={targetUrl}
+            data-device-card
+            data-brand={dev.brand}
+            data-category={dev.category}
+            data-is-wearable={isWearableOrAudio ? 'true' : 'false'}
+            data-is-other={isOtherBrand ? 'true' : 'false'}
+            data-search-text={`${dev.name} ${dev.shortName} ${dev.brand} ${dev.category} ${dev.ipRating} ${dev.compatibilityList.join(' ')}`.toLowerCase()}
+            class="group rounded-2xl border border-hairline bg-canvas/70 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-canvas flex flex-col justify-between cursor-pointer touch-manipulation"
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
+                  {dev.brand}
+                </span>
+                <span class="rounded border border-hairline px-1.5 py-0.5 font-mono text-[10px] text-mute">
+                  {dev.ipRating.split('(')[0].trim()}
+                </span>
+              </div>
+
+              <h3 class="mt-3 text-sm font-semibold text-ink group-hover:text-primary transition-colors line-clamp-1">
+                {dev.name}
+              </h3>
+              <p class="mt-1 text-[11px] leading-relaxed text-mute line-clamp-2">
+                {dev.heroSubtitle}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-hairline/50 flex items-center justify-between text-xs">
+              <span class="font-mono text-[10px] uppercase tracking-wider text-faint">
+                {dev.category}
+              </span>
+              <span class="inline-flex items-center gap-1 font-medium text-primary">
+                {t.ejectWaterCta}
+                <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Empty Results State -->
+    <div id="device-no-results" class="hidden py-12 text-center">
+      <div class="inline-flex size-12 items-center justify-center rounded-2xl bg-canvas border border-hairline text-mute mb-3">
+        <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="1.75">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </div>
+      <p class="text-sm font-medium text-ink">{t.noDevicesFound}</p>
+      <p class="mt-1 text-xs text-mute">{t.noDevicesSubtext}</p>
+      <button
+        id="device-reset-btn"
+        type="button"
+        class="mt-4 rounded-xl border border-hairline bg-canvas px-4 py-2 text-xs font-semibold text-primary hover:border-primary/40 transition-colors cursor-pointer"
+      >
+        {t.clearFiltersBtn}
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupDeviceDirectory() {
+    const searchInput = document.getElementById('device-search-input') as HTMLInputElement | null;
+    const clearBtn = document.getElementById('device-search-clear') as HTMLButtonElement | null;
+    const tabBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-brand-tab]'));
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-device-card]'));
+    const visibleCountEl = document.getElementById('visible-count');
+    const noResultsEl = document.getElementById('device-no-results');
+    const resetBtn = document.getElementById('device-reset-btn');
+
+    if (!cards.length) return;
+
+    let activeTab = 'all';
+    let searchQuery = '';
+
+    function filterDevices() {
+      let count = 0;
+      const q = searchQuery.toLowerCase().trim();
+
+      cards.forEach((card) => {
+        const brand = card.dataset.brand || '';
+        const isWearable = card.dataset.isWearable === 'true';
+        const isOther = card.dataset.isOther === 'true';
+        const searchText = card.dataset.searchText || '';
+
+        // Tab match check
+        let tabMatch = false;
+        if (activeTab === 'all') {
+          tabMatch = true;
+        } else if (activeTab === 'audio-wearables') {
+          tabMatch = isWearable;
+        } else if (activeTab === 'others') {
+          tabMatch = isOther;
+        } else {
+          tabMatch = brand.toLowerCase() === activeTab.toLowerCase();
+        }
+
+        // Query match check
+        const queryMatch = !q || searchText.includes(q);
+
+        if (tabMatch && queryMatch) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+          count++;
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
+
+      if (visibleCountEl) visibleCountEl.textContent = String(count);
+      if (noResultsEl) noResultsEl.classList.toggle('hidden', count > 0);
+    }
+
+    // Search input handler
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value;
+        if (clearBtn) clearBtn.classList.toggle('hidden', !searchQuery);
+        filterDevices();
+      });
+    }
+
+    // Clear search handler
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        searchQuery = '';
+        clearBtn.classList.add('hidden');
+        filterDevices();
+      });
+    }
+
+    // Reset button handler
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        if (clearBtn) clearBtn.classList.add('hidden');
+        searchQuery = '';
+        activeTab = 'all';
+        tabBtns.forEach((btn) => {
+          const isAll = btn.dataset.brandTab === 'all';
+          btn.classList.toggle('border-primary/60', isAll);
+          btn.classList.toggle('bg-primary/10', isAll);
+          btn.classList.toggle('text-primary', isAll);
+          btn.classList.toggle('border-hairline', !isAll);
+          btn.classList.toggle('bg-canvas/60', !isAll);
+          btn.classList.toggle('text-body', !isAll);
+        });
+        filterDevices();
+      });
+    }
+
+    // Tab buttons handler
+    tabBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.brandTab || 'all';
+        activeTab = tab;
+
+        tabBtns.forEach((b) => {
+          const on = b === btn;
+          b.classList.toggle('border-primary/60', on);
+          b.classList.toggle('bg-primary/10', on);
+          b.classList.toggle('text-primary', on);
+          b.classList.toggle('border-hairline', !on);
+          b.classList.toggle('bg-canvas/60', !on);
+          b.classList.toggle('text-body', !on);
+        });
+
+        filterDevices();
+      });
+    });
+  }
+
+  setupDeviceDirectory();
+  document.addEventListener('astro:page-load', setupDeviceDirectory);
+</script>

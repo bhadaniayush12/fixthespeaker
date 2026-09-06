@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import DeviceDirectory from './DeviceDirectory.astro';
 import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { seoContent } from '../i18n/content';
+import { devices } from '../data/devices';
 
 export interface Props {
   lang?: SupportedLang;
@@ -293,6 +295,9 @@ const i18nConfig = {
         ))}
       </div>
     </section>
+
+    <!-- Searchable Device Directory (150+ Models) -->
+    <DeviceDirectory lang={lang} />
 
     <!-- Deep SEO Article Section (800-1200+ Words Rich Guide) -->
     <article class="container-site border-t border-hairline py-14 sm:py-20 bg-[linear-gradient(180deg,rgb(255_255_255/0.015),transparent)]" aria-labelledby="guide-heading">

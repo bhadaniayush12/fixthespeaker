@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://fixthespeaker.com/sitemap.xml
+Sitemap: https://fixthespeaker.com/sitemap-index.xml

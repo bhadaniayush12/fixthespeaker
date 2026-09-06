@@ -1,0 +1,44 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Layout from '../layouts/Layout.astro';
+import { defaultLang, type SupportedLang } from '../i18n/ui';
+import { errorContent, getErrorContent, type ErrorContent } from '../i18n/errors';
+
+export interface Props {
+  status: 404 | 500;
+  lang?: SupportedLang;
+}
+
+const { status, lang = defaultLang } = Astro.props;
+const kind: keyof ErrorContent = status === 404 ? 'notFound' : 'serverError';
+const fallback = getErrorContent(lang, kind);
+const messages = Object.fromEntries(
+  Object.entries(errorContent).map(([lang, content]) => [lang, content[kind]]),
+);
+---
+
+<Layout title={fallback.title} description={fallback.description} lang={lang} noindex>
+  <main id="main" class="container-site flex flex-1 flex-col items-center justify-center py-24 text-center sm:py-32">
+    <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Error {status}</p>
+    <h1 id="error-heading" class="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">{fallback.heading}</h1>
+    <p id="error-message" class="mt-4 max-w-sm text-[15px] leading-6 text-body">{fallback.message}</p>
+    <a id="error-home" href={getRelativeLocaleUrl(lang)} class="btn btn-primary mt-8">{fallback.home}</a>
+  </main>
+
+  <script define:vars={{ messages }}>
+    const locale = window.location.pathname.split('/').filter(Boolean)[0];
+    const content = messages[locale] || messages.en;
+    const heading = document.getElementById('error-heading');
+    const message = document.getElementById('error-message');
+    const home = document.getElementById('error-home');
+
+    document.documentElement.lang = messages[locale] ? locale : 'en';
+    document.title = content.title;
+    if (heading) heading.textContent = content.heading;
+    if (message) message.textContent = content.message;
+    if (home) {
+      home.textContent = content.home;
+      home.setAttribute('href', messages[locale] ? `/${locale}` : '/');
+    }
+  </script>
+</Layout>

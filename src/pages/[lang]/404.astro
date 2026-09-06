@@ -1,0 +1,14 @@
+---
+import ErrorPage from '../../components/ErrorPage.astro';
+import { defaultLang, languages, type SupportedLang } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return (Object.keys(languages) as SupportedLang[])
+    .filter((lang) => lang !== defaultLang)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+---
+
+<ErrorPage status={404} lang={lang as SupportedLang} />

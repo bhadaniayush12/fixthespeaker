@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fix The Speaker">
-  <rect width="64" height="64" rx="14" fill="#0B0F19"/>
-  <path d="M29 15 17 25h-7v14h7l12 10V15z" fill="#06B6D4"/>
-  <path d="M39 24a11 11 0 0 1 0 16M45.5 18a19 19 0 0 1 0 28" fill="none" stroke="#06B6D4" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="#38bdf8" stroke="#38bdf8" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
 </svg>

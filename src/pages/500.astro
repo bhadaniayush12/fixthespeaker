@@ -1,18 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import ErrorPage from '../components/ErrorPage.astro';
 ---
 
-<Layout
-  title="Something Went Wrong | Fix The Speaker"
-  description="An unexpected error occurred while loading Fix The Speaker. Try again or return to the free phone speaker cleaner."
-  noindex
->
-  <main id="main" class="container-site flex flex-1 flex-col items-center justify-center py-24 text-center sm:py-32">
-    <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Error 500</p>
-    <h1 class="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">Something went wrong</h1>
-    <p class="mt-4 max-w-sm text-[15px] leading-6 text-body">
-      The server hit an unexpected error. Refresh the page in a moment, or head back to the tool.
-    </p>
-    <a href="/" class="btn btn-primary mt-8">Back to home</a>
-  </main>
-</Layout>
+<ErrorPage status={500} />

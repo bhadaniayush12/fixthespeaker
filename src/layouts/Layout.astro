@@ -1,6 +1,8 @@
 ---
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import CookieConsent from '../components/CookieConsent.astro';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 
@@ -28,12 +30,12 @@ const {
 const t = useTranslations(lang);
 const langMeta = languages[lang] || languages[defaultLang];
 
-const navPrefix = lang === defaultLang ? '' : `/${lang}`;
+const homeUrl = getRelativeLocaleUrl(lang);
 const NAV = [
-  { href: `${navPrefix}/about`, label: t.navAbout },
-  { href: `${navPrefix}/privacy`, label: t.navPrivacy },
-  { href: `${navPrefix}/terms`, label: t.navTerms },
-  { href: `${navPrefix}/contact`, label: t.navContact },
+  { href: getRelativeLocaleUrl(lang, 'about'), label: t.navAbout },
+  { href: getRelativeLocaleUrl(lang, 'privacy'), label: t.navPrivacy },
+  { href: getRelativeLocaleUrl(lang, 'terms'), label: t.navTerms },
+  { href: getRelativeLocaleUrl(lang, 'contact'), label: t.navContact },
 ];
 
 const base = Astro.site ?? new URL(SITE_URL);
@@ -46,7 +48,7 @@ const year = new Date().getFullYear();
 const pathSegments = cleanPath.split('/').filter(Boolean);
 const hasLangPrefix = pathSegments.length > 0 && pathSegments[0] in languages && pathSegments[0] !== defaultLang;
 const subpageSegments = hasLangPrefix ? pathSegments.slice(1) : pathSegments;
-const subpageSlug = subpageSegments.length > 0 ? `/${subpageSegments.join('/')}` : '';
+const subpagePath = subpageSegments.join('/');
 
 const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>`;
 ---
@@ -54,17 +56,79 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 <!doctype html>
 <html lang={lang} class="h-full">
   <head>
-    <!-- Resource Hints for Core Web Vitals (Fast FCP & LCP) -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <!-- Consent Mode defaults must run before GTM or any other client-side script. -->
+    <script is:inline>
+      (function () {
+        var STORAGE_KEY = 'fixthespeaker_cookie_consent_v1';
+        var GTM_ID = 'GTM-5BKNT4C2';
 
-    <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5BKNT4C2');</script>
-    <!-- End Google Tag Manager -->
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+
+        window.gtag('consent', 'default', {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          wait_for_update: 500
+        });
+        window.gtag('set', 'ads_data_redaction', true);
+        window.gtag('set', 'url_passthrough', true);
+
+        function readConsent() {
+          try {
+            var value = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+            if (value && value.version === 1 && typeof value.analytics === 'boolean' && typeof value.advertising === 'boolean') {
+              return value;
+            }
+          } catch (error) { /* Storage may be unavailable. */ }
+          return null;
+        }
+
+        function loadGtm() {
+          if (window.__fixSpeakerGtmLoaded) return;
+          window.__fixSpeakerGtmLoaded = true;
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+          var preconnect = document.createElement('link');
+          preconnect.rel = 'preconnect';
+          preconnect.href = 'https://www.googletagmanager.com';
+          document.head.appendChild(preconnect);
+
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+          document.head.appendChild(script);
+        }
+
+        function applyConsent(choice, persist) {
+          var consent = {
+            version: 1,
+            analytics: choice.analytics === true,
+            advertising: choice.advertising === true,
+            updatedAt: new Date().toISOString()
+          };
+
+          window.gtag('consent', 'update', {
+            ad_storage: consent.advertising ? 'granted' : 'denied',
+            analytics_storage: consent.analytics ? 'granted' : 'denied',
+            ad_user_data: consent.advertising ? 'granted' : 'denied',
+            ad_personalization: consent.advertising ? 'granted' : 'denied'
+          });
+
+          if (persist) {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(consent)); } catch (error) { /* Storage may be unavailable. */ }
+          }
+
+          if (consent.analytics || consent.advertising) loadGtm();
+        }
+
+        window.fixSpeakerConsent = { read: readConsent, apply: applyConsent };
+
+        var savedConsent = readConsent();
+        if (savedConsent) applyConsent(savedConsent, false);
+      })();
+    </script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -116,22 +180,27 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+    <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+    <link rel="manifest" href="/site.webmanifest?v=2" type="application/manifest+json" />
 
     {jsonLd && (
       <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
     )}
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-924DECLM9L"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-924DECLM9L');
+    </script>
   </head>
 
   <body class="flex min-h-full flex-col bg-canvas text-body">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BKNT4C2"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <a href="#main" class="btn btn-primary sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50">
       Skip to content
     </a>
@@ -140,7 +209,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <header class="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md transition-shadow shadow-[0_1px_0_rgb(255_255_255/0.04)]">
       <div class="container-site flex items-center justify-between gap-x-4 py-2.5 sm:py-3.5">
         <a
-          href={lang === defaultLang ? '/' : `/${lang}`}
+          href={homeUrl}
           class="flex min-h-[44px] items-center gap-2.5 rounded-pill text-ink cursor-pointer touch-manipulation"
           aria-label="Fix The Speaker, home"
         >
@@ -182,7 +251,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
             >
               {Object.entries(languages).map(([k, v]) => (
                 <a
-                  href={k === defaultLang ? (subpageSlug || '/') : `/${k}${subpageSlug}`}
+                  href={getRelativeLocaleUrl(k, subpagePath || undefined)}
                   class={`flex min-h-[44px] items-center justify-between rounded-xl px-3 py-2.5 text-xs transition-colors hover:bg-canvas hover:text-ink touch-manipulation cursor-pointer ${
                     k === lang ? 'bg-primary/10 font-semibold text-primary' : 'text-body'
                   }`}
@@ -217,7 +286,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
           </button>
 
           <a
-            href={`${lang === defaultLang ? '' : `/${lang}`}#tool`}
+            href={`${homeUrl}#tool`}
             class="btn btn-primary min-h-[44px] px-4 text-xs font-medium hidden sm:inline-flex items-center cursor-pointer touch-manipulation"
           >
             {t.navStart}
@@ -233,7 +302,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       <div class="container-site py-12">
         <div class="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
           <div class="max-w-sm">
-            <a href={lang === defaultLang ? '/' : `/${lang}`} class="inline-flex min-h-[44px] items-center gap-2.5 text-ink cursor-pointer" aria-label="Fix The Speaker, home">
+            <a href={homeUrl} class="inline-flex min-h-[44px] items-center gap-2.5 text-ink cursor-pointer" aria-label="Fix The Speaker, home">
               <span class="grid size-8 place-items-center rounded-lg bg-primary text-on-primary [&>svg]:size-[18px]" set:html={logo} />
               <span class="text-[15px] font-semibold tracking-[-0.02em]">{SITE_NAME}</span>
             </a>
@@ -246,7 +315,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
             <nav aria-label="Footer Pages">
               <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-faint">{t.footerPages}</p>
               <ul class="mt-3 space-y-2 text-sm">
-                <li><a href={lang === defaultLang ? '/' : `/${lang}`} class="inline-block py-1 text-body transition-colors hover:text-ink">Home</a></li>
+                <li><a href={homeUrl} class="inline-block py-1 text-body transition-colors hover:text-ink">{t.navHome}</a></li>
                 {NAV.map(({ href, label }) => (
                   <li><a href={href} class="inline-block py-1 text-body transition-colors hover:text-ink">{label}</a></li>
                 ))}
@@ -259,7 +328,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
                 {Object.entries(languages).map(([k, v]) => (
                   <li>
                     <a
-                      href={k === defaultLang ? (subpageSlug || '/') : `/${k}${subpageSlug}`}
+                      href={getRelativeLocaleUrl(k, subpagePath || undefined)}
                       class={`inline-flex min-h-[36px] items-center gap-1.5 py-1 transition-colors ${
                         k === lang ? 'font-semibold text-primary' : 'text-body hover:text-ink'
                       }`}
@@ -275,13 +344,20 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         </div>
 
         <div class="mt-10 flex flex-col gap-3 border-t border-hairline pt-6 text-xs leading-5 text-faint sm:flex-row sm:items-start sm:justify-between">
-          <p>&copy; {year} {SITE_NAME}. {t.footerCopyright}</p>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <p>&copy; {year} {SITE_NAME}. {t.footerCopyright}</p>
+            <button type="button" class="underline underline-offset-4 transition-colors hover:text-ink" data-cookie-settings>
+              {t.cookieSettings}
+            </button>
+          </div>
           <p class="sm:max-w-md sm:text-right">
             {t.disclaimer} {t.footerDisclaimer}
           </p>
         </div>
       </div>
     </footer>
+
+    <CookieConsent lang={lang} />
 
     {/* iOS Touch Event Handling & Theme Toggle Script */}
     <script>

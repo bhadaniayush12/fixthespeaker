@@ -1,0 +1,26 @@
+---
+import DevicePage from '../../components/pages/DevicePage.astro';
+import { devices, type DeviceData } from '../../data/devices';
+import { languages, defaultLang, type SupportedLang } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const nonDefaultLangs = (Object.keys(languages) as SupportedLang[]).filter((l) => l !== defaultLang);
+  const deviceList = Object.values(devices);
+
+  return nonDefaultLangs.flatMap((lang) =>
+    deviceList.map((device) => ({
+      params: { lang, device: device.slug },
+      props: { device },
+    }))
+  );
+}
+
+export interface Props {
+  device: DeviceData;
+}
+
+const { lang } = Astro.params;
+const { device } = Astro.props;
+---
+
+<DevicePage device={device} lang={lang as SupportedLang} />

@@ -1,0 +1,19 @@
+---
+import DevicePage from '../components/pages/DevicePage.astro';
+import { devices, type DeviceData } from '../data/devices';
+
+export async function getStaticPaths() {
+  return Object.values(devices).map((device) => ({
+    params: { device: device.slug },
+    props: { device },
+  }));
+}
+
+export interface Props {
+  device: DeviceData;
+}
+
+const { device } = Astro.props;
+---
+
+<DevicePage device={device} lang="en" />

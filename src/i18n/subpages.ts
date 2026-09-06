@@ -50,35 +50,51 @@ export const subpagesContent: Record<
 > = {
   en: {
     about: {
-      title: 'About Fix The Speaker: Free Phone Speaker Cleaner',
+      title: 'About Fix The Speaker: Free Water Eject & Speaker Cleaner',
       description:
-        'Fix The Speaker is a free, browser-based phone speaker cleaner that uses sound waves to eject water and loosen dust. Learn how and why it was built.',
+        'Fix The Speaker is a free, browser-based acoustic utility that uses 165 Hz sound waves to eject water and loosen dust from phone and laptop speakers.',
       heading: 'About Fix The Speaker',
-      eyebrow: 'About',
+      eyebrow: 'About Us',
       intro:
-        'Fix The Speaker is a free micro-tool that does one thing well: it uses sound waves to clear a phone speaker grille. Play a tone, hold the phone speaker-down, and trapped water is pushed out in about 60 seconds. A second mode loosens dust and lint, and a third checks that both channels are working.',
+        'Fix The Speaker (fixthespeaker.com) is a free, privacy-first web utility engineered to restore muffled smartphone and laptop speakers. Using tailored sound frequencies generated client-side via the HTML5 Web Audio API, the tool pushes trapped liquid out through speaker grilles and dislodges fine dust particles in 60 seconds—with no app installations or sign-ups required.',
       sections: [
         {
-          title: 'Why it exists',
+          title: 'Why Fix The Speaker Was Created',
           paragraphs: [
-            'Almost every smartphone sounds muffled at some point, usually after rain, a shower or a spilled drink. The fix is simple acoustic physics, yet most people are told to bury their phone in rice or wait days for it to dry. We built a tool that is honest about what it can do, works instantly on any device, and does not bury the button under ads and clutter.',
+            'Smartphone speakers frequently become muffled after exposure to water from rain, workouts, showers, or accidental spills. Surface tension often traps microscopic droplets inside the dense mesh speaker grille, muting sound output and distorting audio clarity.',
+            'While popular advice often suggests burying electronics in rice (which can introduce starch dust into charging ports and microphone membranes) or waiting days for natural evaporation, acoustic physics provides a safe, active solution. Fix The Speaker was designed to deliver instant, accessible speaker cleaning across all devices without invasive bloatware or deceptive downloads.',
           ],
         },
         {
-          title: 'How it works',
+          title: 'How It Works: The Acoustic Physics',
           paragraphs: [
-            'Every tone is generated in your browser with the Web Audio API. Nothing is downloaded, nothing is recorded and the tool never asks for microphone access.',
+            'All audio tones are synthesized dynamically within your web browser using standard Web Audio oscillators. The tool operates across three dedicated acoustic modes:',
           ],
           list: [
-            'Water Eject: Plays a 165 Hz pulsing bass square wave that moves the speaker diaphragm in large physical strokes, pushing droplets out through the mesh grille.',
-            'Dust Cleaner: Sweeps between 2.5 kHz and 14.5 kHz to vibrate loose dried lint, sand and dust particles so they can be brushed off.',
-            'Speaker Test: Plays isolated tones through the left channel, the right channel, and then both in stereo so you can diagnose audio balance.',
+            '165 Hz Water Eject Pulse: Emits a low-frequency square wave optimized to match the mechanical resonant displacement of smartphone micro-speakers. This rapid back-and-forth diaphragm excursion creates high-velocity air pressure pulses behind the speaker mesh, breaking water droplet surface tension and pushing moisture out through the exterior grille.',
+            '2.5 kHz – 14.5 kHz Dust Cleaner Sweep: Plays a high-frequency harmonic sweep that generates intense micro-vibrations across the acoustic mesh. These rapid vibrations loosen dried lint, dust, and sand particles so they can be easily brushed away with a dry microfiber cloth or soft toothbrush.',
+            'Dual-Channel Stereo Diagnostic Test: Generates calibrated test tones isolated to the left channel, right channel, and stereo center, allowing users to verify channel balance and sound clarity after cleaning.',
           ],
         },
         {
-          title: 'What it will not do',
+          title: 'Safe Device Cleaning Guidelines',
           paragraphs: [
-            'This tool ejects water from the acoustic speaker grille. It does not repair internal hardware damage or short-circuited logic boards. If your phone was submerged, shows a liquid warning in the charging port, or still crackles after several dry cycles, have it inspected by a certified technician.',
+            'To achieve optimal results while protecting your device hardware, we recommend the following procedure:',
+          ],
+          list: [
+            'Disconnect all wired headphones, earbuds, and charging cables from the device.',
+            'Set your device master media volume to 100% for maximum acoustic displacement.',
+            'Hold the device with the affected speaker grille facing downward over a dry cloth or paper towel.',
+            'Activate the Water Eject tone and allow it to run for the full 60-second cycle.',
+            'Wipe away expelled water droplets immediately with a clean, lint-free cloth.',
+            'Run the Dust Cleaner mode if lint or debris remains visible along the mesh.',
+          ],
+        },
+        {
+          title: 'Hardware Scope & Limitations',
+          paragraphs: [
+            'Fix The Speaker is designed solely for expelling free moisture and debris from the acoustic chamber and exterior grille. It cannot repair internal electronic short-circuits, corroded logic boards, or physically torn speaker cones caused by prolonged water immersion.',
+            'If your device was submerged in liquid, displays a persistent liquid-detection warning in the charging port, or continues to crackle after multiple cleaning cycles, turn off the device, allow it to dry in a ventilated area, and consult an authorized service center.',
           ],
         },
       ],
@@ -86,41 +102,78 @@ export const subpagesContent: Record<
     privacy: {
       title: 'Privacy Policy | Fix The Speaker',
       description:
-        'Privacy policy for Fix The Speaker, the free phone speaker cleaner. Learn what data is collected, how cookies work, and your choices.',
+        'Privacy Policy for Fix The Speaker. Details our zero-audio collection policy, Google Analytics 4 tracking, Consent Mode v2, and third-party advertising disclosures.',
       heading: 'Privacy Policy',
-      eyebrow: 'Legal',
-      updated: '2026-09-03',
+      eyebrow: 'Legal & Compliance',
+      updated: '2026-09-06',
       intro:
-        'This policy explains what information Fix The Speaker collects, how it is used and the choices you have. The short version: the tool itself collects nothing, and any processing comes solely from standard hosting logs and analytics services.',
+        'This Privacy Policy outlines how Fix The Speaker ("we", "our", or "the Service") handles information when you visit fixthespeaker.com. We are committed to transparency: our tool operates entirely in your browser and never accesses your microphone, records audio, or collects personal audio streams.',
       sections: [
         {
-          title: 'Information the tool processes',
+          title: '1. Zero Audio Data & Client-Side Operation',
           paragraphs: [
-            'The speaker cleaning tool runs entirely client-side in your browser. Sound is synthesized locally on your device with the Web Audio API. We do not record audio, request microphone permissions, create accounts, or ask you to enter personal information.',
+            'Fix The Speaker uses the client-side HTML5 Web Audio API to synthesize acoustic sound frequencies directly on your device CPU. All tone generation, frequency sweeps, and stereo balance tests occur entirely within your local browser sandbox.',
+            'We do not request microphone access permissions, we never record or transmit incoming audio, and we do not require account creation, passwords, or personal credentials to use any cleaning features.',
           ],
         },
         {
-          title: 'Information collected automatically',
+          title: '2. Information Collected Automatically',
           paragraphs: [
-            'Like most websites, our hosting provider records standard technical data in server logs (such as IP address, browser type, referring page and timestamps) to keep the site secure and fast.',
+            'When you access our website, standard web server hosting logs (provided via Cloudflare) automatically collect technical network telemetry necessary for delivering web assets, mitigating cyberattacks (such as DDoS), and ensuring site reliability. This data includes:',
+          ],
+          list: [
+            'Internet Protocol (IP) address (anonymized and redacted in analytics reporting)',
+            'Browser type, user agent string, and operating system',
+            'Referral URL, pages visited, and timestamp of access',
+            'Language preference and generic screen resolution',
           ],
         },
         {
-          title: 'Cookies and analytics',
+          title: '3. Cookies, Local Storage & Consent Mode v2',
           paragraphs: [
-            'We may use basic analytics to understand general visitor metrics in an aggregated form. You can disable cookies in your browser settings at any time, and the speaker cleaning tool will continue to work without restriction.',
+            'Our website uses browser local storage and essential cookies to maintain core user preferences. Specifically, we store:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: Records your cookie preferences (analytics and advertising choices) so we honor your selections on subsequent visits.',
+            'theme: Stores your dark mode / light mode interface preference.',
           ],
         },
         {
-          title: 'Third-party services',
+          title: '4. Google Analytics 4 (GA4) Tracking',
           paragraphs: [
-            'Fonts are served via Google Fonts. No personal data is sold or shared with external data brokers.',
+            'We use Google Analytics 4 (Measurement ID: G-924DECLM9L) to analyze aggregated traffic trends and user interaction patterns. In compliance with Google Consent Mode v2, analytical and advertising storage tags (ad_storage, analytics_storage, ad_user_data, ad_personalization) are set to "denied" by default when you first load the site.',
+            'Google Analytics only activates if you explicitly grant permission through our cookie banner. You can manage or revoke your consent at any time by clicking the "Cookie Settings" link located in the website footer.',
           ],
         },
         {
-          title: 'Your rights and changes',
+          title: '5. Third-Party Advertising & Google AdSense Disclosures',
           paragraphs: [
-            'You may contact us regarding any privacy inquiries. We may update this policy occasionally, with the revision date noted at the top.',
+            'We may display third-party advertisements via Google AdSense and affiliated advertising networks to support the free operation of Fix The Speaker. Please review the following mandatory disclosures:',
+          ],
+          list: [
+            'Third-party vendors, including Google, use cookies to serve ads based on a user\'s prior visits to this website or other websites on the Internet.',
+            'Google\'s use of advertising cookies enables it and its partners to serve ads to users based on their visits to our site and/or other sites across the Internet.',
+            'Users may opt out of personalized advertising by visiting Google Ads Settings (https://adssettings.google.com).',
+            'Alternatively, you can opt out of third-party vendors\' use of cookies for personalized advertising by visiting AboutAds (http://www.aboutads.info/choices) or the Network Advertising Initiative (http://www.networkadvertising.org/choices/).',
+          ],
+        },
+        {
+          title: '6. GDPR & UK Data Protection Rights',
+          paragraphs: [
+            'If you reside in the European Economic Area (EEA), United Kingdom, or Switzerland, you have specific rights under the General Data Protection Regulation (GDPR) and UK GDPR, including the right to access, rectify, or request erasure of personal data, as well as the right to withdraw cookie consent at any time without affecting your access to the speaker cleaning utility.',
+          ],
+        },
+        {
+          title: '7. California Consumer Privacy Act (CCPA / CPRA)',
+          paragraphs: [
+            'Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents have the right to know what personal information is collected, request its deletion, and opt out of the sale or sharing of personal information. Fix The Speaker does not sell personal information to third-party data brokers.',
+          ],
+        },
+        {
+          title: '8. Privacy Inquiries & Policy Updates',
+          paragraphs: [
+            'We may periodically update this Privacy Policy to reflect technical or regulatory requirements. Any modifications will be posted here with the revised "Last updated" date.',
+            'If you have questions regarding this Privacy Policy or our data handling practices, please contact us at support@fixthespeaker.com.',
           ],
         },
       ],
@@ -128,59 +181,91 @@ export const subpagesContent: Record<
     terms: {
       title: 'Terms of Use | Fix The Speaker',
       description:
-        'Terms of use for Fix The Speaker, the free phone speaker cleaner. Read the conditions, disclaimers and limitations that apply.',
+        'Terms of Use for Fix The Speaker. Read our terms regarding fair use of audio frequencies, hearing safety, and electronic device disclaimers.',
       heading: 'Terms of Use',
-      eyebrow: 'Legal',
-      updated: '2026-09-03',
+      eyebrow: 'Legal Agreement',
+      updated: '2026-09-06',
       intro:
-        'By accessing and using Fix The Speaker (fixthespeaker.com), you agree to these terms. If you do not agree, please do not use the service.',
+        'These Terms of Use ("Terms") constitute a legally binding agreement between you and Fix The Speaker (fixthespeaker.com). By accessing or using our website and acoustic tools, you acknowledge that you have read, understood, and agree to be bound by these Terms.',
       sections: [
         {
-          title: 'What the service is',
+          title: '1. Service Scope & Permitted Use',
           paragraphs: [
-            'Fix The Speaker is a free, web-based utility that plays audio frequencies through your device speakers to help eject liquid, loosen lint, and test stereo channels. It is provided for informational and utility purposes only.',
+            'Fix The Speaker provides a free, web-based acoustic generator that produces sound waves intended to dislodge moisture, lint, and dust particles from the exterior grilles of smartphone and computer speakers. You agree to use the Service solely for lawful personal or diagnostic purposes in accordance with these Terms.',
           ],
         },
         {
-          title: 'Use at your own risk',
+          title: '2. Hearing & Acoustic Safety Precautions',
           paragraphs: [
-            'The tool plays audio tones at the volume you choose on your device. You are responsible for setting a comfortable volume, keeping the phone away from your ears during high-frequency cleaning, removing earbuds before starting, and following on-screen instructions.',
+            'Fix The Speaker generates high-volume tones, square waves, and frequency sweeps between 165 Hz and 14.5 kHz. You acknowledge and agree to the following safety requirements:',
+          ],
+          list: [
+            'Remove all wired or wireless headphones, earbuds, and in-ear monitors before triggering any audio generator tone.',
+            'Do not hold your device speaker grille directly against your ear while cleaning frequencies are playing.',
+            'Exercise caution around pets, infants, and individuals sensitive to high-frequency or high-volume sound.',
+            'You assume full responsibility for adjusting the playback volume to an appropriate level on your device.',
           ],
         },
         {
-          title: 'No repair guarantee',
+          title: '3. Electronics & Hardware Safety Disclaimer',
           paragraphs: [
-            'This tool physically pushes water from the speaker grille. It does not fix internal hardware failures or water-damaged electronics. We make no warranty that your speaker will be 100% restored if physical driver damage exists.',
+            'Fix The Speaker utilizes acoustic vibration to clear water droplets from physical speaker meshes. The Service does not provide electronic or physical component repairs.',
+          ],
+          list: [
+            'No Water Damage Repair Guarantee: Sound waves cannot repair internal circuit corrosion, short-circuited motherboards, damaged lithium-ion batteries, or defective micro-driver coils.',
+            'Charging Safety: Never connect a charging cable to a device with moisture in its ports. Follow manufacturer guidelines and ensure all ports are completely dry before recharging.',
+            'Pre-Existing Defects: Fix The Speaker is not liable for speaker failure resulting from pre-existing hardware degradation or excessive volume playback beyond manufacturer limits.',
           ],
         },
         {
-          title: 'Disclaimer of warranties & limitation of liability',
+          title: '4. Disclaimer of Warranties',
           paragraphs: [
-            'The site and tool are provided "as is" without warranty of any kind. Fix The Speaker and its operators shall not be liable for any indirect or consequential damages arising from the use of the site.',
+            'The Service and all audio generators are provided on an "AS IS" and "AS AVAILABLE" basis without warranty of any kind, whether express, implied, or statutory. We expressly disclaim all warranties of merchantability, fitness for a particular purpose, and non-infringement.',
+            'We make no representation that the Service will completely restore your device audio quality or prevent permanent water damage if liquid has breached internal water seals.',
+          ],
+        },
+        {
+          title: '5. Limitation of Liability',
+          paragraphs: [
+            'To the maximum extent permitted by applicable law, in no event shall Fix The Speaker, its operators, affiliates, or contributors be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from the use of, or inability to use, the website or audio frequencies.',
+          ],
+        },
+        {
+          title: '6. Intellectual Property & Prohibited Activities',
+          paragraphs: [
+            'All content, design assets, branding, interface code, and layout elements on fixthespeaker.com are the exclusive property of Fix The Speaker. You may not scrape, mirror, reverse-engineer, frame, or automate traffic to our servers without prior written authorization.',
+          ],
+        },
+        {
+          title: '7. Governing Law & Amendments',
+          paragraphs: [
+            'We reserve the right to update or modify these Terms at any time. Continued use of the website following changes constitutes acceptance of the modified Terms.',
+            'If you have inquiries concerning these Terms of Use, please reach out to support@fixthespeaker.com.',
           ],
         },
       ],
     },
     contact: {
-      title: 'Contact | Fix The Speaker',
+      title: 'Contact Us | Fix The Speaker',
       description:
-        'Contact Fix The Speaker with questions, bug reports or feedback about our free phone speaker cleaner tool.',
+        'Contact the Fix The Speaker team for technical support, bug reports, feature requests, or partnership inquiries.',
       heading: 'Contact Us',
-      eyebrow: 'Get in Touch',
+      eyebrow: 'Support & Inquiries',
       intro:
-        'Found a bug, have a suggestion, or want to share feedback about the speaker cleaner? Send us an email and we will get back to you promptly.',
-      buttonText: 'Email hello@fixthespeaker.com',
-      detailsTitle: 'Helpful details to include',
+        'Have a question, feedback, or need to report a technical bug with our speaker cleaning tool? We value your input and are here to help. Reach out to our team using the contact details below.',
+      buttonText: 'Email support@fixthespeaker.com',
+      detailsTitle: 'Helpful Details to Include in Bug Reports',
       detailsList: [
-        'Your smartphone/laptop device model and operating system.',
-        'The browser you used (Safari, Chrome, Firefox, etc.).',
-        'Which cleaning mode was running (Water Eject, Dust Cleaner, or Speaker Test).',
-        'Whether your phone was exposed to fresh water, salt water, or dust.',
+        'Device Make & Model (e.g., iPhone 15 Pro, Samsung Galaxy S24, MacBook Air M2).',
+        'Operating System & Version (e.g., iOS 18.2, Android 14, macOS Sequoia).',
+        'Web Browser & Version (e.g., Mobile Safari, Google Chrome 128, Firefox).',
+        'Specific Cleaning Mode Run (Water Eject 165 Hz, Dust Cleaner Sweep, or Stereo Test).',
+        'Type of Exposure (Fresh water, pool water, salt water, or dust/lint).',
       ],
-      beforeTitle: 'Before you write',
+      beforeTitle: 'Technical Support Advisory',
       beforeText:
-        'We cannot physically repair hardware over email. If your speaker still crackles after several cleaning cycles or shows a liquid-detection alert, please visit a certified service center.',
-      linksText: 'For legal and data details, see our Privacy Policy and Terms of Use.',
+        'Fix The Speaker provides browser-based acoustic assistance. We cannot inspect or repair physical device hardware over email. If your smartphone has sustained internal water intrusion or displays charging warnings, please power it down and consult an authorized technician.',
+      linksText: 'For legal terms and privacy policies, please review our Privacy Policy and Terms of Use.',
     },
   },
   es: {

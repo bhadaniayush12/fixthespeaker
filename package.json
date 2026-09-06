@@ -10,8 +10,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "astro build && wrangler deploy",
-    "pages:deploy": "astro build && wrangler pages deploy dist"
+    "generate:og": "node scripts/generate-og-image.mjs",
+    "generate:favicons": "node scripts/generate-favicons.mjs",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "deploy": "npm run generate:sitemap && astro build && wrangler deploy",
+    "pages:deploy": "npm run generate:sitemap && astro build && wrangler pages deploy dist"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",

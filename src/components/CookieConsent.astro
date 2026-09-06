@@ -1,0 +1,181 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLang, type SupportedLang, useTranslations } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const privacyUrl = getRelativeLocaleUrl(lang, 'privacy');
+---
+
+<div id="cookie-consent" class="fixed inset-x-0 bottom-0 z-[70] p-3 sm:p-5" hidden>
+  <section
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="cookie-consent-title"
+    aria-describedby="cookie-consent-description"
+    class="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-hairline bg-canvas/95 shadow-2xl backdrop-blur-xl"
+  >
+    <div class="flex flex-col gap-5 p-4 sm:p-5 lg:flex-row lg:items-center lg:justify-between">
+      <div class="max-w-2xl">
+        <p id="cookie-consent-title" class="text-base font-semibold tracking-[-0.01em] text-ink">
+          {t.cookieTitle}
+        </p>
+        <p id="cookie-consent-description" class="mt-1.5 text-sm leading-6 text-body">
+          {t.cookieDescription}
+          <a class="ml-1 text-primary underline underline-offset-4 hover:text-primary-bright" href={privacyUrl}>{t.navPrivacy}</a>
+        </p>
+      </div>
+
+      <div class="grid shrink-0 grid-cols-1 gap-2 sm:grid-cols-3">
+        <button type="button" class="btn btn-primary min-h-[44px] px-5 text-sm" data-cookie-accept>
+          {t.cookieAcceptAll}
+        </button>
+        <button type="button" class="btn btn-ghost min-h-[44px] px-5 text-sm" data-cookie-reject>
+          {t.cookieRejectAll}
+        </button>
+        <button
+          type="button"
+          class="btn btn-ghost min-h-[44px] px-5 text-sm"
+          aria-expanded="false"
+          aria-controls="cookie-preferences"
+          data-cookie-preferences-toggle
+        >
+          {t.cookiePreferences}
+        </button>
+      </div>
+    </div>
+
+    <div id="cookie-preferences" class="border-t border-hairline bg-elevated/60 p-4 sm:p-5" hidden>
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-2xl grow">
+          <p class="text-sm font-semibold text-ink">{t.cookiePreferencesTitle}</p>
+          <p class="mt-1 text-sm leading-6 text-body">{t.cookiePreferencesDescription}</p>
+
+          <div class="mt-4 divide-y divide-hairline rounded-xl border border-hairline bg-canvas/70">
+            <div class="flex items-center justify-between gap-4 p-3.5 sm:p-4">
+              <div>
+                <p class="text-sm font-medium text-ink">{t.cookieNecessaryTitle}</p>
+                <p class="mt-1 text-xs leading-5 text-mute">{t.cookieNecessaryDescription}</p>
+              </div>
+              <span class="shrink-0 rounded-pill bg-primary/10 px-3 py-1 text-[11px] font-semibold text-primary">
+                {t.cookieAlwaysActive}
+              </span>
+            </div>
+
+            <label class="flex cursor-pointer items-center justify-between gap-4 p-3.5 sm:p-4">
+              <span>
+                <span class="block text-sm font-medium text-ink">{t.cookieAnalyticsTitle}</span>
+                <span class="mt-1 block text-xs leading-5 text-mute">{t.cookieAnalyticsDescription}</span>
+              </span>
+              <span class="relative shrink-0">
+                <input class="peer sr-only" type="checkbox" data-cookie-analytics />
+                <span class="block h-7 w-12 rounded-pill border border-hairline bg-elevated transition-colors peer-checked:border-primary peer-checked:bg-primary"></span>
+                <span class="absolute left-1 top-1 size-5 rounded-full bg-ink shadow-sm transition-transform peer-checked:translate-x-5 peer-checked:bg-on-primary"></span>
+              </span>
+            </label>
+
+            <label class="flex cursor-pointer items-center justify-between gap-4 p-3.5 sm:p-4">
+              <span>
+                <span class="block text-sm font-medium text-ink">{t.cookieAdvertisingTitle}</span>
+                <span class="mt-1 block text-xs leading-5 text-mute">{t.cookieAdvertisingDescription}</span>
+              </span>
+              <span class="relative shrink-0">
+                <input class="peer sr-only" type="checkbox" data-cookie-advertising />
+                <span class="block h-7 w-12 rounded-pill border border-hairline bg-elevated transition-colors peer-checked:border-primary peer-checked:bg-primary"></span>
+                <span class="absolute left-1 top-1 size-5 rounded-full bg-ink shadow-sm transition-transform peer-checked:translate-x-5 peer-checked:bg-on-primary"></span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary w-full min-h-[44px] px-5 text-sm sm:w-auto" data-cookie-save>
+          {t.cookieSavePreferences}
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  type ConsentChoice = {
+    version: number;
+    analytics: boolean;
+    advertising: boolean;
+    updatedAt?: string;
+  };
+
+  type ConsentController = {
+    read: () => ConsentChoice | null;
+    apply: (choice: ConsentChoice, persist?: boolean) => void;
+  };
+
+  const root = document.getElementById('cookie-consent');
+  const preferences = document.getElementById('cookie-preferences');
+  const preferencesToggle = document.querySelector<HTMLButtonElement>('[data-cookie-preferences-toggle]');
+  const analyticsInput = document.querySelector<HTMLInputElement>('[data-cookie-analytics]');
+  const advertisingInput = document.querySelector<HTMLInputElement>('[data-cookie-advertising]');
+  const consentController = (window as typeof window & { fixSpeakerConsent?: ConsentController }).fixSpeakerConsent;
+
+  const setPreferencesOpen = (open: boolean) => {
+    if (!preferences || !preferencesToggle) return;
+    preferences.hidden = !open;
+    preferencesToggle.setAttribute('aria-expanded', String(open));
+  };
+
+  const populatePreferences = (choice: ConsentChoice | null) => {
+    if (analyticsInput) analyticsInput.checked = choice?.analytics ?? false;
+    if (advertisingInput) advertisingInput.checked = choice?.advertising ?? false;
+  };
+
+  const showConsent = (openPreferences = false) => {
+    if (!root) return;
+    populatePreferences(consentController?.read() ?? null);
+    root.hidden = false;
+    setPreferencesOpen(openPreferences);
+    if (openPreferences) analyticsInput?.focus();
+  };
+
+  const saveConsent = (analytics: boolean, advertising: boolean) => {
+    consentController?.apply({ version: 1, analytics, advertising }, true);
+    if (root) root.hidden = true;
+    setPreferencesOpen(false);
+  };
+
+  document.querySelector<HTMLButtonElement>('[data-cookie-accept]')?.addEventListener('click', () => {
+    saveConsent(true, true);
+  });
+
+  document.querySelector<HTMLButtonElement>('[data-cookie-reject]')?.addEventListener('click', () => {
+    saveConsent(false, false);
+  });
+
+  preferencesToggle?.addEventListener('click', () => {
+    const open = preferences?.hidden ?? true;
+    setPreferencesOpen(open);
+    if (open) analyticsInput?.focus();
+  });
+
+  document.querySelector<HTMLButtonElement>('[data-cookie-save]')?.addEventListener('click', () => {
+    saveConsent(analyticsInput?.checked ?? false, advertisingInput?.checked ?? false);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-cookie-settings]').forEach((button) => {
+    button.addEventListener('click', () => showConsent(true));
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || root?.hidden) return;
+    if (!preferences?.hidden) {
+      setPreferencesOpen(false);
+      preferencesToggle?.focus();
+    } else if (consentController?.read()) {
+      root.hidden = true;
+    }
+  });
+
+  if (!consentController?.read()) showConsent();
+</script>
