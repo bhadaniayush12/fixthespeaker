@@ -19,290 +19,342 @@ const t = useTranslations(lang);
 const displayTitle = title || t.searchDirectoryTitle;
 const displaySubtitle = subtitle || t.searchDirectorySubtitle;
 
-// Sort devices: hubs first, then Apple, Samsung, Google, Xiaomi, OnePlus, others
-const brandOrder = ['Universal', 'Apple', 'Samsung', 'Google', 'Xiaomi', 'OnePlus', 'Vivo', 'Oppo', 'Realme', 'Motorola'];
-const sortedDevices = [...deviceList]
-  .map((dev) => getLocalizedDevice(dev, lang))
+const brandOrder = ['Apple', 'Samsung', 'Google', 'Xiaomi', 'OnePlus', 'Vivo', 'Oppo', 'Realme', 'Motorola', 'Universal'];
+const localizedDevices = deviceList
+  .map((device) => getLocalizedDevice(device, lang))
   .sort((a, b) => {
     const brandA = brandOrder.indexOf(a.brand);
     const brandB = brandOrder.indexOf(b.brand);
-    if (brandA !== brandB) return (brandA === -1 ? 99 : brandA) - (brandB === -1 ? 99 : brandB);
-    return a.name.localeCompare(b.name);
+    const orderA = brandA === -1 ? brandOrder.length : brandA;
+    const orderB = brandB === -1 ? brandOrder.length : brandB;
+
+    return orderA === orderB ? a.name.localeCompare(b.name) : orderA - orderB;
   });
+
+const brandOptions = [
+  { value: 'apple', label: 'Apple' },
+  { value: 'samsung', label: 'Samsung' },
+  { value: 'google', label: 'Google Pixel' },
+  { value: 'xiaomi', label: 'Xiaomi / Poco' },
+  { value: 'oneplus', label: 'OnePlus' },
+  { value: 'wearables-audio', label: 'Wearables & Audio' },
+  { value: 'others', label: 'Others' },
+];
+
+function getDeviceUrl(slug: string): string {
+  return lang === defaultLang ? `/${slug}` : `/${lang}/${slug}`;
+}
+
+const clientDevicesPayload = localizedDevices.map((device) => ({
+  name: device.name,
+  shortName: device.shortName,
+  brand: device.brand,
+  category: device.category,
+  ipRating: device.ipRating.split('(')[0].trim(),
+  url: getDeviceUrl(device.slug),
+}));
 ---
 
 <section id="device-directory" class="container-site pb-16 sm:pb-24 scroll-mt-20" aria-labelledby="directory-heading">
-  <div class="rounded-3xl border border-hairline bg-elevated/60 p-6 sm:p-10 backdrop-blur-sm shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
-    
-    <!-- Section Header -->
-    <div class="max-w-3xl">
-      <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.searchDirectoryEyebrow}</p>
-      <h2 id="directory-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
-        {displayTitle}
-      </h2>
-      <p class="mt-2 text-sm sm:text-base text-body leading-relaxed">
-        {displaySubtitle}
-      </p>
+  <div class="rounded-3xl border border-hairline bg-elevated/70 p-6 sm:p-10 backdrop-blur-md shadow-2xl shadow-black/40">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div class="max-w-2xl">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.searchDirectoryEyebrow}</p>
+        <h2 id="directory-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+          {displayTitle}
+        </h2>
+        <p class="mt-2 text-sm leading-relaxed text-body sm:text-base">
+          {displaySubtitle}
+        </p>
+      </div>
+      <span class="hidden shrink-0 items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 font-mono text-xs font-medium text-primary md:inline-flex">
+        <span class="size-2 animate-pulse rounded-full bg-primary" aria-hidden="true"></span>
+        {localizedDevices.length} Device Profiles
+      </span>
     </div>
 
-    <!-- Search & Filter Controls -->
-    <div class="mt-8 space-y-4">
-      <!-- Live Search Bar -->
-      <div class="relative max-w-xl">
-        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-mute">
-          <svg viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.3-4.3" />
-          </svg>
+    <div class="mt-8 rounded-2xl border border-hairline bg-canvas/80 p-4 shadow-inner">
+      <div class="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-12">
+        <div class="lg:col-span-3">
+          <label for="brandSelect" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
+            Brand
+          </label>
+          <div class="relative">
+            <select
+              id="brandSelect"
+              class="min-h-[44px] w-full cursor-pointer appearance-none rounded-xl border border-hairline bg-elevated px-3.5 py-2 pr-10 text-sm font-medium text-ink transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            >
+              <option value="">Select a brand</option>
+              {brandOptions.map((brand) => (
+                <option value={brand.value}>{brand.label}</option>
+              ))}
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-mute" aria-hidden="true">
+              <svg viewBox="0 0 20 20" class="size-4" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
         </div>
-        <input
-          id="device-search-input"
-          type="search"
-          placeholder={t.searchDirectoryPlaceholder}
-          class="w-full min-h-[48px] rounded-2xl border border-hairline bg-canvas/90 pl-11 pr-10 py-3 text-sm text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-canvas focus:outline-none focus:ring-2 focus:ring-primary/20"
-          autocomplete="off"
-        />
-        <button
-          id="device-search-clear"
-          type="button"
-          aria-label="Clear search"
-          class="hidden absolute inset-y-0 right-0 items-center pr-3.5 text-mute hover:text-ink transition-colors cursor-pointer"
-        >
-          <svg viewBox="0 0 20 20" class="size-4" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-          </svg>
-        </button>
-      </div>
 
-      <!-- Brand Filter Tabs -->
-      <div class="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none text-xs">
-        {[
-          { id: 'all', label: t.tabAllBrands },
-          { id: 'Apple', label: t.tabApple },
-          { id: 'Samsung', label: t.tabSamsung },
-          { id: 'Google', label: t.tabGoogle },
-          { id: 'Xiaomi', label: t.tabXiaomi },
-          { id: 'OnePlus', label: t.tabOnePlus },
-          { id: 'audio-wearables', label: t.tabWearablesAudio },
-          { id: 'others', label: t.tabOthers },
-        ].map((tab, idx) => (
+        <div class="lg:col-span-4">
+          <label for="modelSelect" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
+            Model
+          </label>
+          <div class="relative">
+            <select
+              id="modelSelect"
+              disabled
+              data-placeholder="Select a model"
+              class="min-h-[44px] w-full cursor-pointer appearance-none rounded-xl border border-hairline bg-elevated px-3.5 py-2 pr-10 text-sm font-medium text-ink transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <option value="">Select a model</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-mute" aria-hidden="true">
+              <svg viewBox="0 0 20 20" class="size-4" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2">
           <button
+            id="cleanDeviceButton"
             type="button"
-            data-brand-tab={tab.id}
-            class={`shrink-0 rounded-pill border px-3.5 py-2 font-medium transition-all cursor-pointer touch-manipulation min-h-[38px] ${
-              idx === 0
-                ? 'border-primary/60 bg-primary/10 text-primary active-tab'
-                : 'border-hairline bg-canvas/60 text-body hover:border-hairline/80 hover:text-ink'
-            }`}
+            disabled
+            class="flex min-h-[44px] w-full cursor-pointer touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-on-primary shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary-bright active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
           >
-            {tab.label}
+            <span>Clean Device</span>
+            <svg viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4"></path>
+            </svg>
           </button>
+        </div>
+
+        <div class="sm:col-span-2 lg:col-span-3">
+          <label for="device-search-input" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
+            Instant search
+          </label>
+          <div class="relative">
+            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-mute" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+            </div>
+            <input
+              id="device-search-input"
+              type="search"
+              placeholder={t.searchDirectoryPlaceholder}
+              data-no-results={t.noDevicesFound}
+              autocomplete="off"
+              class="min-h-[44px] w-full rounded-xl border border-hairline bg-elevated/90 py-2 pl-10 pr-9 text-xs text-ink placeholder:text-mute transition-all focus:border-primary focus:bg-elevated focus:outline-none focus:ring-2 focus:ring-primary/20 sm:text-sm"
+            />
+            <button
+              id="device-search-clear"
+              type="button"
+              aria-label="Clear search"
+              class="absolute inset-y-0 right-0 hidden cursor-pointer items-center pr-3 text-mute transition-colors hover:text-ink"
+            >
+              <svg viewBox="0 0 20 20" class="size-4" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+
+            <div
+              id="device-search-results"
+              class="absolute left-0 right-0 top-full z-30 mt-2 hidden max-h-72 space-y-1 overflow-y-auto rounded-2xl border border-hairline bg-canvas/95 p-2 shadow-2xl backdrop-blur-xl"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <details class="mt-4 border border-slate-800 rounded-lg p-3 bg-[#0b0f19]">
+      <summary class="cursor-pointer text-sm font-medium text-cyan-400 hover:text-cyan-300">
+        Browse all 158 device guides ▾
+      </summary>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pt-3 text-xs text-slate-400">
+        {localizedDevices.map((device) => (
+          <a href={getDeviceUrl(device.slug)} class="rounded px-1 py-1 hover:text-cyan-300">
+            {device.name}
+          </a>
         ))}
       </div>
+    </details>
 
-      <!-- Active Count -->
-      <div class="flex items-center justify-between text-xs text-mute font-mono pt-1">
-        <span>
-          {t.showingText} <strong id="visible-count" class="text-ink">{sortedDevices.length}</strong> {t.ofText} {sortedDevices.length} {t.modelsText}
-        </span>
-        <span class="text-faint hidden sm:inline">{t.directoryBadge}</span>
-      </div>
-    </div>
-
-    <!-- Device Cards Grid -->
-    <div
-      id="device-grid"
-      class="mt-6 grid gap-3.5 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-    >
-      {sortedDevices.map((dev) => {
-        const targetUrl = lang === defaultLang ? `/${dev.slug}` : `/${lang}/${dev.slug}`;
-        const isWearableOrAudio = dev.category === 'earbuds' || dev.category === 'smartwatch';
-        const isOtherBrand = ['Vivo', 'Oppo', 'Realme', 'Motorola'].includes(dev.brand);
-
-        return (
-          <a
-            href={targetUrl}
-            data-device-card
-            data-brand={dev.brand}
-            data-category={dev.category}
-            data-is-wearable={isWearableOrAudio ? 'true' : 'false'}
-            data-is-other={isOtherBrand ? 'true' : 'false'}
-            data-search-text={`${dev.name} ${dev.shortName} ${dev.brand} ${dev.category} ${dev.ipRating} ${dev.compatibilityList.join(' ')}`.toLowerCase()}
-            class="group rounded-2xl border border-hairline bg-canvas/70 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-canvas flex flex-col justify-between cursor-pointer touch-manipulation"
-          >
-            <div>
-              <div class="flex items-center justify-between gap-2">
-                <span class="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-primary">
-                  {dev.brand}
-                </span>
-                <span class="rounded border border-hairline px-1.5 py-0.5 font-mono text-[10px] text-mute">
-                  {dev.ipRating.split('(')[0].trim()}
-                </span>
-              </div>
-
-              <h3 class="mt-3 text-sm font-semibold text-ink group-hover:text-primary transition-colors line-clamp-1">
-                {dev.name}
-              </h3>
-              <p class="mt-1 text-[11px] leading-relaxed text-mute line-clamp-2">
-                {dev.heroSubtitle}
-              </p>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-hairline/50 flex items-center justify-between text-xs">
-              <span class="font-mono text-[10px] uppercase tracking-wider text-faint">
-                {dev.category}
-              </span>
-              <span class="inline-flex items-center gap-1 font-medium text-primary">
-                {t.ejectWaterCta}
-                <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 8h10M9 4l4 4-4 4" />
-                </svg>
-              </span>
-            </div>
-          </a>
-        );
-      })}
-    </div>
-
-    <!-- Empty Results State -->
-    <div id="device-no-results" class="hidden py-12 text-center">
-      <div class="inline-flex size-12 items-center justify-center rounded-2xl bg-canvas border border-hairline text-mute mb-3">
-        <svg viewBox="0 0 24 24" class="size-6" fill="none" stroke="currentColor" stroke-width="1.75">
-          <circle cx="11" cy="11" r="8" />
-          <path d="m21 21-4.3-4.3" />
-        </svg>
-      </div>
-      <p class="text-sm font-medium text-ink">{t.noDevicesFound}</p>
-      <p class="mt-1 text-xs text-mute">{t.noDevicesSubtext}</p>
-      <button
-        id="device-reset-btn"
-        type="button"
-        class="mt-4 rounded-xl border border-hairline bg-canvas px-4 py-2 text-xs font-semibold text-primary hover:border-primary/40 transition-colors cursor-pointer"
-      >
-        {t.clearFiltersBtn}
-      </button>
-    </div>
-
+    <script id="devices-catalog-data" type="application/json" set:html={JSON.stringify(clientDevicesPayload)} />
   </div>
 </section>
 
 <script>
-  function setupDeviceDirectory() {
-    const searchInput = document.getElementById('device-search-input') as HTMLInputElement | null;
-    const clearBtn = document.getElementById('device-search-clear') as HTMLButtonElement | null;
-    const tabBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-brand-tab]'));
-    const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-device-card]'));
-    const visibleCountEl = document.getElementById('visible-count');
-    const noResultsEl = document.getElementById('device-no-results');
-    const resetBtn = document.getElementById('device-reset-btn');
+  type ClientDevice = {
+    name: string;
+    shortName: string;
+    brand: string;
+    category: string;
+    ipRating: string;
+    url: string;
+  };
 
-    if (!cards.length) return;
+  function initDeviceDirectorySelector() {
+    const directory = document.getElementById('device-directory');
+    if (!directory || directory.dataset.selectorInitialized === 'true') return;
 
-    let activeTab = 'all';
-    let searchQuery = '';
+    const brandSelect = directory.querySelector<HTMLSelectElement>('#brandSelect');
+    const modelSelect = directory.querySelector<HTMLSelectElement>('#modelSelect');
+    const cleanButton = directory.querySelector<HTMLButtonElement>('#cleanDeviceButton');
+    const searchInput = directory.querySelector<HTMLInputElement>('#device-search-input');
+    const searchClear = directory.querySelector<HTMLButtonElement>('#device-search-clear');
+    const searchResults = directory.querySelector<HTMLDivElement>('#device-search-results');
+    const dataScript = directory.querySelector<HTMLScriptElement>('#devices-catalog-data');
 
-    function filterDevices() {
-      let count = 0;
-      const q = searchQuery.toLowerCase().trim();
+    if (!brandSelect || !modelSelect || !cleanButton || !dataScript) return;
+    directory.dataset.selectorInitialized = 'true';
 
-      cards.forEach((card) => {
-        const brand = card.dataset.brand || '';
-        const isWearable = card.dataset.isWearable === 'true';
-        const isOther = card.dataset.isOther === 'true';
-        const searchText = card.dataset.searchText || '';
-
-        // Tab match check
-        let tabMatch = false;
-        if (activeTab === 'all') {
-          tabMatch = true;
-        } else if (activeTab === 'audio-wearables') {
-          tabMatch = isWearable;
-        } else if (activeTab === 'others') {
-          tabMatch = isOther;
-        } else {
-          tabMatch = brand.toLowerCase() === activeTab.toLowerCase();
-        }
-
-        // Query match check
-        const queryMatch = !q || searchText.includes(q);
-
-        if (tabMatch && queryMatch) {
-          card.classList.remove('hidden');
-          card.classList.add('flex');
-          count++;
-        } else {
-          card.classList.add('hidden');
-          card.classList.remove('flex');
-        }
-      });
-
-      if (visibleCountEl) visibleCountEl.textContent = String(count);
-      if (noResultsEl) noResultsEl.classList.toggle('hidden', count > 0);
+    let devices: ClientDevice[] = [];
+    try {
+      devices = JSON.parse(dataScript.textContent || '[]');
+    } catch {
+      devices = [];
     }
 
-    // Search input handler
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        searchQuery = searchInput.value;
-        if (clearBtn) clearBtn.classList.toggle('hidden', !searchQuery);
-        filterDevices();
-      });
+    const standardBrands = ['Apple', 'Samsung', 'Google', 'Xiaomi', 'OnePlus'];
+
+    function getDevicesForBrand(brandId: string): ClientDevice[] {
+      switch (brandId) {
+        case 'apple':
+          return devices.filter((device) => device.brand === 'Apple');
+        case 'samsung':
+          return devices.filter((device) => device.brand === 'Samsung');
+        case 'google':
+          return devices.filter((device) => device.brand === 'Google');
+        case 'xiaomi':
+          return devices.filter((device) => device.brand === 'Xiaomi');
+        case 'oneplus':
+          return devices.filter((device) => device.brand === 'OnePlus');
+        case 'wearables-audio':
+          return devices.filter((device) => device.category === 'earbuds' || device.category === 'smartwatch');
+        case 'others':
+          return devices.filter((device) => !standardBrands.includes(device.brand));
+        default:
+          return [];
+      }
     }
 
-    // Clear search handler
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        if (searchInput) {
-          searchInput.value = '';
-          searchInput.focus();
-        }
-        searchQuery = '';
-        clearBtn.classList.add('hidden');
-        filterDevices();
+    function updateModelOptions(brandId: string) {
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = modelSelect.dataset.placeholder || 'Select a model';
+      modelSelect.replaceChildren(placeholder);
+
+      const matchingDevices = getDevicesForBrand(brandId);
+      matchingDevices.forEach((device) => {
+        const option = document.createElement('option');
+        option.value = device.url;
+        option.textContent = device.name;
+        modelSelect.appendChild(option);
       });
+
+      modelSelect.disabled = matchingDevices.length === 0;
+      cleanButton.disabled = true;
     }
 
-    // Reset button handler
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        if (searchInput) searchInput.value = '';
-        if (clearBtn) clearBtn.classList.add('hidden');
-        searchQuery = '';
-        activeTab = 'all';
-        tabBtns.forEach((btn) => {
-          const isAll = btn.dataset.brandTab === 'all';
-          btn.classList.toggle('border-primary/60', isAll);
-          btn.classList.toggle('bg-primary/10', isAll);
-          btn.classList.toggle('text-primary', isAll);
-          btn.classList.toggle('border-hairline', !isAll);
-          btn.classList.toggle('bg-canvas/60', !isAll);
-          btn.classList.toggle('text-body', !isAll);
+    brandSelect.addEventListener('change', () => {
+      updateModelOptions(brandSelect.value);
+    });
+
+    modelSelect.addEventListener('change', () => {
+      cleanButton.disabled = !modelSelect.value;
+    });
+
+    cleanButton.addEventListener('click', () => {
+      if (modelSelect.value) window.location.assign(modelSelect.value);
+    });
+
+    if (!searchInput || !searchClear || !searchResults) return;
+
+    function hideSearchResults() {
+      searchResults.classList.add('hidden');
+      searchResults.replaceChildren();
+    }
+
+    function renderSearchSuggestions(query: string) {
+      const normalizedQuery = query.toLowerCase().trim();
+      searchResults.replaceChildren();
+
+      if (!normalizedQuery) {
+        searchResults.classList.add('hidden');
+        return;
+      }
+
+      const matches = devices
+        .filter((device) => {
+          const searchableText = `${device.name} ${device.shortName} ${device.brand} ${device.category} ${device.ipRating}`.toLowerCase();
+          return searchableText.includes(normalizedQuery);
+        })
+        .slice(0, 8);
+
+      if (!matches.length) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'px-4 py-3 text-center text-xs text-mute';
+        emptyState.textContent = `${searchInput.dataset.noResults || 'No matching devices found'} ("${query}")`;
+        searchResults.appendChild(emptyState);
+      } else {
+        matches.forEach((device) => {
+          const link = document.createElement('a');
+          link.href = device.url;
+          link.className = 'group flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-xs text-body transition-colors hover:bg-primary/10 hover:text-primary';
+
+          const deviceName = document.createElement('span');
+          deviceName.className = 'truncate font-medium text-ink group-hover:text-primary';
+          deviceName.textContent = device.name;
+
+          const deviceMeta = document.createElement('span');
+          deviceMeta.className = 'shrink-0 font-mono text-[10px] text-mute';
+          deviceMeta.textContent = device.brand;
+
+          link.append(deviceName, deviceMeta);
+          searchResults.appendChild(link);
         });
-        filterDevices();
-      });
+      }
+
+      searchResults.classList.remove('hidden');
     }
 
-    // Tab buttons handler
-    tabBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const tab = btn.dataset.brandTab || 'all';
-        activeTab = tab;
+    searchInput.addEventListener('input', () => {
+      searchClear.classList.toggle('hidden', !searchInput.value);
+      searchClear.classList.toggle('flex', Boolean(searchInput.value));
+      renderSearchSuggestions(searchInput.value);
+    });
 
-        tabBtns.forEach((b) => {
-          const on = b === btn;
-          b.classList.toggle('border-primary/60', on);
-          b.classList.toggle('bg-primary/10', on);
-          b.classList.toggle('text-primary', on);
-          b.classList.toggle('border-hairline', !on);
-          b.classList.toggle('bg-canvas/60', !on);
-          b.classList.toggle('text-body', !on);
-        });
+    searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        const firstResult = searchResults.querySelector<HTMLAnchorElement>('a');
+        if (firstResult) {
+          event.preventDefault();
+          window.location.assign(firstResult.href);
+        }
+      } else if (event.key === 'Escape') {
+        hideSearchResults();
+      }
+    });
 
-        filterDevices();
-      });
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchClear.classList.add('hidden');
+      searchClear.classList.remove('flex');
+      hideSearchResults();
+      searchInput.focus();
+    });
+
+    document.addEventListener('pointerdown', (event) => {
+      if (!directory.contains(event.target as Node)) hideSearchResults();
     });
   }
 
-  setupDeviceDirectory();
-  document.addEventListener('astro:page-load', setupDeviceDirectory);
+  initDeviceDirectorySelector();
+  document.addEventListener('astro:page-load', initDeviceDirectorySelector);
 </script>
