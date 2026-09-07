@@ -83,7 +83,7 @@ const relatedDevices = localizedDevice.relatedSlugs
   .map((dev) => getLocalizedDevice(dev, lang));
 ---
 
-<Layout title={localizedDevice.metaTitle} description={localizedDevice.metaDescription} lang={lang} jsonLd={jsonLd}>
+<Layout title={localizedDevice.metaTitle} description={localizedDevice.metaDescription} lang={lang} jsonLd={jsonLd} noindex={true}>
   <main id="main" class="flex-1">
     
     <!-- Hero Section -->

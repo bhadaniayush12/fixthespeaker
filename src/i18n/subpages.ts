@@ -105,7 +105,7 @@ export const subpagesContent: Record<
         'Privacy Policy for Fix The Speaker. Details our zero-audio collection policy, Google Analytics 4 tracking, Consent Mode v2, and third-party advertising disclosures.',
       heading: 'Privacy Policy',
       eyebrow: 'Legal & Compliance',
-      updated: '2026-09-06',
+      updated: '2026-09-07',
       intro:
         'This Privacy Policy outlines how Fix The Speaker ("we", "our", or "the Service") handles information when you visit fixthespeaker.com. We are committed to transparency: our tool operates entirely in your browser and never accesses your microphone, records audio, or collects personal audio streams.',
       sections: [
@@ -170,7 +170,25 @@ export const subpagesContent: Record<
           ],
         },
         {
-          title: '8. Privacy Inquiries & Policy Updates',
+          title: '8. Newsletter Subscription Data',
+          paragraphs: [
+            'If you choose to subscribe to our notification list using the form on the website, we collect the following data on your behalf and store it securely via our third-party email delivery provider (Cloudflare Workers KV):',
+          ],
+          list: [
+            'Email address: used solely to send you product update notifications.',
+            'IP address: collected at the time of subscription for spam-prevention and geographic analytics purposes.',
+            'Country: inferred from the IP address at the time of subscription for regional analytics.',
+          ],
+        },
+        {
+          title: '8a. Newsletter Data Rights & Deletion',
+          paragraphs: [
+            'We do not sell or share your newsletter subscription data with third-party advertisers.',
+            'You may unsubscribe at any time using the link included in every notification email. To request complete deletion of your subscription data (email, IP address, and country record), please contact us at support@fixthespeaker.com and we will process your request within 30 days.',
+          ],
+        },
+        {
+          title: '9. Privacy Inquiries & Policy Updates',
           paragraphs: [
             'We may periodically update this Privacy Policy to reflect technical or regulatory requirements. Any modifications will be posted here with the revised "Last updated" date.',
             'If you have questions regarding this Privacy Policy or our data handling practices, please contact us at support@fixthespeaker.com.',
@@ -324,6 +342,12 @@ export const subpagesContent: Record<
             'Los registros de servidor registran datos técnicos básicos de navegación para garantizar la seguridad y rapidez del servicio.',
           ],
         },
+        {
+          title: 'Datos de suscripción al boletín',
+          paragraphs: [
+            'Si te suscribes a nuestra lista de notificaciones, recopilamos tu dirección de correo electrónico, dirección IP y país de forma segura mediante Cloudflare Workers KV. No vendemos estos datos. Para solicitar la eliminación, escríbenos a support@fixthespeaker.com.',
+          ],
+        },
       ],
     },
     terms: {
@@ -413,6 +437,12 @@ export const subpagesContent: Record<
             'すべての音波はご利用のブラウザ内で完結して生成されます。個人情報の入力は一切不要です。',
           ],
         },
+        {
+          title: 'ニュースレター登録データ',
+          paragraphs: [
+            'ニュースレターに登録された場合、メールアドレス・IPアドレス・国情報をCloudflare Workers KV経由で安全に保存します。これらのデータを第三者に販売することはありません。削除をご希望の場合はsupport@fixthespeaker.comまでご連絡ください。',
+          ],
+        },
       ],
     },
     terms: {
@@ -480,6 +510,12 @@ export const subpagesContent: Record<
           title: 'Données traitées',
           paragraphs: ['Le son est généré localement avec Web Audio API sans transmission de données.'],
         },
+        {
+          title: 'Données d’abonnement à la newsletter',
+          paragraphs: [
+            'Si vous vous abonnez à notre liste de notifications, nous collectons votre adresse e-mail, adresse IP et pays via Cloudflare Workers KV. Ces données ne sont pas vendues. Pour en demander la suppression, écrivez à support@fixthespeaker.com.',
+          ],
+        },
       ],
     },
     terms: {
@@ -538,6 +574,12 @@ export const subpagesContent: Record<
         {
           title: 'Lokale Ausführung',
           paragraphs: ['Die Tonerzeugung erfolgt vollständig lokal über die HTML5 Web Audio API.'],
+        },
+        {
+          title: 'Newsletter-Abonnementdaten',
+          paragraphs: [
+            'Wenn Sie sich für unsere Benachrichtigungsliste anmelden, speichern wir Ihre E-Mail-Adresse, IP-Adresse und Ihr Land sicher über Cloudflare Workers KV. Diese Daten werden nicht verkauft. Zur Löschung wenden Sie sich bitte an support@fixthespeaker.com.',
+          ],
         },
       ],
     },
@@ -598,6 +640,12 @@ export const subpagesContent: Record<
           title: 'Processamento local',
           paragraphs: ['Todo o som é gerado no seu próprio navegador através da Web Audio API.'],
         },
+        {
+          title: 'Dados de assinatura da newsletter',
+          paragraphs: [
+            'Se você se inscrever na nossa lista de notificações, coletamos seu e-mail, endereço IP e país de forma segura via Cloudflare Workers KV. Esses dados não são vendidos. Para solicitar a exclusão, entre em contato pelo support@fixthespeaker.com.',
+          ],
+        },
       ],
     },
     terms: {
@@ -656,6 +704,12 @@ export const subpagesContent: Record<
         {
           title: '데이터 처리',
           paragraphs: ['모든 음파는 브라우저 내부 Web Audio API를 통해 로컬에서 생성됩니다.'],
+        },
+        {
+          title: '뉴스레터 구독 데이터',
+          paragraphs: [
+            '뉴스레터를 구독하실 경우 이메일 주소, IP 주소, 국가 정보를 Cloudflare Workers KV를 통해 안전하게 저장합니다. 해당 데이터는 판매되지 않습니다. 삭제 요청은 support@fixthespeaker.com으로 연락해 주세요.',
+          ],
         },
       ],
     },
@@ -716,6 +770,12 @@ export const subpagesContent: Record<
         {
           title: 'Dati trattati',
           paragraphs: ['Il suono viene generato localmente nel browser tramite Web Audio API.'],
+        },
+        {
+          title: 'Dati di iscrizione alla newsletter',
+          paragraphs: [
+            'Se ti iscrivi alla nostra lista di notifiche, raccogliamo il tuo indirizzo e-mail, indirizzo IP e paese tramite Cloudflare Workers KV in modo sicuro. Questi dati non vengono venduti. Per richiederne la cancellazione, scrivi a support@fixthespeaker.com.',
+          ],
         },
       ],
     },

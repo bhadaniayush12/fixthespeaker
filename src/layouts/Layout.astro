@@ -189,15 +189,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
     )}
 
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-924DECLM9L"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-924DECLM9L');
-    </script>
   </head>
 
   <body class="flex min-h-full flex-col bg-canvas text-body">
