@@ -18,9 +18,8 @@ const modes = [
 const RING_R = 47;
 const RING_C = (2 * Math.PI * RING_R).toFixed(2);
 
-const initialSteps = customSteps && customSteps.length === 4 
-  ? customSteps.map(s => s.name) 
-  : t.stepsWater;
+// Custom steps override the defaults per index; any missing entry falls back to the translation.
+const initialSteps = t.stepsWater.map((s, i) => customSteps?.[i]?.name ?? s);
 
 const i18nConfig = {
   water: {
@@ -190,11 +189,11 @@ const i18nConfig = {
   </div>
 </section>
 
-<!-- Embed Localized Config for Client-Side Audio & UI Engine -->
-<script id="i18n-data" type="application/json" set:html={JSON.stringify(i18nConfig)} />
+<!-- Embed Localized Config for Client-Side Audio & UI Engine. "<" is escaped so a translation can never close the script tag. -->
+<script id="i18n-data" type="application/json" set:html={JSON.stringify(i18nConfig).replace(/</g, '\\u003c')} />
 
 <script>
-  /** @typedef {'water' | 'dust' | 'test'} ModeId */
+  type ModeId = 'water' | 'dust' | 'test';
 
   const i18nEl = document.getElementById('i18n-data');
   const MODES = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : {
@@ -230,17 +229,12 @@ const i18nConfig = {
   const RING_C = parseFloat(ring ? ring.getAttribute('stroke-dasharray') || '295.31' : '295.31');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /** @type {ModeId} */
-  let mode = 'water';
+  let mode: ModeId = 'water';
   let running = false;
-  /** @type {AudioContext | null} */
-  let ctx = null;
-  /** @type {GainNode | null} */
-  let master = null;
-  /** @type {AnalyserNode | null} */
-  let analyser = null;
-  /** @type {AudioScheduledSourceNode[]} */
-  let live = [];
+  let ctx: AudioContext | null = null;
+  let master: GainNode | null = null;
+  let analyser: AnalyserNode | null = null;
+  let live: AudioScheduledSourceNode[] = [];
   let td = new Uint8Array(0);
   let runStart = 0;
   let endTimer = 0;
@@ -248,14 +242,15 @@ const i18nConfig = {
   let stepIdx = 0;
   let quickTimer = 0;
   let doneTimer = 0;
-  let wakeLock = null;
-  const cycles = { water: 0, dust: 0, test: 0 };
+  let wakeLock: WakeLockSentinel | null = null;
 
   /* ---------- Audio Engine ---------- */
 
   function ensureAudio() {
     if (!ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
+      const AC =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       ctx = new AC();
 
       master = ctx.createGain();
@@ -522,7 +517,6 @@ const i18nConfig = {
       if (manual) {
         status.textContent = cfg.idle;
       } else {
-        cycles[mode] += 1;
         status.textContent = cfg.done;
         showDone();
       }
@@ -667,6 +661,13 @@ const i18nConfig = {
     if (wakeLock) wakeLock.release().catch(() => {});
     wakeLock = null;
   }
+
+  // Browsers release the wake lock when the tab is hidden; re-acquire it if the user returns mid-run.
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && running && (!wakeLock || wakeLock.released)) {
+      requestWakeLock();
+    }
+  });
 
   /* ---------- Events ---------- */
 
