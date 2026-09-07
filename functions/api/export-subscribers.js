@@ -1,75 +1,123 @@
 /**
- * Cloudflare Pages Function: /api/export-subscribers
- * Protected admin endpoint to download the full CSV file of newsletter subscribers.
- * 
+ * Worker route handler: GET /api/export-subscribers
+ * Protected admin endpoint that assembles the subscriber CSV from KV.
+ *
  * Usage:
- * 1. Via Browser: https://fixthespeaker.com/api/export-subscribers?key=YOUR_SECRET_KEY
- * 2. Via cURL: curl -H "x-admin-key: YOUR_SECRET_KEY" https://fixthespeaker.com/api/export-subscribers -o subscribers.csv
+ *   curl -H "x-admin-key: $ADMIN_API_KEY" https://fixthespeaker.com/api/export-subscribers -o subscribers.csv
+ *
+ * The key is accepted ONLY via the `x-admin-key` header. Query-string keys are
+ * rejected because they leak into browser history, server logs and Referer headers.
  */
 
-const CSV_HEADER = 'Date,Time,Name,Email,Country,IP,UserAgent\n';
+import { CSV_HEADER, LEGACY_CSV_KEY, SUBSCRIBER_PREFIX, recordToCsvRow } from '../lib/csv.js';
+
+const encoder = new TextEncoder();
+
+function json(status, body) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
+/**
+ * Constant-time comparison of the provided key against the expected one.
+ * A length mismatch short-circuits; the key length itself is not secret.
+ */
+function safeEqual(provided, expected) {
+  const a = encoder.encode(provided);
+  const b = encoder.encode(expected);
+  if (a.byteLength !== b.byteLength) return false;
+  return crypto.subtle.timingSafeEqual(a, b);
+}
+
+/** Reads every `sub:*` record from KV, following list pagination. */
+async function collectRecords(kv) {
+  const records = [];
+  let cursor;
+
+  do {
+    const page = await kv.list({ prefix: SUBSCRIBER_PREFIX, cursor });
+    const values = await Promise.all(page.keys.map((k) => kv.get(k.name, 'json')));
+    for (const record of values) {
+      if (record) records.push(record);
+    }
+    cursor = page.list_complete ? undefined : page.cursor;
+  } while (cursor);
+
+  records.sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
+  return records;
+}
+
+/** Rows from the pre-refactor single CSV blob, if it still exists. */
+async function legacyRows(kv) {
+  const legacy = await kv.get(LEGACY_CSV_KEY);
+  if (!legacy) return [];
+  return legacy
+    .replace(/^\uFEFF/, '')
+    .split('\n')
+    .slice(1) // drop header
+    .filter((line) => line.trim().length > 0);
+}
 
 export async function onRequestGet({ request, env }) {
   try {
-    const url = new URL(request.url);
-    const keyParam = url.searchParams.get('key');
-    const keyHeader = request.headers.get('x-admin-key');
-    const providedKey = keyParam || keyHeader;
-
     const expectedKey = env.ADMIN_API_KEY;
 
-    // 1. Validate that the ADMIN_API_KEY is configured in Cloudflare
+    // 1. Validate that the ADMIN_API_KEY is configured
     if (!expectedKey) {
-      return new Response(
-        JSON.stringify({
-          error: 'ADMIN_API_KEY is not configured in Cloudflare environment variables.',
-        }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
+      console.error('ADMIN_API_KEY is not configured in Cloudflare environment variables.');
+      return json(500, { error: 'Export is not configured.' });
     }
 
-    // 2. Constant-time or direct string verification of admin secret key
-    if (!providedKey || providedKey !== expectedKey) {
-      return new Response(
-        JSON.stringify({ error: 'Unauthorized. Invalid or missing secret admin key.' }),
-        { status: 401, headers: { 'Content-Type': 'application/json' } }
-      );
+    // 2. Refuse keys passed in the URL so they are never logged or leaked via Referer
+    const url = new URL(request.url);
+    if (url.searchParams.has('key')) {
+      return json(400, { error: 'Pass the admin key in the x-admin-key header, not the query string.' });
     }
 
-    // 3. Verify KV binding
+    // 3. Constant-time verification of the admin key
+    const providedKey = request.headers.get('x-admin-key') || '';
+    if (!providedKey || !safeEqual(providedKey, expectedKey)) {
+      return json(401, { error: 'Unauthorized.' });
+    }
+
+    // 4. Verify KV binding
     if (!env.SUBSCRIBERS) {
-      return new Response(
-        JSON.stringify({ error: 'SUBSCRIBERS KV namespace binding is missing.' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
+      console.error('Missing SUBSCRIBERS KV namespace binding in Cloudflare.');
+      return json(500, { error: 'Storage is not configured.' });
     }
 
-    // 4. Fetch CSV string from KV
-    const csvContent = (await env.SUBSCRIBERS.get('subscribers_csv')) || CSV_HEADER;
+    // 5. Assemble CSV: legacy blob rows first, then per-key records in chronological order
+    const [legacy, records] = await Promise.all([
+      legacyRows(env.SUBSCRIBERS),
+      collectRecords(env.SUBSCRIBERS),
+    ]);
+    const rows = [...legacy, ...records.map(recordToCsvRow)];
+
+    // UTF-8 BOM so Excel opens non-ASCII names correctly
+    const csv = '\uFEFF' + CSV_HEADER + rows.join('\n') + (rows.length ? '\n' : '');
 
     const today = new Date().toISOString().slice(0, 10);
     const filename = `subscribers_export_${today}.csv`;
 
-    // 5. Return CSV stream with download headers (Excel and UTF-8 compatible)
-    // Prepend UTF-8 BOM (\uFEFF) so Microsoft Excel opens special characters seamlessly
-    const bom = '\uFEFF';
-    const finalCSV = csvContent.startsWith(bom) ? csvContent : bom + csvContent;
-
-    return new Response(finalCSV, {
+    return new Response(csv, {
       status: 200,
       headers: {
         'Content-Type': 'text/csv; charset=utf-8',
         'Content-Disposition': `attachment; filename="${filename}"`,
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        Pragma: 'no-cache',
+        Expires: '0',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'no-referrer',
       },
     });
   } catch (err) {
     console.error('Export error:', err);
-    return new Response(
-      JSON.stringify({ error: 'Failed to export subscribers CSV.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
-    );
+    return json(500, { error: 'Failed to export subscribers CSV.' });
   }
 }
