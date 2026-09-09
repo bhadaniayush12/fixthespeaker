@@ -6,6 +6,10 @@ import CookieConsent from '../components/CookieConsent.astro';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 
+// Resolve the hashed URL for the critical latin font so we can preload it.
+// Vite's ?url suffix returns the build-output path (e.g. /_astro/geist-latin-wght-normal.<hash>.woff2).
+import geistLatinUrl from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
+
 export interface Props {
   title: string;
   description: string;
@@ -56,6 +60,11 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 <!doctype html>
 <html lang={lang} class="h-full">
   <head>
+    <!-- Preload the critical Geist latin font to eliminate the HTML→CSS→font waterfall.
+         Without this, the browser only discovers the woff2 after downloading + parsing the
+         CSS bundle, which inflates LCP on slow connections (P90 7s+ from font-swap delay). -->
+    <link rel="preload" as="font" type="font/woff2" href={geistLatinUrl} crossorigin />
+
     <!-- Consent Mode defaults must run before GTM or any other client-side script. -->
     <script is:inline>
       (function () {

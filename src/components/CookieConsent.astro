@@ -140,9 +140,17 @@ const privacyUrl = getRelativeLocaleUrl(lang, 'privacy');
   };
 
   const saveConsent = (analytics: boolean, advertising: boolean) => {
-    consentController?.apply({ version: 1, analytics, advertising }, true);
+    // Immediate visual feedback — hide the banner before any heavy processing.
+    // This lets the browser paint the dismissal before we run consent logic.
     if (root) root.hidden = true;
     setPreferencesOpen(false);
+
+    // Yield to the browser: consent application (dataLayer pushes, localStorage write,
+    // GTM script injection via document.head.appendChild) runs in a separate task so
+    // it doesn't inflate Interaction to Next Paint (INP).
+    setTimeout(() => {
+      consentController?.apply({ version: 1, analytics, advertising }, true);
+    }, 0);
   };
 
   document.querySelector<HTMLButtonElement>('[data-cookie-accept]')?.addEventListener('click', () => {
