@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const SITE_URL = 'https://fixthespeaker.com';
-const TODAY = '2026-09-06';
+const TODAY = new Date().toISOString().slice(0, 10); // dynamic: set to the actual build date
 
 const LANGS = [
   { code: 'en', pathPrefix: '' },

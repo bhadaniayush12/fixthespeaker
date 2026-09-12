@@ -26,9 +26,39 @@ const RING_C = (2 * Math.PI * RING_R).toFixed(2);
 const SITE_URL = 'https://fixthespeaker.com';
 const pageUrl = lang === defaultLang ? `${SITE_URL}/` : `${SITE_URL}/${lang}`;
 
+// Structured data dates — datePublished is the original launch; dateModified tracks rebuilds.
+const SITE_DATE_PUBLISHED = '2026-09-06';
+const SITE_DATE_MODIFIED = new Date().toISOString().slice(0, 10);
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    // --- Organization: brand entity for Knowledge Panel & AI grounding ---
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'Fix The Speaker',
+      url: `${SITE_URL}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/icon-512.png`,
+        width: 512,
+        height: 512,
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'support@fixthespeaker.com',
+        contactType: 'customer support',
+      },
+    },
+    // --- Person: author entity for EEAT signals ---
+    {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#author`,
+      name: 'Fix The Speaker Team',
+      url: `${SITE_URL}/about`,
+    },
+    // --- WebSite ---
     {
       '@type': 'WebSite',
       '@id': `${SITE_URL}/#website`,
@@ -36,7 +66,9 @@ const jsonLd = {
       name: 'Fix The Speaker',
       description: content.description,
       inLanguage: lang,
+      publisher: { '@id': `${SITE_URL}/#organization` },
     },
+    // --- WebApplication ---
     {
       '@type': 'WebApplication',
       '@id': `${pageUrl}#app`,
@@ -54,6 +86,21 @@ const jsonLd = {
         'Dual-Layer Stereo Speaker Diagnostic Test (Left / Right / Both)',
       ],
     },
+    // --- TechArticle: freshness signal for the in-page guide section ---
+    {
+      '@type': 'TechArticle',
+      '@id': `${pageUrl}#article`,
+      headline: content.articleHeading,
+      description: content.description,
+      url: pageUrl,
+      inLanguage: lang,
+      datePublished: SITE_DATE_PUBLISHED,
+      dateModified: SITE_DATE_MODIFIED,
+      author: { '@id': `${SITE_URL}/#author` },
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      isPartOf: { '@id': `${SITE_URL}/#website` },
+    },
+    // --- FAQPage ---
     {
       '@type': 'FAQPage',
       '@id': `${pageUrl}#faq`,
