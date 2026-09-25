@@ -24,8 +24,19 @@ async function main() {
   const devicesModule = await import('../src/data/devices.ts');
   const devices = devicesModule.devices;
   const deviceSlugs = Object.keys(devices);
+  const HUB_SLUGS = new Set([
+    'fix-iphone-speaker',
+    'eject-water-samsung-galaxy',
+    'clean-airpods-speaker',
+    'fix-apple-watch-speaker',
+    'fix-android-speaker',
+  ]);
 
-  console.log(`Found ${deviceSlugs.length} device slugs to include in sitemap.`);
+  const indexableDeviceSlugs = deviceSlugs.filter(
+    (slug) => HUB_SLUGS.has(slug) || devices[slug].category === 'hub'
+  );
+
+  console.log(`Found ${deviceSlugs.length} total device profiles; indexing only ${indexableDeviceSlugs.length} hub pages in sitemap.`);
 
   const staticPages = [
     { slug: '', priority: '1.0', changefreq: 'weekly' },
@@ -70,8 +81,8 @@ async function main() {
     }
   }
 
-  // 2. Programmatic Device Pages
-  for (const slug of deviceSlugs) {
+  // 2. Programmatic Device Hub Pages (exclusively 5 hub pages across all 8 languages)
+  for (const slug of indexableDeviceSlugs) {
     const isHub = devices[slug].category === 'hub';
     const basePriority = isHub ? '0.85' : '0.80';
 
@@ -100,7 +111,7 @@ async function main() {
 
   const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
-  console.log(`Successfully generated public/sitemap.xml with ${staticPages.length * 8 + deviceSlugs.length * 8} total URL entries.`);
+  console.log(`Successfully generated public/sitemap.xml with ${staticPages.length * 8 + indexableDeviceSlugs.length * 8} total URL entries.`);
 }
 
 main().catch((err) => {
