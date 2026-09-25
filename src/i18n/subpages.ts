@@ -323,29 +323,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'Política de Privacidad | Fix The Speaker',
-      description: 'Política de privacidad y protección de datos de Fix The Speaker.',
+      description:
+        'Política de privacidad de Fix The Speaker. Conoce nuestra política de cero recolección de audio, analítica con GA4, Consent Mode v2 y avisos de publicidad de terceros.',
       heading: 'Política de Privacidad',
-      eyebrow: 'Legal',
-      updated: '2026-09-03',
+      eyebrow: 'Legal y Cumplimiento',
+      updated: '2026-09-07',
       intro:
-        'Esta política detalla cómo se gestionan los datos en Fix The Speaker. La herramienta funciona 100% en tu navegador y no recopila datos personales.',
+        'Esta Política de Privacidad describe cómo Fix The Speaker («nosotros», «nuestro» o «el Servicio») gestiona la información cuando visitas fixthespeaker.com. Estamos comprometidos con la transparencia: nuestra herramienta funciona íntegramente en tu navegador y nunca accede a tu micrófono, no graba audio ni recopila transmisiones de audio personales.',
       sections: [
         {
-          title: 'Datos que procesa la herramienta',
+          title: '1. Cero Datos de Audio y Funcionamiento en el Lado del Cliente',
           paragraphs: [
-            'El sonido se genera localmente en tu dispositivo mediante Web Audio API. No grabamos audio ni solicitamos acceso al micrófono.',
+            'Fix The Speaker utiliza la API HTML5 Web Audio en el lado del cliente para sintetizar frecuencias sonoras acústicas directamente en la CPU de tu dispositivo. Toda la generación de tonos, barridos de frecuencia y pruebas de balance estéreo ocurren exclusivamente en el entorno aislado (sandbox) de tu navegador local.',
+            'No solicitamos permisos de acceso al micrófono, nunca grabamos ni transmitimos audio entrante, y no requerimos la creación de cuentas, contraseñas ni credenciales personales para utilizar ninguna de las funciones de limpieza.',
           ],
         },
         {
-          title: 'Cookies y registros',
+          title: '2. Información Recopilada Automáticamente',
           paragraphs: [
-            'Los registros de servidor registran datos técnicos básicos de navegación para garantizar la seguridad y rapidez del servicio.',
+            'Cuando accedes a nuestro sitio web, los registros estándar del servidor de alojamiento (proporcionados a través de Cloudflare) recopilan automáticamente telemetría técnica de red necesaria para entregar los recursos web, mitigar ciberataques (como ataques DDoS) y garantizar la estabilidad del sitio. Estos datos incluyen:',
+          ],
+          list: [
+            'Dirección de Protocolo de Internet (IP) (anonimizada y ofuscada en los informes analíticos)',
+            'Tipo de navegador, cadena de agente de usuario y sistema operativo',
+            'URL de referencia, páginas visitadas y fecha/hora de acceso',
+            'Preferencia de idioma y resolución de pantalla genérica',
           ],
         },
         {
-          title: 'Datos de suscripción al boletín',
+          title: '3. Cookies, Almacenamiento Local y Consent Mode v2',
           paragraphs: [
-            'Si te suscribes a nuestra lista de notificaciones, recopilamos tu dirección de correo electrónico, dirección IP y país de forma segura mediante Cloudflare Workers KV. No vendemos estos datos. Para solicitar la eliminación, escríbenos a support@fixthespeaker.com.',
+            'Nuestro sitio web utiliza el almacenamiento local del navegador y cookies esenciales para mantener las preferencias básicas del usuario. En concreto, almacenamos:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: Registra tus preferencias de cookies (opciones de analítica y publicidad) para respetar tus decisiones en visitas posteriores.',
+            'theme: Guarda tu preferencia de interfaz de modo oscuro o claro.',
+          ],
+        },
+        {
+          title: '4. Seguimiento con Google Analytics 4 (GA4)',
+          paragraphs: [
+            'Utilizamos Google Analytics 4 (ID de medición: G-924DECLM9L) para analizar tendencias agregadas de tráfico y patrones de interacción de los usuarios. En cumplimiento con Google Consent Mode v2, las etiquetas de almacenamiento analítico y publicitario (ad_storage, analytics_storage, ad_user_data, ad_personalization) se establecen en «denied» (denegadas) de forma predeterminada cuando cargas el sitio por primera vez.',
+            'Google Analytics solo se activa si otorgas tu consentimiento explícito a través de nuestro banner de cookies. Puedes gestionar o revocar tu consentimiento en cualquier momento haciendo clic en el enlace «Configuración de cookies» ubicado en el pie de página del sitio web.',
+          ],
+        },
+        {
+          title: '5. Publicidad de Terceros y Avisos de Google AdSense',
+          paragraphs: [
+            'Podemos mostrar anuncios de terceros a través de Google AdSense y redes publicitarias afiliadas para respaldar el funcionamiento gratuito de Fix The Speaker. Por favor, revisa las siguientes declaraciones obligatorias:',
+          ],
+          list: [
+            'Los proveedores de terceros, incluido Google, utilizan cookies para publicar anuncios basados en las visitas previas del usuario a este sitio web o a otros sitios de Internet.',
+            'El uso de cookies publicitarias por parte de Google permite a este y a sus socios mostrar anuncios a los usuarios en función de sus visitas a nuestro sitio y/o a otros sitios de Internet.',
+            'Los usuarios pueden inhabilitar la publicidad personalizada accediendo a la Configuración de Anuncios de Google (https://adssettings.google.com).',
+            'Alternativamente, puedes inhabilitar el uso de cookies de proveedores externos para la publicidad personalizada visitando AboutAds (http://www.aboutads.info/choices) o la Network Advertising Initiative (http://www.networkadvertising.org/choices/).',
+          ],
+        },
+        {
+          title: '6. Derechos de Protección de Datos bajo el RGPD y RGPD del Reino Unido',
+          paragraphs: [
+            'Si resides en el Espacio Económico Europeo (EEE), el Reino Unido o Suiza, cuentas con derechos específicos en virtud del Reglamento General de Protección de Datos (RGPD) y el RGPD del Reino Unido, incluidos los derechos de acceso, rectificación o supresión de tus datos personales, así como el derecho a retirar el consentimiento de cookies en cualquier momento sin que ello afecte tu acceso a la utilidad de limpieza del altavoz.',
+          ],
+        },
+        {
+          title: '7. Ley de Privacidad del Consumidor de California (CCPA / CPRA)',
+          paragraphs: [
+            'De conformidad con la Ley de Privacidad del Consumidor de California (CCPA) y la Ley de Derechos de Privacidad de California (CPRA), los residentes de California tienen derecho a conocer qué información personal se recopila, solicitar su eliminación y optar por no vender ni compartir dicha información personal. Fix The Speaker no vende información personal a intermediarios de datos (data brokers).',
+          ],
+        },
+        {
+          title: '8. Datos de Suscripción al Boletín Informativo',
+          paragraphs: [
+            'Si decides suscribirte a nuestra lista de notificaciones a través del formulario del sitio web, recopilamos los siguientes datos en tu nombre y los almacenamos de forma segura mediante nuestro proveedor externo de entrega de correo electrónico (Cloudflare Workers KV):',
+          ],
+          list: [
+            'Dirección de correo electrónico: utilizada exclusivamente para enviarte avisos de actualizaciones del producto.',
+            'Dirección IP: recopilada en el momento de la suscripción para prevención de spam y analítica geográfica.',
+            'País: deducido a partir de la dirección IP en el momento de la suscripción con fines analíticos regionales.',
+          ],
+        },
+        {
+          title: '8a. Derechos y Supresión de Datos del Boletín',
+          paragraphs: [
+            'No vendemos ni compartimos los datos de tu suscripción al boletín con anunciantes externos.',
+            'Puedes cancelar tu suscripción en cualquier momento utilizando el enlace incluido en cada correo de notificación. Para solicitar la eliminación total de tus datos de suscripción (correo electrónico, dirección IP y registro de país), ponte en contacto con nosotros en support@fixthespeaker.com y procesaremos tu solicitud en un plazo de 30 días.',
+          ],
+        },
+        {
+          title: '9. Consultas de Privacidad y Actualizaciones de la Política',
+          paragraphs: [
+            'Podemos actualizar periódicamente esta Política de Privacidad para reflejar cambios técnicos o exigencias regulatorias. Cualquier modificación se publicará en esta página con la fecha revisada de «Última actualización».',
+            'Si tienes alguna pregunta acerca de esta Política de Privacidad o de nuestras prácticas de tratamiento de datos, contáctanos en support@fixthespeaker.com.',
           ],
         },
       ],
@@ -380,7 +448,7 @@ export const subpagesContent: Record<
       eyebrow: 'Contacto',
       intro:
         '¿Tienes alguna duda, sugerencia o has encontrado un error? Escríbenos un correo y te responderemos lo antes posible.',
-      buttonText: 'Enviar email a hello@fixthespeaker.com',
+      buttonText: 'Enviar email a support@fixthespeaker.com',
       detailsTitle: 'Datos útiles a incluir',
       detailsList: [
         'Modelo de smartphone y versión del sistema operativo.',
@@ -424,23 +492,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'プライバシーポリシー | Fix The Speaker',
-      description: 'Fix The Speakerのプライバシーポリシーとデータ保護方針について。',
+      description:
+        'Fix The Speakerのプライバシーポリシー。音声データの非収集方針、Googleアナリティクス4、同意モードv2、サードパーティ広告に関する開示事項について詳しく説明します。',
       heading: 'プライバシーポリシー',
-      eyebrow: '法的情報',
-      updated: '2026-09-03',
+      eyebrow: '法的情報とコンプライアンス',
+      updated: '2026-09-07',
       intro:
-        '当サービスはお客様のプライバシーを最優先に考えており、マイクへのアクセスや音声の録音は一切行いません。',
+        '本プライバシーポリシーは、fixthespeaker.comをご利用いただく際の情報のお取り扱いについて説明するものです。当サービスは透明性を重視しており、ツールは完全にブラウザ内で動作し、マイクへのアクセス、音声の録音、個人音声ストリームの収集を行うことは一切ありません。',
       sections: [
         {
-          title: '処理する情報',
+          title: '1. 音声データの非収集とクライアントサイド動作',
           paragraphs: [
-            'すべての音波はご利用のブラウザ内で完結して生成されます。個人情報の入力は一切不要です。',
+            'Fix The Speakerは、端末のCPU上で直接音波周波数を合成するためにクライアントサイドのHTML5 Web Audio APIを使用しています。すべてのトーン生成、周波数スイープ、ステレオバランステストはお使いのブラウザのローカルサンドボックス内でのみ実行されます。',
+            'マイクのアクセス許可を求めることはなく、受信音声を録音・送信することもありません。また、クリーニング機能のご利用にあたってアカウント作成やパスワード、個人認証情報の入力は一切不要です。',
           ],
         },
         {
-          title: 'ニュースレター登録データ',
+          title: '2. 自動的に収集される情報',
           paragraphs: [
-            'ニュースレターに登録された場合、メールアドレス・IPアドレス・国情報をCloudflare Workers KV経由で安全に保存します。これらのデータを第三者に販売することはありません。削除をご希望の場合はsupport@fixthespeaker.comまでご連絡ください。',
+            '当サイトにアクセスすると、Webアセットの配信、サイバー攻撃（DDoSなど）の緩和、およびサイトの信頼性確保に必要なネットワーク技術テレメトリが、標準的なホスティングサーバーログ（Cloudflare経由）により自動的に記録されます。これには以下の情報が含まれます：',
+          ],
+          list: [
+            'インターネットプロトコル（IP）アドレス（アナリティクスレポートでは匿名化・非表示化されます）',
+            'ブラウザの種類、ユーザーエージェント文字列、オペレーティングシステム',
+            '参照元URL、訪問したページ、アクセス日時',
+            '言語設定および一般的な画面解像度',
+          ],
+        },
+        {
+          title: '3. Cookie、ローカルストレージおよび同意モードv2',
+          paragraphs: [
+            '当サイトでは、基本的なユーザー設定を維持するためにブラウザのローカルストレージおよび必須Cookieを使用しています。具体的には以下のデータを保持します：',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: 次回以降の訪問時にも選択内容を反映できるよう、Cookie設定（分析および広告の選択）を記録します。',
+            'theme: ダークモード/ライトモードの表示設定を保存します。',
+          ],
+        },
+        {
+          title: '4. Googleアナリティクス4（GA4）によるアクセス解析',
+          paragraphs: [
+            '当サイトでは、集計されたトラフィック動向や利用傾向を分析するためにGoogleアナリティクス4（測定ID: G-924DECLM9L）を使用しています。Google同意モードv2（Consent Mode v2）に基づき、初回アクセス時には分析および広告用ストレージタグ（ad_storage、analytics_storage、ad_user_data、ad_personalization）はデフォルトで「拒否（denied）」に設定されています。',
+            'Googleアナリティクスは、Cookieバナーで明示的に同意をいただいた場合にのみ有効化されます。フッターにある「Cookie設定」リンクから、いつでも同意の変更や撤回が可能です。',
+          ],
+        },
+        {
+          title: '5. 第三者配信広告およびGoogle AdSenseに関する開示事項',
+          paragraphs: [
+            'Fix The Speakerの無料提供を維持するため、Google AdSenseおよび提携広告ネットワークによる第三者配信広告を掲載する場合があります。以下の必須開示事項をご確認ください：',
+          ],
+          list: [
+            'Googleを含む第三者配信事業者は、Cookieを使用して、ユーザーが当サイトや他のウェブサイトに過去にアクセスした際の情報に基づいて広告を配信します。',
+            'Googleが広告Cookieを使用することにより、ユーザーが当サイトや他のウェブサイトにアクセスした際の情報に基づいて、Googleやそのパートナーが適切な広告をユーザーに表示できます。',
+            'ユーザーは、Google広告設定（https://adssettings.google.com）にアクセスして、パーソナライズ広告を無効にできます。',
+            'また、AboutAds（http://www.aboutads.info/choices）またはNetwork Advertising Initiative（http://www.networkadvertising.org/choices/）にアクセスして、パーソナライズ広告に使われる第三者配信事業者のCookieを無効にすることもできます。',
+          ],
+        },
+        {
+          title: '6. GDPRおよび英国データ保護規則に基づく権利',
+          paragraphs: [
+            '欧州経済領域（EEA）、英国、またはスイスにお住まいの方は、一般データ保護規則（GDPR）および英国GDPRに基づき、個人データへのアクセス、訂正、削除を要求する権利、ならびにスピーカークリーニング機能へのアクセスに影響を与えることなくいつでもCookie同意を撤回する権利を有しています。',
+          ],
+        },
+        {
+          title: '7. カリフォルニア州消費者プライバシー法（CCPA / CPRA）',
+          paragraphs: [
+            'カリフォルニア州消費者プライバシー法（CCPA）およびカリフォルニア州プライバシー権法（CPRA）に基づき、カリフォルニア州居住者は収集される個人情報を把握し、その削除を要求し、個人情報の販売や共有をオプトアウトする権利があります。Fix The Speakerは個人情報をデータブローカー等に販売することはありません。',
+          ],
+        },
+        {
+          title: '8. ニュースレター登録データ',
+          paragraphs: [
+            'サイト上のフォームから更新通知リストに登録された場合、以下の情報が収集され、外部メール配信プロバイダー（Cloudflare Workers KV）を通じて安全に保管されます：',
+          ],
+          list: [
+            'メールアドレス：製品アップデートのお知らせを送信する目的でのみ使用されます。',
+            'IPアドレス：スパム防止および地域分析の目的で登録時に収集されます。',
+            '国情報：地域統計分析のため、登録時のIPアドレスから推定されます。',
+          ],
+        },
+        {
+          title: '8a. ニュースレターデータの権利と削除',
+          paragraphs: [
+            'ニュースレターの登録データをサードパーティの広告主へ販売または共有することはありません。',
+            '配信されるすべての通知メール内のリンクからいつでも登録を解除できます。登録データ（メールアドレス、IPアドレス、国情報）の完全な削除をご希望の場合は、support@fixthespeaker.comまでご連絡ください。30日以内に削除手続きを行います。',
+          ],
+        },
+        {
+          title: '9. お問い合わせおよびプライバシーポリシーの改定',
+          paragraphs: [
+            '技術的要件や法令の改正に伴い、本プライバシーポリシーを定期的に更新する場合があります。変更があった場合は、更新日を改定の上、本ページにて公表いたします。',
+            '本プライバシーポリシーまたは当サイトのデータ保護に関するお問い合わせは、support@fixthespeaker.comまでお願いいたします。',
           ],
         },
       ],
@@ -467,7 +609,7 @@ export const subpagesContent: Record<
       heading: 'お問い合わせ',
       eyebrow: 'お問い合わせ',
       intro: 'ご質問や改善のご提案がございましたら、お気軽にメールでお問い合わせください。',
-      buttonText: 'メールを送信: hello@fixthespeaker.com',
+      buttonText: 'メールを送信: support@fixthespeaker.com',
       detailsTitle: '記載いただくとスムーズな情報',
       detailsList: [
         'ご使用の機種・OS（例: iPhone 15 / iOS 18）',
@@ -500,20 +642,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'Politique de Confidentialité | Fix The Speaker',
-      description: 'Politique de confidentialité et protection des données.',
+      description:
+        'Politique de confidentialité de Fix The Speaker : découvrez notre politique de non-collecte audio, l’analyse GA4, Consent Mode v2 et les mentions publicitaires tierces.',
       heading: 'Politique de Confidentialité',
-      eyebrow: 'Légal',
-      updated: '2026-09-03',
-      intro: 'Cet outil fonctionne entièrement dans votre navigateur. Aucun enregistrement micro n’est effectué.',
+      eyebrow: 'Légal & Conformité',
+      updated: '2026-09-07',
+      intro:
+        'La présente Politique de Confidentialité détaille la manière dont Fix The Speaker (« nous », « notre » ou « le Service ») traite les informations lors de vos visites sur fixthespeaker.com. Nous nous engageons à une totale transparence : notre outil fonctionne exclusivement dans votre navigateur et n’accède jamais à votre microphone, n’enregistre aucun son et ne collecte aucun flux audio personnel.',
       sections: [
         {
-          title: 'Données traitées',
-          paragraphs: ['Le son est généré localement avec Web Audio API sans transmission de données.'],
+          title: '1. Aucune Donnée Audio & Exécution Côté Client',
+          paragraphs: [
+            'Fix The Speaker utilise l’API HTML5 Web Audio côté client pour générer des fréquences sonores acoustiques directement sur le processeur de votre appareil. Toutes les émissions sonores, balayages de fréquences et tests de balance stéréo s’effectuent strictement dans le bac à sable (sandbox) local de votre navigateur.',
+            'Nous ne demandons aucune autorisation d’accès au micro, nous n’enregistrons ni ne transmettons jamais d’audio, et nous n’exigeons aucun compte utilisateur, mot de passe ou identifiant pour utiliser nos fonctionnalités de nettoyage.',
+          ],
         },
         {
-          title: 'Données d’abonnement à la newsletter',
+          title: '2. Données Collectées Automatiquement',
           paragraphs: [
-            'Si vous vous abonnez à notre liste de notifications, nous collectons votre adresse e-mail, adresse IP et pays via Cloudflare Workers KV. Ces données ne sont pas vendues. Pour en demander la suppression, écrivez à support@fixthespeaker.com.',
+            'Lorsque vous visitez notre site, les journaux d’hébergement serveur standards (fournis par Cloudflare) collectent automatiquement les données télémétriques de réseau nécessaires à la diffusion des fichiers, à la prévention des cyberattaques (telles que les attaques DDoS) et à la stabilité du site. Ces données comprennent :',
+          ],
+          list: [
+            'L’adresse IP (Internet Protocol) (anonymisée et tronquée dans les rapports d’analyse)',
+            'Le type de navigateur, la chaîne user-agent et le système d’exploitation',
+            'L’URL de référence, les pages consultées et l’horodatage de la visite',
+            'La langue préférée et la résolution d’écran générique',
+          ],
+        },
+        {
+          title: '3. Cookies, Stockage Local & Consent Mode v2',
+          paragraphs: [
+            'Notre site utilise le stockage local du navigateur ainsi que des cookies essentiels afin de mémoriser vos préférences clés. En particulier, nous conservons :',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1 : Enregistre vos choix en matière de cookies (analytics et publicité) afin de les respecter lors de vos prochaines visites.',
+            'theme : Mémorise votre choix d’interface en mode sombre ou clair.',
+          ],
+        },
+        {
+          title: '4. Suivi Google Analytics 4 (GA4)',
+          paragraphs: [
+            'Nous utilisons Google Analytics 4 (Identifiant de mesure : G-924DECLM9L) pour analyser les tendances de fréquentation globale et les interactions. Conformément à Google Consent Mode v2, les balises de stockage analytique et publicitaire (ad_storage, analytics_storage, ad_user_data, ad_personalization) sont réglées sur « refusé » (denied) par défaut lors de votre premier accès au site.',
+            'Google Analytics ne s’active que si vous donnez votre consentement explicite via notre bandeau de cookies. Vous pouvez modifier ou révoquer votre consentement à tout moment en cliquant sur le lien « Paramètres des cookies » situé dans le pied de page du site.',
+          ],
+        },
+        {
+          title: '5. Publicités de Tiers & Mentions Google AdSense',
+          paragraphs: [
+            'Nous pouvons diffuser des annonces publicitaires de tiers via Google AdSense et des régies publicitaires partenaires afin d’assurer la gratuité de Fix The Speaker. Veuillez prendre connaissance des mentions obligatoires suivantes :',
+          ],
+          list: [
+            'Des fournisseurs tiers, y compris Google, utilisent des cookies pour diffuser des annonces en fonction des visites antérieures des internautes sur ce site web ou sur d’autres pages Internet.',
+            'Grâce aux cookies publicitaires, Google et ses partenaires peuvent diffuser des annonces auprès de vos utilisateurs en fonction de leur navigation sur vos sites et/ou d’autres sites Internet.',
+            'Les utilisateurs peuvent désactiver la publicité personnalisée dans les Paramètres des annonces Google (https://adssettings.google.com).',
+            'Vous pouvez également refuser l’utilisation de cookies par des tiers pour la publicité personnalisée en consultant AboutAds (http://www.aboutads.info/choices) ou la Network Advertising Initiative (http://www.networkadvertising.org/choices/).',
+          ],
+        },
+        {
+          title: '6. Droits RGPD & Réglementation Britannique sur les Données',
+          paragraphs: [
+            'Si vous résidez dans l’Espace Économique Européen (EEE), au Royaume-Uni ou en Suisse, vous disposez de droits garantis par le Règlement Général sur la Protection des Données (RGPD) et le RGPD britannique, incluant le droit d’accès, de rectification et d’effacement de vos données, ainsi que le droit de retirer votre consentement aux cookies à tout moment sans restreindre l’accès à notre outil de nettoyage d’enceinte.',
+          ],
+        },
+        {
+          title: '7. Loi Californienne sur la Protection de la Vie Privée (CCPA / CPRA)',
+          paragraphs: [
+            'Conformément au California Consumer Privacy Act (CCPA) et au California Privacy Rights Act (CPRA), les résidents de Californie ont le droit d’accéder aux informations personnelles collectées, d’en demander la suppression et de refuser leur vente ou leur partage. Fix The Speaker ne vend aucune donnée personnelle à des courtiers en données (data brokers).',
+          ],
+        },
+        {
+          title: '8. Données d’Abonnement à la Newsletter',
+          paragraphs: [
+            'Si vous choisissez de vous inscrire à notre liste de notification via le formulaire du site, nous recueillons les informations suivantes et les stockons en toute sécurité auprès de notre prestataire de diffusion d’e-mails (Cloudflare Workers KV) :',
+          ],
+          list: [
+            'Adresse e-mail : utilisée uniquement pour vous envoyer des notifications d’actualités sur le produit.',
+            'Adresse IP : collectée au moment de l’inscription à des fins de prévention des abus (spam) et d’analyse géographique.',
+            'Pays : déduit de l’adresse IP au moment de l’inscription pour des statistiques régionales.',
+          ],
+        },
+        {
+          title: '8a. Droits et Suppression des Données de Newsletter',
+          paragraphs: [
+            'Nous ne vendons ni ne partageons vos données d’abonnement avec des annonceurs tiers.',
+            'Vous pouvez vous désabonner à tout instant grâce au lien présent dans chaque e-mail de notification. Pour demander la suppression définitive de vos données (e-mail, adresse IP et pays associé), écrivez-nous à support@fixthespeaker.com et nous traiterons votre demande sous 30 jours.',
+          ],
+        },
+        {
+          title: '9. Questions sur la Confidentialité & Modifications',
+          paragraphs: [
+            'Nous pouvons mettre à jour régulièrement cette Politique de Confidentialité afin de respecter les évolutions techniques ou réglementaires. Toute modification sera publiée ici avec une date de « Dernière mise à jour » actualisée.',
+            'Pour toute question relative à cette Politique de Confidentialité ou à la gestion de vos données, vous pouvez nous contacter à support@fixthespeaker.com.',
           ],
         },
       ],
@@ -538,7 +757,7 @@ export const subpagesContent: Record<
       heading: 'Contact',
       eyebrow: 'Contact',
       intro: 'Une question ou un retour ? Envoyez-nous un email.',
-      buttonText: 'Envoyer un email : hello@fixthespeaker.com',
+      buttonText: 'Envoyer un email : support@fixthespeaker.com',
       detailsTitle: 'Informations utiles',
       detailsList: ['Modèle de smartphone', 'Navigateur utilisé', 'Mode testé'],
       beforeTitle: 'Avant de nous écrire',
@@ -565,20 +784,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'Datenschutzerklärung | Fix The Speaker',
-      description: 'Datenschutzerklärung und Hinweise zur Datenverarbeitung.',
+      description:
+        'Datenschutzerklärung für Fix The Speaker: Informationen zu Audio-Datenschutz, Google Analytics 4, Consent Mode v2 und Angaben zu Werbepartnern.',
       heading: 'Datenschutzerklärung',
-      eyebrow: 'Rechtliches',
-      updated: '2026-09-03',
-      intro: 'Wir erfassen keine persönlichen Daten und benötigen keinen Mikrofonzugriff.',
+      eyebrow: 'Rechtliches & Datenschutz',
+      updated: '2026-09-07',
+      intro:
+        'Diese Datenschutzerklärung erläutert, wie Fix The Speaker („wir“, „unser“ oder „der Dienst“) Daten beim Besuch von fixthespeaker.com verarbeitet. Transparenz ist uns wichtig: Unser Tool läuft vollständig in Ihrem Webbrowser, greift niemals auf Ihr Mikrofon zu, zeichnet keinen Ton auf und erfasst keine Audiodaten.',
       sections: [
         {
-          title: 'Lokale Ausführung',
-          paragraphs: ['Die Tonerzeugung erfolgt vollständig lokal über die HTML5 Web Audio API.'],
+          title: '1. Keine Audiodatenerfassung & Lokale Ausführung',
+          paragraphs: [
+            'Fix The Speaker verwendet die clientseitige HTML5 Web Audio API, um akustische Frequenzen direkt auf dem Hauptprozessor Ihres Geräts zu erzeugen. Die Klangerzeugung, Frequenzläufe und Stereobalanctests finden ausschließlich in der lokalen Sandbox Ihres Browsers statt.',
+            'Wir fordern keinerlei Zugriffsberechtigung auf das Mikrofon an, nehmen niemals Audio auf oder übertragen solches und verlangen für die Nutzung unserer Reinigungsfunktionen kein Benutzerkonto, Passwort oder persönliche Anmeldedaten.',
+          ],
         },
         {
-          title: 'Newsletter-Abonnementdaten',
+          title: '2. Automatisch erfasste Informationen',
           paragraphs: [
-            'Wenn Sie sich für unsere Benachrichtigungsliste anmelden, speichern wir Ihre E-Mail-Adresse, IP-Adresse und Ihr Land sicher über Cloudflare Workers KV. Diese Daten werden nicht verkauft. Zur Löschung wenden Sie sich bitte an support@fixthespeaker.com.',
+            'Beim Aufruf unserer Website erfassen standardmäßige Server-Hosting-Protokolle (über Cloudflare) automatisiert technische Netzwerk-Telemetriedaten, die zur Auslieferung von Webinhalten, zur Abwehr von Cyberangriffen (z. B. DDoS) und zur Gewährleistung der Stabilität erforderlich sind. Diese Daten umfassen:',
+          ],
+          list: [
+            'IP-Adresse (in Analysereports anonymisiert und gekürzt)',
+            'Browsertyp, User-Agent-String und Betriebssystem',
+            'Referrer-URL, besuchte Seiten sowie Datum und Uhrzeit des Zugriffs',
+            'Spracheinstellung und ungefähre Bildschirmauflösung',
+          ],
+        },
+        {
+          title: '3. Cookies, Lokaler Speicher & Consent Mode v2',
+          paragraphs: [
+            'Unsere Website nutzt den lokalen Browserspeicher sowie essenzielle Cookies, um grundlegende Benutzereinstellungen zu sichern. Konkret speichern wir:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: Speichert Ihre Cookie-Präferenzen (für Analytik und Werbung), damit Ihre Entscheidung bei künftigen Besuchen gewahrt bleibt.',
+            'theme: Sichert Ihre Einstellung für den Dunkelmodus oder Hellmodus.',
+          ],
+        },
+        {
+          title: '4. Erfassung mit Google Analytics 4 (GA4)',
+          paragraphs: [
+            'Wir setzen Google Analytics 4 (Mess-ID: G-924DECLM9L) ein, um aggregierte Nutzertrends und Interaktionsmuster zu analysieren. In Übereinstimmung mit Google Consent Mode v2 sind die Tags für Analyse- und Werbespeicher (ad_storage, analytics_storage, ad_user_data, ad_personalization) beim ersten Seitenaufruf standardmäßig auf „abgelehnt“ (denied) gesetzt.',
+            'Google Analytics wird erst dann geladen, wenn Sie über unser Cookie-Banner ausdrücklich Ihre Zustimmung erteilen. Sie können Ihre Einwilligung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile der Website anpassen oder widerrufen.',
+          ],
+        },
+        {
+          title: '5. Werbung von Drittanbietern & Hinweise zu Google AdSense',
+          paragraphs: [
+            'Zur Finanzierung des kostenlosen Betriebs von Fix The Speaker binden wir Werbeanzeigen von Drittanbietern über Google AdSense und verbundene Werbenetzwerke ein. Bitte beachten Sie die folgenden Pflichtangaben:',
+          ],
+          list: [
+            'Drittanbieter, einschließlich Google, verwenden Cookies zur Bereitstellung von Anzeigen auf Grundlage vorheriger Besuche eines Nutzers auf dieser Website oder anderen Websites im Internet.',
+            'Der Einsatz von Werbe-Cookies ermöglicht Google und seinen Partnern die Anzeigenschaltung basierend auf den Besuchen der Nutzer auf unserer Website und/oder anderen Websites im Internet.',
+            'Nutzer können personalisierte Werbung in den Google-Einstellungen für Werbung (https://adssettings.google.com) deaktivieren.',
+            'Alternativ können Sie die Verwendung von Cookies für personalisierte Werbung durch Drittanbieter über AboutAds (http://www.aboutads.info/choices) oder die Network Advertising Initiative (http://www.networkadvertising.org/choices/) ablehnen.',
+          ],
+        },
+        {
+          title: '6. Datenschutzrechte nach DSGVO & UK-DSGVO',
+          paragraphs: [
+            'Wenn Sie im Europäischen Wirtschaftsraum (EWR), im Vereinigten Königreich oder in der Schweiz ansässig sind, stehen Ihnen nach der Datenschutz-Grundverordnung (DSGVO) und der UK-DSGVO bestimmte Rechte zu, darunter das Recht auf Auskunft, Berichtigung oder Löschung personenbezogener Daten sowie das Recht, erteilte Cookie-Einwilligungen jederzeit zu widerrufen, ohne dass die Funktionalität der Lautsprecherreinigung eingeschränkt wird.',
+          ],
+        },
+        {
+          title: '7. California Consumer Privacy Act (CCPA / CPRA)',
+          paragraphs: [
+            'Gemäß dem California Consumer Privacy Act (CCPA) und dem California Privacy Rights Act (CPRA) haben Einwohner Kaliforniens das Recht zu erfahren, welche personenbezogenen Daten erfasst werden, deren Löschung zu verlangen und dem Verkauf oder der Weitergabe zu widersprechen. Fix The Speaker verkauft keine personenbezogenen Daten an Datenhändler (Data Broker).',
+          ],
+        },
+        {
+          title: '8. Newsletter-Abonnementdaten',
+          paragraphs: [
+            'Wenn Sie sich über das Formular für unseren Benachrichtigungsdienst eintragen, erfassen wir die folgenden Angaben und speichern diese sicher über unseren E-Mail-Dienstleister (Cloudflare Workers KV):',
+          ],
+          list: [
+            'E-Mail-Adresse: dient ausschließlich dem Versand von Produktaktualisierungen.',
+            'IP-Adresse: wird zum Zeitpunkt der Anmeldung zur Spam-Prävention und für geografische Analysen erfasst.',
+            'Land: wird anhand der IP-Adresse bei der Anmeldung für regionale Auswertungen ermittelt.',
+          ],
+        },
+        {
+          title: '8a. Rechte & Löschung der Newsletter-Daten',
+          paragraphs: [
+            'Wir verkaufen oder übermitteln Ihre Newsletter-Abonnementdaten nicht an werbetreibende Dritte.',
+            'Sie können den Newsletter jederzeit über den Link in jeder Benachrichtigungs-E-Mail abbestellen. Um die vollständige Löschung Ihrer Daten (E-Mail-Adresse, IP-Adresse und Land) zu veranlassen, schreiben Sie uns bitte an support@fixthespeaker.com. Wir bearbeiten Ihre Anfrage innerhalb von 30 Tagen.',
+          ],
+        },
+        {
+          title: '9. Datenschutzanfragen & Richtlinienänderungen',
+          paragraphs: [
+            'Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen, um technischen oder rechtlichen Änderungen Rechnung zu tragen. Überarbeitungen werden an dieser Stelle mit dem aktualisierten Datum veröffentlicht.',
+            'Bei Fragen zu dieser Datenschutzerklärung oder zu unserem Umgang mit Ihren Daten wenden Sie sich bitte an support@fixthespeaker.com.',
           ],
         },
       ],
@@ -603,7 +899,7 @@ export const subpagesContent: Record<
       heading: 'Kontakt',
       eyebrow: 'Kontakt',
       intro: 'Haben Sie Fragen oder Verbesserungsvorschläge? Schreiben Sie uns eine E-Mail.',
-      buttonText: 'E-Mail senden: hello@fixthespeaker.com',
+      buttonText: 'E-Mail senden: support@fixthespeaker.com',
       detailsTitle: 'Hilfreiche Angaben',
       detailsList: ['Gerätemodell und Betriebssystem', 'Verwendeter Browser', 'Ausgeführter Modus'],
       beforeTitle: 'Wichtiger Hinweis',
@@ -630,20 +926,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'Política de Privacidade | Fix The Speaker',
-      description: 'Política de privacidade de dados do Fix The Speaker.',
+      description:
+        'Política de Privacidade do Fix The Speaker. Conheça nossa política de zero coleta de áudio, rastreamento GA4, Consent Mode v2 e divulgações de anúncios de terceiros.',
       heading: 'Política de Privacidade',
-      eyebrow: 'Legal',
-      updated: '2026-09-03',
-      intro: 'Não gravamos áudio, não pedimos acesso ao microfone e nada é enviado para servidores.',
+      eyebrow: 'Legal e Conformidade',
+      updated: '2026-09-07',
+      intro:
+        'Esta Política de Privacidade descreve como o Fix The Speaker ("nós", "nosso" ou "o Serviço") trata as informações ao visitar fixthespeaker.com. Temos o compromisso com a transparência: nossa ferramenta opera integralmente no seu navegador e nunca acessa seu microfone, não grava áudios e não coleta transmissões pessoais de som.',
       sections: [
         {
-          title: 'Processamento local',
-          paragraphs: ['Todo o som é gerado no seu próprio navegador através da Web Audio API.'],
+          title: '1. Zero Dados de Áudio e Operação no Cliente',
+          paragraphs: [
+            'O Fix The Speaker utiliza a API HTML5 Web Audio no lado do cliente para sintetizar frequências sonoras diretamente no processador do seu aparelho. Toda geração de tons, varreduras de frequência e testes de balanço estéreo ocorrem unicamente no ambiente isolado (sandbox) do seu navegador local.',
+            'Não solicitamos permissões de acesso ao microfone, nunca gravamos ou transmitimos sinais de áudio e não exigimos criação de conta, senhas ou credenciais pessoais para o uso dos recursos de limpeza.',
+          ],
         },
         {
-          title: 'Dados de assinatura da newsletter',
+          title: '2. Informações Coletadas Automaticamente',
           paragraphs: [
-            'Se você se inscrever na nossa lista de notificações, coletamos seu e-mail, endereço IP e país de forma segura via Cloudflare Workers KV. Esses dados não são vendidos. Para solicitar a exclusão, entre em contato pelo support@fixthespeaker.com.',
+            'Ao acessar nosso site, registros padrão de servidores de hospedagem (fornecidos via Cloudflare) coletam automaticamente dados telemétricos técnicos de rede indispensáveis para entregar os arquivos web, mitigar ciberataques (como ataques DDoS) e garantir a estabilidade do serviço. Esses dados englobam:',
+          ],
+          list: [
+            'Endereço de Protocolo de Internet (IP) (anonimizado e mascarado em relatórios estatísticos)',
+            'Tipo de navegador, sequência de agente do usuário (user agent) e sistema operacional',
+            'URL de referência, páginas acessadas e data/hora do acesso',
+            'Preferência de idioma e resolução genérica de tela',
+          ],
+        },
+        {
+          title: '3. Cookies, Armazenamento Local e Consent Mode v2',
+          paragraphs: [
+            'Nosso site utiliza armazenamento local do navegador e cookies essenciais para manter preferências básicas de navegação. Especificamente, armazenamos:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: Registra suas opções de cookies (analítica e publicidade) para respeitar suas escolhas em acessos futuros.',
+            'theme: Guarda sua preferência de exibição em modo escuro ou claro.',
+          ],
+        },
+        {
+          title: '4. Rastreamento com Google Analytics 4 (GA4)',
+          paragraphs: [
+            'Utilizamos o Google Analytics 4 (ID de métrica: G-924DECLM9L) para entender tendências de tráfego agregado e padrões de navegação. Em consonância com o Google Consent Mode v2, as tags de armazenamento para análise e publicidade (ad_storage, analytics_storage, ad_user_data, ad_personalization) permanecem configuradas como "negadas" (denied) por padrão no seu primeiro acesso.',
+            'O Google Analytics só é ativado se você conceder consentimento expresso por meio do nosso banner de cookies. Você pode alterar ou revogar sua permissão a qualquer momento clicando no link "Configurações de Cookies" no rodapé do site.',
+          ],
+        },
+        {
+          title: '5. Publicidade de Terceiros e Divulgações do Google AdSense',
+          paragraphs: [
+            'Podemos exibir anúncios de terceiros via Google AdSense e redes de publicidade parceiras para manter o Fix The Speaker gratuito. Por favor, leia atentamente as declarações obrigatórias a seguir:',
+          ],
+          list: [
+            'Fornecedores terceiros, incluindo o Google, utilizam cookies para veicular anúncios com base em visitas anteriores dos usuários a este site ou a outros sites na Internet.',
+            'Com o uso de cookies de publicidade, o Google e seus parceiros podem veicular anúncios aos seus usuários com base nas visitas feitas ao seu site e/ou a outros sites na Internet.',
+            'Os usuários podem desativar a publicidade personalizada acessando as Configurações de Anúncios do Google (https://adssettings.google.com).',
+            'Como alternativa, você pode desativar o uso de cookies de fornecedores terceiros para publicidade personalizada visitando AboutAds (http://www.aboutads.info/choices) ou a Network Advertising Initiative (http://www.networkadvertising.org/choices/).',
+          ],
+        },
+        {
+          title: '6. Direitos sob o RGPD / GDPR e Legislação do Reino Unido',
+          paragraphs: [
+            'Se você reside no Espaço Econômico Europeu (EEE), no Reino Unido ou na Suíça, possui direitos protegidos pelo Regulamento Geral sobre a Proteção de Dados (GDPR) e pelo GDPR do Reino Unido, incluindo o direito de acessar, retificar ou solicitar a exclusão de dados pessoais, além do direito de retirar seu consentimento de cookies a qualquer momento sem afetar o uso da ferramenta.',
+          ],
+        },
+        {
+          title: '7. Lei de Privacidade do Consumidor da Califórnia (CCPA / CPRA)',
+          paragraphs: [
+            'Sob a California Consumer Privacy Act (CCPA) e a California Privacy Rights Act (CPRA), residentes da Califórnia têm o direito de saber quais informações pessoais são coletadas, solicitar sua exclusão e optar por não vender ou compartilhar dados pessoais. O Fix The Speaker não vende informações pessoais a intermediários de dados.',
+          ],
+        },
+        {
+          title: '8. Dados de Inscrição na Newsletter',
+          paragraphs: [
+            'Caso opte por se cadastrar na nossa lista de novidades pelo formulário no site, coletamos as informações descritas a seguir e as armazenamos com segurança por meio do nosso provedor externo de envio de e-mails (Cloudflare Workers KV):',
+          ],
+          list: [
+            'Endereço de e-mail: usado exclusivamente para enviar novidades sobre o produto.',
+            'Endereço IP: coletado no momento do cadastro para prevenção contra abusos e segurança geográfica.',
+            'País: identificado a partir do endereço IP no momento da assinatura para fins estatísticos regionais.',
+          ],
+        },
+        {
+          title: '8a. Direitos e Exclusão de Dados da Newsletter',
+          paragraphs: [
+            'Não comercializamos nem compartilhamos os dados da sua inscrição com anunciantes terceiros.',
+            'Você pode cancelar o recebimento a qualquer momento pelo link presente em cada mensagem. Para requerer a remoção completa do seu cadastro (e-mail, IP e registro de país), envie um e-mail para support@fixthespeaker.com e atenderemos sua solicitação em até 30 dias.',
+          ],
+        },
+        {
+          title: '9. Contato sobre Privacidade e Atualizações',
+          paragraphs: [
+            'Esta Política de Privacidade poderá ser atualizada periodicamente para adequação a requisitos técnicos ou legais. Quaisquer alterações serão divulgadas nesta página com a indicação da data de revisão.',
+            'Se tiver dúvidas sobre esta Política de Privacidade ou sobre nossas práticas de dados, entre em contato pelo e-mail support@fixthespeaker.com.',
           ],
         },
       ],
@@ -668,7 +1041,7 @@ export const subpagesContent: Record<
       heading: 'Contato',
       eyebrow: 'Contato',
       intro: 'Encontrou algum problema ou tem sugestões? Envie-nos um e-mail.',
-      buttonText: 'Enviar e-mail: hello@fixthespeaker.com',
+      buttonText: 'Enviar e-mail: support@fixthespeaker.com',
       detailsTitle: 'Detalhes úteis para incluir',
       detailsList: ['Modelo do aparelho', 'Navegador utilizado', 'Modo executado'],
       beforeTitle: 'Antes de escrever',
@@ -695,20 +1068,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: '개인정보처리방침 | Fix The Speaker',
-      description: 'Fix The Speaker 개인정보 보호 방침 안내.',
+      description:
+        'Fix The Speaker 개인정보처리방침. 오디오 데이터 비수집 원칙, Google 애널리틱스 4 추적, 동의 모드 v2 및 제3자 광고 고지 사항을 안내합니다.',
       heading: '개인정보처리방침',
-      eyebrow: '법적고지',
-      updated: '2026-09-03',
-      intro: '당사는 마이크 접근 권한을 요구하지 않으며, 어떠한 개인 오디오 데이터도 수집하지 않습니다.',
+      eyebrow: '법적고지 및 규정준수',
+      updated: '2026-09-07',
+      intro:
+        '본 개인정보처리방침은 귀하가 fixthespeaker.com을 방문할 때 Fix The Speaker("당사", "서비스")가 정보를 처리하는 방식을 규정합니다. 당사는 투명성을 핵심 원칙으로 삼고 있으며, 본 도구는 브라우저 내부에서만 독립적으로 실행되어 마이크에 접근하거나 음성을 녹음 및 수집하지 않습니다.',
       sections: [
         {
-          title: '데이터 처리',
-          paragraphs: ['모든 음파는 브라우저 내부 Web Audio API를 통해 로컬에서 생성됩니다.'],
+          title: '1. 오디오 데이터 무수집 및 클라이언트측 구동',
+          paragraphs: [
+            'Fix The Speaker는 클라이언트측 HTML5 Web Audio API를 활용하여 기기의 CPU에서 직접 음파 주파수를 합성합니다. 모든 사운드 생성, 주파수 스윕 및 스테레오 밸런스 테스트는 사용자 브라우저의 로컬 샌드박스 내부에서만 작동합니다.',
+            '당사는 마이크 접근 권한을 일체 요청하지 않으며, 오디오를 녹음하거나 외부로 전송하지 않습니다. 또한 스피커 청소 기능을 이용하기 위해 계정 생성, 비밀번호 또는 개인 식별 정보를 입력할 필요가 없습니다.',
+          ],
         },
         {
-          title: '뉴스레터 구독 데이터',
+          title: '2. 자동 수집되는 정보',
           paragraphs: [
-            '뉴스레터를 구독하실 경우 이메일 주소, IP 주소, 국가 정보를 Cloudflare Workers KV를 통해 안전하게 저장합니다. 해당 데이터는 판매되지 않습니다. 삭제 요청은 support@fixthespeaker.com으로 연락해 주세요.',
+            '사용자가 웹사이트에 접속하면 웹 리소스 전송, 사이버 공격(DDoS 등) 차단 및 서비스 가용성 유지를 위해 표준 웹 호스팅 로그(Cloudflare 제공)를 통해 네트워크 기술 정보가 자동으로 수집됩니다. 수집되는 정보는 다음과 같습니다:',
+          ],
+          list: [
+            '인터넷 프로토콜(IP) 주소 (통계 분석 보고서에서는 익명화 및 마스킹 처리됨)',
+            '브라우저 종류, 사용자 에이전트(User-Agent) 문자열 및 운영체제',
+            '참조 URL, 방문한 페이지 및 접속 일시',
+            '기본 언어 설정 및 화면 해상도 정보',
+          ],
+        },
+        {
+          title: '3. 쿠키, 로컬 스토리지 및 동의 모드 v2',
+          paragraphs: [
+            '당사 웹사이트는 필수적인 사용자 환경 설정을 유지하기 위해 브라우저 로컬 스토리지와 필수 쿠키를 사용합니다. 저장되는 항목은 다음과 같습니다:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: 다음 방문 시에도 사용자의 선택을 유지할 수 있도록 쿠키 기본 설정(분석 및 광고 동의 여부)을 기록합니다.',
+            'theme: 다크 모드 / 라이트 모드 인터페이스 테마 설정을 저장합니다.',
+          ],
+        },
+        {
+          title: '4. Google 애널리틱스 4 (GA4) 추적',
+          paragraphs: [
+            '당사는 총 트래픽 동향과 서비스 이용 패턴을 분석하기 위해 Google 애널리틱스 4(측정 ID: G-924DECLM9L)를 사용합니다. Google 동의 모드 v2(Consent Mode v2)를 준수하여 사이트 초기 방문 시 분석 및 광고 스토리지 태그(ad_storage, analytics_storage, ad_user_data, ad_personalization)는 기본적으로 "거부(denied)" 상태로 설정됩니다.',
+            'Google 애널리틱스는 사용자가 쿠키 배너를 통해 명시적으로 동의한 경우에만 활성화됩니다. 웹사이트 하단의 "쿠키 설정" 링크를 클릭하여 언제든지 동의 상태를 수정하거나 철회할 수 있습니다.',
+          ],
+        },
+        {
+          title: '5. 제3자 광고 및 Google AdSense 관련 고지',
+          paragraphs: [
+            'Fix The Speaker의 무료 서비스 운영을 지원하기 위해 Google AdSense 및 제휴 광고 네트워크를 통한 제3자 광고를 게재할 수 있습니다. 다음 필수 고지 사항을 확인하시기 바랍니다:',
+          ],
+          list: [
+            'Google을 포함한 제3자 공급업체는 사용자가 본 웹사이트나 다른 웹사이트를 이전에 방문한 기록을 바탕으로 쿠키를 사용하여 광고를 게재합니다.',
+            'Google의 광고 쿠키 사용으로 Google과 파트너는 사용자의 본 사이트 및 다른 웹사이트 방문 기록을 바탕으로 적절한 광고를 사용자에게 게재할 수 있습니다.',
+            '사용자는 Google 광고 설정(https://adssettings.google.com)을 방문하여 맞춤형 광고 게재를 비활성화할 수 있습니다.',
+            '또는 AboutAds(http://www.aboutads.info/choices) 또는 Network Advertising Initiative(http://www.networkadvertising.org/choices/)를 방문하여 맞춤형 광고에 사용되는 제3자 업체의 쿠키를 비활성화할 수 있습니다.',
+          ],
+        },
+        {
+          title: '6. GDPR 및 영국 데이터 보호 규정 권리',
+          paragraphs: [
+            '유럽 경제 지역(EEA), 영국 또는 스위스에 거주하는 이용자는 일반 데이터 보호 규정(GDPR) 및 영국 GDPR에 따라 개인정보에 대한 접근, 정정, 삭제를 요구할 권리가 있으며, 스피커 청소 기능 이용에 제한 없이 언제든지 쿠키 동의를 철회할 권리를 갖습니다.',
+          ],
+        },
+        {
+          title: '7. 캘리포니아 소비자 프라이버시법 (CCPA / CPRA)',
+          paragraphs: [
+            '캘리포니아 소비자 프라이버시법(CCPA) 및 캘리포니아 개인정보 보호 권리법(CPRA)에 따라 캘리포니아 거주자는 수집되는 개인정보의 내역을 확인하고, 삭제를 요청하며, 개인정보의 판매 또는 공유를 거부할 권리가 있습니다. Fix The Speaker는 개인정보를 제3자 데이터 중개업체에 판매하지 않습니다.',
+          ],
+        },
+        {
+          title: '8. 뉴스레터 구독 데이터',
+          paragraphs: [
+            '웹사이트 양식을 통해 업데이트 알림 목록을 구독하시는 경우, 다음 정보가 수집되며 타사 이메일 전송 제공업체(Cloudflare Workers KV)를 통해 안전하게 보관됩니다:',
+          ],
+          list: [
+            '이메일 주소: 제품 업데이트 알림을 전달하는 목적으로만 사용됩니다.',
+            'IP 주소: 스팸 방지 및 지역별 통계 분석을 위해 구독 시 수집됩니다.',
+            '국가 정보: 지역별 통계를 위해 구독 시점의 IP 주소를 기반으로 추정됩니다.',
+          ],
+        },
+        {
+          title: '8a. 뉴스레터 데이터 권리 및 삭제 요청',
+          paragraphs: [
+            '당사는 뉴스레터 구독 데이터를 제3자 광고주에게 판매하거나 공유하지 않습니다.',
+            '수신되는 모든 알림 이메일에 포함된 링크를 통해 언제든지 구독을 취소할 수 있습니다. 등록된 정보(이메일, IP 주소 및 국가 기록)의 완전한 삭제를 원하실 경우 support@fixthespeaker.com으로 문의해 주시면 30일 이내에 삭제 처리됩니다.',
+          ],
+        },
+        {
+          title: '9. 개인정보 관련 문의 및 방침 변경',
+          paragraphs: [
+            '본 개인정보처리방침은 기술적 필요 또는 관련 법령 변경에 따라 주기적으로 개정될 수 있습니다. 개정 사항은 "최종 수정일"을 갱신하여 본 페이지에 공지됩니다.',
+            '본 개인정보처리방침이나 데이터 처리에 관한 질문이 있으신 경우 support@fixthespeaker.com으로 문의해 주시기 바랍니다.',
           ],
         },
       ],
@@ -733,7 +1183,7 @@ export const subpagesContent: Record<
       heading: '문의하기',
       eyebrow: '문의하기',
       intro: '의견이나 질문이 있으시면 언제든지 이메일로 연락주세요.',
-      buttonText: '이메일 보내기: hello@fixthespeaker.com',
+      buttonText: '이메일 보내기: support@fixthespeaker.com',
       detailsTitle: '함께 적어주시면 좋은 정보',
       detailsList: ['스마트폰 기종 및 OS 버전', '사용하신 브라우저', '실행한 모드'],
       beforeTitle: '문의 전 확인사항',
@@ -761,20 +1211,97 @@ export const subpagesContent: Record<
     },
     privacy: {
       title: 'Informativa sulla Privacy | Fix The Speaker',
-      description: 'Informativa sulla privacy e protezione dei dati personali.',
+      description:
+        'Informativa sulla Privacy di Fix The Speaker. Scopri la nostra politica di non raccolta audio, tracciamento con GA4, Consent Mode v2 e annunci di terze parti.',
       heading: 'Informativa sulla Privacy',
-      eyebrow: 'Legale',
-      updated: '2026-09-03',
-      intro: 'Non registriamo audio né richiediamo l’accesso al microfono. Il tool è sicuro al 100%.',
+      eyebrow: 'Legale & Conformità',
+      updated: '2026-09-07',
+      intro:
+        'La presente Informativa sulla Privacy descrive le modalità di gestione delle informazioni da parte di Fix The Speaker ("noi", "nostro" o "il Servizio") durante la consultazione di fixthespeaker.com. Il nostro impegno verso la trasparenza è totale: lo strumento funziona interamente nel tuo browser e non accede mai al microfono, non registra audio e non raccoglie flussi sonori personali.',
       sections: [
         {
-          title: 'Dati trattati',
-          paragraphs: ['Il suono viene generato localmente nel browser tramite Web Audio API.'],
+          title: '1. Nessun Dato Audio & Funzionamento Lato Client',
+          paragraphs: [
+            'Fix The Speaker sfrutta l’API HTML5 Web Audio lato client per sintetizzare le frequenze sonore acustiche direttamente sul processore del tuo dispositivo. Tutta la generazione dei toni, le scansioni di frequenza e i test di bilanciamento stereo avvengono unicamente nell’ambiente isolato (sandbox) del tuo browser locale.',
+            'Non richiediamo permessi di accesso al microfono, non registriamo né trasmettiamo mai audio in entrata e non richiediamo la creazione di un account, password o credenziali personali per usufruire delle funzioni di pulizia.',
+          ],
         },
         {
-          title: 'Dati di iscrizione alla newsletter',
+          title: '2. Informazioni Raccolte Automaticamente',
           paragraphs: [
-            'Se ti iscrivi alla nostra lista di notifiche, raccogliamo il tuo indirizzo e-mail, indirizzo IP e paese tramite Cloudflare Workers KV in modo sicuro. Questi dati non vengono venduti. Per richiederne la cancellazione, scrivi a support@fixthespeaker.com.',
+            'Quando accedi al nostro sito web, i registri standard del server di hosting (forniti tramite Cloudflare) archiviano in modo automatico i dati tecnici di telemetria di rete necessari all’erogazione dei contenuti, alla prevenzione degli attacchi informatici (come gli attacchi DDoS) e alla stabilità del sito. Questi dati includono:',
+          ],
+          list: [
+            'Indirizzo IP (Internet Protocol) (anonimizzato e mascherato nei report di analisi)',
+            'Tipo di browser, stringa user agent e sistema operativo',
+            'URL di riferimento, pagine consultate e data/ora dell’accesso',
+            'Preferenza linguistica e risoluzione generica dello schermo',
+          ],
+        },
+        {
+          title: '3. Cookie, Archiviazione Locale & Consent Mode v2',
+          paragraphs: [
+            'Il nostro sito utilizza l’archiviazione locale del browser e cookie tecnici essenziali per memorizzare le preferenze fondamentali dell’utente. In particolare, memorizziamo:',
+          ],
+          list: [
+            'fixthespeaker_cookie_consent_v1: Registra le tue preferenze sui cookie (scelte analitiche e pubblicitarie) per rispettare le tue decisioni nelle visite successive.',
+            'theme: Salva la tua scelta dell’interfaccia grafica in modalità scura o chiara.',
+          ],
+        },
+        {
+          title: '4. Monitoraggio con Google Analytics 4 (GA4)',
+          paragraphs: [
+            'Utilizziamo Google Analytics 4 (ID di misurazione: G-924DECLM9L) per analizzare le tendenze di traffico aggregato e i modelli di interazione. In conformità con Google Consent Mode v2, i tag di archiviazione analitica e pubblicitaria (ad_storage, analytics_storage, ad_user_data, ad_personalization) sono impostati su "negato" (denied) per impostazione predefinita al primo caricamento del sito.',
+            'Google Analytics si attiva esclusivamente se concedi il tuo consenso esplicito tramite il nostro banner dei cookie. Puoi modificare o revocare il tuo consenso in qualsiasi momento cliccando sul link "Impostazioni Cookie" situato nel piè di pagina del sito.',
+          ],
+        },
+        {
+          title: '5. Pubblicità di Terze Parti & Informativa Google AdSense',
+          paragraphs: [
+            'Possiamo pubblicare annunci pubblicitari di terze parti tramite Google AdSense e reti pubblicitarie affiliate per sostenere il funzionamento gratuito di Fix The Speaker. Ti invitiamo a prendere visione delle seguenti comunicazioni obbligatorie:',
+          ],
+          list: [
+            'Fornitori terzi, tra cui Google, utilizzano i cookie per pubblicare annunci sulla base delle precedenti visite dell’utente a questo sito web o ad altri siti Internet.',
+            'L’impiego dei cookie pubblicitari consente a Google e ai suoi partner di pubblicare annunci per gli utenti in base alle loro visite al nostro sito e/o ad altri siti web.',
+            'Gli utenti possono disattivare la pubblicità personalizzata visitando le Impostazioni annunci di Google (https://adssettings.google.com).',
+            'In alternativa, puoi disattivare l’uso dei cookie da parte di fornitori terzi per la pubblicità personalizzata visitando AboutAds (http://www.aboutads.info/choices) o la Network Advertising Initiative (http://www.networkadvertising.org/choices/).',
+          ],
+        },
+        {
+          title: '6. Diritti di Protezione Dati GDPR & UK GDPR',
+          paragraphs: [
+            'Se risiedi nello Spazio Economico Europeo (SEE), nel Regno Unito o in Svizzera, godi di diritti specifici ai sensi del Regolamento Generale sulla Protezione dei Dati (GDPR) e del GDPR del Regno Unito, compresi i diritti di accesso, rettifica o cancellazione dei dati personali, nonché il diritto di revocare il consenso ai cookie in qualunque momento senza pregiudicare l’accesso allo strumento di pulizia.',
+          ],
+        },
+        {
+          title: '7. California Consumer Privacy Act (CCPA / CPRA)',
+          paragraphs: [
+            'In base al California Consumer Privacy Act (CCPA) e al California Privacy Rights Act (CPRA), i residenti in California hanno il diritto di conoscere quali informazioni personali vengono raccolte, chiederne la cancellazione e opporsi alla vendita o alla condivisione di tali informazioni. Fix The Speaker non vende informazioni personali a società di intermediazione dati (data broker).',
+          ],
+        },
+        {
+          title: '8. Dati di Iscrizione alla Newsletter',
+          paragraphs: [
+            'Se decidi di iscriverti alla nostra lista di notifiche tramite il modulo del sito web, raccogliamo i seguenti dati archiviandoli in modo protetto tramite il nostro fornitore terzo di recapito e-mail (Cloudflare Workers KV):',
+          ],
+          list: [
+            'Indirizzo e-mail: utilizzato unicamente per inviarti aggiornamenti relativi al prodotto.',
+            'Indirizzo IP: raccolto al momento dell’iscrizione a fini di prevenzione dello spam e analisi geografica.',
+            'Paese: desunto dall’indirizzo IP al momento della registrazione per statistiche regionali.',
+          ],
+        },
+        {
+          title: '8a. Diritti e Cancellazione dei Dati della Newsletter',
+          paragraphs: [
+            'Non vendiamo né cediamo a inserzionisti terzi i dati di iscrizione alla newsletter.',
+            'Puoi annullare l’iscrizione in qualsiasi momento utilizzando il link presente in ciascuna e-mail di notifica. Per richiedere la cancellazione definitiva dei tuoi dati (indirizzo e-mail, IP e paese registrato), contattaci all’indirizzo support@fixthespeaker.com ed evaderemo la richiesta entro 30 giorni.',
+          ],
+        },
+        {
+          title: '9. Domande sulla Privacy & Aggiornamenti dell’Informativa',
+          paragraphs: [
+            'La presente Informativa sulla Privacy potrà essere periodicamente aggiornata per conformarsi a requisiti tecnici o normativi. Ogni modifica sarà resa nota su questa pagina con la data di "Ultimo aggiornamento" revisionata.',
+            'Per qualsiasi domanda relativa alla presente Informativa sulla Privacy o al trattamento dei tuoi dati personali, ti invitiamo a scriverci a support@fixthespeaker.com.',
           ],
         },
       ],
@@ -799,7 +1326,7 @@ export const subpagesContent: Record<
       heading: 'Contatti',
       eyebrow: 'Contatti',
       intro: 'Hai domande o suggerimenti? Inviaci un’email.',
-      buttonText: 'Invia email: hello@fixthespeaker.com',
+      buttonText: 'Invia email: support@fixthespeaker.com',
       detailsTitle: 'Dettagli utili da includere',
       detailsList: ['Modello del telefono', 'Browser utilizzato', 'Modalità eseguita'],
       beforeTitle: 'Prima di scrivere',

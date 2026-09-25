@@ -322,6 +322,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (6m depth up to 30 min)',
     compat: ['iPhone 16', 'iPhone 16 Plus', 'iPhone 16 Pro', 'iPhone 16 Pro Max'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the 5 precision-milled acoustic holes on the bottom right of the USB-C port, while the earpiece/stereo speaker is an ultra-narrow micro-slit above the Dynamic Island at the top bezel.',
+      'Fresh water vs. Salt water: iPhone 16 is IP68 (up to 6m for 30 min in fresh water), but ocean salt water and chlorinated pool chemicals corrode speaker mesh and internal seals. If exposed to salt water, gently rinse under a slow trickle of fresh tap water before drying.',
+      'Never insert SIM ejector tools, toothpicks, or compressed air into the speaker grilles; high pressure can puncture the acoustic waterproof mesh membrane.',
+      'If the iOS "Liquid Detected in USB-C Connector" alert appears, do not connect a charging cable. Allow the port to air-dry for at least 5 hours, or use a MagSafe wireless charger in emergencies.',
+      'Run built-in iOS audio checks: test top vs. bottom speaker balance via Settings > Accessibility > Audio & Visual > Balance, or record a quick clip in Voice Memos and toggle speakerphone mode.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where exactly are the speaker ports located on the iPhone 16?',
+        a: 'The iPhone 16 has dual stereo speakers. The primary high-output loudspeaker is located on the bottom edge to the right of the centered USB-C port (5 precision-milled holes; the 3 holes to the left house the primary microphone). The secondary upper speaker is integrated into the razor-thin micro-slit at the very top seam between the front Ceramic Shield display and the aluminum frame, directly above the Dynamic Island.',
+      },
+      {
+        q: 'How do I test if my iPhone 16 speakers are fully cleared after ejecting water?',
+        a: 'Unlike Android devices, iOS does not have a secret dialer hardware code, but you can diagnose speaker clarity using three reliable methods: 1) Go to Settings > Accessibility > Audio & Visual and drag the Balance slider left and right to isolate the top earpiece from the bottom loudspeaker. 2) Record a voice note in the Voice Memos app and play it back toggling the speaker icon on and off. 3) Use our built-in browser Stereo Channel Test to verify high, mid, and low-frequency response on each channel.',
+      },
+      {
+        q: 'What should I do if my iPhone 16 was dropped in salt water or a swimming pool?',
+        a: 'Salt water and pool chlorine leave corrosive chemical residues that crystallize inside the acoustic mesh. Immediately turn off the phone and rinse the speaker ports gently under a slow trickle of cool, fresh tap water (never use high water pressure). Pat dry with a lint-free microfiber cloth, tap the phone gently against your palm with the ports facing down, run our 165 Hz water eject tone for 2 to 3 cycles, and allow it to dry thoroughly before plugging into USB-C.',
+      },
+      {
+        q: 'Can 165 Hz water eject damage the iPhone 16 speaker membrane?',
+        a: 'No. The 165 Hz acoustic pulse generates mechanical air displacement within the safe operational decibel and frequency range of Apple’s custom speaker drivers and audio amplifiers. It safely flexes the diaphragm to break the surface tension of trapped liquid without causing thermal or mechanical stress.',
+      },
+      {
+        q: 'Why does my iPhone 16 say "Liquid Detected in USB-C Connector" after water ejection?',
+        a: 'The USB-C port contains electrical moisture-sensing pins independent of the speaker chamber. While 165 Hz sound clears the acoustic cavity, moisture may still linger on the USB-C charging pins. iOS automatically disables wired charging to prevent short circuits. Leave the phone standing upright in a well-ventilated area until the prompt disappears; you can safely use Qi or MagSafe wireless charging in the meantime.',
+      },
+    ],
   },
   {
     slug: 'fix-iphone-16-plus-speaker',
@@ -569,6 +598,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'earbuds',
     ipRating: 'IP54 (Dust, sweat and water resistance)',
     compat: ['AirPods Pro 2 (USB-C)', 'AirPods Pro 2 (Lightning)', 'AirPods Pro 1'],
+    customTips: [
+      'Know your acoustic ports: sound outputs through the black driver mesh behind the removable silicone ear tip, while bass equalization and ANC venting occur through the elongated black mesh on the outer shell and the microphone vents on the stem.',
+      'Remember the charging case speaker: the AirPods Pro 2 MagSafe case (USB-C and Lightning) has 4 speaker holes on the bottom edge next to the charging port for Find My and battery alerts; dry these holes before plugging in.',
+      'IP54 rating limitations: AirPods Pro 2 and their case are rated IP54 for sweat and splash resistance, NOT waterproof. Never submerge them in water or run them under a tap.',
+      'Salt water and sweat care: If exposed to heavy sweat or sea spray, wipe down with a microfiber cloth dampened with fresh water (never wet the acoustic meshes directly), remove the silicone tips, and dry with a lint-free swab.',
+      'Run the Ear Tip Fit Test: in iOS Settings > AirPods Pro 2 > Ear Tip Fit Test, run the acoustic sweep. A failure ("Yellow" result) often indicates moisture or debris blocking the internal feedback microphone.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speaker and vent ports on AirPods Pro 2 and their charging case?',
+        a: 'Each AirPod Pro 2 earbud has three main acoustic zones: 1) The main high-excursion driver mesh, visible when you snap off the silicone ear tip. 2) The elongated rear acoustic vent on the curved exterior shell, which equalizes air pressure and provides deep bass. 3) Inward and outward-facing ANC microphone grilles along the contour and bottom stem. Additionally, the AirPods Pro 2 charging case has 4 dedicated speaker holes on the bottom edge for Find My chime alerts.',
+      },
+      {
+        q: 'Are AirPods Pro 2 waterproof against swimming and showers?',
+        a: 'No. AirPods Pro 2 (both USB-C and Lightning versions) feature an IP54 / IPX4 rating, meaning they are resistant to sweat and light splashes of water, but they are NOT waterproof. They should never be worn while swimming, showering, or submerged in liquid. If liquid gets inside, sound will become muffled, crackly, or trigger a high-pitched whistling feedback from the ANC microphones.',
+      },
+      {
+        q: 'How do I safely clean and eject liquid from AirPods Pro 2 after sweat or salt water exposure?',
+        a: 'Never rinse AirPods Pro 2 under a running faucet. If exposed to sweat or salt water, wipe the exterior plastic with a soft cloth lightly moistened with fresh water (ensuring no moisture enters openings). Pull off the silicone tips and rinse the tips separately in fresh water. For the earbuds, hold the mesh openings facing down onto a lint-free cloth, play our 165 Hz water eject tone at high volume to dislodge trapped droplets, and let them dry completely before placing them back into the charging case.',
+      },
+      {
+        q: 'How can I test if moisture is trapped inside my AirPods Pro 2?',
+        a: 'Use two Apple diagnostic methods: 1) Put both AirPods in your ears and run the Ear Tip Fit Test in Settings > AirPods Pro. If moisture is clogging the inward acoustic microphone, the test will fail with an "Adjust or Try a Different Ear Tip" warning. 2) Toggle between Transparency and Noise Cancellation modes. If you hear a high-pitched screech or squeal, liquid is obstructing the external feedback vents. Run the water eject cycle until the audio clears.',
+      },
+      {
+        q: 'Can placing wet AirPods Pro 2 in the charging case cause permanent damage?',
+        a: 'Yes. The base of each AirPod stem contains metal contact points that mate with the charging pins inside the case. If you insert wet AirPods, residual moisture can cause electrochemical corrosion, short-circuit the case charging circuitry, and permanently damage battery contacts. Always let your AirPods air-dry on a towel for at least 2 hours after running the water eject tone before charging.',
+      },
+    ],
   },
   {
     slug: 'clean-airpods-pro-speaker',
@@ -806,6 +864,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (1.5m up to 30 min)',
     compat: ['Galaxy S24', 'Galaxy S24+', 'Galaxy S23'],
+    customTips: [
+      'Locate your speaker ports: the main loudspeaker sits on the bottom edge to the right of the USB-C port as a single horizontal slotted acoustic port, while the upper earpiece speaker is a hairline slit nestled along the top display bezel.',
+      'Access Samsung’s hardware diagnostic test: open the Phone dialer and enter *#0*# to launch Service Mode, then tap "Speaker" to play alternating high and low frequency tones across both top and bottom speakers (or use Phone Diagnostics in the Samsung Members app).',
+      'Fresh water vs. Salt water: Galaxy S24 is IP68 rated (up to 1.5m for 30 min in fresh water), but salt water and pool chlorine degrade adhesive seals and corrode speaker grilles. Always rinse immediately with fresh, still water if exposed to the ocean.',
+      'If Samsung’s "Moisture detected in your Charger/USB port" warning triggers, never force-charge with a cable. Let the port dry naturally for 2–4 hours or use wireless PowerShare/Qi charging.',
+      'Never insert SIM pins, needles, or compressed air into the speaker slot or nearby microphone pinholes, as this tears the internal Gore-Tex water-resistant barrier.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speaker grilles on the Samsung Galaxy S24?',
+        a: 'The Galaxy S24 features a stereo audio array. The primary loudspeaker is located on the bottom edge to the right of the USB-C port, designed as a sleek single-slot horizontal acoustic opening (replacing the older multi-hole grille). The second speaker doubles as the telephone earpiece and is hidden in a hairline micro-slit at the absolute top edge of the front glass, above the punch-hole selfie camera.',
+      },
+      {
+        q: 'How do I access Samsung’s diagnostic menu (*#0*#) to test Galaxy S24 speakers?',
+        a: 'Open your Samsung Phone app dialer and type *#0*#. A grey hardware diagnostic grid will appear. Tap "Speaker" to trigger an automated audio hardware test that alternates sound output between the bottom loudspeaker and top earpiece speaker. If your carrier disables *#0*#, open the preinstalled Samsung Members app > Support > Phone Diagnostics > Speaker to run Samsung’s official interactive hardware test.',
+      },
+      {
+        q: 'My Galaxy S24 fell into salt water or a chlorinated pool. What is the correct procedure?',
+        a: 'Salt water and chlorine are corrosive and will leave dried salt crystals inside the speaker slot if not neutralized. Immediately turn off the device and immerse or rinse it gently in a bowl of clean, still tap water for 1–2 minutes to dilute salt. Do not use high water pressure. Pat dry with a clean towel, hold the phone upright with the speaker facing down, run our 165 Hz water eject tone for 2 to 3 cycles, and allow it to dry completely before connecting a charging cable.',
+      },
+      {
+        q: 'How does 165 Hz sound clear the Galaxy S24 speaker slot?',
+        a: 'Water entering the Galaxy S24 bottom speaker slot clings to the internal hydrophobic acoustic mesh due to surface tension, muffling sound output. Playing a 165 Hz low-frequency resonant sound wave creates rapid air pressure oscillations in the speaker chamber. This acoustic vibration breaks the liquid meniscus and propels droplets outward through the speaker slot.',
+      },
+      {
+        q: 'What should I do if the Galaxy S24 shows a "Moisture detected in USB port" alert?',
+        a: 'Samsung phones feature a hardware moisture sensor in the USB-C port that automatically halts charging when wet to protect the motherboard. Do not blow hot air into the port with a hairdryer. Instead, gently tap the phone against your hand with the port facing down to dislodge droplets, let it dry in a well-ventilated room, or charge wirelessly on a Qi pad while waiting for the notification to clear.',
+      },
+    ],
   },
   {
     slug: 'eject-water-samsung-galaxy-s24-fe',

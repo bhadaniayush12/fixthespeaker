@@ -7,12 +7,25 @@ import { type DeviceData, devices } from '../../data/devices';
 import { getLocalizedDevice } from '../../i18n/deviceTranslations';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
+const HUB_SLUGS = new Set([
+  'fix-iphone-speaker',
+  'eject-water-samsung-galaxy',
+  'clean-airpods-speaker',
+  'fix-apple-watch-speaker',
+  'fix-android-speaker',
+]);
+
 export interface Props {
   device: DeviceData;
   lang?: SupportedLang;
+  noindex?: boolean;
 }
 
-const { device, lang = defaultLang } = Astro.props;
+const {
+  device,
+  lang = defaultLang,
+  noindex = !HUB_SLUGS.has(device.slug) && device.category !== 'hub',
+} = Astro.props;
 const t = useTranslations(lang);
 const localizedDevice = getLocalizedDevice(device, lang);
 
@@ -114,7 +127,13 @@ const relatedDevices = localizedDevice.relatedSlugs
   .map((dev) => getLocalizedDevice(dev, lang));
 ---
 
-<Layout title={localizedDevice.metaTitle} description={localizedDevice.metaDescription} lang={lang} jsonLd={jsonLd}>
+<Layout
+  title={localizedDevice.metaTitle}
+  description={localizedDevice.metaDescription}
+  lang={lang}
+  jsonLd={jsonLd}
+  noindex={noindex}
+>
   <main id="main" class="flex-1">
     
     <!-- Hero Section -->
