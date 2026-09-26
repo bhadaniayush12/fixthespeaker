@@ -1,11 +1,15 @@
 {
+  "id": "/",
   "name": "Fix The Speaker",
   "short_name": "Fix Speaker",
   "description": "Free phone speaker cleaner. Eject water and dust from your speaker with sound.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#0B0F19",
   "theme_color": "#0B0F19",
+  "categories": ["utilities", "productivity"],
   "icons": [
     {
       "src": "/favicon.svg",
@@ -41,6 +45,29 @@
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Water Eject",
+      "short_name": "Water Eject",
+      "description": "165 Hz pulsing sound to eject water droplets",
+      "url": "/?mode=water",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Dust Cleaner",
+      "short_name": "Dust Cleaner",
+      "description": "Turbo sweep to dislodge dust and lint",
+      "url": "/?mode=dust",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Speaker Test",
+      "short_name": "Speaker Test",
+      "description": "Stereo channel diagnostic sound test",
+      "url": "/?mode=test",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }

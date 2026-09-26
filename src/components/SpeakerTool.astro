@@ -86,6 +86,27 @@ const i18nConfig = {
   <div id="tool-panel" role="tabpanel" aria-labelledby="tab-water" class="mt-7 flex flex-col items-center sm:mt-10">
     <p id="mode-hint" class="font-mono text-xs uppercase tracking-[0.14em] text-mute mb-1 sm:mb-2">{t.modeHintWater}</p>
 
+    <!-- Volume & Silent Mode Readiness Guide -->
+    <div
+      id="volume-guard"
+      class="animate-rise mt-2.5 flex items-center justify-center gap-2 rounded-full border border-hairline bg-elevated/70 px-3.5 py-1.5 text-xs text-mute backdrop-blur-sm transition-colors duration-200 [animation-delay:340ms]"
+      role="note"
+      aria-label="Speaker preparation guide"
+    >
+      <svg viewBox="0 0 20 20" class="size-3.5 sm:size-4 shrink-0 text-primary" fill="currentColor" aria-hidden="true" focusable="false">
+        <path d="M10.75 3.75a.75.75 0 0 0-1.25-.56L5.6 6.5H3a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h2.6l3.9 3.31a.75.75 0 0 0 1.25-.56V3.75ZM13.88 5.62a.75.75 0 0 1 1.06 0 6.5 6.5 0 0 1 0 9.19.75.75 0 1 1-1.06-1.06 5 5 0 0 0 0-7.07.75.75 0 0 1 0-1.06Z" />
+        <path d="M16.53 2.97a.75.75 0 0 1 1.06 0 10.25 10.25 0 0 1 0 14.5.75.75 0 1 1-1.06-1.06 8.75 8.75 0 0 0 0-12.38.75.75 0 0 1 0-1.06Z" />
+      </svg>
+      <span class="font-mono text-[11px] sm:text-xs text-body">{t.volumeTip}</span>
+      <span
+        id="offline-pill"
+        class="hidden items-center gap-1.5 border-l border-hairline pl-2.5 font-mono text-[10px] sm:text-[11px] font-medium text-emerald-400"
+      >
+        <span class="inline-block size-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>{t.offlineBadge}</span>
+      </span>
+    </div>
+
     <div id="stage" data-state="idle" data-mode="water" class="animate-rise group relative mt-4 grid size-[17.5rem] sm:size-[22rem] place-items-center [animation-delay:320ms]">
       <canvas id="wave" class="absolute inset-0 size-full motion-reduce:hidden" aria-hidden="true"></canvas>
 
@@ -228,9 +249,28 @@ const i18nConfig = {
   const canvas = $('wave');
   const c2d = canvas ? canvas.getContext('2d') : null;
   const RING_C = parseFloat(ring ? ring.getAttribute('stroke-dasharray') || '295.31' : '295.31');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let reduceMotion = motionQuery.matches;
+  motionQuery.addEventListener?.('change', (e) => {
+    reduceMotion = e.matches;
+    if (reduceMotion && c2d && canvas) {
+      c2d.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  });
+
   const toolSection = $('tool');
   const deviceSlug = toolSection ? toolSection.dataset.device || '' : '';
+  const offlinePill = $('offline-pill');
+
+  function updateNetworkStatus() {
+    if (!offlinePill) return;
+    const isOffline = !navigator.onLine;
+    offlinePill.classList.toggle('hidden', !isOffline);
+    offlinePill.classList.toggle('inline-flex', isOffline);
+  }
+  window.addEventListener('online', updateNetworkStatus);
+  window.addEventListener('offline', updateNetworkStatus);
+  updateNetworkStatus();
 
   function trackToolEvent(eventName: string, params: Record<string, any> = {}) {
     if (typeof (window as any).trackEvent === 'function') {
@@ -257,7 +297,30 @@ const i18nConfig = {
   let stepIdx = 0;
   let quickTimer = 0;
   let doneTimer = 0;
+  let hapticInterval = 0;
   let wakeLock: WakeLockSentinel | null = null;
+
+  /* ---------- Haptics & Tactile Engine ---------- */
+
+  function startHaptics() {
+    if (reduceMotion || !('vibrate' in navigator)) return;
+    if (mode === 'water') {
+      navigator.vibrate([200, 100, 200]);
+      clearInterval(hapticInterval);
+      hapticInterval = window.setInterval(() => {
+        if (running && mode === 'water') {
+          navigator.vibrate([35, 45, 35]);
+        }
+      }, 2500);
+    }
+  }
+
+  function stopHaptics() {
+    clearInterval(hapticInterval);
+    if ('vibrate' in navigator) {
+      navigator.vibrate(0);
+    }
+  }
 
   /* ---------- Audio Engine ---------- */
 
@@ -300,6 +363,16 @@ const i18nConfig = {
         }
       };
     }
+
+    // Silent buffer prime for iOS WebKit hardware routing unlock
+    try {
+      const primeBuf = ctx.createBuffer(1, 1, 22050);
+      const primeSrc = ctx.createBufferSource();
+      primeSrc.buffer = primeBuf;
+      primeSrc.connect(ctx.destination);
+      primeSrc.start(0);
+    } catch (_) { /* ignore */ }
+
     return ctx;
   }
 
@@ -506,7 +579,7 @@ const i18nConfig = {
       session_engaged: 1,
     });
 
-    if (mode === 'water' && 'vibrate' in navigator) navigator.vibrate([200, 100, 200]);
+    startHaptics();
     requestWakeLock();
 
     endTimer = window.setTimeout(() => { if (running) stop(false); }, cfg.duration * 1000 + 400);
@@ -530,6 +603,7 @@ const i18nConfig = {
     clearTimeout(endTimer);
     cancelAnimationFrame(raf);
     releaseWakeLock();
+    stopHaptics();
 
     const cfg = MODES[mode];
     setRunningUI(false);
@@ -629,7 +703,7 @@ const i18nConfig = {
     stage.dataset.state = 'done';
     setFlex(powerIdle, false);
     setFlex(powerDone, true);
-    if ('vibrate' in navigator) navigator.vibrate(60);
+    if (!reduceMotion && 'vibrate' in navigator) navigator.vibrate([60, 60, 80]);
     clearTimeout(doneTimer);
     doneTimer = window.setTimeout(() => {
       if (running) return;
@@ -651,12 +725,15 @@ const i18nConfig = {
     });
   }
 
-  function setMode(nextId) {
+  function setMode(nextId: ModeId, persist = true) {
     if (!nextId) return;
     if (running) stop(true);
     clearTimeout(quickTimer);
     clearTimeout(doneTimer);
     mode = nextId;
+    if (persist) {
+      try { localStorage.setItem('fix_speaker_mode', nextId); } catch (_) {}
+    }
     const cfg = MODES[mode];
 
     tabs.forEach((t) => {
@@ -699,8 +776,13 @@ const i18nConfig = {
 
   // Browsers release the wake lock when the tab is hidden; re-acquire it if the user returns mid-run.
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && running && (!wakeLock || wakeLock.released)) {
-      requestWakeLock();
+    if (document.visibilityState === 'visible' && running) {
+      if (!wakeLock || wakeLock.released) {
+        requestWakeLock();
+      }
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+      }
     }
   });
 
@@ -709,13 +791,13 @@ const i18nConfig = {
   if (power) power.addEventListener('click', () => (running ? stop(true) : start()));
 
   tabs.forEach((tab, i) => {
-    tab.addEventListener('click', () => setMode(tab.dataset.mode));
+    tab.addEventListener('click', () => setMode(tab.dataset.mode as ModeId));
     tab.addEventListener('keydown', (e) => {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
       e.preventDefault();
       const n = (i + (e.key === 'ArrowRight' ? 1 : MODE_IDS.length - 1)) % MODE_IDS.length;
       tabs[n].focus();
-      setMode(MODE_IDS[n]);
+      setMode(MODE_IDS[n] as ModeId);
     });
   });
 
@@ -727,6 +809,21 @@ const i18nConfig = {
       if (power) power.focus({ preventScroll: true });
     });
   });
+
+  // Initialize mode from URL param (?mode=water|dust|test) or saved preference
+  try {
+    const urlParamMode = new URLSearchParams(window.location.search).get('mode') as ModeId | null;
+    const savedMode = localStorage.getItem('fix_speaker_mode') as ModeId | null;
+    const initialMode = (urlParamMode && MODE_IDS.includes(urlParamMode))
+      ? urlParamMode
+      : (savedMode && MODE_IDS.includes(savedMode))
+        ? savedMode
+        : 'water';
+
+    if (initialMode !== 'water') {
+      setMode(initialMode, false);
+    }
+  } catch (_) { /* ignore */ }
 
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);

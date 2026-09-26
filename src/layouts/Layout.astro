@@ -454,6 +454,15 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         });
       });
     </script>
+
+    {/* Register PWA Service Worker for offline capability */}
+    <script is:inline>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
+    </script>
   </body>
 </html>
 
