@@ -4,9 +4,10 @@ import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 export interface Props {
   lang?: SupportedLang;
   customSteps?: { name: string; text: string }[];
+  device?: string;
 }
 
-const { lang = defaultLang, customSteps } = Astro.props;
+const { lang = defaultLang, customSteps, device } = Astro.props;
 const t = useTranslations(lang);
 
 const modes = [
@@ -58,7 +59,7 @@ const i18nConfig = {
 };
 ---
 
-<section id="tool" class="container-site pt-4 pb-12 sm:pt-8 sm:pb-16 scroll-mt-24" aria-labelledby="tool-heading">
+<section id="tool" data-device={device} class="container-site pt-4 pb-12 sm:pt-8 sm:pb-16 scroll-mt-24" aria-labelledby="tool-heading">
   <h2 id="tool-heading" class="sr-only">Speaker cleaning tool</h2>
 
   <div
@@ -228,6 +229,20 @@ const i18nConfig = {
   const c2d = canvas ? canvas.getContext('2d') : null;
   const RING_C = parseFloat(ring ? ring.getAttribute('stroke-dasharray') || '295.31' : '295.31');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const toolSection = $('tool');
+  const deviceSlug = toolSection ? toolSection.dataset.device || '' : '';
+
+  function trackToolEvent(eventName: string, params: Record<string, any> = {}) {
+    if (typeof (window as any).trackEvent === 'function') {
+      (window as any).trackEvent(eventName, params);
+      return;
+    }
+    const consent = (window as any).fixSpeakerConsent?.read();
+    if (consent?.analytics !== true) return;
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', eventName, params);
+    }
+  }
 
   let mode: ModeId = 'water';
   let running = false;
@@ -481,6 +496,16 @@ const i18nConfig = {
     setRunningUI(true);
     if (status) status.textContent = cfg.running;
 
+    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, only when analytics consent is granted)
+    // engagement_time_msec (10000) explicitly triggers GA4's engaged session threshold (>=10s),
+    // ensuring the session is counted as engaged and bounce rate reflects actual tool usage rather than page exits.
+    trackToolEvent('eject_start', {
+      mode: mode,
+      ...(deviceSlug ? { device: deviceSlug } : {}),
+      engagement_time_msec: 10000,
+      session_engaged: 1,
+    });
+
     if (mode === 'water' && 'vibrate' in navigator) navigator.vibrate([200, 100, 200]);
     requestWakeLock();
 
@@ -520,6 +545,16 @@ const i18nConfig = {
         status.textContent = cfg.done;
         showDone();
       }
+    }
+
+    if (!manual) {
+      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, only when analytics consent is granted)
+      trackToolEvent('eject_complete', {
+        mode: mode,
+        ...(deviceSlug ? { device: deviceSlug } : {}),
+        duration: cfg.duration,
+        engagement_time_msec: cfg.duration * 1000,
+      });
     }
   }
 

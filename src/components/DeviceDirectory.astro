@@ -271,7 +271,24 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
     });
 
     cleanButton.addEventListener('click', () => {
-      if (modelSelect.value) window.location.assign(modelSelect.value);
+      if (modelSelect.value) {
+        const main = document.querySelector('main[data-device-slug]');
+        const fromDevice = main?.getAttribute('data-device-slug');
+        if (fromDevice) {
+          const consent = (window as any).fixSpeakerConsent?.read();
+          if (typeof (window as any).gtag === 'function' && consent?.analytics === true) {
+            const segments = modelSelect.value.split('?')[0].split('#')[0].split('/').filter(Boolean);
+            const toDevice = segments.pop() || '';
+            (window as any).gtag('event', 'hub_navigation', {
+              from_device: fromDevice,
+              to_device: toDevice,
+              link_type: 'directory_select',
+              transport_type: 'beacon',
+            });
+          }
+        }
+        window.location.assign(modelSelect.value);
+      }
     });
 
     if (!searchInput || !searchClear || !searchResults) return;

@@ -281,6 +281,98 @@ const i18nConfig = {
           <span data-ch="R" class="rounded-pill border border-hairline px-3.5 py-1 font-mono text-xs text-mute transition-colors data-on:border-primary/60 data-on:bg-primary/10 data-on:text-primary">R</span>
         </div>
 
+        <!-- Post-Ejection Related Actions (Appears after water-eject finishes) -->
+        <div
+          id="post-eject-related"
+          class="animate-rise mt-6 w-full max-w-lg rounded-2xl border border-primary/25 bg-elevated/90 p-4 sm:p-5 shadow-2xl backdrop-blur-md"
+          hidden
+        >
+          <div class="flex items-center justify-between gap-3 border-b border-hairline/80 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="flex size-5 items-center justify-center rounded-full bg-primary/15 text-primary">
+                <svg viewBox="0 0 16 16" class="size-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 2v12M2 8h12"/>
+                </svg>
+              </span>
+              <p class="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
+                {t.relatedNextActions}
+              </p>
+            </div>
+            <button
+              id="dismiss-post-eject"
+              type="button"
+              aria-label="Dismiss"
+              class="text-xs text-mute hover:text-ink transition-colors cursor-pointer px-1 py-0.5"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="mt-3 space-y-2 text-left">
+            <!-- 1. Device Hub Link -->
+            <a
+              href="#device-directory"
+              id="action-device-hub"
+              class="group flex items-center justify-between gap-3 rounded-xl border border-hairline/60 bg-canvas/70 px-3.5 py-2.5 text-xs sm:text-sm text-body transition-all hover:border-primary/40 hover:bg-canvas hover:text-ink min-h-[44px] cursor-pointer touch-manipulation"
+            >
+              <span class="flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" class="size-4 shrink-0 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+                  <path d="M12 18h.01"/>
+                </svg>
+                <span>
+                  {t.relatedWaterDamage} <span class="font-medium text-primary underline underline-offset-2 group-hover:text-primary-bright">{t.relatedCheckDeviceHub} &rsaquo;</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 16 16" class="size-3.5 shrink-0 text-mute transition-transform group-hover:translate-x-0.5 group-hover:text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 12l4-4-4-4"/>
+              </svg>
+            </a>
+
+            <!-- 2. Stereo Test Action -->
+            <button
+              type="button"
+              data-select-mode="test"
+              id="action-stereo-test"
+              class="group flex w-full items-center justify-between gap-3 rounded-xl border border-hairline/60 bg-canvas/70 px-3.5 py-2.5 text-xs sm:text-sm text-body transition-all hover:border-primary/40 hover:bg-canvas hover:text-ink min-h-[44px] cursor-pointer touch-manipulation text-left"
+            >
+              <span class="flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" class="size-4 shrink-0 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                </svg>
+                <span>
+                  {t.relatedTestPrompt} <span class="font-medium text-cyan-400 underline underline-offset-2 group-hover:text-cyan-300">{t.relatedTryStereoTest} &rsaquo;</span>
+                </span>
+              </span>
+              <svg viewBox="0 0 16 16" class="size-3.5 shrink-0 text-mute transition-transform group-hover:translate-x-0.5 group-hover:text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 12l4-4-4-4"/>
+              </svg>
+            </button>
+
+            <!-- 3. Subtle Bookmark / Home Screen Prompt -->
+            <div
+              id="action-bookmark-tip"
+              class="flex items-center justify-between gap-3 rounded-xl border border-hairline/40 bg-canvas/40 px-3.5 py-2.5 text-xs text-mute min-h-[40px]"
+            >
+              <span class="flex items-center gap-2.5">
+                <svg viewBox="0 0 24 24" class="size-4 shrink-0 text-amber-400/90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                </svg>
+                <span>{t.relatedBookmarkTip}</span>
+              </span>
+              <button
+                type="button"
+                id="copy-bookmark-btn"
+                data-copied-text={t.relatedCopied}
+                class="shrink-0 text-[11px] font-medium text-primary hover:text-primary-bright underline underline-offset-2 cursor-pointer transition-colors"
+              >
+                {t.relatedCopyLink}
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- 4-Step Guide with Clear Mobile Separation -->
         <div class="mt-9 sm:mt-12 w-full max-w-2xl text-left px-1">
           <h3 class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-primary">
@@ -514,6 +606,18 @@ const i18nConfig = {
   const c2d = canvas ? canvas.getContext('2d') : null;
   const RING_C = parseFloat(ring ? ring.getAttribute('stroke-dasharray') || '295.31' : '295.31');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function trackToolEvent(eventName, params = {}) {
+    if (typeof window.trackEvent === 'function') {
+      window.trackEvent(eventName, params);
+      return;
+    }
+    const consent = window.fixSpeakerConsent?.read();
+    if (consent?.analytics !== true) return;
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, params);
+    }
+  }
 
   /** @type {ModeId} */
   let mode = 'water';
@@ -772,6 +876,19 @@ const i18nConfig = {
     setRunningUI(true);
     if (status) status.textContent = cfg.running;
 
+    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, only when analytics consent is granted)
+    // engagement_time_msec (10000) explicitly triggers GA4's engaged session threshold (>=10s),
+    // ensuring the session is counted as engaged and bounce rate reflects actual tool usage rather than page exits.
+    trackToolEvent('eject_start', {
+      mode: mode,
+      page_type: 'home',
+      engagement_time_msec: 10000,
+      session_engaged: 1,
+    });
+
+    const postEjectRelated = $('post-eject-related');
+    if (postEjectRelated) postEjectRelated.hidden = true;
+
     if (mode === 'water' && 'vibrate' in navigator) navigator.vibrate([200, 100, 200]);
     requestWakeLock();
 
@@ -811,7 +928,25 @@ const i18nConfig = {
         cycles[mode] += 1;
         status.textContent = cfg.done;
         showDone();
+
+        // Show Related Next Actions section on successful water eject completion
+        if (mode === 'water') {
+          const postEjectRelated = $('post-eject-related');
+          if (postEjectRelated) {
+            postEjectRelated.hidden = false;
+          }
+        }
       }
+    }
+
+    if (!manual) {
+      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, only when analytics consent is granted)
+      trackToolEvent('eject_complete', {
+        mode: mode,
+        page_type: 'home',
+        duration: cfg.duration,
+        engagement_time_msec: cfg.duration * 1000,
+      });
     }
   }
 
@@ -927,6 +1062,10 @@ const i18nConfig = {
       stage.dataset.state = 'idle';
     }
     if (hint) hint.textContent = cfg.hint;
+    const postEjectRelated = $('post-eject-related');
+    if (postEjectRelated && nextId !== 'water') {
+      postEjectRelated.hidden = true;
+    }
     if (powerLabel) powerLabel.textContent = cfg.cta;
     if (power) power.setAttribute('aria-label', cfg.cta);
     if (status) status.textContent = cfg.idle;
@@ -972,11 +1111,37 @@ const i18nConfig = {
   document.querySelectorAll('[data-select-mode]').forEach((btn) => {
     btn.addEventListener('click', () => {
       setMode(btn.dataset.selectMode);
+      const postEjectRelated = $('post-eject-related');
+      if (postEjectRelated) postEjectRelated.hidden = true;
       const tool = document.getElementById('tool');
       if (tool) tool.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
       if (power) power.focus({ preventScroll: true });
     });
   });
+
+  const postEjectRelated = $('post-eject-related');
+  const dismissPostEject = $('dismiss-post-eject');
+  if (dismissPostEject && postEjectRelated) {
+    dismissPostEject.addEventListener('click', () => {
+      postEjectRelated.hidden = true;
+    });
+  }
+
+  const copyBookmarkBtn = $('copy-bookmark-btn');
+  if (copyBookmarkBtn) {
+    copyBookmarkBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        const originalText = copyBookmarkBtn.textContent;
+        copyBookmarkBtn.textContent = (copyBookmarkBtn as HTMLElement).dataset.copiedText || '✓ Copied!';
+        setTimeout(() => {
+          copyBookmarkBtn.textContent = originalText;
+        }, 2000);
+      } catch (_) {
+        // Fallback for clipboard
+      }
+    });
+  }
 
   // Subscribe form handler with bot protection and serverless submission
   const subForm = document.getElementById('subscribe-form');

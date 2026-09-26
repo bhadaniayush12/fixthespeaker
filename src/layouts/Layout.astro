@@ -132,7 +132,18 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
           if (consent.analytics || consent.advertising) loadGtm();
         }
 
+        function trackEvent(eventName, params) {
+          var consent = readConsent();
+          if (!consent || consent.analytics !== true) return false;
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params || {});
+            return true;
+          }
+          return false;
+        }
+
         window.fixSpeakerConsent = { read: readConsent, apply: applyConsent };
+        window.trackEvent = trackEvent;
 
         var savedConsent = readConsent();
         if (savedConsent) applyConsent(savedConsent, false);
@@ -260,6 +271,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
               {Object.entries(languages).map(([k, v]) => (
                 <a
                   href={getRelativeLocaleUrl(k, subpagePath || undefined)}
+                  data-lang-code={k}
                   class={`flex min-h-[44px] items-center justify-between rounded-xl px-3 py-2.5 text-xs transition-colors hover:bg-canvas hover:text-ink touch-manipulation cursor-pointer ${
                     k === lang ? 'bg-primary/10 font-semibold text-primary' : 'text-body'
                   }`}
@@ -337,6 +349,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
                   <li>
                     <a
                       href={getRelativeLocaleUrl(k, subpagePath || undefined)}
+                      data-lang-code={k}
                       class={`inline-flex min-h-[36px] items-center gap-1.5 py-1 transition-colors ${
                         k === lang ? 'font-semibold text-primary' : 'text-body hover:text-ink'
                       }`}
@@ -417,6 +430,28 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         let stored = null;
         try { stored = localStorage.getItem('theme'); } catch (_) { /* storage blocked */ }
         if (!stored) apply(e.matches);
+      });
+
+      // GA4 Custom Event: language_switch (fired when user changes language, only when analytics consent is granted)
+      const currentLang = document.documentElement.lang || 'en';
+      document.querySelectorAll<HTMLAnchorElement>('[data-lang-code]').forEach((link) => {
+        link.addEventListener('click', () => {
+          const targetLang = link.dataset.langCode;
+          if (targetLang && targetLang !== currentLang) {
+            const consent = (window as any).fixSpeakerConsent?.read();
+            if (typeof (window as any).gtag === 'function' && consent?.analytics === true) {
+              const deviceMain = document.querySelector('main[data-device-slug]');
+              const currentDevice = deviceMain?.getAttribute('data-device-slug');
+              (window as any).gtag('event', 'language_switch', {
+                from_language: currentLang,
+                to_language: targetLang,
+                language: targetLang,
+                ...(currentDevice ? { device: currentDevice } : {}),
+                transport_type: 'beacon',
+              });
+            }
+          }
+        });
       });
     </script>
   </body>

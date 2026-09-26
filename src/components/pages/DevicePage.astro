@@ -134,7 +134,7 @@ const relatedDevices = localizedDevice.relatedSlugs
   jsonLd={jsonLd}
   noindex={noindex}
 >
-  <main id="main" class="flex-1">
+  <main id="main" class="flex-1" data-device-slug={device.slug}>
     
     <!-- Hero Section -->
     <section class="relative overflow-hidden" aria-labelledby="hero-heading">
@@ -180,7 +180,7 @@ const relatedDevices = localizedDevice.relatedSlugs
     </section>
 
     <!-- Interactive Tool Component -->
-    <SpeakerTool lang={lang} customSteps={localizedDevice.steps} />
+    <SpeakerTool lang={lang} customSteps={localizedDevice.steps} device={device.slug} />
 
     <!-- Device Hardware Specifications Profile Card -->
     <section class="container-site pb-14 sm:pb-20" aria-labelledby="specs-heading">
@@ -311,6 +311,7 @@ const relatedDevices = localizedDevice.relatedSlugs
           {relatedDevices.map((rel) => (
             <a
               href={lang === defaultLang ? `/${rel.slug}` : `/${lang}/${rel.slug}`}
+              data-hub-link={rel.slug}
               class="group rounded-2xl border border-hairline bg-elevated/60 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
             >
               <span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -347,5 +348,120 @@ const relatedDevices = localizedDevice.relatedSlugs
     </div>
 
   </main>
+
+  <script>
+    function trackDeviceEvent(eventName: string, params: Record<string, any> = {}) {
+      if (typeof (window as any).trackEvent === 'function') {
+        (window as any).trackEvent(eventName, params);
+        return;
+      }
+      const consent = (window as any).fixSpeakerConsent?.read();
+      if (consent?.analytics !== true) return;
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', eventName, params);
+      }
+    }
+
+    function initScrollTracking() {
+      const main = document.querySelector('main[data-device-slug]');
+      if (!main) return;
+      const fromDevice = main.getAttribute('data-device-slug') || '';
+
+      // Standard GA4 scroll depth thresholds:
+      // 50% = scrolled past tool into hardware specs, how-to, and safety tips
+      // 90% = reached device FAQ and bottom related content (matches GA4 enhanced measurement)
+      const thresholds = [50, 90];
+      const triggered = new Set<number>();
+      let ticking = false;
+
+      function checkScroll() {
+        const docEl = document.documentElement;
+        const body = document.body;
+        const scrollHeight = Math.max(docEl.scrollHeight, body.scrollHeight);
+        const innerHeight = window.innerHeight || docEl.clientHeight;
+        const scrollY = window.scrollY || docEl.scrollTop || body.scrollTop || 0;
+
+        if (scrollHeight <= 0 || innerHeight <= 0) {
+          ticking = false;
+          return;
+        }
+
+        // Standard GTM / GA4 scroll depth formula: (current scroll position + viewport height) / total height
+        const percentScrolled = Math.min(100, Math.round(((scrollY + innerHeight) / scrollHeight) * 100));
+
+        for (const threshold of thresholds) {
+          if (percentScrolled >= threshold && !triggered.has(threshold)) {
+            triggered.add(threshold);
+            trackDeviceEvent('scroll', {
+              percent_scrolled: threshold,
+              device: fromDevice,
+            });
+          }
+        }
+
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(checkScroll);
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      checkScroll();
+    }
+
+    function initHubNavigationTracking() {
+      const main = document.querySelector('main[data-device-slug]');
+      if (!main) return;
+      const fromDevice = main.getAttribute('data-device-slug') || '';
+
+      // Track cross-links in the "Other Devices" related section
+      document.querySelectorAll<HTMLAnchorElement>('[data-hub-link]').forEach((link) => {
+        link.addEventListener('click', () => {
+          const toDevice = link.dataset.hubLink || '';
+          trackDeviceEvent('hub_navigation', {
+            from_device: fromDevice,
+            to_device: toDevice,
+            link_type: 'cross_link',
+            transport_type: 'beacon',
+          });
+        });
+      });
+
+      // Track directory cross-links on device page
+      const directory = document.getElementById('device-directory');
+      if (directory) {
+        directory.addEventListener('click', (e) => {
+          const anchor = (e.target as HTMLElement).closest('a');
+          if (!anchor) return;
+          const href = anchor.getAttribute('href');
+          if (!href || href.startsWith('#') || (href.startsWith('http') && !href.includes(window.location.host))) return;
+
+          const segments = href.split('?')[0].split('#')[0].split('/').filter(Boolean);
+          const targetSlug = segments.pop();
+          const nonDeviceSlugs = ['privacy', 'terms', 'about', 'contact', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'];
+          if (targetSlug && targetSlug !== fromDevice && !nonDeviceSlugs.includes(targetSlug)) {
+            trackDeviceEvent('hub_navigation', {
+              from_device: fromDevice,
+              to_device: targetSlug,
+              link_type: 'directory_link',
+              transport_type: 'beacon',
+            });
+          }
+        });
+      }
+    }
+
+    initHubNavigationTracking();
+    initScrollTracking();
+    document.addEventListener('astro:page-load', () => {
+      initHubNavigationTracking();
+      initScrollTracking();
+    });
+  </script>
 </Layout>
 
