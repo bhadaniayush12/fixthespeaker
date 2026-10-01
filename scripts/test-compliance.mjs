@@ -42,7 +42,7 @@ assert(!thinDevice.includes('pagead2.googlesyndication.com'), 'Unindexed model p
 
 // 4. Privacy policy must include partner sites link
 const privacyHtml = fs.readFileSync(path.join(distDir, 'privacy.html'), 'utf8');
-assert(privacyHtml.includes('https://policies.google.com/technologies/partner-sites'), 'Privacy policy contains Google Partner Sites link');
+assert(privacyHtml.includes('<a href="https://policies.google.com/technologies/partner-sites"'), 'Privacy policy contains clickable Google Partner Sites hyperlink tag');
 
 // 5. Tool container must have google-auto-ads-ignore
 assert(indexHtml.includes('google-auto-ads-ignore'), 'Speaker tool container includes google-auto-ads-ignore');

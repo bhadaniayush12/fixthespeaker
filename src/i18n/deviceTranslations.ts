@@ -21,6 +21,257 @@ interface LocalizedDeviceContent {
 // Language-Specific Content Builders
 // -------------------------------------------------------------
 
+const spanishCustomContent: Record<string, { tips: string[]; faqs: DeviceFAQ[] }> = {
+  'fix-iphone-17-pro-max-speaker': {
+    tips: [
+      'Ubica los puertos del altavoz: el altavoz principal de alta potencia se encuentra tras los orificios acústicos fresados a la derecha del puerto USB-C, mientras que el auricular/altavoz estéreo superior es una microrejilla ultrafina ubicada en el borde superior sobre la Dynamic Island.',
+      'Agua dulce vs. Agua salada y piscina: el iPhone 17 Pro Max cuenta con resistencia IP68 (hasta 6 m durante 30 min en agua dulce), pero el agua de mar salada y el cloro de piscinas corroen la malla acústica y cristalizan al secarse. Si se mojó con agua salada o con químicos, enjuaga suavemente los puertos bajo un hilo fino de agua dulce del grifo antes de secarlo.',
+      'Nunca introduzcas herramientas de extracción de SIM, clips ni aire comprimido en las rejillas del altavoz; la presión excesiva o puntas afiladas pueden perforar la membrana impermeable acústica interna.',
+      'Si aparece la notificación de iOS "Líquido detectado en el conector USB-C", no conectes ningún cable de carga. Deja secar el puerto en posición vertical durante varias horas; puedes usar carga inalámbrica MagSafe o Qi en caso de emergencia.',
+      'Realiza pruebas de balance de audio en iOS: verifica ambos altavoces de forma independiente en Ajustes > Accesibilidad > Audio y visuales > Balance (desliza a izquierda y derecha), o graba una nota en Notas de Voz y activa el altavoz para confirmar nitidez.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde se encuentran exactamente los altavoces en el iPhone 17 Pro Max?',
+        a: 'El iPhone 17 Pro Max incorpora un sistema estéreo dual. El altavoz inferior principal de alto rendimiento está situado en el borde inferior de titanio a la derecha del conector USB-C (los orificios a la izquierda corresponden al micrófono). El altavoz secundario/auricular está integrado en una microabertura casi invisible situada justo encima de la Dynamic Island en el bisel superior.',
+      },
+      {
+        q: '¿Cómo comprobar si los altavoces del iPhone 17 Pro Max han quedado limpios tras expulsar el agua?',
+        a: 'Puedes verificar el sonido mediante tres métodos en iOS: 1) Ve a Ajustes > Accesibilidad > Audio y visuales y mueve el control de Balance a los extremos izquierdo y derecho para aislar el altavoz superior del inferior. 2) Graba un clip en la app Notas de Voz y reprodúcelo con el altavoz activado. 3) Utiliza nuestra prueba de canales estéreo integrada en la web para comprobar la respuesta en agudos y graves sin distorsión.',
+      },
+      {
+        q: '¿Qué hacer si el iPhone 17 Pro Max se cae al agua de mar o a una piscina con cloro?',
+        a: 'Apaga el dispositivo de inmediato. Enjuaga con suavidad los orificios del altavoz bajo un chorro tenue de agua dulce del grifo para disolver los cristales de sal o residuos de cloro antes de que se sequen en la malla. Seca con un paño de microfibra, reproduce el sonido de 165 Hz durante 2 o 3 ciclos con los altavoces boca abajo y déjalo secar al aire antes de conectar el cable USB-C.',
+      },
+      {
+        q: '¿Puede el tono de 165 Hz dañar la membrana o el chasis de titanio del iPhone 17 Pro Max?',
+        a: 'No. El pulso acústico de 165 Hz opera estrictamente dentro de los parámetros de diseño y excursión acústica segura de los transductores y amplificadores de Apple. Genera ondas de presión mecánica en el aire que rompen la tensión superficial del agua atrapada sin provocar sobrecalentamiento ni fatiga mecánica.',
+      },
+      {
+        q: '¿Por qué aparece el aviso "Líquido detectado en el conector USB-C" tras expulsar el agua?',
+        a: 'El conector USB-C dispone de pines de detección de humedad independientes de la cavidad acústica. Aunque el tono de 165 Hz evacua el agua de los altavoces, pueden quedar restos microscópicos de humedad entre los contactos del puerto de carga. iOS deshabilita la carga por cable para prevenir cortocircuitos. Mantén el teléfono en posición vertical en un lugar ventilado hasta que el aviso desaparezca; la carga inalámbrica MagSafe sigue estando operativa.',
+      },
+    ],
+  },
+  'fix-pixel-8-pro-speaker': {
+    tips: [
+      'Ubica los puertos de altavoz: el altavoz principal se encuentra tras la ranura ovalada a la derecha del puerto USB-C en el borde inferior (la ranura izquierda aloja el micrófono principal). El auricular estéreo superior es una ranura milimétrica oculta sobre el bisel de la pantalla. Nota: la hendidura en la parte superior del marco de aluminio es la antena 5G mmWave, no un altavoz.',
+      'Agua dulce vs. Piscina y Agua de mar: el Pixel 8 Pro cuenta con certificación IP68 (hasta 1,5 m durante 30 min en agua dulce), pero el cloro y la sal marina se cristalizan en la malla acústica y corroen el visor de cámara de aluminio pulido. Enjuaga con agua dulce del grifo si estuvo expuesto a sal o cloro.',
+      'Si aparece la notificación de Android "Líquido o suciedad en el puerto USB - Puerto USB desactivado", no conectes el cargador por cable. Deja secar el puerto al aire de 2 a 4 horas; puedes usar un cargador inalámbrico Pixel Stand o Qi.',
+      'Nunca introduzcas agujas de extracción de SIM ni aire a presión en el orificio del micrófono situado junto al altavoz inferior; la alta presión puede rasgar la membrana impermeable acústica interna.',
+      'Diagnóstico de hardware de Google: abre el marcador telefónico e introduce *#*#7287#*#* (*#*#PAIRS#*#*) o dirígete a Ajustes > Consejos y asistencia > Diagnóstico del teléfono para verificar el audio del altavoz.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde están ubicados los altavoces en el Google Pixel 8 Pro?',
+        a: 'El Google Pixel 8 Pro cuenta con altavoces estéreo duales. El altavoz principal inferior está a la derecha del puerto USB-C central (la ranura izquierda es el micrófono). El altavoz secundario/auricular está integrado en una finísima ranura entre el cristal superior y el marco de aluminio, encima de la cámara frontal. La abertura superior en el marco es una ventana de antena 5G mmWave, no un altavoz.',
+      },
+      {
+        q: '¿Cómo ejecutar un diagnóstico de altavoz en el Pixel 8 Pro?',
+        a: 'Puedes probar el hardware de audio de tres formas: 1) Abre la app Teléfono y marca *#*#7287#*#* (*#*#PAIRS#*#*) para acceder a la suite de diagnóstico de Pixel. 2) Ve a Ajustes > Consejos y asistencia > Diagnóstico > Altavoz para realizar un test automático. 3) Usa nuestro test estéreo web para comprobar los canales izquierdo y derecho por separado.',
+      },
+      {
+        q: '¿Qué hacer si el Pixel 8 Pro se cae al agua salada o a la piscina?',
+        a: 'Apaga el dispositivo. Los residuos químicos y salinos deterioran la malla acústica. Enjuaga los puertos de altavoz y el puerto USB-C bajo un chorro fino de agua dulce del grifo durante 10 segundos. Seca con un paño de microfibra, reproduce el tono de 165 Hz durante 2 o 3 ciclos con los altavoces apuntando hacia abajo y déjalo secar antes de cargarlo.',
+      },
+      {
+        q: '¿Cómo expulsa el agua el sonido de 165 Hz en el Pixel 8 Pro?',
+        a: 'El tono acústico de 165 Hz genera ondas periódicas de presión que hacen vibrar el diafragma del altavoz a su frecuencia de resonancia mecánica. Este desplazamiento vence la tensión superficial del agua atrapada en la malla, pulverizando las microgotas y expulsándolas hacia el exterior sin forzar el amplificador.',
+      },
+      {
+        q: '¿Qué significa la notificación "Líquido o suciedad en el puerto USB" en el Pixel 8 Pro?',
+        a: 'Indica que los sensores eléctricos del puerto USB-C detectaron humedad. Android bloquea la transmisión de energía para evitar cortocircuitos. Aunque los 165 Hz limpian la cavidad acústica, el conector USB requiere secado al aire. Puedes utilizar la carga inalámbrica Qi mientras tanto.',
+      },
+    ],
+  },
+  'eject-water-samsung-galaxy-s24-ultra': {
+    tips: [
+      'Ubica los puertos: el altavoz inferior principal es la ranura acústica continua rediseñada situada entre el puerto USB-C y el compartimento del S-Pen. El altavoz estéreo superior es una ranura microscópica en el borde superior del cristal Gorilla Armor.',
+      'Retira el S-Pen de inmediato: el agua suele acumularse dentro del compartimento del S-Pen, justo al lado de la caja acústica del altavoz inferior, provocando un sonido sordo hasta que se extrae el lápiz y se ventilan ambas cavidades.',
+      'Agua dulce vs. Salada: el Galaxy S24 Ultra cuenta con certificación IP68 (1,5 m durante 30 min en agua dulce), pero el agua marina y el cloro dañan el titanio y la malla protectora. Enjuaga con un hilo fino de agua dulce del grifo si estuvo expuesto a sal o productos químicos.',
+      'Si aparece el aviso de la gota de agua de One UI ("Se ha detectado humedad en el puerto de carga/USB"), no conectes el cargador por cable. Deja secar en vertical de 2 a 4 horas; la carga inalámbrica rápida sigue estando disponible.',
+      'Diagnóstico de hardware Samsung: abre el marcador telefónico y pulsa *#0*# para entrar al modo de prueba, luego toca "SPEAKER" para comprobar el altavoz inferior y el auricular superior de forma independiente.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde se encuentran las aberturas de los altavoces en el Galaxy S24 Ultra?',
+        a: 'El Galaxy S24 Ultra cuenta con una ranura continua inferior ubicada entre el puerto USB-C y el silo del S-Pen para el altavoz principal. El auricular estéreo secundario se aloja en el bisel superior, en la unión entre el cristal Corning Gorilla Armor y el marco de titanio Grado 5.',
+      },
+      {
+        q: '¿Cómo probar los altavoces del Galaxy S24 Ultra con códigos de diagnóstico?',
+        a: 'Abre la aplicación Teléfono y marca *#0*#. En la cuadrícula que aparece, pulsa el botón "SPEAKER": la primera pulsación evalúa el altavoz principal inferior y la segunda conmuta el audio al auricular superior. También puedes usar Samsung Members en Diagnóstico del teléfono > Altavoz.',
+      },
+      {
+        q: '¿Debo extraer el S-Pen al expulsar agua del Galaxy S24 Ultra?',
+        a: 'Sí, es fundamental. La cavidad del S-Pen discurre en paralelo a la cámara acústica del altavoz. El agua acumulada en el interior amortigua la resonancia de los graves y retiene humedad. Extrae el S-Pen, sacude suavemente ambos elementos hacia abajo y reproduce el tono de 165 Hz sin el lápiz insertado.',
+      },
+      {
+        q: '¿Qué significa el icono de la gota de agua "Humedad detectada"?',
+        a: 'Los pines del conector USB-C detectan conductividad eléctrica causada por líquidos. One UI bloquea la carga por cable para evitar corrosión o cortocircuitos. La alerta suele desaparecer en 1 a 4 horas al evaporarse la humedad. Mientras tanto, puedes usar la carga inalámbrica rápida.',
+      },
+      {
+        q: '¿Puede el sonido de 165 Hz dañar el marco de titanio o el sello del Galaxy S24 Ultra?',
+        a: 'No. El tono de 165 Hz se sitúa dentro del rango acústico seguro certificado para los transductores estéreo de Samsung. Genera pulsos de presión en el aire que expulsan las gotas sin someter a esfuerzo mecánico los sellos adhesivos impermeables ni el marco de titanio.',
+      },
+    ],
+  },
+  'eject-water-samsung-galaxy-s22-ultra': {
+    tips: [
+      'Ubica los altavoces: el altavoz principal inferior se encuentra tras la rejilla ovalada de 5 orificios a la derecha del puerto USB-C. El auricular estéreo superior emite a través de una ranura microscópica en el borde superior curvado.',
+      'Retira el S-Pen inmediatamente: el agua se filtra con facilidad en el hueco del S-Pen, adyacente a la caja de resonancia del altavoz inferior. Retira el lápiz táctil y sacúdelo suavemente para evitar que el líquido atrapado apague los graves.',
+      'Envejecimiento de los sellos: el Galaxy S22 Ultra cuenta con IP68 de fábrica, pero los adhesivos impermeables se degradan con los años por el calor y microcaídas. Nunca sumerjas un teléfono antiguo ni lo coloques bajo chorros a presión.',
+      'Si estuvo expuesto a agua de mar o piscina, enjuaga brevemente con un hilo tenue de agua dulce del grifo para prevenir la corrosión salina en la rejilla, y seca con una toalla de microfibra.',
+      'Diagnóstico Samsung: marca *#0*# en la app de Teléfono y pulsa "SPEAKER" para evaluar ambos transductores por separado, o utiliza la herramienta de diagnóstico de Samsung Members.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde están los altavoces en el Samsung Galaxy S22 Ultra?',
+        a: 'Dispone de altavoces estéreo: el altavoz inferior principal emite por la rejilla de 5 orificios junto al puerto USB-C y el silo del S-Pen. El altavoz superior se sitúa en la fina junta entre la pantalla Gorilla Glass Victus+ y el marco Armor Aluminum superior.',
+      },
+      {
+        q: '¿Cómo probar los altavoces del S22 Ultra con el menú secreto de Samsung?',
+        a: 'Abre el marcador telefónico de Samsung y marca *#0*#. Toca el recuadro "SPEAKER" para iniciar la prueba de audio que alterna entre el altavoz inferior y el superior, confirmando que la distorsión y los chasquidos hayan desaparecido por completo.',
+      },
+      {
+        q: '¿Afecta la antigüedad a la resistencia al agua IP68 del Galaxy S22 Ultra?',
+        a: 'Sí. Las juntas adhesivas impermeables se resecan y desgastan gradualmente con el uso diario, el calor ambiental y pequeños golpes. Por ello, si tu S22 Ultra se moja, expulsa el agua con el sonido de 165 Hz cuanto antes en vez de confiar en la estanqueidad interna.',
+      },
+      {
+        q: '¿Por qué hay que sacar el S-Pen al expulsar agua?',
+        a: 'El compartimento del S-Pen es una cavidad abierta pegada a la cámara acústica del altavoz. El agua acumulada en su interior atenúa el sonido y hace que el altavoz suene bajo o distorsionado. Al retirarlo, permites que el aire circule y el agua drene.',
+      },
+      {
+        q: '¿Qué hacer si la alerta de "Humedad detectada" no desaparece?',
+        a: 'Verifica que el conector USB-C esté limpio y seco. Coloca el teléfono en vertical y dale suaves golpecitos contra la palma. Dirige un ventilador con aire a temperatura ambiente hacia el puerto durante 1 hora. Puedes cargarlo con una base inalámbrica Qi mientras tanto.',
+      },
+    ],
+  },
+  'fix-motorola-edge-50-ultra-speaker': {
+    tips: [
+      'Ubica los altavoces: sistema estéreo con Dolby Atmos. El altavoz inferior emite por la ranura acústica junto al puerto USB-C y la bandeja SIM. El altavoz superior emite por el bisel frontal y una abertura en el marco superior.',
+      'Cuidado de materiales especiales (madera y cuero vegano): el Edge 50 Ultra cuenta con acabados en madera real (Nordic Wood) y cuero vegano. Aunque tiene certificación IP68 (1,5 m por 30 min), seca de inmediato el panel trasero con un paño seco para evitar manchas o deterioro del grano.',
+      'Agua dulce vs. Piscina y Mar: si se sumergió en agua salada o con cloro, enjuaga las rejillas con un hilo suave de agua dulce antes de reproducir el tono de 165 Hz para evitar la cristalización de minerales corrosivos.',
+      'Precaución con la carga TurboPower de 125W: si el teléfono avisa de humedad en el puerto USB-C, no conectes el cargador de 125W para evitar dañar los pines. Utiliza la carga inalámbrica de 50W mientras se seca al aire.',
+      'Diagnóstico Motorola: abre la app integrada "Ayuda del dispositivo" > Diagnóstico del dispositivo > Prueba de hardware > Altavoz, o marca *#*#2486#*#* en el teléfono para acceder a las pruebas de ingeniería de Motorola CQATest.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde están los altavoces Dolby Atmos en el Motorola Edge 50 Ultra?',
+        a: 'El Motorola Edge 50 Ultra cuenta con altavoces estéreo afinados por Dolby Atmos. El altavoz principal se sitúa en la parte inferior junto al puerto USB-C y la ranura SIM. El altavoz superior emite a través de una estrecha ranura sobre la pantalla pOLED y un orificio acústico adicional en el marco superior.',
+      },
+      {
+        q: '¿Cómo probar los altavoces del Motorola Edge 50 Ultra con CQATest o Ayuda del dispositivo?',
+        a: 'Abre la aplicación "Ayuda del dispositivo", ve a "Prueba de hardware" y selecciona "Altavoz" y "Receptor". Para un test más avanzado, introduce *#*#2486#*#* (*#*#AUTON#*#*) en el marcador para ingresar al menú de ingeniería Motorola CQATest y verificar las vías de audio.',
+      },
+      {
+        q: '¿Cómo cuidar la trasera de madera o cuero vegano si el teléfono se moja?',
+        a: 'Aunque el chasis interno cuenta con protección impermeable IP68, los paneles exteriores de madera natural o cuero sintético son porosos. Sécalos dando toques suaves con un paño de microfibra limpio, evita usar secadores con calor y déjalos secar a temperatura ambiente.',
+      },
+      {
+        q: '¿Es seguro expulsar agua a 165 Hz en los altavoces Dolby Atmos de Motorola?',
+        a: 'Sí. La frecuencia de 165 Hz produce ondas de presión que coinciden con la resonancia mecánica de las cavidades acústicas sin sobrepasar los límites de los transductores de Motorola, eliminando el agua sin descalibrar el perfil Dolby Atmos.',
+      },
+      {
+        q: '¿Qué hacer si la carga TurboPower está desactivada por humedad?',
+        a: 'El sistema bloquea la carga de alto voltaje para prevenir cortocircuitos. Deja reposar el teléfono en posición vertical en un lugar ventilado durante 2 o 3 horas. Si necesitas cargarlo urgentemente, puedes usar cualquier base de carga inalámbrica Qi o Motorola de 50W.',
+      },
+    ],
+  },
+  'fix-redmi-note-13-speaker': {
+    tips: [
+      'Ubica los altavoces: el altavoz inferior está tras los orificios perforados a la derecha del puerto USB-C. El auricular/altavoz superior emite por la ranura sobre la pantalla y un orificio en el marco superior. Dispone además de conector de auriculares jack 3.5 mm en el borde superior.',
+      'Aviso de resistencia IP54: el Redmi Note 13 solo cuenta con protección IP54 frente a salpicaduras; NO es sumergible. Nunca lo metas en agua ni lo laves bajo el grifo. Seca cualquier líquido de inmediato con un paño seco.',
+      'Atención al falso modo auriculares: si entra agua en el jack de 3.5 mm superior, puede puentear los contactos eléctricos. El teléfono mostrará el icono de auriculares y silenciará el altavoz. Sacude el teléfono hacia abajo para expulsar las gotas.',
+      'Diagnóstico de hardware Xiaomi: marca *#*#6484#*#* para abrir el menú CIT (Control and Identification Test). Selecciona la prueba 10 (Receiver) y la 11 (Speaker) para comprobar el altavoz y el auricular por separado.',
+      'Función Limpiar altavoz de MIUI/HyperOS: puedes combinar nuestro tono web de 165 Hz con la opción del sistema en Ajustes > Ajustes adicionales > Limpiar altavoz (en versiones compatibles).',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde están situados los altavoces en el Redmi Note 13?',
+        a: 'El Redmi Note 13 dispone de sonido estéreo dual: el altavoz inferior principal está en el borde inferior a la derecha del puerto USB-C. El altavoz superior emite sonido a través de la ranura del auricular sobre la pantalla frontal y mediante una abertura acústica en el marco superior, junto al conector de audio de 3.5 mm y el emisor de infrarrojos.',
+      },
+      {
+        q: '¿Cómo acceder al menú de diagnóstico CIT de Xiaomi para probar los altavoces?',
+        a: 'Abre el marcador telefónico y escribe *#*#6484#*#*. En el menú de ingeniería CIT, busca "Speaker" (habitualmente el número 11) para probar el altavoz inferior y "Receiver" (número 10) para el auricular. También puedes acceder pulsando 5 veces seguidas en "Versión del kernel" dentro de Ajustes > Información del teléfono.',
+      },
+      {
+        q: '¿Por qué aparece el icono de auriculares y no suena el altavoz tras mojarse?',
+        a: 'El conector de audio de 3.5 mm en la parte superior tiene contactos metálicos de detección. Al penetrar humedad, el líquido cierra el circuito y el sistema asume erróneamente que hay auriculares conectados. Sacude el móvil con la parte superior orientada hacia abajo y deja secar el orificio para restablecer el sonido.',
+      },
+      {
+        q: '¿Es sumergible el Redmi Note 13?',
+        a: 'No. Su certificación IP54 garantiza resistencia únicamente ante salpicaduras accidentales, lluvia ligera y polvo. Carece de sellos herméticos para soportar la presión del agua bajo inmersión. Por ello, usar el tono de expulsión a 165 Hz tras una salpicadura es clave para que el líquido no penetre en la circuitería interna.',
+      },
+      {
+        q: '¿En qué se diferencia el sonido de 165 Hz de la función "Limpiar altavoz" de Xiaomi?',
+        a: 'La herramienta integrada de HyperOS/MIUI emite un barrido sonoro de 30 segundos. Nuestro expulsor web a 165 Hz genera una onda cuadrada continua dirigida a la frecuencia de resonancia física del diafragma, maximizando la expulsión de gotas resistentes. Se pueden usar ambas herramientas de forma complementaria.',
+      },
+    ],
+  },
+  'fix-moto-g84-speaker': {
+    tips: [
+      'Ubica los altavoces: sonido estéreo con Dolby Atmos. El altavoz principal se halla tras los orificios del borde inferior junto al USB-C. El auricular estéreo superior emite por la ranura horizontal sobre la pantalla pOLED de 6,5 pulgadas.',
+      'Aviso de protección IP54: el Moto G84 cuenta con un diseño repelente al agua con nanorevestimiento interno contra salpicaduras o lluvia ligera, pero NO es sumergible. Sécalo de inmediato si entra en contacto con líquidos.',
+      'Revisa el conector de audio jack 3.5 mm: el borde superior incluye una toma de auriculares de 3.5 mm. La humedad en su interior puede activar el "modo auriculares" y enmudecer los altavoces estéreo. Golpea suavemente el teléfono contra la mano con la parte superior hacia abajo para desalojar las gotas.',
+      'Verificación Dolby Atmos: tras expulsar el agua, abre Ajustes > Sonido y vibración > Dolby Atmos y cambia entre perfiles ("Audio inteligente", "Música", "Voz") para comprobar la separación espacial y el rango de frecuencias.',
+      'Diagnóstico Motorola: abre la aplicación "Ayuda del dispositivo" > Diagnóstico > Prueba de hardware > Altavoz, o marca *#*#2486#*#* en el teclado para acceder al menú de ingeniería Motorola CQATest.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde están los altavoces estéreo en el Moto G84?',
+        a: 'El Moto G84 equipa altavoces estéreo compatibles con Dolby Atmos. El altavoz inferior está ubicado a la derecha del puerto USB-C detrás de perforaciones circulares. El altavoz secundario/auricular se encuentra en la ranura horizontal entre la pantalla frontal y el marco superior.',
+      },
+      {
+        q: '¿Es el Moto G84 resistente al agua o sumergible?',
+        a: 'Es resistente a salpicaduras con certificación IP54 y revestimiento hidrófobo. Protege contra lloviznas y salpicaduras cotidianas, pero no soporta inmersiones en lavabos, piscinas o agua profunda. Usar la frecuencia de 165 Hz al instante es clave para evacuar el agua antes de que sobrepase las barreras acústicas.',
+      },
+      {
+        q: '¿Cómo comprobar la claridad de los altavoces con las herramientas de Motorola?',
+        a: 'Abre la aplicación "Ayuda del dispositivo" que viene preinstalada en el móvil, entra en "Diagnóstico del dispositivo" y pulsa "Prueba de hardware" > "Altavoz". También puedes teclear *#*#2486#*#* para iniciar el menú CQATest o utilizar nuestro test de canales estéreo en el navegador.',
+      },
+      {
+        q: '¿Qué hacer si entra agua en el conector jack de 3.5 mm del Moto G84?',
+        a: 'La humedad en la toma de audio suele puentear los contactos y silenciar los altavoces principales. Coloca el teléfono boca abajo, dale unos toques suaves contra la palma de la mano para extraer las gotas y déjalo secar al aire sin introducir hisopos de algodón ni objetos metálicos.',
+      },
+      {
+        q: '¿Cómo ayuda el sonido de 165 Hz a solucionar el audio apagado en el Moto G84?',
+        a: 'El agua depositada en la fina malla acústica crea una película líquida por tensión superficial que bloquea las frecuencias medias y agudas. La oscilación a 165 Hz hace vibrar la membrana con pulsos de aire que rompen esa película y proyectan las gotas al exterior.',
+      },
+    ],
+  },
+  'fix-samsung-galaxy-a25-speaker': {
+    tips: [
+      'Ubica los altavoces: altavoces estéreo (auricular + altavoz inferior). El altavoz principal se ubica tras la rejilla de 5 orificios en el borde inferior junto al puerto USB-C y la toma de auriculares 3.5 mm. El auricular superior está sobre el notch de la cámara.',
+      'Aviso importante de protección contra agua: a diferencia de los modelos A35 o A55, el Galaxy A25 5G NO tiene certificación oficial IP67 ni IP68. Solo cuenta con resistencia básica a salpicaduras: nunca lo sumerjas ni lo laves bajo el grifo.',
+      'Comprueba el conector jack 3.5 mm: el agua dentro del conector de auriculares puede puentear los contactos eléctricos y hacer creer al sistema que hay auriculares conectados, dejando el altavoz en silencio. Sacude el teléfono hacia abajo para retirar el agua.',
+      'Si el móvil se moja con lluvia o salpicaduras, apágalo de inmediato, seca la superficie con una toalla y ejecuta el sonido de 165 Hz orientando las aberturas hacia abajo sobre un paño absorbente.',
+      'Diagnóstico de hardware Samsung: abre la aplicación Teléfono y marca *#0*#, luego pulsa "SPEAKER" para verificar que tanto el altavoz inferior como el auricular superior suenen nítidos y sin distorsión.',
+    ],
+    faqs: [
+      {
+        q: '¿Dónde se ubican los altavoces en el Samsung Galaxy A25 5G?',
+        a: 'El Galaxy A25 5G cuenta con sonido estéreo. El altavoz principal inferior está en el borde inferior entre el puerto USB-C y el conector jack de 3.5 mm, detrás de una rejilla de 5 orificios. El altavoz secundario/auricular está en la ranura superior sobre el notch de la pantalla Infinity-U.',
+      },
+      {
+        q: '¿Es resistente al agua el Samsung Galaxy A25 5G?',
+        a: 'No es sumergible. El Galaxy A25 5G no dispone de clasificación oficial IP67 o IP68. Aunque incorpora juntas hidrófobas básicas en las rejillas acústicas, no resiste la inmersión en agua. Si el teléfono se moja por accidente, expulsar el agua de inmediato con ondas a 165 Hz evita filtraciones a componentes críticos.',
+      },
+      {
+        q: '¿Cómo probar los altavoces en el Galaxy A25 con el menú de diagnóstico de Samsung?',
+        a: 'Abre el marcador telefónico de Samsung y marca *#0*#. En la cuadrícula de pruebas pulsa "SPEAKER": el teléfono reproducirá un tono de prueba por el altavoz inferior y, al pulsar nuevamente, conmutará al auricular superior para verificar que no queden ruidos apagados ni crujidos.',
+      },
+      {
+        q: '¿Por qué el altavoz del Galaxy A25 no suena o parece estar en modo auriculares tras mojarse?',
+        a: 'El Galaxy A25 dispone de una toma de audio de 3.5 mm en el borde inferior. Cuando entran gotas de agua, se produce un puente eléctrico que indica a One UI que se han conectado auriculares con cable, silenciando el altavoz externo. Dale suaves toques contra tu mano para expulsar las gotas y deja que se seque.',
+      },
+      {
+        q: '¿Cómo protege la expulsión de agua a 165 Hz a un teléfono sin protección sumergible como el A25?',
+        a: 'En terminales sin sellado hermético IP68, el agua estancada en la malla puede filtrarse por capilaridad hacia la bobina del transductor. La onda acústica de 165 Hz crea impulsos de aire que empujan las microgotas hacia fuera antes de que penetren en la placa electrónica.',
+      },
+    ],
+  },
+};
+
 function buildSpanish(device: DeviceData): LocalizedDeviceContent {
   const isEarbuds = device.category === 'earbuds';
   const isWatch = device.category === 'smartwatch';
@@ -119,7 +370,11 @@ function buildSpanish(device: DeviceData): LocalizedDeviceContent {
         },
       ];
 
-  const technicalTips = isEarbuds
+  const customContent = spanishCustomContent[device.slug];
+
+  const technicalTips = customContent
+    ? customContent.tips
+    : isEarbuds
     ? [
         `Nunca sumerjas tus ${device.shortName} en agua ni los laves bajo el grifo.`,
         'Asegúrate de que el estuche de carga y los auriculares estén 100% secos antes de guardarlos.',
@@ -137,7 +392,9 @@ function buildSpanish(device: DeviceData): LocalizedDeviceContent {
         'Nunca introduzcas palillos ni clips en los orificios de los altavoces.',
       ];
 
-  const faqs: DeviceFAQ[] = [
+  const faqs: DeviceFAQ[] = customContent
+    ? customContent.faqs
+    : [
     {
       q: `¿Cómo expulsa el sonido de 165 Hz el agua de ${device.shortName}?`,
       a: `La frecuencia de 165 Hz coincide con la resonancia mecánica de las microcámaras de altavoz. Al vibrar intensamente, desplaza ráfagas de aire que rompen la tensión superficial del agua atrapada en la malla acústica de ${device.shortName}, expulsándola hacia el exterior.`,

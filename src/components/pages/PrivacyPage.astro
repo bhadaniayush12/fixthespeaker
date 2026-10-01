@@ -9,6 +9,12 @@ export interface Props {
 
 const { lang = defaultLang } = Astro.props;
 const content = subpagesContent[lang]?.privacy || subpagesContent[defaultLang].privacy;
+const formatItemHtml = (text: string) => {
+  return text.replace(
+    /(https?:\/\/[^\s\)\x27\",\uFF08\uFF09]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-primary underline underline-offset-2 hover:text-primary-bright">$1</a>'
+  );
+};
 ---
 
 <ContentLayout
@@ -30,7 +36,7 @@ const content = subpagesContent[lang]?.privacy || subpagesContent[defaultLang].p
       {section.list && (
         <ul>
           {section.list.map((item) => (
-            <li>{item}</li>
+            <li set:html={formatItemHtml(item)} />
           ))}
         </ul>
       )}

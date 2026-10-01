@@ -304,6 +304,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (Titanium chassis, 6m depth up to 30 min)',
     compat: ['iPhone 17 Pro Max', 'iPhone 17 Pro', 'iPhone 17 Air'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the precision-milled acoustic holes on the bottom right of the USB-C port, while the stereo earpiece speaker is integrated into an ultra-narrow micro-slit above the Dynamic Island at the top edge.',
+      'Fresh water vs. Salt water: iPhone 17 Pro Max has IP68 resistance (up to 6m for 30 min in fresh water), but ocean salt water and chlorinated pool chemicals leave corrosive mineral deposits on the acoustic mesh. If exposed to salt or pool water, gently rinse the speaker ports under a slow trickle of cool tap water before drying.',
+      'Never insert SIM ejector tools, needles, or compressed air into the speaker grilles; high pressure or sharp points can puncture the water-resistant acoustic membrane.',
+      'If the iOS "Liquid Detected in USB-C Connector" notification appears, do not connect a charging cable. Allow the port to air-dry upright for several hours, or use a MagSafe wireless charger in emergencies.',
+      'Run built-in iOS speaker balance checks: isolate top and bottom speakers via Settings > Accessibility > Audio & Visual > Balance slider, or record a clip in Voice Memos to verify clarity across both transducers.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where exactly are the speaker ports located on the iPhone 17 Pro Max?',
+        a: 'The iPhone 17 Pro Max features a dual stereo speaker system. The main high-power loudspeaker is located on the bottom titanium frame to the right of the USB-C port behind precision-drilled acoustic ports (the left side holes house the primary microphone). The secondary stereo earpiece speaker is integrated into an ultra-slim micro-slit along the top seam directly above the Dynamic Island.',
+      },
+      {
+        q: 'How do I test if my iPhone 17 Pro Max speakers are fully cleared after ejecting water?',
+        a: 'You can test speaker clarity using three reliable iOS methods: 1) Go to Settings > Accessibility > Audio & Visual and drag the Balance slider fully left and right to isolate the top earpiece from the bottom loudspeaker. 2) Record a voice note in Voice Memos and play it back toggling the speakerphone button. 3) Use our built-in stereo channel and frequency sweep tests to confirm crisp treble and deep bass with zero crackling.',
+      },
+      {
+        q: 'What should I do if my iPhone 17 Pro Max was dropped in salt water or a swimming pool?',
+        a: 'Immediately power off the phone. Rinse the speaker openings under a gentle, low-pressure trickle of cool, fresh tap water to dissolve salt crystals and chlorine before they dry onto the acoustic mesh. Pat dry with a microfiber cloth, run our 165 Hz water eject tone for 2 to 3 cycles with ports pointing downward, and allow the device to air-dry before plugging into USB-C.',
+      },
+      {
+        q: 'Can 165 Hz sound damage the iPhone 17 Pro Max acoustic chamber or titanium frame?',
+        a: 'No. The 165 Hz acoustic pulse generates mechanical air displacement strictly within the safe operating parameters of Apple\'s high-excursion speaker drivers and internal amplifiers. It vibrates the speaker diaphragm just enough to dislodge liquid surface tension without causing mechanical strain or heating.',
+      },
+      {
+        q: 'Why does my iPhone 17 Pro Max show "Liquid Detected in USB-C Connector" after ejecting water?',
+        a: 'The USB-C port houses independent electrical moisture-sensing pins. While 165 Hz sound evacuates water droplets from the speaker chamber, residual moisture may still bridge the electrical pins inside the charging port. iOS automatically locks out wired charging to prevent electrical corrosion. Keep the phone upright in a ventilated area until the warning clears; MagSafe and Qi wireless charging remain safe to use.',
+      },
+    ],
   },
   {
     slug: 'fix-iphone-17-air-speaker',
@@ -846,6 +875,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (Titanium frame, 1.5m depth up to 30 min)',
     compat: ['Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the single continuous horizontal acoustic slit on the bottom edge between the USB-C port and S-Pen silo, while the stereo earpiece speaker is an ultra-fine micro-slit along the top seam of the Gorilla Armor glass.',
+      'Remove the S-Pen immediately: water easily gets trapped inside the S-Pen silo cavity directly next to the bottom speaker chamber, creating muffled resonance until the stylus is removed and both openings are ventilated.',
+      'Fresh water vs. Salt water: Galaxy S24 Ultra is IP68 rated (up to 1.5m for 30 min in fresh water), but salt water from the ocean or chlorinated pool water will pit the titanium frame and corrode speaker mesh. Gently rinse under a slow trickle of fresh tap water if exposed to salt or chemicals.',
+      'If the One UI water drop notification appears ("Moisture has been detected in your charger/USB port"), do not plug in the USB-C cable. Let the port air-dry upright for 2 to 4 hours; you can safely use Fast Wireless Charging if you need immediate power.',
+      'Use Samsung hardware diagnostics: open the Phone app dialer and enter *#0*# to launch the Hardware Diagnostic Mode, tap "SPEAKER" to toggle between upper and lower speaker output, or test audio through the Samsung Members app.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speaker openings located on the Galaxy S24 Ultra?',
+        a: 'The Galaxy S24 Ultra features a redesigned bottom loudspeaker port consisting of a single horizontal acoustic slot between the USB-C charging port and the S-Pen silo. The secondary stereo earpiece speaker is positioned along the top seam between the flat Corning Gorilla Armor glass and the Grade 5 titanium top rail.',
+      },
+      {
+        q: 'How do I test the top and bottom speakers on Galaxy S24 Ultra with diagnostic codes?',
+        a: 'Samsung includes a built-in hardware diagnostic tool. Open the Phone app and dial *#0*#. In the diagnostic grid, tap "SPEAKER" — the first tap tests the bottom primary loudspeaker, and a second tap switches audio to the top earpiece speaker. Alternatively, open the Samsung Members app and run Diagnostics > Phone Diagnostics > Speaker.',
+      },
+      {
+        q: 'Should I remove the S-Pen when ejecting water from Galaxy S24 Ultra?',
+        a: 'Yes, absolutely. The S-Pen silo sits directly adjacent to the primary loudspeaker acoustic box. Water trapped inside the hollow stylus silo dampens acoustic chamber resonance and holds moisture against internal seals. Click and withdraw the S-Pen, gently shake both the phone and stylus with ports pointing down, and run the 165 Hz tone with the S-Pen removed.',
+      },
+      {
+        q: 'What does the "Moisture detected in charger/USB port" water drop icon mean?',
+        a: 'The Galaxy S24 Ultra USB-C port has built-in sensor pins that detect electrical conductivity caused by moisture or conductive liquid. One UI disables cable charging to prevent short-circuiting. The warning usually clears within 1 to 4 hours as airflow evaporates the moisture. While waiting, Fast Wireless Charging remains fully operational.',
+      },
+      {
+        q: 'Can 165 Hz sound damage the Titanium frame or Gorilla Armor acoustic seal of S24 Ultra?',
+        a: 'No. The 165 Hz tone operates safely within the certified dynamic range and frequency limits of Samsung\'s stereo transducers. The sound waves create targeted pressure pulses that shatter liquid surface tension in the acoustic mesh without placing mechanical strain on the titanium frame or waterproof adhesive barriers.',
+      },
+    ],
   },
   {
     slug: 'eject-water-samsung-galaxy-s24-plus',
@@ -947,6 +1005,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (1.5m up to 30 min)',
     compat: ['Galaxy S22 Ultra', 'Galaxy S22+', 'Galaxy S22'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the 5-hole pill-shaped grille on the bottom edge to the right of the USB-C port, while the stereo earpiece speaker fires through a hairline micro-slit at the top edge above the curved display.',
+      'Remove the S-Pen right away: like other Ultra models, water easily pools in the hollow S-Pen silo adjacent to the bottom speaker chamber. Remove the S-Pen and shake it gently to prevent trapped liquid from muffling bass response.',
+      'Account for seal aging: Galaxy S22 Ultra launched with IP68 water resistance (1.5m for 30 min), but waterproof adhesive gaskets naturally degrade over years of heat, pocket flexing, and micro-drops. Never submerge an older phone or expose it to high-pressure faucets.',
+      'If exposed to pool water or salt water, rinse briefly under a gentle trickle of fresh tap water to prevent mineral corrosion on the acoustic mesh, then dry with a microfiber towel.',
+      'Run Samsung hardware diagnostics: dial *#0*# in the Samsung Phone dialer and tap "SPEAKER" to test both audio drivers independently, or use the Diagnostics feature in the Samsung Members app.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speakers on the Samsung Galaxy S22 Ultra located?',
+        a: 'The Galaxy S22 Ultra uses a stereo speaker system. The main loudspeaker outputs from the 5-hole pill grille on the bottom edge between the USB-C port and the left edge, beside the S-Pen silo. The secondary upper speaker is positioned in the narrow hairline seam where the curved Gorilla Glass Victus+ display meets the Armor Aluminum frame at the top.',
+      },
+      {
+        q: 'How do I test the S22 Ultra speakers using Samsung dialer codes?',
+        a: 'Open the default Samsung Phone app and dial *#0*#. When the diagnostic menu appears, tap the "SPEAKER" tile. This initiates a dual-frequency hardware test that cycles between the bottom loudspeaker and top earpiece, allowing you to confirm that all crackling and distortion have cleared.',
+      },
+      {
+        q: 'Does older age affect the S22 Ultra IP68 water resistance seals?',
+        a: 'Yes. Factory IP68 ratings are measured on new devices in lab conditions. Over time, exposure to ambient heat, humidity, drops, and pocket lint gradually degrades internal waterproof adhesive gaskets. If your S22 Ultra gets wet, treat it promptly: eject water with 165 Hz sound immediately rather than relying on degraded internal seals.',
+      },
+      {
+        q: 'Why do I need to take the S-Pen out when ejecting water from S22 Ultra?',
+        a: 'The S-Pen silo is an open chamber that runs directly parallel to the bottom speaker acoustic box. Trapped water inside the silo creates an acoustic dampening effect that makes the bottom speaker sound distorted or quiet. Removing the stylus allows air to circulate and liquid to escape freely.',
+      },
+      {
+        q: 'What should I do if the Samsung "Moisture detected" notification won\'t turn off?',
+        a: 'Ensure the USB-C port is thoroughly dry. Hold the phone upright and tap it gently against your hand. Direct a cool room-temperature fan towards the bottom port for 1 to 2 hours. Never use hair dryers, cotton buds, or rubbing alcohol inside the port. You can charge the phone wirelessly on any Qi charging pad while waiting.',
+      },
+    ],
   },
   {
     slug: 'eject-water-samsung-galaxy-s22-plus',
@@ -1099,6 +1186,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'Standard splash resistant acoustic grille',
     compat: ['Galaxy A25 5G', 'Galaxy A24', 'Galaxy A15 5G'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the 5-hole grille on the bottom edge beside the USB-C port and 3.5mm headphone jack. The secondary stereo earpiece speaker is integrated into the slim slit above the Infinity-U camera notch.',
+      'Important water protection notice: unlike Samsung Galaxy A35/A55 models, the Galaxy A25 5G does NOT carry an official IP67 or IP68 waterproof rating. It features basic splash resistance only — never submerge it in water or wash it under running water.',
+      'Check the 3.5mm headphone jack: water entering the bottom 3.5mm audio jack can short the headphone detection pins, tricking One UI into believing wired headphones are plugged in and muting the loudspeaker. Shake droplets out of the jack with the bottom facing down.',
+      'If the phone gets wet from rain, spills, or splashes, immediately turn off the device, blot the exterior dry with a towel, and run 165 Hz sound with the speaker openings angled downward onto an absorbent cloth.',
+      'Run Samsung hardware diagnostics: open the Samsung Phone dialer and enter *#0*#, then tap "SPEAKER" to test audio clarity across both the bottom loudspeaker and top earpiece.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speakers located on the Samsung Galaxy A25 5G?',
+        a: 'The Galaxy A25 5G features stereo speakers. The main loudspeaker is located on the bottom edge behind a 5-hole grille positioned between the USB-C port and the outer frame, right next to the 3.5mm headphone jack. The secondary stereo earpiece speaker is housed in the slim horizontal slit directly above the front camera notch at the top bezel.',
+      },
+      {
+        q: 'Is the Samsung Galaxy A25 5G waterproof?',
+        a: 'No. The Galaxy A25 5G does not have an official IP67 or IP68 water immersion rating. While its internal acoustic ports feature basic splash-dampening mesh, the phone cannot withstand submersion in water, sinks, or pools. If the phone is exposed to liquids, prompt action with 165 Hz water ejection is critical to prevent liquid from seeping into internal circuitry.',
+      },
+      {
+        q: 'How do I test the speakers on Galaxy A25 using the Samsung diagnostic menu?',
+        a: 'Open the default Samsung Phone dialer and enter *#0*#. In the diagnostic grid, tap "SPEAKER". The phone will play a test melody through the bottom loudspeaker, and tapping again or pressing the screen will cycle audio to the top earpiece, allowing you to verify that both drivers produce clean, unmuffled sound.',
+      },
+      {
+        q: 'Why is sound muted or playing through headphones on my Galaxy A25 after water exposure?',
+        a: 'The Galaxy A25 includes a physical 3.5mm headphone jack on the bottom edge. When water droplets enter this socket, they create electrical continuity between the audio detection contacts, causing One UI to route all sound to a non-existent wired headset. Tap the bottom of the phone gently against your palm and let the socket air-dry to restore speaker output.',
+      },
+      {
+        q: 'How does 165 Hz water eject protect non-submersible phones like the Galaxy A25?',
+        a: 'Because non-IP rated phones have less aggressive internal adhesive barriers, liquid sitting on the acoustic mesh can gradually seep deeper into the speaker voice coil. The 165 Hz sound wave creates rhythmic air pulses that push droplets outward through the exterior grille before capillary action draws liquid into sensitive electronics.',
+      },
+    ],
   },
   {
     slug: 'fix-samsung-galaxy-a15-speaker',
@@ -1242,6 +1358,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (1.5m up to 30 min)',
     compat: ['Pixel 8 Pro', 'Pixel 8', 'Pixel 7 Pro'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the pill-shaped slot to the right of the centered USB-C port on the bottom edge (the left slot houses the primary microphone). The stereo earpiece speaker is an ultra-thin slit tucked above the top display bezel. Note: the cutout on the top aluminum frame is a 5G mmWave antenna window, not a speaker.',
+      'Fresh water vs. Pool & Sea water: Pixel 8 Pro is IP68 rated under IEC 60529 (up to 1.5m for 30 min in fresh water), but pool chlorine and ocean salt crystallize on the acoustic mesh and corrode the polished aluminum camera bar. If exposed to chlorinated or salt water, rinse gently under a slow trickle of cool tap water immediately.',
+      'If the Android notification "Liquid or debris in USB port - USB port disabled" appears, do not connect a USB-C charger. Allow the port to air-dry for at least 2 to 4 hours. You can safely use a Pixel Stand or Qi wireless charger if you need to recharge immediately.',
+      'Never insert SIM ejector keys, paperclips, or compressed air into the microphone pinhole located on the bottom frame near the speaker slot; high pressure can tear the internal waterproof acoustic membrane.',
+      'Run Google hardware diagnostics: open the Google Phone dialer and enter *#*#7287#*#* (*#*#PAIRS#*#*) to run built-in hardware tests, or navigate to Settings > Tips & support > Diagnostics / Phone diagnostics to test speaker audio.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speaker ports located on Google Pixel 8 Pro?',
+        a: 'The Google Pixel 8 Pro features a dual stereo speaker configuration. The main high-output loudspeaker is located on the bottom edge behind the cutout to the right of the USB-C port (the matching cutout to the left is the bottom microphone). The secondary stereo earpiece speaker is integrated into an ultra-slim hairline slit between the top glass and the polished aluminum frame above the front camera. The cutout on the top edge of the phone is a 5G mmWave antenna cutout, not a speaker.',
+      },
+      {
+        q: 'How do I run a hardware speaker diagnostic on Pixel 8 Pro?',
+        a: 'Google Pixel phones provide hardware diagnostic options: 1) Open the Phone dialer and enter *#*#7287#*#* (*#*#PAIRS#*#*) to access Google\'s Pixel Diagnostic Suite, where you can select the audio and speaker test. 2) Go to Settings > Tips & support > Diagnostics > Speaker to run automated tone tests. 3) Play our built-in stereo channel test in the browser to isolate left and right audio channels.',
+      },
+      {
+        q: 'What should I do if my Pixel 8 Pro falls into ocean water or a chlorinated pool?',
+        a: 'Immediately power off the device. Salt brine and pool chlorine leave corrosive chemical residues that damage the acoustic mesh and matte glass finish. Gently rinse the speaker ports and USB-C socket under a slow, low-pressure trickle of fresh tap water for 10 seconds. Pat dry with a clean cloth, run the 165 Hz water eject tone for 2 to 3 cycles with speakers pointed downward, and let dry thoroughly before charging.',
+      },
+      {
+        q: 'How does 165 Hz sound safely clear water from the Pixel 8 Pro speaker cavity?',
+        a: 'The 165 Hz acoustic pulse generates rapid pressure waves that oscillate the speaker cone at its mechanical resonance frequency. This rhythmic displacement breaks the surface tension of water trapped in the acoustic mesh, atomizing droplets and pushing liquid outward through the exterior grille without stressing Google\'s audio amplifier or drivers.',
+      },
+      {
+        q: 'What does the "Liquid or debris in USB port" notification mean on Pixel 8 Pro?',
+        a: 'Pixel 8 Pro uses analog moisture detection across the USB-C connector pins. When liquid is present, Android disables power delivery and data transfer to protect against corrosion and short circuits. While 165 Hz ejects water from the separate speaker chamber, the USB-C port requires ambient air-drying. Stand the phone upright; you can continue using Qi or Pixel Stand wireless charging safely.',
+      },
+    ],
   },
   {
     slug: 'fix-pixel-8-speaker',
@@ -1435,6 +1580,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP54 (Dust and splash resistance)',
     compat: ['Redmi Note 13 5G', 'Redmi Note 13 4G', 'Redmi Note 12'],
+    customTips: [
+      'Locate your speaker ports: the primary loudspeaker is behind the drilled grille holes on the bottom right of the USB-C port. The top speaker/earpiece fires through both a front-facing display slit and a secondary top-frame acoustic vent hole for stereo audio. A 3.5mm headphone jack is also located on the top edge.',
+      'Important IP54 water resistance notice: Redmi Note 13 is IP54 splash-resistant only — it is NOT waterproof and cannot survive immersion. Never submerge the device in water or hold it under a running faucet. Blot liquid off immediately with a dry cloth.',
+      'Check for false headphone mode: if water enters the top 3.5mm headphone jack, it can short the internal detection contacts. The phone will display a headphone icon in the status bar and mute the external speakers. Tap the phone against your palm with the top edge facing down to dislodge trapped droplets.',
+      'Use Xiaomi hardware diagnostics: open the dialer and enter *#*#6484#*#* to open the Xiaomi CIT (Control and Identification Test) menu. Select test 10 (Receiver) and test 11 (Speaker) to verify both audio components independently.',
+      'MIUI / HyperOS Clear Speaker feature: you can combine our 165 Hz browser sound with Xiaomi\'s built-in tool by going to Settings > Additional Settings > Clear speaker (on supported MIUI/HyperOS builds).',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the speaker ports located on the Redmi Note 13?',
+        a: 'The Redmi Note 13 features dual stereo speakers. The primary bottom loudspeaker outputs through circular drilled holes on the bottom edge to the right of the USB-C port. The secondary top speaker outputs audio through both the narrow earpiece slit above the front display and a dedicated secondary acoustic opening on the top plastic frame beside the 3.5mm headphone jack and IR blaster.',
+      },
+      {
+        q: 'How do I access Xiaomi CIT hardware diagnostics to test my speakers?',
+        a: 'Open the default Phone dialer app and enter *#*#6484#*#*. This opens Xiaomi\'s engineering CIT menu. Scroll to "Speaker" (typically item 11) to play automated test audio through the bottom loudspeaker, and "Receiver" (item 10) to test the upper earpiece. You can also access this by going to Settings > About Phone > Detailed info and specs > tapping "Kernel version" 5 times.',
+      },
+      {
+        q: 'Why does my Redmi Note 13 show a headphone icon and mute the speaker after getting wet?',
+        a: 'The 3.5mm audio jack on the top frame has mechanical and electrical sensing leaves. When moisture enters the jack, liquid bridges the contacts and signals the audio chip that wired headphones are connected, muting external loudspeaker audio. Shake water out of the 3.5mm jack, gently absorb surface moisture with the tip of a paper towel, and let it air-dry.',
+      },
+      {
+        q: 'Is the Redmi Note 13 waterproof enough to survive submersion?',
+        a: 'No. The Redmi Note 13 carries an IP54 rating, which protects against light splashes, rain, and dust, but offers no seal against liquid pressure or submersion. If submerged, water can rapidly penetrate the speaker membranes, USB port, and SIM tray. Ejecting water with 165 Hz sound immediately after splash exposure is essential to prevent moisture from reaching internal board components.',
+      },
+      {
+        q: 'How does the 165 Hz tone compare to Xiaomi\'s built-in "Clear speaker" feature?',
+        a: 'Xiaomi\'s HyperOS/MIUI "Clear speaker" tool plays a 30-second audio sweep. Our web-based 165 Hz water ejector uses a continuous resonant square wave that specifically targets the mechanical displacement frequency of miniature speaker membranes, generating maximum air pressure to expel stubborn water droplets. Both tools can be used in tandem for thorough clearing.',
+      },
+    ],
   },
   {
     slug: 'fix-redmi-note-12-pro-speaker',
@@ -1753,6 +1927,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP68 (Submersible up to 1.5m for 30 min)',
     compat: ['Motorola Edge 50 Ultra', 'Motorola Edge 50 Pro', 'Motorola Edge 50 Fusion'],
+    customTips: [
+      'Locate your speaker ports: dual stereo speakers tuned with Dolby Atmos. The bottom loudspeaker fires through the acoustic slot on the lower edge beside the USB-C port and SIM tray. The top stereo speaker fires through an upper frame aperture and a micro-slit above the display bezel.',
+      'Special material care for wood and vegan leather backs: Edge 50 Ultra features real wood (Nordic Wood) and vegan leather finishes. While the phone is IP68 submersible (up to 1.5m for 30 min), organic wood and vegan leather should be blotted dry immediately with a clean cloth to prevent moisture staining or grain degradation.',
+      'Fresh water vs. Pool & Ocean water: if exposed to ocean salt water or swimming pool chlorine, rinse the speaker grilles under a gentle trickle of fresh tap water to prevent corrosive mineral crystallization before running the 165 Hz water eject tone.',
+      'TurboPower 125W charging caution: if Motorola displays a moisture warning for the USB-C port, do not connect the 125W wired TurboPower adapter. High-wattage charging on moist contacts causes rapid contact pitting. Use 50W wireless charging while the port air-dries.',
+      'Run Motorola hardware diagnostics: open the pre-installed Motorola "Device Help" app > Device Diagnostics > Hardware Test > Speaker, or dial *#*#2486#*#* (*#*#AUTON#*#*) in the dialer to launch the Motorola CQATest diagnostic suite.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the Dolby Atmos speakers located on the Motorola Edge 50 Ultra?',
+        a: 'The Motorola Edge 50 Ultra features stereo speakers tuned by Dolby Atmos. The primary bottom loudspeaker is situated on the bottom aluminum frame behind an acoustic cutout next to the USB-C port and SIM card tray. The secondary stereo speaker outputs through an ultra-narrow earpiece slit above the curved pOLED display, supplemented by an acoustic port on the top rail.',
+      },
+      {
+        q: 'How do I test the Motorola Edge 50 Ultra speakers using Motorola CQATest or Device Help?',
+        a: 'Motorola provides two diagnostic methods: 1) Open the pre-installed "Device Help" app, select "Device Diagnostics", tap "Hardware Test", and select "Speaker" and "Receiver" to test both audio drivers. 2) Open the phone dialer and enter *#*#2486#*#* (*#*#AUTON#*#*) to access the Motorola CQATest engineering suite, which offers advanced audio pathway tests.',
+      },
+      {
+        q: 'How should I care for the real wood or vegan leather back of the Edge 50 Ultra when wet?',
+        a: 'The Edge 50 Ultra is IP68 waterproof, meaning water cannot penetrate the internal chassis. However, the external rear panels — whether real FSC-certified Nordic wood or vegan leather — are porous. Blot the back thoroughly with a dry microfiber cloth, do not use heat or hair dryers which can warp wood veneer or crack vegan leather, and allow it to dry in ambient room temperature.',
+      },
+      {
+        q: 'Is 165 Hz water ejection safe for Motorola Dolby Atmos acoustic chambers?',
+        a: 'Yes. The 165 Hz frequency tone produces mechanical air displacement that targets the acoustic cavity\'s resonant frequency without exceeding the safe excursion limits of Motorola\'s high-output stereo drivers. It safely breaks surface tension on the acoustic mesh to eject water without distorting Dolby Atmos calibration.',
+      },
+      {
+        q: 'What should I do if TurboPower charging is disabled after water exposure?',
+        a: 'Motorola software automatically blocks high-voltage TurboPower charging when moisture is sensed in the USB-C port to prevent pin corrosion. Leave the device standing upright in a well-ventilated spot for 2 to 3 hours. If you need immediate power, you can safely charge the Edge 50 Ultra on any 15W Qi or 50W Motorola wireless charging pad.',
+      },
+    ],
   },
   {
     slug: 'fix-motorola-edge-50-pro-speaker',
@@ -1789,6 +1992,35 @@ const rawCatalog: RawDeviceDef[] = [
     category: 'smartphone',
     ipRating: 'IP54 (Water repellent design)',
     compat: ['Moto G84 5G', 'Moto G54 5G', 'Moto G34 5G'],
+    customTips: [
+      'Locate your speaker ports: stereo speakers with Dolby Atmos. The primary loudspeaker is located behind the drilled holes on the bottom edge beside the USB-C port, while the secondary stereo earpiece speaker fires through the slim horizontal slit above the 6.5-inch pOLED display.',
+      'Important water protection notice: Moto G84 has an IP54 water-repellent design with internal barrier nanocoating. It is rated for accidental spills, light rain, and splashes, but is NOT waterproof and cannot be submerged. Blot dry immediately if exposed to liquids.',
+      'Check the 3.5mm audio jack: the top edge features an analog 3.5mm headphone jack. Moisture inside this socket can short headphone detection pins, causing the phone to switch to "headphone mode" and mute the stereo speakers. Gently tap the phone against your palm with the top edge down to expel droplets.',
+      'Dolby Atmos audio check: after ejecting water, open Settings > Sound & vibration > Dolby Atmos and toggle between "Smart Audio", "Music", and "Voice" to verify that stereo spatial separation and frequency range have been fully restored.',
+      'Run Motorola hardware diagnostics: open the pre-installed "Device Help" app, select "Device Diagnostics" > "Hardware Test" > "Speaker", or dial *#*#2486#*#* in the dialer for the Motorola CQATest hardware diagnostic menu.',
+    ],
+    customFaqs: [
+      {
+        q: 'Where are the stereo speaker ports on the Moto G84?',
+        a: 'The Moto G84 features dual stereo speakers with Dolby Atmos. The primary loudspeaker is on the bottom frame behind circular cutouts to the right of the USB-C port. The secondary stereo earpiece speaker is integrated into the slim horizontal slit between the front glass and frame directly above the selfie camera.',
+      },
+      {
+        q: 'Is the Moto G84 waterproof or just splash resistant?',
+        a: 'The Moto G84 is splash resistant with an IP54 water-repellent design. While it features an internal nanocoating barrier to protect against splashes, sweat, and light rain, it does not have the hermetic waterproof seals required for submersion. If dropped into water or splashed, running the 165 Hz water eject tone immediately is essential to dislodge liquid before it reaches internal components.',
+      },
+      {
+        q: 'How do I test Moto G84 speaker clarity using Motorola diagnostic tools?',
+        a: 'Open Motorola\'s pre-installed "Device Help" app, go to "Device Diagnostics", tap "Hardware Test", and select "Speaker" to play automated test tones. You can also dial *#*#2486#*#* in the Phone app to access the CQATest diagnostic menu, or use our browser Stereo Channel Test to verify left and right channel balance.',
+      },
+      {
+        q: 'What should I do if water gets into the Moto G84 3.5mm headphone jack?',
+        a: 'Moisture in the 3.5mm headphone jack can short the detection circuit, causing the phone to think headphones are plugged in and muting the loudspeakers. Turn the phone upside down, tap it gently against your hand to shake out loose droplets, and allow it to air-dry. Do not insert cotton swabs or metal pins into the jack.',
+      },
+      {
+        q: 'How does 165 Hz sound clear muffled audio on the Moto G84?',
+        a: 'When water covers the fine acoustic mesh of the Moto G84 speakers, surface tension traps a liquid membrane that blocks high and mid frequencies. The 165 Hz resonant wave induces physical vibrations in the speaker diaphragm, creating air pressure pulses that shatter the surface tension and blow water droplets out through the grille holes.',
+      },
+    ],
   },
 ];
 
