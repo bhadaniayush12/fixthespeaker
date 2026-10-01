@@ -17,6 +17,7 @@ export interface Props {
   noindex?: boolean;
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
+  showAds?: boolean;
 }
 
 const SITE_NAME = 'Fix The Speaker';
@@ -29,6 +30,7 @@ const {
   noindex = false,
   ogType = 'website',
   jsonLd,
+  showAds = !noindex,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -150,13 +152,15 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       })();
     </script>
 
-    <!-- Google AdSense Verification & Auto-Ads (independent of GTM; loads on every page load) -->
-    <script
-      is:inline
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1685098412554701"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Google AdSense Verification & Auto-Ads (independent of GTM; loaded only on indexable publisher pages per AdSense policy) -->
+    {showAds && (
+      <script
+        is:inline
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1685098412554701"
+        crossorigin="anonymous"
+      ></script>
+    )}
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />

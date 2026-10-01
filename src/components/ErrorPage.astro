@@ -17,7 +17,7 @@ const messages = Object.fromEntries(
 );
 ---
 
-<Layout title={fallback.title} description={fallback.description} lang={lang} noindex>
+<Layout title={fallback.title} description={fallback.description} lang={lang} noindex showAds={false}>
   <main id="main" class="container-site flex flex-1 flex-col items-center justify-center py-24 text-center sm:py-32">
     <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Error {status}</p>
     <h1 id="error-heading" class="mt-4 text-4xl font-semibold leading-[1.05] tracking-[-0.04em] text-ink sm:text-5xl">{fallback.heading}</h1>
