@@ -1,0 +1,168 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'muffled-phone-speaker-water-dust-or-damage')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.published,
+  dateModified: guide.updated,
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', name: 'Fix The Speaker', url: 'https://fixthespeaker.com' },
+  publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    A muffled phone speaker usually has one of four causes: water in the grille, dust and lint in the grille, a
+    setting or app problem, or a damaged speaker. Each one needs a different fix, and using the wrong one wastes
+    time or makes things worse. This guide shows how to tell them apart in a few minutes.
+  </p>
+
+  <h2>Start with the 2-minute checks</h2>
+  <p>Rule out the simple causes first. They are more common than people expect.</p>
+  <ol>
+    <li>
+      <strong>Turn off Bluetooth.</strong> If the phone is still connected to earbuds, a car, or a speaker, the sound
+      may be going there instead of to the phone's own speaker.
+    </li>
+    <li>
+      <strong>Check silent mode and Do Not Disturb.</strong> Apple lists these as the first steps when an iPhone
+      speaker makes no sound.
+    </li>
+    <li>
+      <strong>Remove the case and screen protector.</strong> A case that has shifted, or a protector that covers the
+      earpiece, can block the openings. Apple also recommends removing "all screen protectors, films, or cases" when
+      troubleshooting.
+    </li>
+    <li>
+      <strong>Restart the phone.</strong> This rules out an app that has taken over the audio.
+    </li>
+    <li>
+      <strong>Test with built-in sounds.</strong> On iPhone, go to Settings, then Sounds &amp; Haptics, and drag the
+      Ringtone and Alerts slider. Apple says that if you hear nothing, or the speaker button on that slider is dimmed,
+      the speaker might need service. On Samsung phones, the Samsung Members app includes a diagnostics section with
+      a speaker test.
+    </li>
+  </ol>
+  <p>
+    If the sound is clear after these steps, the problem was a setting or an accessory. If it is still muffled, keep
+    reading.
+  </p>
+
+  <h2>Cause 1: Water in the speaker grille</h2>
+  <p><strong>Signs:</strong></p>
+  <ul>
+    <li>The sound went muffled right after rain, a shower, a pool, or a spill.</li>
+    <li>Low sounds rattle or buzz, and voices sound like they are underwater.</li>
+    <li>It slowly gets better over a few hours.</li>
+    <li>On iPhone, you may see a "Liquid Detected" alert when you plug in a cable.</li>
+  </ul>
+  <p>
+    <strong>Why it happens:</strong> speaker grilles are made of a fine mesh. Surface tension holds water droplets in
+    the mesh, and the trapped water stops the speaker from moving air freely.
+  </p>
+  <p>
+    <strong>What to do:</strong> remove the case, hold the phone with the speaker facing down, and tap it gently
+    against your hand. Then play a low-frequency tone at full volume with the speaker still facing down: the speaker
+    cone moves back and forth and pushes droplets out through the mesh. Our <a href="/">free water eject tool</a>
+    does this in your browser. After that, leave the phone in a dry place with moving air. Do not use a hair dryer,
+    and do not push anything into the openings. If you are tempted to use rice, read
+    <a href="/guides/does-rice-fix-a-wet-phone">why rice is not a good idea</a> first.
+  </p>
+
+  <h2>Cause 2: Dust, lint, or dirt in the grille</h2>
+  <p><strong>Signs:</strong></p>
+  <ul>
+    <li>The sound got worse slowly, over weeks or months, not suddenly.</li>
+    <li>You can see grey lint or dark dirt in the holes when you shine a flashlight on them.</li>
+    <li>
+      The earpiece (the speaker you hold to your ear on calls) is quieter than it used to be. It picks up skin oil
+      and makeup from your face, so it clogs more often than the bottom speaker.
+    </li>
+    <li>The phone lives in a pocket or a bag without a case over the bottom edge.</li>
+  </ul>
+  <p>
+    <strong>What to do:</strong> Apple's advice is to clean the speaker or receiver opening "with a small,
+    soft-bristled brush" that is clean and dry. A soft, dry toothbrush works. Brush gently across the holes, not into
+    them. A vibrating tone can help loosen packed lint so the brush can lift it out; our dust cleaner mode is made
+    for this, but it is a helper for brushing, not a replacement.
+  </p>
+  <p>
+    <strong>What not to do:</strong> do not use pins, needles, or toothpicks. Many phone grilles have a thin
+    water-resistant membrane behind the mesh, and a sharp point can tear it. Avoid compressed air too: a strong blast
+    can push dirt further in.
+  </p>
+
+  <h2>Cause 3: A setting or software problem</h2>
+  <p><strong>Signs:</strong></p>
+  <ul>
+    <li>The sound is fine in one app but muffled or quiet in another.</li>
+    <li>It started right after a software update or after installing a new app.</li>
+    <li>Media sound is fine, but calls are quiet, or the other way around.</li>
+  </ul>
+  <p>
+    <strong>What to do:</strong> check the volume inside the app itself, check any sound or equalizer settings
+    (including Dolby Atmos or similar effects on Android phones), and make sure the phone is up to date. If only one
+    app is affected, reinstalling it often helps. A speaker that works in some apps is almost never physically
+    damaged.
+  </p>
+
+  <h2>Cause 4: Hardware damage</h2>
+  <p><strong>Signs:</strong></p>
+  <ul>
+    <li>Crackling or buzzing at every volume, not only at high volume.</li>
+    <li>The problem did not improve after the phone had a full day to dry.</li>
+    <li>It started after a drop, not after water or gradual wear.</li>
+    <li>One speaker makes no sound at all, while the other works.</li>
+    <li>On iPhone, the speaker button on the Ringtone and Alerts slider is dimmed.</li>
+  </ul>
+  <p>
+    <strong>What to do:</strong> stop trying fixes at home. No sound, app, or tone can repair a torn speaker cone or
+    a broken connection inside the phone, and playing loud sounds through a damaged speaker can make it worse. Take
+    it to the manufacturer or an authorized repair shop.
+  </p>
+
+  <h2>A quick test: which speaker is the problem?</h2>
+  <p>
+    Most phones have two speakers: one at the bottom edge and one in the earpiece at the top. In landscape mode,
+    many phones play stereo, with one side through each speaker. Playing a test tone on the left channel and then
+    the right channel tells you which speaker is muffled. Our <a href="/">speaker test mode</a> plays left, right,
+    and both together. Knowing which speaker is affected tells you where to look for water or dust, and it gives a
+    repair shop useful information.
+  </p>
+
+  <h2>Summary</h2>
+  <ul>
+    <li><strong>Sudden, after water:</strong> water in the grille. Face the speaker down, use a low tone, let it air dry.</li>
+    <li><strong>Gradual, visible lint:</strong> dust. Brush gently with a soft, dry brush.</li>
+    <li><strong>Only in some apps:</strong> settings or software. Check app volume and sound effects, update, restart.</li>
+    <li><strong>Crackling that does not go away, or after a drop:</strong> likely damage. Get it repaired.</li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/118432" rel="noopener" target="_blank">Apple Support: If you hear no sound or distorted sound from your iPhone, iPad, or iPod touch speaker</a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support: If you see a liquid-detection alert on your iPhone</a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

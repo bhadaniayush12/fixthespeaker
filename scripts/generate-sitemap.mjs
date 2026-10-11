@@ -107,11 +107,26 @@ async function main() {
     }
   }
 
+  // 3. English-only guides (no localized versions, so no hreflang alternates)
+  const { guides } = await import('../src/data/guides.ts');
+  const guidePages = [
+    { loc: `${SITE_URL}/guides`, lastmod: guides.map((g) => g.updated).sort().at(-1) ?? TODAY },
+    ...guides.map((g) => ({ loc: `${SITE_URL}/guides/${g.slug}`, lastmod: g.updated })),
+  ];
+  for (const page of guidePages) {
+    xml += `  <url>\n`;
+    xml += `    <loc>${page.loc}</loc>\n`;
+    xml += `    <lastmod>${page.lastmod}</lastmod>\n`;
+    xml += `    <changefreq>monthly</changefreq>\n`;
+    xml += `    <priority>0.7</priority>\n`;
+    xml += `  </url>\n`;
+  }
+
   xml += `</urlset>\n`;
 
   const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
-  console.log(`Successfully generated public/sitemap.xml with ${staticPages.length * 8 + indexableDeviceSlugs.length * 8} total URL entries.`);
+  console.log(`Successfully generated public/sitemap.xml with ${staticPages.length * 8 + indexableDeviceSlugs.length * 8 + guidePages.length} total URL entries.`);
 }
 
 main().catch((err) => {

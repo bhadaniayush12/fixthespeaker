@@ -136,6 +136,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: Records your cookie preferences (analytics and advertising choices) so we honor your selections on subsequent visits.',
             'theme: Stores your dark mode / light mode interface preference.',
+            'fix_speaker_mode: Remembers the last cleaning mode you selected (Water Eject, Dust Cleaner or Speaker Test).',
           ],
         },
         {
@@ -359,6 +360,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: Registra tus preferencias de cookies (opciones de analítica y publicidad) para respetar tus decisiones en visitas posteriores.',
             'theme: Guarda tu preferencia de interfaz de modo oscuro o claro.',
+            'fix_speaker_mode: Recuerda el último modo de limpieza que seleccionaste (Expulsar agua, Limpiar polvo o Prueba de altavoz).',
           ],
         },
         {
@@ -529,6 +531,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: 次回以降の訪問時にも選択内容を反映できるよう、Cookie設定（分析および広告の選択）を記録します。',
             'theme: ダークモード/ライトモードの表示設定を保存します。',
+            'fix_speaker_mode: 最後に選択したクリーニングモード（水抜き・ホコリ除去・スピーカーテスト）を記憶します。',
           ],
         },
         {
@@ -680,6 +683,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1 : Enregistre vos choix en matière de cookies (analytics et publicité) afin de les respecter lors de vos prochaines visites.',
             'theme : Mémorise votre choix d’interface en mode sombre ou clair.',
+            'fix_speaker_mode : Mémorise le dernier mode de nettoyage choisi (Éjection d’eau, Nettoyage de poussière ou Test du haut-parleur).',
           ],
         },
         {
@@ -823,6 +827,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: Speichert Ihre Cookie-Präferenzen (für Analytik und Werbung), damit Ihre Entscheidung bei künftigen Besuchen gewahrt bleibt.',
             'theme: Sichert Ihre Einstellung für den Dunkelmodus oder Hellmodus.',
+            'fix_speaker_mode: Speichert den zuletzt gewählten Reinigungsmodus (Wasserauswurf, Staubreinigung oder Lautsprechertest).',
           ],
         },
         {
@@ -966,6 +971,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: Registra suas opções de cookies (analítica e publicidade) para respeitar suas escolhas em acessos futuros.',
             'theme: Guarda sua preferência de exibição em modo escuro ou claro.',
+            'fix_speaker_mode: Lembra o último modo de limpeza selecionado (Expulsar água, Limpar poeira ou Teste de alto-falante).',
           ],
         },
         {
@@ -1109,6 +1115,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: 다음 방문 시에도 사용자의 선택을 유지할 수 있도록 쿠키 기본 설정(분석 및 광고 동의 여부)을 기록합니다.',
             'theme: 다크 모드 / 라이트 모드 인터페이스 테마 설정을 저장합니다.',
+            'fix_speaker_mode: 마지막으로 선택한 청소 모드(물 빼기, 먼지 청소, 스피커 테스트)를 기억합니다.',
           ],
         },
         {
@@ -1253,6 +1260,7 @@ export const subpagesContent: Record<
           list: [
             'fixthespeaker_cookie_consent_v1: Registra le tue preferenze sui cookie (scelte analitiche e pubblicitarie) per rispettare le tue decisioni nelle visite successive.',
             'theme: Salva la tua scelta dell’interfaccia grafica in modalità scura o chiara.',
+            'fix_speaker_mode: Ricorda l’ultima modalità di pulizia selezionata (Espulsione acqua, Pulizia polvere o Test altoparlante).',
           ],
         },
         {

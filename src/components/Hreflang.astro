@@ -4,6 +4,7 @@ import { languages, defaultLang } from '../i18n/ui';
 export interface Props {
   currentPath?: string;
   siteUrl?: string;
+  localized?: boolean;
 }
 
 const SITE_URL = Astro.props.siteUrl || 'https://fixthespeaker.com';
@@ -21,10 +22,11 @@ const subpageSlug = subpageSegments.length > 0 ? `/${subpageSegments.join('/')}`
 // 3. Construct hreflang array with x-default and all configured locales
 const defaultUrl = `${SITE_URL}${subpageSlug || '/'}`;
 
+const localized = Astro.props.localized ?? true;
 const hreflangEntries = [
   { lang: 'x-default', href: defaultUrl },
   { lang: 'en', href: defaultUrl },
-  ...Object.keys(languages)
+  ...(!localized ? [] : Object.keys(languages))
     .filter((l) => l !== defaultLang)
     .map((l) => ({
       lang: l,

@@ -1,0 +1,26 @@
+---
+import ContentLayout from '../layouts/ContentLayout.astro';
+import { guides } from '../data/guides';
+
+const sorted = [...guides].sort((a, b) => b.published.localeCompare(a.published));
+---
+
+<ContentLayout
+  title="Guides: Wet Phones, Muffled Speakers and Safe Cleaning | Fix The Speaker"
+  description="Practical guides on drying a wet phone, fixing a muffled speaker, and cleaning speaker grilles without damaging your device."
+  heading="Guides"
+  eyebrow="Fix The Speaker"
+  localized={false}
+>
+  <p>
+    Practical, sourced advice on what to do when your phone, earbuds, or watch gets wet or dusty, and when it is
+    time to stop trying at home and see a repair shop.
+  </p>
+
+  {sorted.map((guide) => (
+    <>
+      <h2><a href={`/guides/${guide.slug}`}>{guide.title}</a></h2>
+      <p>{guide.description}</p>
+    </>
+  ))}
+</ContentLayout>

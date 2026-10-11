@@ -303,7 +303,7 @@ const rawCatalog: RawDeviceDef[] = [
     brand: 'Apple',
     category: 'smartphone',
     ipRating: 'IP68 (Titanium chassis, 6m depth up to 30 min)',
-    compat: ['iPhone 17 Pro Max', 'iPhone 17 Pro', 'iPhone 17 Air'],
+    compat: ['iPhone 17 Pro Max', 'iPhone 17 Pro', 'iPhone Air'],
     customTips: [
       'Locate your speaker ports: the primary loudspeaker is behind the precision-milled acoustic holes on the bottom right of the USB-C port, while the stereo earpiece speaker is integrated into an ultra-narrow micro-slit above the Dynamic Island at the top edge.',
       'Fresh water vs. Salt water: iPhone 17 Pro Max has IP68 resistance (up to 6m for 30 min in fresh water), but ocean salt water and chlorinated pool chemicals leave corrosive mineral deposits on the acoustic mesh. If exposed to salt or pool water, gently rinse the speaker ports under a slow trickle of cool tap water before drying.',
@@ -336,12 +336,12 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-iphone-17-air-speaker',
-    name: 'Apple iPhone 17 Air / Slim',
-    shortName: 'iPhone 17 Air',
+    name: 'Apple iPhone Air',
+    shortName: 'iPhone Air',
     brand: 'Apple',
     category: 'smartphone',
     ipRating: 'IP68 (Ultra-slim chassis water resistance)',
-    compat: ['iPhone 17 Air', 'iPhone 17 Slim', 'iPhone 17'],
+    compat: ['iPhone Air', 'iPhone 17'],
   },
   {
     slug: 'fix-iphone-16-speaker',
@@ -2047,7 +2047,7 @@ const coreHubs: Record<string, DeviceData> = {
     acousticFreq: '165 Hz low-frequency resonant square wave + 82.5 Hz sub-bass',
     recommendedDuration: '60–120 seconds (1–2 cycles)',
     compatibilityList: [
-      'iPhone 17 / 17 Pro / 17 Pro Max / 17 Air',
+      'iPhone 17 / 17 Pro / 17 Pro Max / iPhone Air',
       'iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max',
       'iPhone 15 / 15 Plus / 15 Pro / 15 Pro Max',
       'iPhone 14 / 14 Plus / 14 Pro / 14 Pro Max',

@@ -1,0 +1,173 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'does-rice-fix-a-wet-phone')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.published,
+  dateModified: guide.updated,
+  mainEntityOfPage: url,
+  author: { '@type': 'Organization', name: 'Fix The Speaker', url: 'https://fixthespeaker.com' },
+  publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    <strong>Short answer:</strong> not really. Rice is a weak drying agent, it can leave dust and grains in your
+    charging port, and Apple now tells iPhone owners not to use it. Leaving your phone in a dry spot with moving air
+    works at least as well, and usually better.
+  </p>
+
+  <h2>Why people put wet phones in rice</h2>
+  <p>
+    The idea is simple: uncooked rice absorbs moisture, so burying a phone in it should pull water out of the
+    phone. It feels like you are doing something useful, and almost everyone has rice in the kitchen.
+  </p>
+  <p>
+    The problem is that most of the water that hurts a phone is <em>inside</em> it: behind the speaker mesh, in the
+    charging port, or under the screen. Rice only touches the outside of the phone. It cannot reach into those
+    spaces any better than the surrounding air can.
+  </p>
+
+  <h2>What testing has shown</h2>
+  <p>
+    In 2014 the phone reseller Gazelle ran a small drying test. They soaked sponges and phones, then left them in
+    rice, several other drying agents, and open air. Plain uncooked rice absorbed the least water of the seven
+    materials they tried, and the sponge left in open air dried better than any of the materials. In their phone
+    test, open air again did better than sealing the phone in rice.
+  </p>
+  <p>
+    It was a small test run by a company that sells phones, so it is not the final word. But it matches what you
+    would expect from the physics, and we have not found any careful test showing rice beats open air.
+  </p>
+
+  <h2>What Apple says</h2>
+  <p>Apple's support page for the iPhone "Liquid Detected" alert is direct about it:</p>
+  <blockquote>
+    <p>"Don't put your iPhone in a bag of rice. Doing so could allow small particles of rice to damage your iPhone."</p>
+  </blockquote>
+  <p>
+    The same page also warns against drying an iPhone with "an external heat source or compressed air", and against
+    pushing "a cotton swab or a paper towel" into the connector.
+  </p>
+
+  <h2>Why rice can make things worse</h2>
+  <ul>
+    <li>
+      <strong>Starch dust and broken grains.</strong> Rice sheds fine powder. It can collect in the charging port,
+      the speaker grille, and the microphone holes, which are exactly the openings you want to keep clear.
+    </li>
+    <li>
+      <strong>It blocks airflow.</strong> A phone buried in a bowl of rice sits in still air. Water evaporates faster
+      when air is moving across the openings.
+    </li>
+    <li>
+      <strong>It makes you wait instead of acting.</strong> The first few minutes matter most. Getting the phone
+      unplugged and the excess water out right away does more than any amount of rice later.
+    </li>
+  </ul>
+
+  <h2>What to do instead</h2>
+  <ol>
+    <li>
+      <strong>Get it out of the water and wipe it dry.</strong> Use a soft, lint-free cloth on the outside.
+    </li>
+    <li>
+      <strong>Unplug everything.</strong> Disconnect the charging cable and any accessories. Take off the case, since
+      cases trap water against the phone.
+    </li>
+    <li>
+      <strong>Tap out the excess water.</strong> Apple recommends tapping the phone gently against your hand with the
+      charging port facing down. Do the same with the speaker openings facing down.
+    </li>
+    <li>
+      <strong>If it was not plain water, rinse it.</strong> For iPhone, Apple's advice after contact with liquids
+      other than water is to rinse the affected area with tap water, then wipe it dry. This keeps sticky or salty
+      residue from drying inside the openings.
+    </li>
+    <li>
+      <strong>Leave it somewhere dry with airflow.</strong> Apple says a fan blowing cool air directly into the
+      charging port may help. Do not use a hair dryer, an oven, a radiator, or compressed air.
+    </li>
+    <li>
+      <strong>Wait before you charge it.</strong> Apple's "Liquid Detected" page says to wait at least 30 minutes
+      before trying to charge again, and that full drying can take up to 24 hours. Apple's water resistance page
+      suggests allowing at least 5 hours before charging with a cable. If you can wait, wait longer. Wireless
+      charging avoids the wet port, but only use it once the back of the phone is dry.
+    </li>
+  </ol>
+
+  <h2>If the speaker still sounds muffled</h2>
+  <p>
+    A muffled speaker after getting wet is usually water sitting in the speaker grille, held there by surface
+    tension. Hold the phone with the speaker facing down and play a low-frequency tone at full volume: the speaker
+    cone moves back and forth and pushes droplets out through the mesh. Apple Watch has a similar feature built in.
+    Our <a href="/">free water eject tool</a> plays this kind of tone in your browser.
+  </p>
+  <p>
+    Be realistic about what this does. It helps clear water from the speaker grille. It does not dry the inside of
+    the phone and cannot repair damage that has already happened.
+  </p>
+
+  <h2>When to take it to a repair shop</h2>
+  <p>Drying at home will not fix every phone. Get it checked by an authorized service provider if:</p>
+  <ul>
+    <li>it will not turn on, or it restarts on its own</li>
+    <li>it gets warm, or the back or screen starts to bulge</li>
+    <li>there are spots, lines, or fog under the screen</li>
+    <li>the "Liquid Detected" warning keeps coming back after a full day of drying</li>
+    <li>the sound is still crackly or distorted after the phone has fully dried</li>
+  </ul>
+  <p>
+    Two more things to keep in mind. Water resistance wears down over time: Apple notes that splash, water, and dust
+    resistance "are not permanent conditions". And on iPhone, liquid damage is not covered by Apple's standard
+    warranty, so check what your own warranty or insurance covers before paying for a repair.
+  </p>
+
+  <h2>Quick answers</h2>
+  <h3>Is silica gel better than rice?</h3>
+  <p>
+    In Gazelle's test, silica gel absorbed more water than rice. But open air still dried the sponge better than
+    any of the materials they tried, so a dry room with a fan is a good choice even without silica gel.
+  </p>
+  <h3>Can I charge my phone in an emergency?</h3>
+  <p>
+    On iPhone, Apple's "Liquid Detected" page says you can override the alert to charge in an emergency, but you
+    should not charge a wet phone if you can avoid it.
+  </p>
+  <h3>Should I turn the phone off?</h3>
+  <p>
+    If the phone was fully submerged, turning it off while it dries is a sensible precaution: there is less
+    current flowing through any wet parts. Avoid repeatedly turning it on to check whether it works.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support: If you see a liquid-detection alert on your iPhone</a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/108039" rel="noopener" target="_blank">Apple Support: About splash, water, and dust resistance of iPhone</a>
+    </li>
+    <li>
+      <a href="https://www.gazelle.com/thehorn/2014/05/06/gazelles-guide-water-damage-truth-rice-galaxy-everything/" rel="noopener" target="_blank">Gazelle: Water damage, the truth about rice (2014)</a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

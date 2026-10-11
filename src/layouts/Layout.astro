@@ -18,6 +18,8 @@ export interface Props {
   ogType?: 'website' | 'article';
   jsonLd?: Record<string, unknown>;
   showAds?: boolean;
+  /** false for English-only pages (e.g. guides): no hreflang alternates, language links go to each locale's home page. */
+  localized?: boolean;
 }
 
 const SITE_NAME = 'Fix The Speaker';
@@ -31,6 +33,7 @@ const {
   ogType = 'website',
   jsonLd,
   showAds = !noindex,
+  localized = true,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -38,6 +41,7 @@ const langMeta = languages[lang] || languages[defaultLang];
 
 const homeUrl = getRelativeLocaleUrl(lang);
 const NAV = [
+  ...(lang === defaultLang ? [{ href: '/guides', label: 'Guides' }] : []),
   { href: getRelativeLocaleUrl(lang, 'about'), label: t.navAbout },
   { href: getRelativeLocaleUrl(lang, 'privacy'), label: t.navPrivacy },
   { href: getRelativeLocaleUrl(lang, 'terms'), label: t.navTerms },
@@ -54,7 +58,7 @@ const year = new Date().getFullYear();
 const pathSegments = cleanPath.split('/').filter(Boolean);
 const hasLangPrefix = pathSegments.length > 0 && pathSegments[0] in languages && pathSegments[0] !== defaultLang;
 const subpageSegments = hasLangPrefix ? pathSegments.slice(1) : pathSegments;
-const subpagePath = subpageSegments.join('/');
+const subpagePath = localized ? subpageSegments.join('/') : '';
 
 const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>`;
 ---
@@ -189,7 +193,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <meta name="generator" content={Astro.generator} />
 
     {/* Multilingual Hreflang Alternates (x-default + all configured locales) */}
-    <Hreflang currentPath={cleanPath} siteUrl={SITE_URL} />
+    <Hreflang currentPath={cleanPath} siteUrl={SITE_URL} localized={localized} />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={SITE_NAME} />
@@ -201,7 +205,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Fix The Speaker: free water eject & speaker cleaner tool" />
     <meta property="og:locale" content={langMeta.ogLocale} />
-    {Object.entries(languages)
+    {localized && Object.entries(languages)
       .filter(([k]) => k !== lang)
       .map(([, v]) => (
         <meta property="og:locale:alternate" content={v.ogLocale} />
@@ -645,5 +649,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     .rich-text ol { list-style: decimal; }
     .rich-text li + li { margin-top: 0.5em; }
     .rich-text li::marker { color: var(--color-mute); }
+    .rich-text blockquote { border-left: 3px solid var(--color-primary); padding-left: 1.125rem; color: var(--color-ink); font-style: italic; }
   }
 </style>
