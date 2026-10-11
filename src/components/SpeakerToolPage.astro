@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import DeviceDirectory from './DeviceDirectory.astro';
 import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { seoContent } from '../i18n/content';
-import { devices } from '../data/devices';
 
 export interface Props {
   lang?: SupportedLang;
@@ -589,9 +588,10 @@ const i18nConfig = {
 </Layout>
 
 <!-- Embed Localized Config for Client-Side Audio & UI Engine -->
-<script id="i18n-data" type="application/json" set:html={JSON.stringify(i18nConfig)} />
+<script is:inline id="i18n-data" type="application/json" set:html={JSON.stringify(i18nConfig)} />
 
 <script>
+  // @ts-nocheck
   /** @typedef {'water' | 'dust' | 'test'} ModeId */
 
   const i18nEl = document.getElementById('i18n-data');
@@ -1252,9 +1252,10 @@ const i18nConfig = {
   const subError = document.getElementById('sub-error');
   const subButton = document.getElementById('sub-button');
   const subLoadedAt = document.getElementById('sub-loaded-at') as HTMLInputElement | null;
+  const pageLoadedTimestamp = Date.now();
 
   if (subLoadedAt) {
-    subLoadedAt.value = String(Date.now());
+    subLoadedAt.value = String(pageLoadedTimestamp);
   }
 
   if (subForm) {
@@ -1269,12 +1270,12 @@ const i18nConfig = {
       const name = nameInput ? nameInput.value.trim() : '';
       const email = emailInput ? emailInput.value.trim() : '';
       const _gotcha = gotchaInput ? gotchaInput.value.trim() : '';
-      const formLoadedAt = subLoadedAt ? Number(subLoadedAt.value) || Date.now() : Date.now();
+      const formLoadedAt = subLoadedAt && Number(subLoadedAt.value) ? Number(subLoadedAt.value) : pageLoadedTimestamp;
 
       if (!email) return;
 
       const originalBtnText = subButton.textContent || 'Subscribe';
-      subButton.textContent = 'Subscribing...';
+      subButton.textContent = 'Subscribing…';
       subButton.setAttribute('disabled', 'true');
       if (subFeedback) subFeedback.classList.add('hidden');
       if (subError) subError.classList.add('hidden');

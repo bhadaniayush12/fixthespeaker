@@ -222,7 +222,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
     },
     {
       q: `Is running this water eject sound safe for ${raw.shortName} speakers?`,
-      a: `Yes, 100% safe. The tone operates strictly within standard audio frequency and power limits designed for ${raw.name} transducers and built-in amplifiers.`,
+      a: `Yes. The tone operates strictly within standard audio frequency and power limits designed for ${raw.name} transducers and built-in amplifiers.`,
     },
     {
       q: `Why does my ${raw.shortName} speaker sound muffled after getting wet?`,
@@ -2089,11 +2089,11 @@ const coreHubs: Record<string, DeviceData> = {
     faqs: [
       {
         q: 'Does iPhone have a built-in water eject feature like Apple Watch?',
-        a: 'No. While Apple Watch has a built-in Water Lock ejection sound in watchOS, iOS does not include a native button in Control Center. Fix The Speaker provides that exact 165 Hz acoustic pulse directly in your browser without requiring Siri Shortcuts or app store downloads.',
+        a: 'No. While Apple Watch has a built-in Water Lock ejection sound in watchOS, iOS does not include a native button in Control Center. Fix The Speaker provides a similar 165 Hz acoustic pulse directly in your browser without requiring Siri Shortcuts or app store downloads.',
       },
       {
         q: 'Is this 165 Hz water eject tone safe for iPhone speakers?',
-        a: 'Yes, 100% safe. The 165 Hz square wave operates well within the safe excursion and frequency limits of Apple smartphone micro-transducers and built-in amplifiers.',
+        a: 'Yes. The 165 Hz square wave operates well within the safe excursion and frequency limits of Apple smartphone micro-transducers and built-in amplifiers.',
       },
       {
         q: 'Why does my iPhone earpiece speaker sound quiet after getting wet?',

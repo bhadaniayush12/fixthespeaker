@@ -87,7 +87,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
           'Uncooked rice contains starch powder and small grains that enter charging ports and speaker grilles, swelling with moisture and permanently cementing the mesh.',
           'Hairdryers blow pressurized heat that melts water-resistant rubber gaskets, compromises internal adhesive seals, and pushes moisture deeper into the motherboard.',
           'Needles, pins, or cotton swabs can easily puncture the acoustic waterproof membrane (IP68 acoustic mesh), destroying water resistance and damaging the driver cone.',
-          'In contrast, acoustic sound wave water ejection is 100% non-invasive, safe, and relies on pure mechanical air displacement.',
+          'In contrast, acoustic sound wave water ejection is non-invasive and relies on pure mechanical air displacement.',
         ],
       },
       {
@@ -105,7 +105,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Is this water eject sound safe for my phone speakers?',
-        a: 'Yes, 100% safe. 165 Hz is well within the normal frequency reproduction range of any smartphone speaker driver. The sound operates within the device built-in amplifier safety limits.',
+        a: 'Yes. 165 Hz is well within the normal frequency reproduction range of any smartphone speaker driver. The sound operates within the device built-in amplifier safety limits.',
       },
       {
         q: 'How long should I run the speaker water eject sound?',
@@ -113,7 +113,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'How is this different from the Apple Watch water eject or Siri water eject shortcut?',
-        a: 'The Apple Watch uses a similar acoustic pulse mechanism built into watchOS. Our tool brings that exact acoustic frequency technology to any web browser on iPhone, Android, and laptops without needing custom shortcuts or third-party apps.',
+        a: 'The Apple Watch uses a similar acoustic pulse mechanism built into watchOS. Our tool brings a similar low-frequency approach to any web browser on iPhone, Android, and laptops without needing custom shortcuts or third-party apps.',
       },
       {
         q: 'How do I clean my speaker dust with sound?',
@@ -559,7 +559,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           'O arroz solta pó que vira uma pasta e entope o alto-falante permanentemente.',
           'O secador derrete a vedação de borracha impermeável do celular e empurra a umidade para a placa-mãe.',
-          'As ondas sonoras são 100% seguras e recomendadas por especialistas.',
+          'As ondas sonoras são um método não invasivo: apenas deslocam o ar para empurrar a água para fora.',
         ],
       },
       {

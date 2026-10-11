@@ -25,7 +25,8 @@ const messages = Object.fromEntries(
     <a id="error-home" href={getRelativeLocaleUrl(lang)} class="btn btn-primary mt-8">{fallback.home}</a>
   </main>
 
-  <script define:vars={{ messages }}>
+  <script is:inline define:vars={{ messages }}>
+    // @ts-nocheck
     const locale = window.location.pathname.split('/').filter(Boolean)[0];
     const content = messages[locale] || messages.en;
     const heading = document.getElementById('error-heading');

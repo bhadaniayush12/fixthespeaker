@@ -119,7 +119,10 @@ export async function onRequestPost({ request, env }) {
     if (gotcha) return fakeSuccess();
 
     // 2. Timing: form submitted faster than a human could fill it
-    if (formLoadedAt > 0 && Date.now() - formLoadedAt < MIN_FORM_FILL_MS) return fakeSuccess();
+    if (formLoadedAt > 0) {
+      const elapsed = Date.now() - formLoadedAt;
+      if (elapsed >= 0 && elapsed < MIN_FORM_FILL_MS) return fakeSuccess();
+    }
 
     // 3. Email validation
     if (!email || email.length > MAX_EMAIL_LENGTH || !EMAIL_REGEX.test(email)) {

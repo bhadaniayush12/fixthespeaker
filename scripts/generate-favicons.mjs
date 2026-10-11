@@ -2,6 +2,7 @@ import sharp from 'sharp';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Buffer } from 'node:buffer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const publicDir = path.resolve(__dirname, '../public');

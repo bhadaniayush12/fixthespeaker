@@ -401,7 +401,7 @@ function buildSpanish(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `¿Es seguro reproducir este tono en ${device.shortName}?`,
-      a: `Sí, es 100% seguro. El sonido funciona estrictamente dentro de los límites de potencia y frecuencia de audio diseñados para los transductores de ${device.name}.`,
+      a: `Sí. El sonido funciona estrictamente dentro de los límites de potencia y frecuencia de audio diseñados para los transductores de ${device.name}.`,
     },
     {
       q: `¿Por qué el altavoz de mi ${device.shortName} suena apagado tras mojarse?`,
@@ -562,7 +562,7 @@ function buildJapanese(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `この音を${device.shortName}で鳴らしても安全ですか？`,
-      a: `はい、100%安全です。${device.name}のスピーカーとアンプ回路の許容定格範囲内で動作するよう設計されています。`,
+      a: `はい。${device.name}のスピーカーとアンプ回路の許容定格範囲内で動作するよう設計されています。`,
     },
     {
       q: `水に濡れた後、音がこもる原因は何ですか？`,
@@ -723,7 +723,7 @@ function buildFrench(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `Ce son est-il sans danger pour ${device.shortName} ?`,
-      a: `Oui, 100% sécurisé. Le son respecte scrupuleusement les spécifications des composants de ${device.name}.`,
+      a: `Oui. Le son respecte scrupuleusement les spécifications des composants de ${device.name}.`,
     },
     {
       q: `Pourquoi le son est-il étouffé après être tombé dans l’eau ?`,
@@ -884,7 +884,7 @@ function buildGerman(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `Ist der Ton sicher für ${device.shortName}?`,
-      a: `Ja, zu 100% sicher. Der Ton bleibt innerhalb der spezifizierten Belastungsgrenzen der ${device.name}-Lautsprecher.`,
+      a: `Ja. Der Ton bleibt innerhalb der spezifizierten Belastungsgrenzen der ${device.name}-Lautsprecher.`,
     },
     {
       q: `Warum klingt mein Lautsprecher nach Wasserkontakt dumpf?`,
@@ -1045,7 +1045,7 @@ function buildPortuguese(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `É seguro usar no ${device.shortName}?`,
-      a: `Sim, 100% seguro. O tom respeita os limites de potência dos alto-falantes do ${device.name}.`,
+      a: `Sim. O tom respeita os limites de potência dos alto-falantes do ${device.name}.`,
     },
     {
       q: `Por que o som fica abafado após molhar?`,
@@ -1206,7 +1206,7 @@ function buildKorean(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `${device.shortName}에 사용해도 안전한가요?`,
-      a: `네, 100% 안전합니다. ${device.name} 스피커 규격 한도 내에서 안전하게 작동합니다.`,
+      a: `네. ${device.name} 스피커 규격 한도 내에서 안전하게 작동합니다.`,
     },
     {
       q: `물에 젖은 후 소리가 먹먹한 이유는?`,
@@ -1367,7 +1367,7 @@ function buildItalian(device: DeviceData): LocalizedDeviceContent {
     },
     {
       q: `È sicuro per ${device.shortName}?`,
-      a: `Sì, è sicuro al 100%. Il tono rispetta i limiti di potenza del diffusore di ${device.name}.`,
+      a: `Sì. Il tono rispetta i limiti di potenza del diffusore di ${device.name}.`,
     },
     {
       q: `Perché il suono è ovattato dopo il contatto con l’acqua?`,

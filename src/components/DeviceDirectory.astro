@@ -196,7 +196,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
 
     <details class="mt-4 border border-hairline rounded-2xl p-4 bg-canvas/70">
       <summary class="cursor-pointer text-sm font-medium text-primary hover:text-primary-bright">
-        Browse all 158 device guides ▾
+        {t.browseAllGuidesSummary.replace('{count}', String(localizedDevices.length))}
       </summary>
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pt-3 text-xs text-body">
         {localizedDevices.map((device) => (
@@ -211,7 +211,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
       </div>
     </details>
 
-    <script id="devices-catalog-data" type="application/json" set:html={JSON.stringify(clientDevicesPayload)} />
+    <script is:inline id="devices-catalog-data" type="application/json" set:html={JSON.stringify(clientDevicesPayload)} />
   </div>
 </section>
 
@@ -271,6 +271,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
     }
 
     function updateModelOptions(brandId: string) {
+      if (!modelSelect || !cleanButton) return;
       const placeholder = document.createElement('option');
       placeholder.value = '';
       placeholder.textContent = modelSelect.dataset.placeholder || 'Select a model';
@@ -293,11 +294,13 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
     });
 
     modelSelect.addEventListener('change', () => {
-      cleanButton.disabled = !modelSelect.value;
+      if (cleanButton && modelSelect) {
+        cleanButton.disabled = !modelSelect.value;
+      }
     });
 
     cleanButton.addEventListener('click', () => {
-      if (modelSelect.value) {
+      if (modelSelect && modelSelect.value) {
         const main = document.querySelector('main[data-device-slug]');
         const fromDevice = main?.getAttribute('data-device-slug');
         if (fromDevice) {
@@ -320,11 +323,13 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
     if (!searchInput || !searchClear || !searchResults) return;
 
     function hideSearchResults() {
+      if (!searchResults) return;
       searchResults.classList.add('hidden');
       searchResults.replaceChildren();
     }
 
     function renderSearchSuggestions(query: string) {
+      if (!searchResults || !searchInput) return;
       const normalizedQuery = query.toLowerCase().trim();
       searchResults.replaceChildren();
 
@@ -374,7 +379,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
     });
 
     searchInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
+      if (event.key === 'Enter' && searchResults) {
         const firstResult = searchResults.querySelector<HTMLAnchorElement>('a');
         if (firstResult) {
           event.preventDefault();

@@ -162,7 +162,7 @@ const privacyUrl = getRelativeLocaleUrl(lang, 'privacy');
   });
 
   preferencesToggle?.addEventListener('click', () => {
-    const open = preferences?.hidden ?? true;
+    const open = Boolean(preferences?.hidden);
     setPreferencesOpen(open);
     if (open) analyticsInput?.focus();
   });
@@ -181,7 +181,7 @@ const privacyUrl = getRelativeLocaleUrl(lang, 'privacy');
       setPreferencesOpen(false);
       preferencesToggle?.focus();
     } else if (consentController?.read()) {
-      root.hidden = true;
+      if (root) root.hidden = true;
     }
   });
 
