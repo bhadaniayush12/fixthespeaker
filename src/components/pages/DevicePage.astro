@@ -357,7 +357,7 @@ const relatedDevices = localizedDevice.relatedSlugs
         return;
       }
       const consent = (window as any).fixSpeakerConsent?.read();
-      if (consent?.analytics !== true) return;
+      if (consent?.analytics === false) return;
       if (typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', eventName, params);
       }

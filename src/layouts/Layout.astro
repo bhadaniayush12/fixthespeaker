@@ -80,9 +80,24 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         window.dataLayer = window.dataLayer || [];
         window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 
+        // Opt-in regions (EEA, UK, Switzerland): everything denied until the visitor accepts.
+        // Region-specific defaults take precedence over the global default below.
         window.gtag('consent', 'default', {
           ad_storage: 'denied',
           analytics_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
+          region: [
+            'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT',
+            'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO',
+            'GB', 'CH'
+          ],
+          wait_for_update: 500
+        });
+        // Everywhere else: analytics on by default (Reject in the banner turns it off); ads stay opt-in.
+        window.gtag('consent', 'default', {
+          ad_storage: 'denied',
+          analytics_storage: 'granted',
           ad_user_data: 'denied',
           ad_personalization: 'denied',
           wait_for_update: 500
@@ -135,12 +150,13 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
             try { localStorage.setItem(STORAGE_KEY, JSON.stringify(consent)); } catch (error) { /* Storage may be unavailable. */ }
           }
 
-          if (consent.analytics || consent.advertising) loadGtm();
         }
 
+        // Consent Mode decides what each event may store or send, so only an explicit
+        // rejection skips custom events entirely.
         function trackEvent(eventName, params) {
           var consent = readConsent();
-          if (!consent || consent.analytics !== true) return false;
+          if (consent && consent.analytics === false) return false;
           if (typeof window.gtag === 'function') {
             window.gtag('event', eventName, params || {});
             return true;
@@ -153,6 +169,9 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
 
         var savedConsent = readConsent();
         if (savedConsent) applyConsent(savedConsent, false);
+        // Always load GTM (Consent Mode "advanced"): tags respect the consent state above,
+        // sending cookieless pings while storage is denied.
+        loadGtm();
       })();
     </script>
 

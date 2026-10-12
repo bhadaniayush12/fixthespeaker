@@ -142,8 +142,8 @@ export const subpagesContent: Record<
         {
           title: '4. Google Analytics 4 (GA4) Tracking',
           paragraphs: [
-            'We use Google Analytics 4 (Measurement ID: G-924DECLM9L) to analyze aggregated traffic trends and user interaction patterns. In compliance with Google Consent Mode v2, analytical and advertising storage tags (ad_storage, analytics_storage, ad_user_data, ad_personalization) are set to "denied" by default when you first load the site.',
-            'Google Analytics only activates if you explicitly grant permission through our cookie banner. You can manage or revoke your consent at any time by clicking the "Cookie Settings" link located in the website footer.',
+            'We use Google Analytics 4 (Measurement ID: G-924DECLM9L) to analyze aggregated traffic trends and user interaction patterns, and Google Consent Mode v2 to apply your choices. If you visit from the European Economic Area, the United Kingdom or Switzerland, analytics and advertising storage (ad_storage, analytics_storage, ad_user_data, ad_personalization) is set to "denied" by default until you accept. Elsewhere, analytics storage is enabled by default and advertising storage is denied by default until you accept.',
+            'While analytics storage is denied, Google’s tag still loads but does not set or read analytics cookies. It sends only limited cookieless signals (such as the page address, referrer, timestamp, browser type and consent status, with your IP address transmitted as part of the web request) that Google uses to estimate aggregate traffic. Choosing "Reject All", or turning off analytics in Preferences, sets analytics storage to denied wherever you are. You can manage or revoke your consent at any time by clicking the "Cookie Settings" link located in the website footer.',
           ],
         },
         {
@@ -366,8 +366,8 @@ export const subpagesContent: Record<
         {
           title: '4. Seguimiento con Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizamos Google Analytics 4 (ID de medición: G-924DECLM9L) para analizar tendencias agregadas de tráfico y patrones de interacción de los usuarios. En cumplimiento con Google Consent Mode v2, las etiquetas de almacenamiento analítico y publicitario (ad_storage, analytics_storage, ad_user_data, ad_personalization) se establecen en «denied» (denegadas) de forma predeterminada cuando cargas el sitio por primera vez.',
-            'Google Analytics solo se activa si otorgas tu consentimiento explícito a través de nuestro banner de cookies. Puedes gestionar o revocar tu consentimiento en cualquier momento haciendo clic en el enlace «Configuración de cookies» ubicado en el pie de página del sitio web.',
+            'Utilizamos Google Analytics 4 (ID de medición: G-924DECLM9L) para analizar tendencias agregadas de tráfico y patrones de interacción, y Google Consent Mode v2 para aplicar tus preferencias. Si nos visitas desde el Espacio Económico Europeo, el Reino Unido o Suiza, el almacenamiento analítico y publicitario (ad_storage, analytics_storage, ad_user_data, ad_personalization) se establece como "denegado" por defecto hasta que lo aceptes. En el resto del mundo, el almacenamiento analítico está activado por defecto y el publicitario está denegado por defecto hasta que lo aceptes.',
+            'Mientras el almacenamiento analítico está denegado, la etiqueta de Google se carga igualmente, pero no crea ni lee cookies de analítica. Solo envía señales limitadas sin cookies (como la dirección de la página, la página de referencia, la hora, el tipo de navegador y el estado del consentimiento; tu dirección IP se transmite como parte de la solicitud web) que Google utiliza para estimar el tráfico agregado. Si eliges «Rechazar todo» o desactivas la analítica en Preferencias, el almacenamiento analítico queda denegado estés donde estés. Puedes gestionar o revocar tu consentimiento en cualquier momento haciendo clic en el enlace «Configuración de cookies» ubicado en el pie de página del sitio web.',
           ],
         },
         {
@@ -537,8 +537,8 @@ export const subpagesContent: Record<
         {
           title: '4. Googleアナリティクス4（GA4）によるアクセス解析',
           paragraphs: [
-            '当サイトでは、集計されたトラフィック動向や利用傾向を分析するためにGoogleアナリティクス4（測定ID: G-924DECLM9L）を使用しています。Google同意モードv2（Consent Mode v2）に基づき、初回アクセス時には分析および広告用ストレージタグ（ad_storage、analytics_storage、ad_user_data、ad_personalization）はデフォルトで「拒否（denied）」に設定されています。',
-            'Googleアナリティクスは、Cookieバナーで明示的に同意をいただいた場合にのみ有効化されます。フッターにある「Cookie設定」リンクから、いつでも同意の変更や撤回が可能です。',
+            '当サイトでは、集計されたトラフィック動向や利用傾向を分析するためにGoogleアナリティクス4（測定ID: G-924DECLM9L）を使用し、お客様の選択を反映するためにGoogle同意モードv2（Consent Mode v2）を使用しています。欧州経済領域（EEA）、英国、スイスからアクセスした場合、分析および広告用ストレージ（ad_storage、analytics_storage、ad_user_data、ad_personalization）は、同意いただくまでデフォルトで「拒否（denied）」に設定されます。その他の地域では、分析用ストレージはデフォルトで有効、広告用ストレージは同意いただくまでデフォルトで拒否に設定されます。',
+            '分析用ストレージが拒否されている間も、Googleのタグは読み込まれますが、分析用Cookieの設定や読み取りは行いません。Googleが集計トラフィックを推定するために使用する、Cookieを使わない限定的な信号（ページのアドレス、参照元、タイムスタンプ、ブラウザの種類、同意状態など。IPアドレスはウェブリクエストの一部として送信されます）のみを送信します。「すべて拒否」を選択するか、設定で分析をオフにすると、どの地域からのアクセスでも分析用ストレージは拒否に設定されます。フッターにある「Cookie設定」リンクから、いつでも同意の変更や撤回が可能です。',
           ],
         },
         {
@@ -689,8 +689,8 @@ export const subpagesContent: Record<
         {
           title: '4. Suivi Google Analytics 4 (GA4)',
           paragraphs: [
-            'Nous utilisons Google Analytics 4 (Identifiant de mesure : G-924DECLM9L) pour analyser les tendances de fréquentation globale et les interactions. Conformément à Google Consent Mode v2, les balises de stockage analytique et publicitaire (ad_storage, analytics_storage, ad_user_data, ad_personalization) sont réglées sur « refusé » (denied) par défaut lors de votre premier accès au site.',
-            'Google Analytics ne s’active que si vous donnez votre consentement explicite via notre bandeau de cookies. Vous pouvez modifier ou révoquer votre consentement à tout moment en cliquant sur le lien « Paramètres des cookies » situé dans le pied de page du site.',
+            'Nous utilisons Google Analytics 4 (Identifiant de mesure : G-924DECLM9L) pour analyser les tendances de fréquentation globale et les interactions, ainsi que Google Consent Mode v2 pour appliquer vos choix. Si vous visitez le site depuis l’Espace économique européen, le Royaume-Uni ou la Suisse, le stockage analytique et publicitaire (ad_storage, analytics_storage, ad_user_data, ad_personalization) est réglé sur « refusé » par défaut jusqu’à ce que vous l’acceptiez. Ailleurs, le stockage analytique est activé par défaut et le stockage publicitaire est refusé par défaut jusqu’à votre acceptation.',
+            'Tant que le stockage analytique est refusé, la balise Google se charge quand même, mais ne dépose ni ne lit de cookies d’analyse. Elle n’envoie que des signaux limités sans cookies (comme l’adresse de la page, le référent, l’horodatage, le type de navigateur et l’état du consentement ; votre adresse IP est transmise dans le cadre de la requête web) que Google utilise pour estimer la fréquentation globale. Choisir « Tout refuser », ou désactiver l’analyse dans les Préférences, règle le stockage analytique sur refusé où que vous soyez. Vous pouvez modifier ou révoquer votre consentement à tout moment en cliquant sur le lien « Paramètres des cookies » situé dans le pied de page du site.',
           ],
         },
         {
@@ -833,8 +833,8 @@ export const subpagesContent: Record<
         {
           title: '4. Erfassung mit Google Analytics 4 (GA4)',
           paragraphs: [
-            'Wir setzen Google Analytics 4 (Mess-ID: G-924DECLM9L) ein, um aggregierte Nutzertrends und Interaktionsmuster zu analysieren. In Übereinstimmung mit Google Consent Mode v2 sind die Tags für Analyse- und Werbespeicher (ad_storage, analytics_storage, ad_user_data, ad_personalization) beim ersten Seitenaufruf standardmäßig auf „abgelehnt“ (denied) gesetzt.',
-            'Google Analytics wird erst dann geladen, wenn Sie über unser Cookie-Banner ausdrücklich Ihre Zustimmung erteilen. Sie können Ihre Einwilligung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile der Website anpassen oder widerrufen.',
+            'Wir setzen Google Analytics 4 (Mess-ID: G-924DECLM9L) ein, um aggregierte Nutzertrends und Interaktionsmuster zu analysieren, und verwenden Google Consent Mode v2, um Ihre Auswahl umzusetzen. Wenn Sie die Website aus dem Europäischen Wirtschaftsraum, dem Vereinigten Königreich oder der Schweiz besuchen, sind Analyse- und Werbespeicher (ad_storage, analytics_storage, ad_user_data, ad_personalization) standardmäßig auf „abgelehnt“ gesetzt, bis Sie zustimmen. In allen anderen Regionen ist der Analysespeicher standardmäßig aktiviert und der Werbespeicher standardmäßig abgelehnt, bis Sie zustimmen.',
+            'Solange der Analysespeicher abgelehnt ist, wird das Google-Tag dennoch geladen, setzt oder liest jedoch keine Analyse-Cookies. Es sendet nur eingeschränkte, cookielose Signale (etwa Seitenadresse, Referrer, Zeitstempel, Browsertyp und Einwilligungsstatus; Ihre IP-Adresse wird dabei als Teil der Webanfrage übermittelt), die Google zur Schätzung des Gesamtverkehrs nutzt. Wenn Sie „Alle ablehnen“ wählen oder Analysen in den Einstellungen deaktivieren, wird der Analysespeicher unabhängig von Ihrem Standort auf abgelehnt gesetzt. Sie können Ihre Einwilligung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile der Website anpassen oder widerrufen.',
           ],
         },
         {
@@ -977,8 +977,8 @@ export const subpagesContent: Record<
         {
           title: '4. Rastreamento com Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizamos o Google Analytics 4 (ID de métrica: G-924DECLM9L) para entender tendências de tráfego agregado e padrões de navegação. Em consonância com o Google Consent Mode v2, as tags de armazenamento para análise e publicidade (ad_storage, analytics_storage, ad_user_data, ad_personalization) permanecem configuradas como "negadas" (denied) por padrão no seu primeiro acesso.',
-            'O Google Analytics só é ativado se você conceder consentimento expresso por meio do nosso banner de cookies. Você pode alterar ou revogar sua permissão a qualquer momento clicando no link "Configurações de Cookies" no rodapé do site.',
+            'Utilizamos o Google Analytics 4 (ID de métrica: G-924DECLM9L) para entender tendências de tráfego agregado e padrões de navegação, e o Google Consent Mode v2 para aplicar suas escolhas. Se você acessar a partir do Espaço Econômico Europeu, do Reino Unido ou da Suíça, o armazenamento de análise e de publicidade (ad_storage, analytics_storage, ad_user_data, ad_personalization) fica definido como "negado" por padrão até que você aceite. Nas demais regiões, o armazenamento de análise fica ativado por padrão e o de publicidade fica negado por padrão até que você aceite.',
+            'Enquanto o armazenamento de análise estiver negado, a tag do Google ainda é carregada, mas não define nem lê cookies de análise. Ela envia apenas sinais limitados sem cookies (como o endereço da página, a página de origem, o horário, o tipo de navegador e o status do consentimento; seu endereço IP é transmitido como parte da solicitação web) que o Google usa para estimar o tráfego agregado. Ao escolher "Rejeitar tudo", ou desativar a análise em Preferências, o armazenamento de análise passa a ser negado onde quer que você esteja. Você pode alterar ou revogar sua permissão a qualquer momento clicando no link "Configurações de Cookies" no rodapé do site.',
           ],
         },
         {
@@ -1121,8 +1121,8 @@ export const subpagesContent: Record<
         {
           title: '4. Google 애널리틱스 4 (GA4) 추적',
           paragraphs: [
-            '당사는 총 트래픽 동향과 서비스 이용 패턴을 분석하기 위해 Google 애널리틱스 4(측정 ID: G-924DECLM9L)를 사용합니다. Google 동의 모드 v2(Consent Mode v2)를 준수하여 사이트 초기 방문 시 분석 및 광고 스토리지 태그(ad_storage, analytics_storage, ad_user_data, ad_personalization)는 기본적으로 "거부(denied)" 상태로 설정됩니다.',
-            'Google 애널리틱스는 사용자가 쿠키 배너를 통해 명시적으로 동의한 경우에만 활성화됩니다. 웹사이트 하단의 "쿠키 설정" 링크를 클릭하여 언제든지 동의 상태를 수정하거나 철회할 수 있습니다.',
+            '당사는 총 트래픽 동향과 서비스 이용 패턴을 분석하기 위해 Google 애널리틱스 4(측정 ID: G-924DECLM9L)를 사용하며, 사용자의 선택을 반영하기 위해 Google 동의 모드 v2(Consent Mode v2)를 사용합니다. 유럽 경제 지역(EEA), 영국 또는 스위스에서 방문하는 경우, 분석 및 광고 스토리지(ad_storage, analytics_storage, ad_user_data, ad_personalization)는 동의하기 전까지 기본적으로 "거부(denied)"로 설정됩니다. 그 밖의 지역에서는 분석 스토리지가 기본적으로 활성화되며, 광고 스토리지는 동의하기 전까지 기본적으로 거부됩니다.',
+            '분석 스토리지가 거부된 상태에서도 Google 태그는 로드되지만 분석 쿠키를 설정하거나 읽지 않습니다. Google이 전체 트래픽을 추정하는 데 사용하는, 쿠키 없는 제한된 신호(페이지 주소, 참조 페이지, 타임스탬프, 브라우저 유형, 동의 상태 등이며, IP 주소는 웹 요청의 일부로 전송됨)만 전송합니다. "모두 거부"를 선택하거나 환경설정에서 분석을 끄면 어느 지역에서든 분석 스토리지가 거부로 설정됩니다. 웹사이트 하단의 "쿠키 설정" 링크를 클릭하여 언제든지 동의 상태를 수정하거나 철회할 수 있습니다.',
           ],
         },
         {
@@ -1266,8 +1266,8 @@ export const subpagesContent: Record<
         {
           title: '4. Monitoraggio con Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizziamo Google Analytics 4 (ID di misurazione: G-924DECLM9L) per analizzare le tendenze di traffico aggregato e i modelli di interazione. In conformità con Google Consent Mode v2, i tag di archiviazione analitica e pubblicitaria (ad_storage, analytics_storage, ad_user_data, ad_personalization) sono impostati su "negato" (denied) per impostazione predefinita al primo caricamento del sito.',
-            'Google Analytics si attiva esclusivamente se concedi il tuo consenso esplicito tramite il nostro banner dei cookie. Puoi modificare o revocare il tuo consenso in qualsiasi momento cliccando sul link "Impostazioni Cookie" situato nel piè di pagina del sito.',
+            'Utilizziamo Google Analytics 4 (ID di misurazione: G-924DECLM9L) per analizzare le tendenze di traffico aggregato e i modelli di interazione, e Google Consent Mode v2 per applicare le tue scelte. Se visiti il sito dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera, l’archiviazione analitica e pubblicitaria (ad_storage, analytics_storage, ad_user_data, ad_personalization) è impostata su "negata" per impostazione predefinita finché non accetti. Altrove, l’archiviazione analitica è attiva per impostazione predefinita e quella pubblicitaria è negata finché non accetti.',
+            'Mentre l’archiviazione analitica è negata, il tag di Google viene comunque caricato, ma non imposta né legge cookie di analisi. Invia solo segnali limitati senza cookie (come l’indirizzo della pagina, il referrer, l’orario, il tipo di browser e lo stato del consenso; il tuo indirizzo IP viene trasmesso come parte della richiesta web) che Google utilizza per stimare il traffico aggregato. Scegliendo "Rifiuta tutto", o disattivando l’analisi nelle Preferenze, l’archiviazione analitica viene impostata su negata ovunque tu sia. Puoi modificare o revocare il tuo consenso in qualsiasi momento cliccando sul link "Impostazioni Cookie" situato nel piè di pagina del sito.',
           ],
         },
         {

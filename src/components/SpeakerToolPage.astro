@@ -652,7 +652,7 @@ const i18nConfig = {
       return;
     }
     const consent = window.fixSpeakerConsent?.read();
-    if (consent?.analytics !== true) return;
+    if (consent?.analytics === false) return;
     if (typeof window.gtag === 'function') {
       window.gtag('event', eventName, params);
     }
@@ -948,7 +948,7 @@ const i18nConfig = {
     setRunningUI(true);
     if (status) status.textContent = cfg.running;
 
-    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, only when analytics consent is granted)
+    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, unless analytics was explicitly rejected; Consent Mode governs storage)
     // engagement_time_msec (10000) explicitly triggers GA4's engaged session threshold (>=10s),
     // ensuring the session is counted as engaged and bounce rate reflects actual tool usage rather than page exits.
     trackToolEvent('eject_start', {
@@ -1013,7 +1013,7 @@ const i18nConfig = {
     }
 
     if (!manual) {
-      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, only when analytics consent is granted)
+      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, unless analytics was explicitly rejected; Consent Mode governs storage)
       trackToolEvent('eject_complete', {
         mode: mode,
         page_type: 'home',

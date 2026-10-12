@@ -305,7 +305,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
         const fromDevice = main?.getAttribute('data-device-slug');
         if (fromDevice) {
           const consent = (window as any).fixSpeakerConsent?.read();
-          if (typeof (window as any).gtag === 'function' && consent?.analytics === true) {
+          if (typeof (window as any).gtag === 'function' && consent?.analytics !== false) {
             const segments = modelSelect.value.split('?')[0].split('#')[0].split('/').filter(Boolean);
             const toDevice = segments.pop() || '';
             (window as any).gtag('event', 'hub_navigation', {
