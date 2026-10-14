@@ -400,10 +400,6 @@ function buildSpanish(device: DeviceData): LocalizedDeviceContent {
       a: `La frecuencia de 165 Hz coincide con la resonancia mecánica de las microcámaras de altavoz. Al vibrar intensamente, desplaza ráfagas de aire que rompen la tensión superficial del agua atrapada en la malla acústica de ${device.shortName}, expulsándola hacia el exterior.`,
     },
     {
-      q: `¿Es seguro reproducir este tono en ${device.shortName}?`,
-      a: `Sí. El sonido funciona estrictamente dentro de los límites de potencia y frecuencia de audio diseñados para los transductores de ${device.name}.`,
-    },
-    {
       q: `¿Por qué el altavoz de mi ${device.shortName} suena apagado tras mojarse?`,
       a: `Al entrar agua en la rejilla, la tensión superficial forma una película líquida que bloquea la vibración de las ondas sonoras. Al expulsar el agua, el sonido recupera su volumen y nitidez originales.`,
     },
@@ -559,10 +555,6 @@ function buildJapanese(device: DeviceData): LocalizedDeviceContent {
     {
       q: `165Hzの音波でなぜ${device.shortName}から水が抜けるのですか？`,
       a: `165Hzの周波数はスマホ・イヤホンの小型スピーカーチャンバーの共振周波数に最適化されています。振動板が激しく往復運動することで強い空気圧が発生し、メッシュに張り付いた水の表面張力を破壊して水滴を押し出します。`,
-    },
-    {
-      q: `この音を${device.shortName}で鳴らしても安全ですか？`,
-      a: `はい。${device.name}のスピーカーとアンプ回路の許容定格範囲内で動作するよう設計されています。`,
     },
     {
       q: `水に濡れた後、音がこもる原因は何ですか？`,
@@ -722,10 +714,6 @@ function buildFrench(device: DeviceData): LocalizedDeviceContent {
       a: `La fréquence de 165 Hz correspond à la résonance acoustique des micro-haut-parleurs. La membrane vibre à grande amplitude pour chasser l’eau piégée par la pression de l’air.`,
     },
     {
-      q: `Ce son est-il sans danger pour ${device.shortName} ?`,
-      a: `Oui. Le son respecte scrupuleusement les spécifications des composants de ${device.name}.`,
-    },
-    {
       q: `Pourquoi le son est-il étouffé après être tombé dans l’eau ?`,
       a: `L’eau forme un film sur la grille par tension superficielle, bloquant la diffusion du son. L’éjection rétablit la clarté instantanément.`,
     },
@@ -881,10 +869,6 @@ function buildGerman(device: DeviceData): LocalizedDeviceContent {
     {
       q: `Wie schleudert der 165-Hz-Ton Wasser aus der ${device.shortName}?`,
       a: `Die 165-Hz-Schwingung bringt die Membran in maximale Bewegung. Die resultierenden Druckstöße brechen die Oberflächenspannung und drücken das Wasser heraus.`,
-    },
-    {
-      q: `Ist der Ton sicher für ${device.shortName}?`,
-      a: `Ja. Der Ton bleibt innerhalb der spezifizierten Belastungsgrenzen der ${device.name}-Lautsprecher.`,
     },
     {
       q: `Warum klingt mein Lautsprecher nach Wasserkontakt dumpf?`,
@@ -1044,10 +1028,6 @@ function buildPortuguese(device: DeviceData): LocalizedDeviceContent {
       a: `A frequência de 165 Hz movimenta a membrana do alto-falante com força, gerando rajadas de ar que rompem a tensão superficial e expelem a água da grade de som.`,
     },
     {
-      q: `É seguro usar no ${device.shortName}?`,
-      a: `Sim. O tom respeita os limites de potência dos alto-falantes do ${device.name}.`,
-    },
-    {
       q: `Por que o som fica abafado após molhar?`,
       a: `A água forma uma película líquida na grade, impedindo que o som saia com nitidez. A ejeção restaura a qualidade original.`,
     },
@@ -1203,10 +1183,6 @@ function buildKorean(device: DeviceData): LocalizedDeviceContent {
     {
       q: `165Hz 소리가 어떻게 ${device.shortName}에서 물을 빼내나요?`,
       a: `165Hz 주파수는 소형 스피커 공진점에 맞춰져 있습니다. 진동판이 강하게 공기를 밀어내며 스피커 망에 맺힌 물방울을 밖으로 배출합니다.`,
-    },
-    {
-      q: `${device.shortName}에 사용해도 안전한가요?`,
-      a: `네. ${device.name} 스피커 규격 한도 내에서 안전하게 작동합니다.`,
     },
     {
       q: `물에 젖은 후 소리가 먹먹한 이유는?`,
@@ -1366,10 +1342,6 @@ function buildItalian(device: DeviceData): LocalizedDeviceContent {
       a: `La frequenza a 165 Hz sfrutta la risonanza dei microaltoparlanti, generando getti d’aria che rompono la tensione superficiale ed espellono l’acqua dalla griglia di ${device.shortName}.`,
     },
     {
-      q: `È sicuro per ${device.shortName}?`,
-      a: `Sì. Il tono rispetta i limiti di potenza del diffusore di ${device.name}.`,
-    },
-    {
       q: `Perché il suono è ovattato dopo il contatto con l’acqua?`,
       a: `L’acqua forma una pellicola sulla griglia che blocca le onde sonore. Espellendo l’acqua, il suono torna nitido.`,
     },
@@ -1408,29 +1380,31 @@ function buildItalian(device: DeviceData): LocalizedDeviceContent {
 export function getLocalizedDevice(device: DeviceData, lang: SupportedLang = 'en'): DeviceData {
   if (lang === 'en') return device;
 
+  // Generated sentences use the name without catalogue qualifiers such as "(All Models)".
+  const textDevice: DeviceData = { ...device, name: device.name.replace(/\s*\([^)]*\)/g, '') };
   let localized: LocalizedDeviceContent;
 
   switch (lang) {
     case 'es':
-      localized = buildSpanish(device);
+      localized = buildSpanish(textDevice);
       break;
     case 'ja':
-      localized = buildJapanese(device);
+      localized = buildJapanese(textDevice);
       break;
     case 'fr':
-      localized = buildFrench(device);
+      localized = buildFrench(textDevice);
       break;
     case 'de':
-      localized = buildGerman(device);
+      localized = buildGerman(textDevice);
       break;
     case 'pt':
-      localized = buildPortuguese(device);
+      localized = buildPortuguese(textDevice);
       break;
     case 'ko':
-      localized = buildKorean(device);
+      localized = buildKorean(textDevice);
       break;
     case 'it':
-      localized = buildItalian(device);
+      localized = buildItalian(textDevice);
       break;
     default:
       return device;

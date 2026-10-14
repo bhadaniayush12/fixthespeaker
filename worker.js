@@ -34,6 +34,15 @@ async function localizedErrorResponse(request, env, status, locale) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    // One canonical origin: send http:// and www. traffic to https://fixthespeaker.com.
+    const isProdHost = url.hostname === 'fixthespeaker.com' || url.hostname === 'www.fixthespeaker.com';
+    if (isProdHost && (url.protocol === 'http:' || url.hostname === 'www.fixthespeaker.com')) {
+      url.protocol = 'https:';
+      url.hostname = 'fixthespeaker.com';
+      return Response.redirect(url.toString(), 301);
+    }
+
     const path = url.pathname.replace(/\/$/, '');
     const locale = getLocale(url.pathname);
 

@@ -50,6 +50,24 @@ assert(indexHtml.includes('google-auto-ads-ignore'), 'Speaker tool container inc
 // 6. Device directory must have nofollow on unindexed models
 assert(indexHtml.includes('rel="nofollow"'), 'Device directory uses rel="nofollow" for unindexed models');
 
+// 7. Thin translations (hubs, about, terms, contact) are noindexed and ad-free; translated home/privacy are not
+const read = (file) => fs.readFileSync(path.join(distDir, file), 'utf8');
+const NOINDEX = 'name="robots" content="noindex';
+for (const file of ['de/fix-iphone-speaker.html', 'ja/clean-airpods-speaker.html', 'fr/terms.html', 'ko/about.html', 'it/contact.html']) {
+  const html = read(file);
+  assert(html.includes(NOINDEX) && !html.includes('pagead2.googlesyndication.com'), `Thin translation ${file} is noindexed and ad-free`);
+}
+for (const file of ['de.html', 'es/privacy.html']) {
+  const html = read(file);
+  assert(!html.includes(NOINDEX) && html.includes('pagead2.googlesyndication.com'), `Translated ${file} stays indexable`);
+}
+assert(!hubHtml.includes('hreflang="de"'), 'English hub does not advertise noindexed translations via hreflang');
+
+// 8. Template text must not leak internal catalogue names
+for (const file of ['fix-apple-watch-speaker.html', 'de/clean-airpods-speaker.html', 'de/fix-iphone-speaker.html']) {
+  assert(!/(AirPods|Apple Watch|Android) Hub|\(All Models\)-/.test(read(file)), `${file} has no leaked template names`);
+}
+
 if (errors > 0) {
   console.error(`\nTest run failed with ${errors} error(s).`);
   process.exit(1);

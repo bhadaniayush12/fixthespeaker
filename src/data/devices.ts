@@ -235,7 +235,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
   ];
 
   const metaTitle = `Fix ${raw.name} Speaker: Water Eject Sound & Audio Cleaner`;
-  const metaDescription = `Eject water from ${raw.name} speakers instantly. 165 Hz water eject tone clears muffled sound, speaker ports, and grilles in 60 seconds.`;
+  const metaDescription = `Help eject water from ${raw.name} speakers. A 165 Hz water eject tone can help clear muffled sound from speaker ports and grilles in about 60 seconds.`;
   const eyebrow = `${raw.name} Water Eject & Diagnostics`;
   const heroHeading = `Fix ${raw.name} Speaker & Eject Water`;
   const heroSubtitle = `Play the specialized 165 Hz acoustic pulse to clear muffled audio and expel trapped water from ${raw.name} speaker grilles without installing apps.`;
@@ -2036,7 +2036,7 @@ const coreHubs: Record<string, DeviceData> = {
     category: 'hub',
     metaTitle: 'Fix iPhone Speaker: Water Eject Sound & Muffled Audio Fix',
     metaDescription:
-      'Eject water from iPhone 17, 16, 15, 14, 13 & 12 speakers instantly. 165 Hz water eject tone clears muffled audio, bottom speaker ports, and earpiece grilles in 60s.',
+      'Help eject water from iPhone 17, 16, 15, 14, 13 & 12 speakers. A 165 Hz water eject tone clears muffled audio, bottom speaker ports, and earpiece grilles in 60s.',
     eyebrow: 'Apple iPhone Water Eject & Diagnostics',
     heroHeading: 'Fix iPhone Speaker & Eject Trapped Water',
     heroSubtitle:
@@ -2057,7 +2057,7 @@ const coreHubs: Record<string, DeviceData> = {
     ],
     overview: [
       'Modern iPhones feature IP68 water resistance, but water surface tension frequently traps microscopic droplets inside the bottom speaker grilles and top earpiece receiver mesh. This creates a muffled, distorted, or extremely quiet audio output even after drying the outer chassis.',
-      'Unlike the Apple Watch, iOS does not provide a native built-in water eject button in the Control Center. Fix The Speaker synthesizes the identical 165 Hz acoustic pulse frequency directly in Safari or Chrome to push trapped water out safely using air pressure.',
+      'Unlike the Apple Watch, iOS does not provide a native built-in water eject button in the Control Center. Fix The Speaker plays a low 165 Hz tone directly in Safari or Chrome so the speaker’s own vibration can help push trapped droplets out of the grille.',
     ],
     steps: [
       {
@@ -2092,8 +2092,8 @@ const coreHubs: Record<string, DeviceData> = {
         a: 'No. While Apple Watch has a built-in Water Lock ejection sound in watchOS, iOS does not include a native button in Control Center. Fix The Speaker provides a similar 165 Hz acoustic pulse directly in your browser without requiring Siri Shortcuts or app store downloads.',
       },
       {
-        q: 'Is this 165 Hz water eject tone safe for iPhone speakers?',
-        a: 'Yes. The 165 Hz square wave operates well within the safe excursion and frequency limits of Apple smartphone micro-transducers and built-in amplifiers.',
+        q: 'Is it OK to play this tone at full volume on an iPhone?',
+        a: 'It is an ordinary audio tone played at the volume you set, like music. Keep the phone away from your ears, stop if you hear rattling or distortion, and do not run it on a speaker that was already damaged.',
       },
       {
         q: 'Why does my iPhone earpiece speaker sound quiet after getting wet?',
@@ -2115,11 +2115,11 @@ const coreHubs: Record<string, DeviceData> = {
     category: 'hub',
     metaTitle: 'Eject Water from Samsung Galaxy Speaker: Sound Cleaner Tool',
     metaDescription:
-      'Clear water from Samsung Galaxy S25, S24, S23, S22, Z Fold, Z Flip & A-series speakers. 165 Hz water ejection sound restores muffled Dolby Atmos audio in 60 seconds.',
+      'Clear water from Samsung Galaxy S25, S24, S23, S22, Z Fold, Z Flip & A-series speakers. A 165 Hz water ejection sound helps clear muffled audio in about 60 seconds.',
     eyebrow: 'Samsung Galaxy Acoustic Water Eject',
     heroHeading: 'Eject Water from Samsung Galaxy Speakers',
     heroSubtitle:
-      'Restore crisp Dolby Atmos stereo sound on Samsung Galaxy S, Z, and A-series devices. The 165 Hz acoustic cleaner pushes trapped moisture out of speaker ports instantly.',
+      'Clear muffled stereo sound on Samsung Galaxy S, Z, and A-series devices. The 165 Hz tone can help push trapped moisture out of the speaker ports.',
     badge: 'Samsung Galaxy Water Eject',
     ipRating: 'IP68 (Galaxy S-Series) / IP48/IPX8 (Galaxy Z Fold & Flip Series)',
     grilleSpecs: 'Bottom acoustic slot / circular micro-ports + top stereo receiver slit',
@@ -2144,7 +2144,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         name: 'Max Out Media Volume',
-        text: 'Use the volume rocker to raise Media Volume to 100%. (Ensure Dolby Atmos is enabled in Sound Settings for maximum speaker amplitude).',
+        text: 'Use the volume rocker to raise Media Volume to 100%.',
       },
       {
         name: 'Position the Phone Facing Downward',
@@ -2171,7 +2171,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Does this work on both Galaxy S Ultra and Galaxy A series phones?',
-        a: 'Yes. The 165 Hz tone works universally across all Samsung Galaxy devices equipped with Web Audio API support in Samsung Internet, Chrome, or Firefox.',
+        a: 'It runs on any Galaxy phone with a current browser such as Samsung Internet, Chrome or Firefox. Results depend on how much water is trapped and where, so some phones need a second cycle and time to air dry.',
       },
       {
         q: 'What should I do if Samsung displays a moisture alert?',
@@ -2188,7 +2188,7 @@ const coreHubs: Record<string, DeviceData> = {
   'clean-airpods-speaker': {
     slug: 'clean-airpods-speaker',
     name: 'Apple AirPods & AirPods Pro (All Generations)',
-    shortName: 'AirPods Hub',
+    shortName: 'AirPods',
     brand: 'Apple',
     category: 'hub',
     metaTitle: 'Clean AirPods Speaker Mesh: Water Eject & Earwax Sound Cleaner',
@@ -2245,11 +2245,11 @@ const coreHubs: Record<string, DeviceData> = {
     faqs: [
       {
         q: 'Why is one of my AirPods significantly quieter than the other?',
-        a: 'Uneven volume is almost always caused by microscopic earwax or sweat clogging the acoustic mesh on the quiet side. Running the Water Eject and Dust Cleaner sweeps while gently brushing the mesh restores balanced volume in over 90% of cases.',
+        a: 'Uneven volume is almost always caused by microscopic earwax or sweat clogging the acoustic mesh on the quiet side. Gently brushing the mesh with a dry soft brush, together with the Dust Cleaner mode, often helps. If one side stays quiet, Apple Support can check it.',
       },
       {
         q: 'Is it safe to play high volume tones through AirPods?',
-        a: 'Yes, as long as the AirPods are removed from your ears and resting on a flat surface. The built-in Apple H1/H2 chip regulates amplifier output to prevent transducer blowout.',
+        a: 'Only with the AirPods out of your ears. Never play the tones while wearing them. Rest them on a flat surface with the speaker mesh facing down, and stop if you hear distortion.',
       },
       {
         q: 'What should I do if my AirPods fell in water or the washing machine?',
@@ -2257,7 +2257,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Can this remove earwax from AirPods mesh?',
-        a: 'Yes. The Dust Cleaner mode produces rapid micro-vibrations (2.5 kHz – 14.5 kHz) that break the surface adhesion of dried wax, making it easy to brush away with a dry soft toothbrush.',
+        a: 'It can help a little. The Dust Cleaner tone vibrates the mesh, which may loosen light debris, but dried wax mainly comes off with a dry soft brush. Never use liquids or sharp objects on the mesh.',
       },
     ],
     relatedSlugs: ['clean-airpods-pro-2-speaker', 'clean-airpods-4-speaker', 'fix-iphone-speaker', 'fix-apple-watch-speaker'],
@@ -2266,21 +2266,21 @@ const coreHubs: Record<string, DeviceData> = {
   'fix-apple-watch-speaker': {
     slug: 'fix-apple-watch-speaker',
     name: 'Apple Watch (All Series, SE & Ultra)',
-    shortName: 'Apple Watch Hub',
+    shortName: 'Apple Watch',
     brand: 'Apple',
     category: 'hub',
-    metaTitle: 'Fix Apple Watch Speaker: Water Eject Sound & Muffled Audio Fix',
+    metaTitle: 'Fix Apple Watch Speaker: Clear Water with Water Lock',
     metaDescription:
-      'Clear water from Apple Watch Series, SE & Ultra speakers. 165 Hz water lock tone expels trapped water and fixes muffled microphone and speaker sound in 60s.',
-    eyebrow: 'Apple Watch Water Lock & Ejection',
+      'How to clear water from an Apple Watch speaker with the built-in Water Lock, what to do when it still sounds muffled, and how to clear your iPhone speaker too.',
+    eyebrow: 'Apple Watch Water Lock Guide',
     heroHeading: 'Fix Apple Watch Speaker & Clear Trapped Water',
     heroSubtitle:
-      'Clear water from your Apple Watch speaker port using the same 165 Hz frequency pulse as watchOS Water Lock. Restore loud speaker audio and clear microphone input.',
-    badge: 'Apple Watch Water Eject',
+      'Your Apple Watch clears its own speaker with Water Lock. This page explains how to use it, what to try when sound stays muffled, and lets you clear water from the iPhone or other phone you are browsing on.',
+    badge: 'Apple Watch Water Lock',
     ipRating: 'WR50 (50m water resistance) / Ultra: WR100 (100m, EN13319)',
-    grilleSpecs: 'Side dual-slot acoustic speaker cavity + dual microphone ports',
-    acousticFreq: '165 Hz resonant multi-harmonic acoustic ejection tone',
-    recommendedDuration: '60 seconds',
+    grilleSpecs: 'Side speaker slots + microphone ports',
+    acousticFreq: 'Use the watch’s built-in Water Lock; this site’s tone plays on the device you open it on',
+    recommendedDuration: 'One Water Lock cycle; repeat if still muffled',
     compatibilityList: [
       'Apple Watch Ultra 2 & Ultra (49mm)',
       'Apple Watch Series 10, Series 9, Series 8',
@@ -2288,52 +2288,52 @@ const coreHubs: Record<string, DeviceData> = {
       'Apple Watch SE (1st & 2nd Generation)',
     ],
     overview: [
-      'Apple Watches have exceptional water resistance designed for swimming and water sports. However, after exiting the water, droplets frequently lodge in the side speaker cavity, resulting in faint Siri responses, quiet phone call audio, and muffled alarms.',
-      'While watchOS has an integrated Water Lock ejection feature, it often requires multiple manual triggers or may fail if the Digital Crown is sticky. Fix The Speaker provides an extended, continuous 60-second acoustic pulse stream to thoroughly evacuate water from Apple Watch speakers and microphones.',
+      'Apple Watch is built for swimming, but after you leave the water, droplets can sit in the side speaker slots and make alarms, calls and Siri sound faint or muffled.',
+      'A web page cannot play sound through the Apple Watch speaker, so the tone on this page will not clear the watch itself. The watch has its own tool for that: Water Lock, which plays a sound from the watch speaker to push water out. Use Water Lock for the watch, and use the tool above if the iPhone you were carrying also got wet.',
     ],
     steps: [
       {
-        name: 'Take Apple Watch Off Your Wrist',
-        text: 'Unbuckle the watch band and remove the Apple Watch from your wrist to allow free acoustic air movement around the side speaker ports.',
+        name: 'Turn On Water Lock Before Water Activities',
+        text: 'Open Control Center on the watch and tap the water drop icon. Water Lock stops accidental taps while the screen is wet.',
       },
       {
-        name: 'Hold Watch with Speaker Port Facing Down',
-        text: 'Locate the speaker slots on the left side of the watch case and angle them downward over a clean dry towel.',
+        name: 'Turn Off Water Lock to Eject Water',
+        text: 'When you are out of the water, turn off Water Lock as your watch model prompts you (turning or pressing the Digital Crown). The watch plays a sound through its speaker to push water out.',
       },
       {
-        name: 'Set Volume to 100% on Paired Device',
-        text: 'If playing through your browser or routing audio via Bluetooth to the watch, maximize the volume setting for full driver stroke displacement.',
+        name: 'Hold the Speaker Side Down',
+        text: 'Keep the speaker slots on the left side of the case facing down over a dry towel while the sound plays, so droplets fall away.',
       },
       {
-        name: 'Run the 165 Hz Water Eject Pulse',
-        text: 'Start the water eject tool and let the tone vibrate the speaker diaphragm for 60 seconds. Observe water droplets exiting the side cavity.',
+        name: 'Repeat If Sound Is Still Muffled',
+        text: 'If alarms or calls still sound quiet, turn Water Lock on and off again, then let the watch air dry at room temperature.',
       },
       {
-        name: 'Dry Outer Housing with a Microfiber Cloth',
-        text: 'Gently wipe the side speaker ports and digital crown area with a lint-free cloth. Test Siri voice clarity to verify full recovery.',
+        name: 'Clear Your iPhone Speaker Too',
+        text: 'If your iPhone also got wet, open this page on the iPhone and run the Water Eject tool above with the bottom speaker facing down.',
       },
     ],
     technicalTips: [
-      'Avoid pressing or turning the Digital Crown forcefully while the watch is actively wet with soapy or salt water; rinse with fresh tap water first.',
-      'Never insert paperclips or pins into the microphone hole or speaker slot; this will puncture the acoustic water membrane.',
-      'Do not place Apple Watch on a magnetic charger while the speaker cavity or case back retains visible water droplets.',
+      'After salt water or chlorinated pool water, rinse the watch under fresh running tap water and dry it with a lint-free cloth, as Apple recommends.',
+      'Never insert paperclips or pins into the microphone hole or speaker slot; you can damage the internal mesh.',
+      'Do not use heat, such as a hair dryer, to dry the watch.',
     ],
     faqs: [
       {
-        q: 'How does this compare to the built-in Apple Watch Water Lock?',
-        a: 'The built-in Water Lock plays a short 5-second acoustic burst when you turn the Digital Crown. Fix The Speaker runs an extended 60-second continuous resonant frequency wave, which is significantly more effective for dislodging stubborn moisture or pool water.',
+        q: 'Can this website play the water eject sound through my Apple Watch?',
+        a: 'No. Web pages cannot route sound to the Apple Watch speaker, and the watch is not a Bluetooth speaker for your phone. To clear water from the watch, use its built-in Water Lock, which plays the ejection sound from the watch itself.',
       },
       {
-        q: 'Why does my Apple Watch microphone not hear Siri after swimming?',
-        a: 'The microphone and speaker ports share adjacent cavities on the watch chassis. When water blocks the speaker slot, moisture often dampens the microphone membrane as well. Clearing the speaker also evacuates the shared acoustic chamber.',
+        q: 'Why does my Apple Watch sound muffled after swimming?',
+        a: 'Water can stay in the speaker slots and on the internal mesh, which dampens the sound. Running Water Lock again and letting the watch air dry usually brings the volume back. If it stays muffled for more than a day, contact Apple Support.',
       },
       {
-        q: 'Can I use this after swimming in the ocean or salt water?',
-        a: 'Yes! First rinse the Apple Watch gently under fresh lukewarm tap water to wash away corrosive salt crystals, then run the 165 Hz water eject tone to expel the fresh rinse water.',
+        q: 'Can I use Water Lock after swimming in the ocean?',
+        a: 'Yes. Rinse the watch under fresh tap water first to remove salt, dry it with a lint-free cloth, then use Water Lock to clear the rinse water from the speaker.',
       },
       {
-        q: 'Is this safe for Apple Watch Ultra with dual speakers?',
-        a: 'Yes, Apple Watch Ultra features an 86-decibel dual-speaker siren system. The 165 Hz pulse works safely across both drivers.',
+        q: 'What does the tool on this page do, then?',
+        a: 'It plays a low tone through the speaker of the phone, tablet or computer you open it on. That helps when the iPhone or Android phone you were carrying also got wet.',
       },
     ],
     relatedSlugs: ['eject-water-apple-watch-ultra-2', 'eject-water-apple-watch-series-10', 'fix-iphone-speaker', 'clean-airpods-speaker'],
@@ -2342,7 +2342,7 @@ const coreHubs: Record<string, DeviceData> = {
   'fix-android-speaker': {
     slug: 'fix-android-speaker',
     name: 'Universal Android Phones',
-    shortName: 'Android Hub',
+    shortName: 'Android',
     brand: 'Universal',
     category: 'hub',
     metaTitle: 'Fix Android Speaker: Water Eject Sound & Speaker Dust Cleaner',
@@ -2398,11 +2398,11 @@ const coreHubs: Record<string, DeviceData> = {
     faqs: [
       {
         q: 'Does this water eject sound work on all Android phone brands?',
-        a: 'Yes. The 165 Hz acoustic wave runs entirely in your mobile web browser (Chrome, Samsung Internet, Firefox, Brave, Opera) and works on Google Pixel, Xiaomi, OnePlus, Motorola, Sony, Oppo, Vivo, Realme, and all Android devices.',
+        a: 'The tool runs in any current mobile browser (Chrome, Samsung Internet, Firefox, Brave, Opera), so it plays on Pixel, Xiaomi, OnePlus, Motorola, Sony, Oppo, Vivo, Realme and other Android phones. How well it clears water depends on the phone and how much water got in.',
       },
       {
         q: 'Why does my Android speaker sound crackly after getting wet?',
-        a: 'Crackling occurs when water droplets sit directly on the moving speaker diaphragm. As the diaphragm vibrates, it hits the trapped liquid. Playing the 165 Hz tone ejects the droplets and clears the crackling sound immediately.',
+        a: 'Crackling occurs when water droplets sit directly on the moving speaker diaphragm. As the diaphragm vibrates, it hits the trapped liquid. Playing the 165 Hz tone with the speaker facing down can shake those droplets loose; if crackling continues after the phone has dried, the speaker may be damaged.',
       },
       {
         q: 'How long should I play the sound to eject water from an Android phone?',

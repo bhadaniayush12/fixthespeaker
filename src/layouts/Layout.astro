@@ -5,6 +5,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import CookieConsent from '../components/CookieConsent.astro';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
+import { isTranslatedSubpageIndexed } from '../data/indexing';
 
 // Resolve the hashed URL for the critical latin font so we can preload it.
 // Vite's ?url suffix returns the build-output path (e.g. /_astro/geist-latin-wght-normal.<hash>.woff2).
@@ -29,10 +30,10 @@ const {
   title,
   description,
   lang = defaultLang,
-  noindex = false,
+  noindex: noindexProp = false,
   ogType = 'website',
   jsonLd,
-  showAds = !noindex,
+  showAds: showAdsProp,
   localized = true,
 } = Astro.props;
 
@@ -60,12 +61,18 @@ const hasLangPrefix = pathSegments.length > 0 && pathSegments[0] in languages &&
 const subpageSegments = hasLangPrefix ? pathSegments.slice(1) : pathSegments;
 const subpagePath = localized ? subpageSegments.join('/') : '';
 
+// Translated pages without a full translation stay live but are noindexed and ad-free.
+const isThinTranslation = lang !== defaultLang && localized && !isTranslatedSubpageIndexed(subpageSegments.join('/'));
+const noindex = noindexProp || isThinTranslation;
+const showAds = (showAdsProp ?? true) && !noindex;
+
 const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor" stroke="none"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>`;
 ---
 
 <!doctype html>
 <html lang={lang} class="h-full">
   <head>
+    <meta charset="utf-8" />
     <!-- Preload the critical Geist latin font to eliminate the HTML→CSS→font waterfall.
          Without this, the browser only discovers the woff2 after downloading + parsing the
          CSS bundle, which inflates LCP on slow connections (P90 7s+ from font-swap delay). -->
@@ -185,7 +192,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       ></script>
     )}
 
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0B0F19" />
     <meta name="color-scheme" content="light dark" />

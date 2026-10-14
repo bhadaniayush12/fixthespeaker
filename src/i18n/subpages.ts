@@ -56,13 +56,13 @@ export const subpagesContent: Record<
       heading: 'About Fix The Speaker',
       eyebrow: 'About Us',
       intro:
-        'Fix The Speaker (fixthespeaker.com) is a free, privacy-first web utility engineered to restore muffled smartphone and laptop speakers. Using tailored sound frequencies generated client-side via the HTML5 Web Audio API, the tool pushes trapped liquid out through speaker grilles and dislodges fine dust particles in 60 seconds—with no app installations or sign-ups required.',
+        'Fix The Speaker (fixthespeaker.com) is a free, privacy-first web tool that helps clear muffled smartphone and laptop speakers. Using tailored sound frequencies generated client-side via the HTML5 Web Audio API, the tool plays a 60-second tone that can help push trapped water out through the speaker grille, with no app installation or sign-up required.',
       sections: [
         {
           title: 'Why Fix The Speaker Was Created',
           paragraphs: [
             'Smartphone speakers frequently become muffled after exposure to water from rain, workouts, showers, or accidental spills. Surface tension often traps microscopic droplets inside the dense mesh speaker grille, muting sound output and distorting audio clarity.',
-            'While popular advice often suggests burying electronics in rice (which can introduce starch dust into charging ports and microphone membranes) or waiting days for natural evaporation, acoustic physics provides a safe, active solution. Fix The Speaker was designed to deliver instant, accessible speaker cleaning across all devices without invasive bloatware or deceptive downloads.',
+            'While popular advice often suggests burying electronics in rice (which can introduce starch dust into charging ports and microphone membranes) or waiting days for natural evaporation, playing a low tone through the speaker is a simple step you can take right away. Fix The Speaker was built to make that step free and easy in any browser, without apps or downloads.',
           ],
         },
         {
@@ -72,7 +72,7 @@ export const subpagesContent: Record<
           ],
           list: [
             '165 Hz Water Eject Pulse: Emits a low-frequency square wave optimized to match the mechanical resonant displacement of smartphone micro-speakers. This rapid back-and-forth diaphragm excursion creates high-velocity air pressure pulses behind the speaker mesh, breaking water droplet surface tension and pushing moisture out through the exterior grille.',
-            '2.5 kHz – 14.5 kHz Dust Cleaner Sweep: Plays a high-frequency harmonic sweep that generates intense micro-vibrations across the acoustic mesh. These rapid vibrations loosen dried lint, dust, and sand particles so they can be easily brushed away with a dry microfiber cloth or soft toothbrush.',
+            '2.5 kHz – 14.5 kHz Dust Cleaner Sweep: Plays a high-frequency sweep that vibrates the speaker mesh. This may loosen light lint and dust; brush the grille gently with a dry soft brush or microfiber cloth to remove it.',
             'Dual-Channel Stereo Diagnostic Test: Generates calibrated test tones isolated to the left channel, right channel, and stereo center, allowing users to verify channel balance and sound clarity after cleaning.',
           ],
         },
@@ -105,7 +105,7 @@ export const subpagesContent: Record<
         'Privacy Policy for Fix The Speaker. Details our zero-audio collection policy, Google Analytics 4 tracking, Consent Mode v2, and third-party advertising disclosures.',
       heading: 'Privacy Policy',
       eyebrow: 'Legal & Compliance',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'This Privacy Policy outlines how Fix The Speaker ("we", "our", or "the Service") handles information when you visit fixthespeaker.com. We are committed to transparency: our tool operates entirely in your browser and never accesses your microphone, records audio, or collects personal audio streams.',
       sections: [
@@ -174,19 +174,21 @@ export const subpagesContent: Record<
         {
           title: '8. Newsletter Subscription Data',
           paragraphs: [
-            'If you choose to subscribe to our notification list using the form on the website, we collect the following data on your behalf and store it securely via our third-party email delivery provider (Cloudflare Workers KV):',
+            'If you choose to subscribe to our notification list using the form on the website, we collect the following data on your behalf and store it in our hosting provider’s data storage (Cloudflare Workers KV):',
           ],
           list: [
             'Email address: used solely to send you product update notifications.',
             'IP address: collected at the time of subscription for spam-prevention and geographic analytics purposes.',
             'Country: inferred from the IP address at the time of subscription for regional analytics.',
+            'Name: optional; if you leave it blank we store "Subscriber".',
+            'Browser user agent: the browser and device description your browser sends, kept for spam prevention.',
           ],
         },
         {
           title: '8a. Newsletter Data Rights & Deletion',
           paragraphs: [
             'We do not sell or share your newsletter subscription data with third-party advertisers.',
-            'You may unsubscribe at any time using the link included in every notification email. To request complete deletion of your subscription data (email, IP address, and country record), please contact us at support@fixthespeaker.com and we will process your request within 30 days.',
+            'You may unsubscribe at any time by emailing support@fixthespeaker.com. To request complete deletion of your subscription data (name, email, IP address, country and browser record), please contact us at support@fixthespeaker.com and we will process your request within 30 days.',
           ],
         },
         {
@@ -257,7 +259,7 @@ export const subpagesContent: Record<
           ],
         },
         {
-          title: '7. Governing Law & Amendments',
+          title: '7. Amendments & Contact',
           paragraphs: [
             'We reserve the right to update or modify these Terms at any time. Continued use of the website following changes constitutes acceptance of the modified Terms.',
             'If you have inquiries concerning these Terms of Use, please reach out to support@fixthespeaker.com.',
@@ -329,7 +331,7 @@ export const subpagesContent: Record<
         'Política de privacidad de Fix The Speaker. Conoce nuestra política de cero recolección de audio, analítica con GA4, Consent Mode v2 y avisos de publicidad de terceros.',
       heading: 'Política de Privacidad',
       eyebrow: 'Legal y Cumplimiento',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'Esta Política de Privacidad describe cómo Fix The Speaker («nosotros», «nuestro» o «el Servicio») gestiona la información cuando visitas fixthespeaker.com. Estamos comprometidos con la transparencia: nuestra herramienta funciona íntegramente en tu navegador y nunca accede a tu micrófono, no graba audio ni recopila transmisiones de audio personales.',
       sections: [
@@ -398,19 +400,21 @@ export const subpagesContent: Record<
         {
           title: '8. Datos de Suscripción al Boletín Informativo',
           paragraphs: [
-            'Si decides suscribirte a nuestra lista de notificaciones a través del formulario del sitio web, recopilamos los siguientes datos en tu nombre y los almacenamos de forma segura mediante nuestro proveedor externo de entrega de correo electrónico (Cloudflare Workers KV):',
+            'Si decides suscribirte a nuestra lista de notificaciones a través del formulario del sitio web, recopilamos los siguientes datos en tu nombre y los almacenamos de forma segura en el almacenamiento de datos de nuestro proveedor de alojamiento (Cloudflare Workers KV):',
           ],
           list: [
             'Dirección de correo electrónico: utilizada exclusivamente para enviarte avisos de actualizaciones del producto.',
             'Dirección IP: recopilada en el momento de la suscripción para prevención de spam y analítica geográfica.',
             'País: deducido a partir de la dirección IP en el momento de la suscripción con fines analíticos regionales.',
+            'Nombre: opcional; si lo dejas en blanco guardamos "Subscriber".',
+            'Agente de usuario del navegador: la descripción del navegador y dispositivo que envía tu navegador, conservada para prevenir spam.',
           ],
         },
         {
           title: '8a. Derechos y Supresión de Datos del Boletín',
           paragraphs: [
             'No vendemos ni compartimos los datos de tu suscripción al boletín con anunciantes externos.',
-            'Puedes cancelar tu suscripción en cualquier momento utilizando el enlace incluido en cada correo de notificación. Para solicitar la eliminación total de tus datos de suscripción (correo electrónico, dirección IP y registro de país), ponte en contacto con nosotros en support@fixthespeaker.com y procesaremos tu solicitud en un plazo de 30 días.',
+            'Puedes cancelar tu suscripción en cualquier momento escribiendo a support@fixthespeaker.com. Para solicitar la eliminación total de tus datos de suscripción (nombre, correo electrónico, dirección IP, país y datos del navegador), ponte en contacto con nosotros en support@fixthespeaker.com y procesaremos tu solicitud en un plazo de 30 días.',
           ],
         },
         {
@@ -500,7 +504,7 @@ export const subpagesContent: Record<
         'Fix The Speakerのプライバシーポリシー。音声データの非収集方針、Googleアナリティクス4、同意モードv2、サードパーティ広告に関する開示事項について詳しく説明します。',
       heading: 'プライバシーポリシー',
       eyebrow: '法的情報とコンプライアンス',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         '本プライバシーポリシーは、fixthespeaker.comをご利用いただく際の情報のお取り扱いについて説明するものです。当サービスは透明性を重視しており、ツールは完全にブラウザ内で動作し、マイクへのアクセス、音声の録音、個人音声ストリームの収集を行うことは一切ありません。',
       sections: [
@@ -569,19 +573,21 @@ export const subpagesContent: Record<
         {
           title: '8. ニュースレター登録データ',
           paragraphs: [
-            'サイト上のフォームから更新通知リストに登録された場合、以下の情報が収集され、外部メール配信プロバイダー（Cloudflare Workers KV）を通じて安全に保管されます：',
+            'サイト上のフォームから更新通知リストに登録された場合、以下の情報が収集され、ホスティング事業者のデータストレージ（Cloudflare Workers KV）に保管されます：',
           ],
           list: [
             'メールアドレス：製品アップデートのお知らせを送信する目的でのみ使用されます。',
             'IPアドレス：スパム防止および地域分析の目的で登録時に収集されます。',
             '国情報：地域統計分析のため、登録時のIPアドレスから推定されます。',
+            'お名前：任意です。空欄の場合は「Subscriber」と保存されます。',
+            'ブラウザのユーザーエージェント：ブラウザが送信するブラウザ・端末情報で、スパム防止のために保存されます。',
           ],
         },
         {
           title: '8a. ニュースレターデータの権利と削除',
           paragraphs: [
             'ニュースレターの登録データをサードパーティの広告主へ販売または共有することはありません。',
-            '配信されるすべての通知メール内のリンクからいつでも登録を解除できます。登録データ（メールアドレス、IPアドレス、国情報）の完全な削除をご希望の場合は、support@fixthespeaker.comまでご連絡ください。30日以内に削除手続きを行います。',
+            'support@fixthespeaker.com へご連絡いただければ、いつでも登録を解除できます。登録データ（お名前、メールアドレス、IPアドレス、国情報、ブラウザ情報）の完全な削除をご希望の場合は、support@fixthespeaker.comまでご連絡ください。30日以内に削除手続きを行います。',
           ],
         },
         {
@@ -652,7 +658,7 @@ export const subpagesContent: Record<
         'Politique de confidentialité de Fix The Speaker : découvrez notre politique de non-collecte audio, l’analyse GA4, Consent Mode v2 et les mentions publicitaires tierces.',
       heading: 'Politique de Confidentialité',
       eyebrow: 'Légal & Conformité',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'La présente Politique de Confidentialité détaille la manière dont Fix The Speaker (« nous », « notre » ou « le Service ») traite les informations lors de vos visites sur fixthespeaker.com. Nous nous engageons à une totale transparence : notre outil fonctionne exclusivement dans votre navigateur et n’accède jamais à votre microphone, n’enregistre aucun son et ne collecte aucun flux audio personnel.',
       sections: [
@@ -721,19 +727,21 @@ export const subpagesContent: Record<
         {
           title: '8. Données d’Abonnement à la Newsletter',
           paragraphs: [
-            'Si vous choisissez de vous inscrire à notre liste de notification via le formulaire du site, nous recueillons les informations suivantes et les stockons en toute sécurité auprès de notre prestataire de diffusion d’e-mails (Cloudflare Workers KV) :',
+            'Si vous choisissez de vous inscrire à notre liste de notification via le formulaire du site, nous recueillons les informations suivantes et les stockons en toute sécurité dans le stockage de données de notre hébergeur (Cloudflare Workers KV) :',
           ],
           list: [
             'Adresse e-mail : utilisée uniquement pour vous envoyer des notifications d’actualités sur le produit.',
             'Adresse IP : collectée au moment de l’inscription à des fins de prévention des abus (spam) et d’analyse géographique.',
             'Pays : déduit de l’adresse IP au moment de l’inscription pour des statistiques régionales.',
+            'Nom : facultatif ; si vous le laissez vide, nous enregistrons « Subscriber ».',
+            'Agent utilisateur du navigateur : la description du navigateur et de l’appareil envoyée par votre navigateur, conservée pour lutter contre le spam.',
           ],
         },
         {
           title: '8a. Droits et Suppression des Données de Newsletter',
           paragraphs: [
             'Nous ne vendons ni ne partageons vos données d’abonnement avec des annonceurs tiers.',
-            'Vous pouvez vous désabonner à tout instant grâce au lien présent dans chaque e-mail de notification. Pour demander la suppression définitive de vos données (e-mail, adresse IP et pays associé), écrivez-nous à support@fixthespeaker.com et nous traiterons votre demande sous 30 jours.',
+            'Vous pouvez vous désabonner à tout instant en écrivant à support@fixthespeaker.com. Pour demander la suppression définitive de vos données (nom, e-mail, adresse IP, pays et informations du navigateur), écrivez-nous à support@fixthespeaker.com et nous traiterons votre demande sous 30 jours.',
           ],
         },
         {
@@ -796,7 +804,7 @@ export const subpagesContent: Record<
         'Datenschutzerklärung für Fix The Speaker: Informationen zu Audio-Datenschutz, Google Analytics 4, Consent Mode v2 und Angaben zu Werbepartnern.',
       heading: 'Datenschutzerklärung',
       eyebrow: 'Rechtliches & Datenschutz',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'Diese Datenschutzerklärung erläutert, wie Fix The Speaker („wir“, „unser“ oder „der Dienst“) Daten beim Besuch von fixthespeaker.com verarbeitet. Transparenz ist uns wichtig: Unser Tool läuft vollständig in Ihrem Webbrowser, greift niemals auf Ihr Mikrofon zu, zeichnet keinen Ton auf und erfasst keine Audiodaten.',
       sections: [
@@ -865,19 +873,21 @@ export const subpagesContent: Record<
         {
           title: '8. Newsletter-Abonnementdaten',
           paragraphs: [
-            'Wenn Sie sich über das Formular für unseren Benachrichtigungsdienst eintragen, erfassen wir die folgenden Angaben und speichern diese sicher über unseren E-Mail-Dienstleister (Cloudflare Workers KV):',
+            'Wenn Sie sich über das Formular für unseren Benachrichtigungsdienst eintragen, erfassen wir die folgenden Angaben und speichern diese im Datenspeicher unseres Hosting-Anbieters (Cloudflare Workers KV):',
           ],
           list: [
             'E-Mail-Adresse: dient ausschließlich dem Versand von Produktaktualisierungen.',
             'IP-Adresse: wird zum Zeitpunkt der Anmeldung zur Spam-Prävention und für geografische Analysen erfasst.',
             'Land: wird anhand der IP-Adresse bei der Anmeldung für regionale Auswertungen ermittelt.',
+            'Name: freiwillig; bleibt das Feld leer, speichern wir „Subscriber“.',
+            'Browser-User-Agent: die Browser- und Gerätebeschreibung, die Ihr Browser sendet, gespeichert zur Spam-Abwehr.',
           ],
         },
         {
           title: '8a. Rechte & Löschung der Newsletter-Daten',
           paragraphs: [
             'Wir verkaufen oder übermitteln Ihre Newsletter-Abonnementdaten nicht an werbetreibende Dritte.',
-            'Sie können den Newsletter jederzeit über den Link in jeder Benachrichtigungs-E-Mail abbestellen. Um die vollständige Löschung Ihrer Daten (E-Mail-Adresse, IP-Adresse und Land) zu veranlassen, schreiben Sie uns bitte an support@fixthespeaker.com. Wir bearbeiten Ihre Anfrage innerhalb von 30 Tagen.',
+            'Sie können sich jederzeit per E-Mail an support@fixthespeaker.com abmelden. Um die vollständige Löschung Ihrer Daten (Name, E-Mail-Adresse, IP-Adresse, Land und Browserangaben) zu veranlassen, schreiben Sie uns bitte an support@fixthespeaker.com. Wir bearbeiten Ihre Anfrage innerhalb von 30 Tagen.',
           ],
         },
         {
@@ -940,7 +950,7 @@ export const subpagesContent: Record<
         'Política de Privacidade do Fix The Speaker. Conheça nossa política de zero coleta de áudio, rastreamento GA4, Consent Mode v2 e divulgações de anúncios de terceiros.',
       heading: 'Política de Privacidade',
       eyebrow: 'Legal e Conformidade',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'Esta Política de Privacidade descreve como o Fix The Speaker ("nós", "nosso" ou "o Serviço") trata as informações ao visitar fixthespeaker.com. Temos o compromisso com a transparência: nossa ferramenta opera integralmente no seu navegador e nunca acessa seu microfone, não grava áudios e não coleta transmissões pessoais de som.',
       sections: [
@@ -1009,19 +1019,21 @@ export const subpagesContent: Record<
         {
           title: '8. Dados de Inscrição na Newsletter',
           paragraphs: [
-            'Caso opte por se cadastrar na nossa lista de novidades pelo formulário no site, coletamos as informações descritas a seguir e as armazenamos com segurança por meio do nosso provedor externo de envio de e-mails (Cloudflare Workers KV):',
+            'Caso opte por se cadastrar na nossa lista de novidades pelo formulário no site, coletamos as informações descritas a seguir e as armazenamos com segurança no armazenamento de dados do nosso provedor de hospedagem (Cloudflare Workers KV):',
           ],
           list: [
             'Endereço de e-mail: usado exclusivamente para enviar novidades sobre o produto.',
             'Endereço IP: coletado no momento do cadastro para prevenção contra abusos e segurança geográfica.',
             'País: identificado a partir do endereço IP no momento da assinatura para fins estatísticos regionais.',
+            'Nome: opcional; se deixado em branco, salvamos "Subscriber".',
+            'User agent do navegador: a descrição do navegador e do aparelho enviada pelo seu navegador, guardada para prevenção de spam.',
           ],
         },
         {
           title: '8a. Direitos e Exclusão de Dados da Newsletter',
           paragraphs: [
             'Não comercializamos nem compartilhamos os dados da sua inscrição com anunciantes terceiros.',
-            'Você pode cancelar o recebimento a qualquer momento pelo link presente em cada mensagem. Para requerer a remoção completa do seu cadastro (e-mail, IP e registro de país), envie um e-mail para support@fixthespeaker.com e atenderemos sua solicitação em até 30 dias.',
+            'Você pode cancelar a inscrição a qualquer momento escrevendo para support@fixthespeaker.com. Para requerer a remoção completa do seu cadastro (nome, e-mail, IP, país e dados do navegador), envie um e-mail para support@fixthespeaker.com e atenderemos sua solicitação em até 30 dias.',
           ],
         },
         {
@@ -1084,7 +1096,7 @@ export const subpagesContent: Record<
         'Fix The Speaker 개인정보처리방침. 오디오 데이터 비수집 원칙, Google 애널리틱스 4 추적, 동의 모드 v2 및 제3자 광고 고지 사항을 안내합니다.',
       heading: '개인정보처리방침',
       eyebrow: '법적고지 및 규정준수',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         '본 개인정보처리방침은 귀하가 fixthespeaker.com을 방문할 때 Fix The Speaker("당사", "서비스")가 정보를 처리하는 방식을 규정합니다. 당사는 투명성을 핵심 원칙으로 삼고 있으며, 본 도구는 브라우저 내부에서만 독립적으로 실행되어 마이크에 접근하거나 음성을 녹음 및 수집하지 않습니다.',
       sections: [
@@ -1153,19 +1165,21 @@ export const subpagesContent: Record<
         {
           title: '8. 뉴스레터 구독 데이터',
           paragraphs: [
-            '웹사이트 양식을 통해 업데이트 알림 목록을 구독하시는 경우, 다음 정보가 수집되며 타사 이메일 전송 제공업체(Cloudflare Workers KV)를 통해 안전하게 보관됩니다:',
+            '웹사이트 양식을 통해 업데이트 알림 목록을 구독하시는 경우, 다음 정보가 수집되며 호스팅 업체의 데이터 저장소(Cloudflare Workers KV)에 보관됩니다:',
           ],
           list: [
             '이메일 주소: 제품 업데이트 알림을 전달하는 목적으로만 사용됩니다.',
             'IP 주소: 스팸 방지 및 지역별 통계 분석을 위해 구독 시 수집됩니다.',
             '국가 정보: 지역별 통계를 위해 구독 시점의 IP 주소를 기반으로 추정됩니다.',
+            '이름: 선택 사항이며, 비워 두면 "Subscriber"로 저장됩니다.',
+            '브라우저 사용자 에이전트: 브라우저가 보내는 브라우저 및 기기 정보로, 스팸 방지를 위해 보관됩니다.',
           ],
         },
         {
           title: '8a. 뉴스레터 데이터 권리 및 삭제 요청',
           paragraphs: [
             '당사는 뉴스레터 구독 데이터를 제3자 광고주에게 판매하거나 공유하지 않습니다.',
-            '수신되는 모든 알림 이메일에 포함된 링크를 통해 언제든지 구독을 취소할 수 있습니다. 등록된 정보(이메일, IP 주소 및 국가 기록)의 완전한 삭제를 원하실 경우 support@fixthespeaker.com으로 문의해 주시면 30일 이내에 삭제 처리됩니다.',
+            'support@fixthespeaker.com으로 연락하시면 언제든지 구독을 취소할 수 있습니다. 등록된 정보(이름, 이메일, IP 주소, 국가 및 브라우저 정보)의 완전한 삭제를 원하실 경우 support@fixthespeaker.com으로 문의해 주시면 30일 이내에 삭제 처리됩니다.',
           ],
         },
         {
@@ -1229,7 +1243,7 @@ export const subpagesContent: Record<
         'Informativa sulla Privacy di Fix The Speaker. Scopri la nostra politica di non raccolta audio, tracciamento con GA4, Consent Mode v2 e annunci di terze parti.',
       heading: 'Informativa sulla Privacy',
       eyebrow: 'Legale & Conformità',
-      updated: '2026-09-07',
+      updated: '2026-10-15',
       intro:
         'La presente Informativa sulla Privacy descrive le modalità di gestione delle informazioni da parte di Fix The Speaker ("noi", "nostro" o "il Servizio") durante la consultazione di fixthespeaker.com. Il nostro impegno verso la trasparenza è totale: lo strumento funziona interamente nel tuo browser e non accede mai al microfono, non registra audio e non raccoglie flussi sonori personali.',
       sections: [
@@ -1298,19 +1312,21 @@ export const subpagesContent: Record<
         {
           title: '8. Dati di Iscrizione alla Newsletter',
           paragraphs: [
-            'Se decidi di iscriverti alla nostra lista di notifiche tramite il modulo del sito web, raccogliamo i seguenti dati archiviandoli in modo protetto tramite il nostro fornitore terzo di recapito e-mail (Cloudflare Workers KV):',
+            'Se decidi di iscriverti alla nostra lista di notifiche tramite il modulo del sito web, raccogliamo i seguenti dati archiviandoli in modo protetto nello spazio di archiviazione dati del nostro provider di hosting (Cloudflare Workers KV):',
           ],
           list: [
             'Indirizzo e-mail: utilizzato unicamente per inviarti aggiornamenti relativi al prodotto.',
             'Indirizzo IP: raccolto al momento dell’iscrizione a fini di prevenzione dello spam e analisi geografica.',
             'Paese: desunto dall’indirizzo IP al momento della registrazione per statistiche regionali.',
+            'Nome: facoltativo; se lasciato vuoto salviamo "Subscriber".',
+            'User agent del browser: la descrizione di browser e dispositivo inviata dal tuo browser, conservata per prevenire lo spam.',
           ],
         },
         {
           title: '8a. Diritti e Cancellazione dei Dati della Newsletter',
           paragraphs: [
             'Non vendiamo né cediamo a inserzionisti terzi i dati di iscrizione alla newsletter.',
-            'Puoi annullare l’iscrizione in qualsiasi momento utilizzando il link presente in ciascuna e-mail di notifica. Per richiedere la cancellazione definitiva dei tuoi dati (indirizzo e-mail, IP e paese registrato), contattaci all’indirizzo support@fixthespeaker.com ed evaderemo la richiesta entro 30 giorni.',
+            'Puoi annullare l’iscrizione in qualsiasi momento scrivendo a support@fixthespeaker.com. Per richiedere la cancellazione definitiva dei tuoi dati (nome, indirizzo e-mail, IP, paese e dati del browser), contattaci all’indirizzo support@fixthespeaker.com ed evaderemo la richiesta entro 30 giorni.',
           ],
         },
         {

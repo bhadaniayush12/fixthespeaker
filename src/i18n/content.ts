@@ -69,7 +69,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       {
         heading: 'Step-by-Step Guide: How to Fix the Speaker on My iPhone or Android',
         paragraphs: [
-          'Follow these proven steps to achieve maximum water ejection efficiency and restore crystal-clear sound quality:',
+          'Follow these steps to give the water eject tone the best chance of clearing your speaker:',
         ],
         listType: 'ol',
         listItems: [
@@ -93,8 +93,8 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       {
         heading: 'Universal Compatibility: iPhone, Samsung, Pixel, Smartwatches & Laptops',
         paragraphs: [
-          'Fix The Speaker operates natively within modern web browsers using the standard HTML5 Web Audio API. It works seamlessly across all platforms with zero installation:',
-          'iPhone 16 / 15 / 14 / 13 / 12 / SE (iOS Safari), Samsung Galaxy S24 / S23 / A-series, Google Pixel 9 / 8 / 7, iPad, Apple Watch, and MacBook or Windows laptop speakers.',
+          'Fix The Speaker operates natively within modern web browsers using the standard HTML5 Web Audio API. It runs in any current browser with no installation:',
+          'iPhone 16 / 15 / 14 / 13 / 12 / SE (iOS Safari), Samsung Galaxy S24 / S23 / A-series, Google Pixel 9 / 8 / 7, iPad, and MacBook or Windows laptop speakers. (Apple Watch cannot play web audio through its own speaker; use its built-in Water Lock.)',
         ],
       },
     ],
@@ -105,7 +105,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Is this water eject sound safe for my phone speakers?',
-        a: 'Yes. 165 Hz is well within the normal frequency reproduction range of any smartphone speaker driver. The sound operates within the device built-in amplifier safety limits.',
+        a: '165 Hz is an ordinary bass note that phone speakers play every day in music. Keep the phone away from your ears at full volume, stop if you hear rattling or distortion, and do not use it on a speaker that is already damaged.',
       },
       {
         q: 'How long should I run the speaker water eject sound?',
@@ -113,7 +113,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'How is this different from the Apple Watch water eject or Siri water eject shortcut?',
-        a: 'The Apple Watch uses a similar acoustic pulse mechanism built into watchOS. Our tool brings a similar low-frequency approach to any web browser on iPhone, Android, and laptops without needing custom shortcuts or third-party apps.',
+        a: 'Apple Watch has its own Water Lock feature, which plays a sound from the watch speaker; this website cannot play sound through the watch. Our tool uses a similar idea, a low tone at full volume, for phones, tablets and laptops in any web browser, with no shortcut or app to install.',
       },
       {
         q: 'How do I clean my speaker dust with sound?',
@@ -194,13 +194,13 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
           'El arroz contiene almidón y polvo fino que penetra en los orificios, formando una pasta que bloquea el altavoz de forma permanente.',
           'El aire caliente de los secadores derrite los sellos adhesivos de impermeabilidad del smartphone y empuja el agua hacia la placa base.',
           'Los alfileres o hisopos pueden perforar la membrana impermeable IP68 del altavoz, destruyendo su protección.',
-          'Las ondas sonoras son el método más seguro, limpio y no invasivo recomendado por técnicos especialistas.',
+          'Un tono de sonido no requiere introducir nada en el altavoz, por eso es una opción menos invasiva que las agujas o los hisopos.',
         ],
       },
       {
         heading: 'Compatibilidad universal: iPhone, Samsung, Xiaomi, Smartwatches y Portátiles',
         paragraphs: [
-          'Fix The Speaker funciona directamente en el navegador mediante la API estándar Web Audio de HTML5. Es 100% compatible con iPhone 16/15/14/13/12/SE (Safari), Samsung Galaxy, Google Pixel, Xiaomi, iPads, Apple Watch y altavoces de ordenadores portátiles.',
+          'Fix The Speaker funciona directamente en el navegador mediante la API estándar Web Audio de HTML5. Funciona en iPhone 16/15/14/13/12/SE (Safari), Samsung Galaxy, Google Pixel, Xiaomi, iPad y altavoces de portátiles. (El Apple Watch no puede reproducir audio web por su altavoz; usa su función integrada «Water Lock».)',
         ],
       },
     ],
@@ -211,7 +211,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: '¿Es seguro usar este tono en mi iPhone o Android?',
-        a: 'Sí, es completamente seguro. 165 Hz está dentro del rango acústico diseñado para cualquier smartphone y respeta los límites de potencia del amplificador.',
+        a: '165 Hz es una nota grave normal que los altavoces del móvil reproducen a diario con la música. Mantén el teléfono lejos de los oídos, detente si oyes distorsión y no lo uses en un altavoz ya dañado.',
       },
       {
         q: '¿Cuántas veces debo reproducir el sonido?',
@@ -219,7 +219,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: '¿Es igual que el atajo expulsar agua de Siri o Apple Watch?',
-        a: 'Sí, utiliza el mismo principio físico de expulsión por resonancia acústica que integra Apple Watch, pero accesible desde cualquier navegador sin atajos.',
+        a: 'Se basa en una idea parecida (un tono grave a todo volumen), pero para móviles, tabletas y portátiles desde el navegador. El Apple Watch usa su propia función «Water Lock»; esta web no puede reproducir sonido en el reloj.',
       },
       {
         q: '¿Cómo limpio el polvo del altavoz con sonido?',
@@ -290,11 +290,11 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           'お米に入れるとデンプン粉が内部に入り込み、水分と混ざって固着する原因になります。',
           'ドライヤーの熱風は防水パッキンを溶かし、風圧で水を基板奥へと押し込んでしまいます。',
-          'つまようじや綿棒はスピーカー内部の防水保護膜を破ってしまう恐れがあります。音波による水抜きが最も安全な方法です。',
+          'つまようじや綿棒はスピーカー内部の防水保護膜を破ってしまう恐れがあります。音波による水抜きは、何も差し込まずに済む方法です。',
         ],
       },
       {
-        heading: '全機種対応：iPhone、Android、Apple Watch、ノートパソコン',
+        heading: '対応機種：iPhone、Android、iPad、ノートパソコン',
         paragraphs: [
           'Fix The SpeakerはHTML5 Web Audio APIを採用しており、iPhone (Safari)、Android (Chrome)、iPad、MacBook、Windows PCなど、あらゆるデバイスのブラウザでそのまま動作します。',
         ],
@@ -307,7 +307,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'スマホのスピーカーが壊れる心配はありませんか？',
-        a: 'スピーカーの安全許容範囲内の周波数と音量で設計されているため、本体に悪影響を与えることはありません。',
+        a: '165Hzは音楽でも普段から再生される低音です。最大音量時は耳から離し、音割れが聞こえたら停止してください。すでに故障したスピーカーには使用しないでください。',
       },
       {
         q: '水抜きは何回行えばよいですか？',
@@ -315,7 +315,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Apple Watchの水抜き機能やSiriショートカットと同じですか？',
-        a: 'はい、Apple Watchに標準搭載されている水抜き機能と同じ音波排出メカニズムを採用しています。本ツールはiPhoneやAndroidでも使えます。',
+        a: '低音を最大音量で鳴らすという考え方は似ていますが、本ツールはiPhone・Android・パソコンのブラウザ用です。Apple Watch本体の水抜きは、時計に内蔵された「水濡れロック（Water Lock）」を使ってください。',
       },
       {
         q: 'ホコリ掃除モードの使い方は？',
@@ -385,13 +385,13 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           'Le riz dépose de l’amidon qui forme une pâte corrosive à l’intérieur du port audio.',
           'La chaleur du sèche-cheveux fait fondre les joints d’étanchéité IP68 et pousse l’humidité vers la carte mère.',
-          'Les aiguilles percent la membrane acoustique étanche. Les ondes sonores restent la méthode la plus sûre et recommandée.',
+          'Les aiguilles percent la membrane acoustique étanche. Un son ne nécessite d’insérer aucun objet dans le haut-parleur, ce qui le rend moins invasif.',
         ],
       },
       {
         heading: 'Compatibilité universelle',
         paragraphs: [
-          'Compatible avec iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPad, Apple Watch et ordinateurs portables.',
+          'Compatible avec iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPad et ordinateurs portables. (L’Apple Watch ne peut pas lire l’audio web sur son haut-parleur : utilisez sa fonction intégrée « Water Lock ».)',
         ],
       },
     ],
@@ -402,7 +402,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Est-ce sans danger pour mon smartphone ?',
-        a: 'Oui, le son respecte parfaitement les plages de fréquence et les limites de puissance du haut-parleur.',
+        a: '165 Hz est une note grave ordinaire que les haut-parleurs jouent tous les jours avec la musique. Éloignez le téléphone de vos oreilles, arrêtez en cas de distorsion et ne l’utilisez pas sur un haut-parleur déjà endommagé.',
       },
       {
         q: 'Combien de fois dois-je lancer le son ?',
@@ -410,7 +410,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Est-ce identique au raccourci Water Eject sur Apple Watch ?',
-        a: 'Oui, c’est le même principe sonore d’évacuation par résonance acoustique, rendu accessible à tous les téléphones sans application.',
+        a: 'L’idée est proche (un son grave à plein volume), mais pour les téléphones, tablettes et ordinateurs dans le navigateur. Sur l’Apple Watch, utilisez sa fonction intégrée « Water Lock » : ce site ne peut pas jouer de son sur la montre.',
       },
       {
         q: 'Faut-il installer une application ?',
@@ -474,13 +474,13 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           'Reisstärke verklebt das Gitter dauerhaft.',
           'Föhnhitze beschädigt die internen Dichtungen und drückt Feuchtigkeit tiefer ins Gehäuse.',
-          'Nadeln durchstechen die wasserfeste IP68-Membran. Schallwellen sind die sicherste Methode.',
+          'Nadeln durchstechen die wasserfeste IP68-Membran. Ein Ton kommt ohne Einführen von Gegenständen aus und ist daher weniger invasiv.',
         ],
       },
       {
         heading: 'Universelle Kompatibilität',
         paragraphs: [
-          'Funktioniert auf allen modernen Geräten: iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPads, Apple Watch und Laptops.',
+          'Funktioniert in aktuellen Browsern auf iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPad und Laptops. (Die Apple Watch kann Web-Audio nicht über ihren Lautsprecher abspielen; nutze dort die integrierte Wassersperre (Water Lock).)',
         ],
       },
     ],
@@ -491,7 +491,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'Ist die Anwendung sicher für mein Smartphone?',
-        a: 'Ja, 165 Hz liegt vollständig innerhalb der sicheren Betriebsspezifikationen von Smartphone-Lautsprechern.',
+        a: '165 Hz ist ein gewöhnlicher Basston, den Handy-Lautsprecher täglich bei Musik wiedergeben. Halte das Gerät vom Ohr fern, stoppe bei Verzerrungen und verwende es nicht bei bereits beschädigten Lautsprechern.',
       },
       {
         q: 'Wie oft sollte der Ton abgespielt werden?',
@@ -565,7 +565,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       {
         heading: 'Compatibilidade com todos os dispositivos',
         paragraphs: [
-          'Funciona no iPhone 16/15/14/13/12, Samsung Galaxy, Motorola, Xiaomi, iPad, Apple Watch e caixas de som Bluetooth.',
+          'Funciona no iPhone 16/15/14/13/12, Samsung Galaxy, Motorola, Xiaomi, iPad e caixas de som Bluetooth. (O Apple Watch não reproduz áudio da web no próprio alto-falante; use o recurso integrado Water Lock.)',
         ],
       },
     ],
@@ -576,7 +576,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'É seguro para o meu celular?',
-        a: 'Sim, totalmente seguro. A frequência respeita os limites de potência dos alto-falantes.',
+        a: '165 Hz é uma nota grave comum que os alto-falantes do celular tocam todos os dias com música. Mantenha o aparelho longe dos ouvidos, pare se ouvir distorção e não use em um alto-falante já danificado.',
       },
       {
         q: 'Quantas vezes devo executar o som?',
@@ -645,7 +645,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           '쌀가루가 기기 안으로 들어가 물과 섞여 굳으면 스피커가 영구 손상됩니다.',
           '드라이기의 뜨거운 열기는 방수 실링을 녹이고 물을 내부 메인보드로 밀어 넣습니다.',
-          '바늘이나 이쑤시개는 방수 메시를 찢을 수 있습니다. 음파 배출이 가장 안전한 방법입니다.',
+          '바늘이나 이쑤시개는 방수 메시를 찢을 수 있습니다. 음파 배출은 아무것도 넣지 않아도 되는 방법입니다.',
         ],
       },
       {
@@ -662,7 +662,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: '스마트폰 스피커에 무리가 가지 않나요?',
-        a: '스피커 하드웨어 규격 내에서 안전하게 작동하도록 설계되어 기기에 무리를 주지 않습니다.',
+        a: '165Hz는 음악에서도 평소에 재생되는 저음입니다. 최대 음량일 때는 귀에서 떨어뜨리고, 소리가 찢어지면 멈추세요. 이미 고장 난 스피커에는 사용하지 마세요.',
       },
       {
         q: '소리는 몇 번이나 재생해야 하나요?',
@@ -730,13 +730,13 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         paragraphs: [
           'L’amido di riso crea una pasta che ostruisce la griglia per sempre.',
           'Il calore del phon danneggia le guarnizioni impermeabili.',
-          'Gli aghi possono forare la membrana IP68. Il suono è la soluzione più sicura.',
+          'Gli aghi possono forare la membrana IP68. Il suono non richiede di inserire nulla nell’altoparlante, quindi è meno invasivo.',
         ],
       },
       {
         heading: 'Compatibilità universale',
         paragraphs: [
-          'Compatibile con iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPad, Apple Watch e computer.',
+          'Compatibile con iPhone 16/15/14/13/12, Samsung Galaxy, Google Pixel, Xiaomi, iPad e computer. (Apple Watch non può riprodurre audio web dal proprio altoparlante: usa la funzione integrata Water Lock.)',
         ],
       },
     ],
@@ -747,7 +747,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'È sicuro per il telefono?',
-        a: 'Sì, rispetta tutti i limiti di potenza e frequenza dei componenti audio del dispositivo.',
+        a: '165 Hz è una normale nota bassa che gli altoparlanti riproducono ogni giorno con la musica. Tieni il telefono lontano dalle orecchie, fermati se senti distorsione e non usarlo su un altoparlante già danneggiato.',
       },
       {
         q: 'Quante volte devo eseguirlo?',

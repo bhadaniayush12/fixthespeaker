@@ -1,5 +1,6 @@
 ---
 import { languages, defaultLang } from '../i18n/ui';
+import { isTranslatedSubpageIndexed } from '../data/indexing';
 
 export interface Props {
   currentPath?: string;
@@ -22,7 +23,8 @@ const subpageSlug = subpageSegments.length > 0 ? `/${subpageSegments.join('/')}`
 // 3. Construct hreflang array with x-default and all configured locales
 const defaultUrl = `${SITE_URL}${subpageSlug || '/'}`;
 
-const localized = Astro.props.localized ?? true;
+// Only advertise translations that are indexable (see src/data/indexing.ts).
+const localized = (Astro.props.localized ?? true) && isTranslatedSubpageIndexed(subpageSlug);
 const hreflangEntries = [
   { lang: 'x-default', href: defaultUrl },
   { lang: 'en', href: defaultUrl },

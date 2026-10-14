@@ -24,6 +24,7 @@ async function main() {
   const devicesModule = await import('../src/data/devices.ts');
   const devices = devicesModule.devices;
   const deviceSlugs = Object.keys(devices);
+  const { isTranslatedSubpageIndexed } = await import('../src/data/indexing.ts');
   const HUB_SLUGS = new Set([
     'fix-iphone-speaker',
     'eject-water-samsung-galaxy',
@@ -54,7 +55,9 @@ async function main() {
   // 1. Static Pages
   for (const page of staticPages) {
     const isRoot = page.slug === '';
-    for (const lang of LANGS) {
+    // Translations that are not indexable are left out of the sitemap and its hreflang alternates.
+    const pageLangs = isTranslatedSubpageIndexed(page.slug) ? LANGS : LANGS.filter((l) => l.code === 'en');
+    for (const lang of pageLangs) {
       const isDefault = lang.code === 'en';
       const loc = isRoot
         ? (isDefault ? `${SITE_URL}/` : `${SITE_URL}/${lang.code}`)
@@ -71,7 +74,7 @@ async function main() {
       // Hreflang alternates
       const defaultUrl = isRoot ? `${SITE_URL}/` : `${SITE_URL}/${page.slug}`;
       xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}" />\n`;
-      for (const l of LANGS) {
+      for (const l of pageLangs) {
         const altUrl = isRoot
           ? (l.code === 'en' ? `${SITE_URL}/` : `${SITE_URL}/${l.code}`)
           : (l.code === 'en' ? `${SITE_URL}/${page.slug}` : `${SITE_URL}/${l.code}/${page.slug}`);
@@ -86,7 +89,8 @@ async function main() {
     const isHub = devices[slug].category === 'hub';
     const basePriority = isHub ? '0.85' : '0.80';
 
-    for (const lang of LANGS) {
+    const hubLangs = isTranslatedSubpageIndexed(slug) ? LANGS : LANGS.filter((l) => l.code === 'en');
+    for (const lang of hubLangs) {
       const isDefault = lang.code === 'en';
       const loc = isDefault ? `${SITE_URL}/${slug}` : `${SITE_URL}/${lang.code}/${slug}`;
       const pagePriority = isDefault ? basePriority : (parseFloat(basePriority) - 0.05).toFixed(2);
@@ -99,7 +103,7 @@ async function main() {
 
       const defaultUrl = `${SITE_URL}/${slug}`;
       xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}" />\n`;
-      for (const l of LANGS) {
+      for (const l of hubLangs) {
         const altUrl = l.code === 'en' ? `${SITE_URL}/${slug}` : `${SITE_URL}/${l.code}/${slug}`;
         xml += `    <xhtml:link rel="alternate" hreflang="${l.code}" href="${altUrl}" />\n`;
       }
@@ -126,7 +130,7 @@ async function main() {
 
   const outputPath = path.resolve(__dirname, '../public/sitemap.xml');
   fs.writeFileSync(outputPath, xml, 'utf8');
-  console.log(`Successfully generated public/sitemap.xml with ${staticPages.length * 8 + indexableDeviceSlugs.length * 8 + guidePages.length} total URL entries.`);
+  console.log(`Successfully generated public/sitemap.xml with ${(xml.match(/<loc>/g) || []).length} total URL entries.`);
 }
 
 main().catch((err) => {
