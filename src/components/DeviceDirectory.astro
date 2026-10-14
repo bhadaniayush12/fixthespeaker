@@ -38,7 +38,7 @@ const brandOptions = [
   { value: 'xiaomi', label: 'Xiaomi / Poco' },
   { value: 'oneplus', label: 'OnePlus' },
   { value: 'wearables-audio', label: 'Wearables & Audio' },
-  { value: 'others', label: 'Others' },
+  { value: 'others', label: t.dirOthers },
 ];
 
 function getDeviceUrl(slug: string): string {
@@ -77,14 +77,14 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
       <div class="grid grid-cols-1 items-end gap-3 sm:grid-cols-2 lg:grid-cols-12">
         <div class="lg:col-span-3">
           <label for="brandSelect" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
-            Brand
+            {t.dirBrand}
           </label>
           <div class="relative">
             <select
               id="brandSelect"
               class="min-h-[44px] w-full cursor-pointer appearance-none rounded-xl border border-hairline bg-elevated px-3.5 py-2 pr-10 text-sm font-medium text-ink transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             >
-              <option value="">Select a brand</option>
+              <option value="">{t.dirSelectBrand}</option>
               {brandOptions.map((brand) => (
                 <option value={brand.value}>{brand.label}</option>
               ))}
@@ -99,16 +99,16 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
 
         <div class="lg:col-span-4">
           <label for="modelSelect" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
-            Model
+            {t.dirModel}
           </label>
           <div class="relative">
             <select
               id="modelSelect"
               disabled
-              data-placeholder="Select a model"
+              data-placeholder={t.dirSelectModel}
               class="min-h-[44px] w-full cursor-pointer appearance-none rounded-xl border border-hairline bg-elevated px-3.5 py-2 pr-10 text-sm font-medium text-ink transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <option value="">Select a model</option>
+              <option value="">{t.dirSelectModel}</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-mute" aria-hidden="true">
               <svg viewBox="0 0 20 20" class="size-4" fill="currentColor">
@@ -125,7 +125,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
             disabled
             class="flex min-h-[44px] w-full cursor-pointer touch-manipulation items-center justify-center gap-2 rounded-xl bg-primary px-4 text-sm font-semibold text-on-primary shadow-lg shadow-primary/20 transition-all duration-200 hover:bg-primary-bright active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
           >
-            <span>Clean Device</span>
+            <span>{t.dirCleanDevice}</span>
             <svg viewBox="0 0 16 16" class="size-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4"></path>
             </svg>
@@ -134,7 +134,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
 
         <div class="sm:col-span-2 lg:col-span-3">
           <label for="device-search-input" class="mb-1.5 block font-mono text-xs font-semibold uppercase tracking-wider text-ink">
-            Instant search
+            {t.dirInstantSearch}
           </label>
           <div class="relative">
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-mute" aria-hidden="true">
@@ -154,7 +154,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
             <button
               id="device-search-clear"
               type="button"
-              aria-label="Clear search"
+              aria-label={t.dirClearSearch}
               class="absolute inset-y-0 right-0 hidden cursor-pointer items-center pr-3 text-mute transition-colors hover:text-ink"
             >
               <svg viewBox="0 0 20 20" class="size-4" fill="currentColor" aria-hidden="true">
@@ -174,7 +174,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
 
     <!-- Featured Hub Guides -->
     <div class="mt-6 border-t border-hairline/80 pt-5">
-      <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary mb-3">Popular Device Guides</p>
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary mb-3">{t.dirPopularGuides}</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
         {[
           { slug: 'fix-iphone-speaker', label: 'Apple iPhone' },

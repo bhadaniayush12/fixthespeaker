@@ -2,7 +2,6 @@
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import CookieConsent from '../components/CookieConsent.astro';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { isTranslatedSubpageIndexed } from '../data/indexing';
@@ -101,13 +100,13 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
           ],
           wait_for_update: 500
         });
-        // Everywhere else: analytics on by default (Reject in the banner turns it off); ads stay opt-in.
+        // Everywhere else: granted by default. EEA/UK/CH consent is collected by the Google
+        // consent message (AdSense Privacy & messaging), which updates these signals.
         window.gtag('consent', 'default', {
-          ad_storage: 'denied',
+          ad_storage: 'granted',
           analytics_storage: 'granted',
-          ad_user_data: 'denied',
-          ad_personalization: 'denied',
-          wait_for_update: 500
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
         });
         window.gtag('set', 'ads_data_redaction', true);
         window.gtag('set', 'url_passthrough', true);
@@ -400,7 +399,7 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         <div class="mt-10 flex flex-col gap-3 border-t border-hairline pt-6 text-xs leading-5 text-faint sm:flex-row sm:items-start sm:justify-between">
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
             <p>&copy; {year} {SITE_NAME}. {t.footerCopyright}</p>
-            <button type="button" class="underline underline-offset-4 transition-colors hover:text-ink" data-cookie-settings>
+            <button type="button" class="underline underline-offset-4 transition-colors hover:text-ink" data-cookie-settings data-privacy-url={getRelativeLocaleUrl(lang, 'privacy')}>
               {t.cookieSettings}
             </button>
           </div>
@@ -411,10 +410,24 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       </div>
     </footer>
 
-    <CookieConsent lang={lang} />
 
     {/* iOS Touch Event Handling & Theme Toggle Script */}
     <script>
+      // Footer "Cookie settings": reopen the Google consent message (EEA/UK/CH, where Google's CMP is active);
+      // elsewhere there is no consent message to reopen, so show the privacy policy's cookie section.
+      document.querySelectorAll<HTMLButtonElement>('[data-cookie-settings]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const w = window as any;
+          if (typeof w.__tcfapi === 'function') {
+            w.googlefc = w.googlefc || {};
+            w.googlefc.callbackQueue = w.googlefc.callbackQueue || [];
+            w.googlefc.callbackQueue.push(() => w.googlefc.showRevocationMessage());
+          } else {
+            window.location.href = button.dataset.privacyUrl || '/privacy';
+          }
+        });
+      });
+
       // iOS / Mobile click toggle for language dropdown menu
       const langContainer = document.getElementById('lang-menu-container');
       const langBtn = document.getElementById('lang-menu-btn');

@@ -68,6 +68,11 @@ for (const file of ['fix-apple-watch-speaker.html', 'de/clean-airpods-speaker.ht
   assert(!/(AirPods|Apple Watch|Android) Hub|\(All Models\)-/.test(read(file)), `${file} has no leaked template names`);
 }
 
+// 9. EEA consent comes from the Google consent message; the site has no own banner or newsletter form
+assert(!indexHtml.includes('id="cookie-consent"'), 'Homepage has no custom cookie banner');
+assert(!indexHtml.includes('subscribe-form'), 'Homepage has no newsletter form');
+assert(/region:\s*\[[^\]]*'DE'/.test(indexHtml) && indexHtml.includes("ad_storage: 'denied'"), 'EEA consent defaults stay denied');
+
 if (errors > 0) {
   console.error(`\nTest run failed with ${errors} error(s).`);
   process.exit(1);

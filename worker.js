@@ -1,4 +1,3 @@
-import { onRequestPost as handleSubscribe, onRequestOptions as handleSubscribeOptions } from './functions/api/subscribe.js';
 import { onRequestGet as handleExport } from './functions/api/export-subscribers.js';
 
 const SUPPORTED_LOCALES = new Set(['en', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it']);
@@ -47,10 +46,9 @@ export default {
     const locale = getLocale(url.pathname);
 
     try {
+      // The newsletter form was retired in October 2026; existing records stay exportable below.
       if (path === '/api/subscribe') {
-        if (request.method === 'OPTIONS') return handleSubscribeOptions({ request });
-        if (request.method === 'POST') return handleSubscribe({ request, env });
-        return methodNotAllowed('POST, OPTIONS');
+        return jsonResponse(410, { error: 'Newsletter sign-up is closed.' });
       }
 
       if (path === '/api/export-subscribers') {

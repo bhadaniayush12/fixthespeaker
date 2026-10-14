@@ -141,7 +141,7 @@ export const subpagesContent: Record<
             'Our website uses browser local storage and essential cookies to maintain core user preferences. Specifically, we store:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: Records your cookie preferences (analytics and advertising choices) so we honor your selections on subsequent visits.',
+            'fixthespeaker_cookie_consent_v1: Keeps any analytics and advertising choices you made with an earlier version of our cookie banner, so they continue to be honoured.',
             'theme: Stores your dark mode / light mode interface preference.',
             'fix_speaker_mode: Remembers the last cleaning mode you selected (Water Eject, Dust Cleaner or Speaker Test).',
           ],
@@ -149,8 +149,8 @@ export const subpagesContent: Record<
         {
           title: '4. Google Analytics 4 (GA4) Tracking',
           paragraphs: [
-            'We use Google Analytics 4 (Measurement ID: G-924DECLM9L) to analyze aggregated traffic trends and user interaction patterns, and Google Consent Mode v2 to apply your choices. If you visit from the European Economic Area, the United Kingdom or Switzerland, analytics and advertising storage (ad_storage, analytics_storage, ad_user_data, ad_personalization) is set to "denied" by default until you accept. Elsewhere, analytics storage is enabled by default and advertising storage is denied by default until you accept.',
-            'While analytics storage is denied, Google’s tag still loads but does not set or read analytics cookies. It sends only limited cookieless signals (such as the page address, referrer, timestamp, browser type and consent status, with your IP address transmitted as part of the web request) that Google uses to estimate aggregate traffic. Choosing "Reject All", or turning off analytics in Preferences, sets analytics storage to denied wherever you are. You can manage or revoke your consent at any time by clicking the "Cookie Settings" link located in the website footer.',
+            'We use Google Analytics 4 (Measurement ID: G-924DECLM9L) to understand aggregated traffic and how the tool is used, and Google Consent Mode v2 to respect consent choices. If you visit from the European Economic Area, the United Kingdom or Switzerland, analytics and advertising storage (ad_storage, analytics_storage, ad_user_data, ad_personalization) is denied until you give consent through the Google consent message shown on your first visit. In other regions, analytics and advertising storage is enabled by default.',
+            'While analytics storage is denied, Google’s tag still loads but does not set or read analytics cookies. It sends only limited cookieless signals (such as the page address, referrer, timestamp, browser type and consent status, with your IP address transmitted as part of the web request). You can change or withdraw consent at any time with the "Cookie settings" link in the website footer, which reopens the Google consent message where it applies. You can also opt out of Google Analytics with Google’s browser add-on (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -181,7 +181,7 @@ export const subpagesContent: Record<
         {
           title: '8. Newsletter Subscription Data',
           paragraphs: [
-            'If you choose to subscribe to our notification list using the form on the website, we collect the following data on your behalf and store it in our hosting provider’s data storage (Cloudflare Workers KV):',
+            'The website offered an optional update sign-up form until October 2026; it is no longer available. For people who signed up, we hold the following data in our hosting provider’s data storage (Cloudflare Workers KV):',
           ],
           list: [
             'Email address: used solely to send you product update notifications.',
@@ -367,7 +367,7 @@ export const subpagesContent: Record<
             'Nuestro sitio web utiliza el almacenamiento local del navegador y cookies esenciales para mantener las preferencias básicas del usuario. En concreto, almacenamos:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: Registra tus preferencias de cookies (opciones de analítica y publicidad) para respetar tus decisiones en visitas posteriores.',
+            'fixthespeaker_cookie_consent_v1: Conserva las preferencias de analítica y publicidad que hayas elegido con una versión anterior de nuestro aviso de cookies, para seguir respetándolas.',
             'theme: Guarda tu preferencia de interfaz de modo oscuro o claro.',
             'fix_speaker_mode: Recuerda el último modo de limpieza que seleccionaste (Expulsar agua, Limpiar polvo o Prueba de altavoz).',
           ],
@@ -375,8 +375,8 @@ export const subpagesContent: Record<
         {
           title: '4. Seguimiento con Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizamos Google Analytics 4 (ID de medición: G-924DECLM9L) para analizar tendencias agregadas de tráfico y patrones de interacción, y Google Consent Mode v2 para aplicar tus preferencias. Si nos visitas desde el Espacio Económico Europeo, el Reino Unido o Suiza, el almacenamiento analítico y publicitario (ad_storage, analytics_storage, ad_user_data, ad_personalization) se establece como "denegado" por defecto hasta que lo aceptes. En el resto del mundo, el almacenamiento analítico está activado por defecto y el publicitario está denegado por defecto hasta que lo aceptes.',
-            'Mientras el almacenamiento analítico está denegado, la etiqueta de Google se carga igualmente, pero no crea ni lee cookies de analítica. Solo envía señales limitadas sin cookies (como la dirección de la página, la página de referencia, la hora, el tipo de navegador y el estado del consentimiento; tu dirección IP se transmite como parte de la solicitud web) que Google utiliza para estimar el tráfico agregado. Si eliges «Rechazar todo» o desactivas la analítica en Preferencias, el almacenamiento analítico queda denegado estés donde estés. Puedes gestionar o revocar tu consentimiento en cualquier momento haciendo clic en el enlace «Configuración de cookies» ubicado en el pie de página del sitio web.',
+            'Utilizamos Google Analytics 4 (ID de medición: G-924DECLM9L) para conocer el tráfico agregado y el uso de la herramienta, y Google Consent Mode v2 para respetar tus decisiones de consentimiento. Si nos visitas desde el Espacio Económico Europeo, el Reino Unido o Suiza, el almacenamiento de analítica y publicidad (ad_storage, analytics_storage, ad_user_data, ad_personalization) queda denegado hasta que des tu consentimiento en el mensaje de consentimiento de Google que aparece en tu primera visita. En el resto de regiones, el almacenamiento de analítica y publicidad está activado por defecto.',
+            'Mientras el almacenamiento de analítica está denegado, la etiqueta de Google se carga pero no crea ni lee cookies de analítica; solo envía señales limitadas sin cookies (como la dirección de la página, la referencia, la hora, el tipo de navegador y el estado del consentimiento, con tu dirección IP transmitida como parte de la solicitud web). Puedes cambiar o retirar tu consentimiento en cualquier momento con el enlace "Configurar cookies" del pie de página, que vuelve a abrir el mensaje de consentimiento de Google cuando corresponde. También puedes desactivar Google Analytics con el complemento de navegador de Google (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -407,7 +407,7 @@ export const subpagesContent: Record<
         {
           title: '8. Datos de Suscripción al Boletín Informativo',
           paragraphs: [
-            'Si decides suscribirte a nuestra lista de notificaciones a través del formulario del sitio web, recopilamos los siguientes datos en tu nombre y los almacenamos de forma segura en el almacenamiento de datos de nuestro proveedor de alojamiento (Cloudflare Workers KV):',
+            'Hasta octubre de 2026 el sitio ofrecía un formulario opcional para recibir novedades; ya no está disponible. De las personas que se suscribieron conservamos los siguientes datos en el almacenamiento de datos de nuestro proveedor de alojamiento (Cloudflare Workers KV):',
           ],
           list: [
             'Dirección de correo electrónico: utilizada exclusivamente para enviarte avisos de actualizaciones del producto.',
@@ -540,7 +540,7 @@ export const subpagesContent: Record<
             '当サイトでは、基本的なユーザー設定を維持するためにブラウザのローカルストレージおよび必須Cookieを使用しています。具体的には以下のデータを保持します：',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: 次回以降の訪問時にも選択内容を反映できるよう、Cookie設定（分析および広告の選択）を記録します。',
+            'fixthespeaker_cookie_consent_v1：以前のバージョンのCookieバナーで選択された分析・広告の設定を保持し、引き続きその選択を尊重するために使用します。',
             'theme: ダークモード/ライトモードの表示設定を保存します。',
             'fix_speaker_mode: 最後に選択したクリーニングモード（水抜き・ホコリ除去・スピーカーテスト）を記憶します。',
           ],
@@ -548,8 +548,8 @@ export const subpagesContent: Record<
         {
           title: '4. Googleアナリティクス4（GA4）によるアクセス解析',
           paragraphs: [
-            '当サイトでは、集計されたトラフィック動向や利用傾向を分析するためにGoogleアナリティクス4（測定ID: G-924DECLM9L）を使用し、お客様の選択を反映するためにGoogle同意モードv2（Consent Mode v2）を使用しています。欧州経済領域（EEA）、英国、スイスからアクセスした場合、分析および広告用ストレージ（ad_storage、analytics_storage、ad_user_data、ad_personalization）は、同意いただくまでデフォルトで「拒否（denied）」に設定されます。その他の地域では、分析用ストレージはデフォルトで有効、広告用ストレージは同意いただくまでデフォルトで拒否に設定されます。',
-            '分析用ストレージが拒否されている間も、Googleのタグは読み込まれますが、分析用Cookieの設定や読み取りは行いません。Googleが集計トラフィックを推定するために使用する、Cookieを使わない限定的な信号（ページのアドレス、参照元、タイムスタンプ、ブラウザの種類、同意状態など。IPアドレスはウェブリクエストの一部として送信されます）のみを送信します。「すべて拒否」を選択するか、設定で分析をオフにすると、どの地域からのアクセスでも分析用ストレージは拒否に設定されます。フッターにある「Cookie設定」リンクから、いつでも同意の変更や撤回が可能です。',
+            '当サイトでは、集計されたトラフィックとツールの利用状況を把握するためにGoogle アナリティクス 4（測定ID：G-924DECLM9L）を使用し、同意内容を反映するためにGoogle 同意モード v2を使用しています。欧州経済領域（EEA）、英国、スイスからアクセスした場合、初回訪問時に表示されるGoogleの同意メッセージで同意するまで、分析および広告のストレージ（ad_storage、analytics_storage、ad_user_data、ad_personalization）は拒否された状態になります。その他の地域では、分析および広告のストレージは既定で有効です。',
+            '分析ストレージが拒否されている間も、Googleのタグは読み込まれますが、分析用Cookieの設定や読み取りは行いません。送信されるのは、ページのアドレス、参照元、時刻、ブラウザの種類、同意状態などの限定的なCookieを使用しない信号のみです（IPアドレスはウェブリクエストの一部として送信されます）。フッターの「Cookie 設定」リンクから、該当する地域ではGoogleの同意メッセージを再表示して、いつでも同意を変更・撤回できます。Googleのブラウザアドオン（https://tools.google.com/dlpage/gaoptout）でGoogle アナリティクスを無効にすることもできます。',
           ],
         },
         {
@@ -580,7 +580,7 @@ export const subpagesContent: Record<
         {
           title: '8. ニュースレター登録データ',
           paragraphs: [
-            'サイト上のフォームから更新通知リストに登録された場合、以下の情報が収集され、ホスティング事業者のデータストレージ（Cloudflare Workers KV）に保管されます：',
+            '本サイトでは2026年10月まで任意の更新通知登録フォームを提供していましたが、現在は終了しています。登録された方について、以下の情報をホスティング事業者のデータストレージ（Cloudflare Workers KV）に保管しています：',
           ],
           list: [
             'メールアドレス：製品アップデートのお知らせを送信する目的でのみ使用されます。',
@@ -694,7 +694,7 @@ export const subpagesContent: Record<
             'Notre site utilise le stockage local du navigateur ainsi que des cookies essentiels afin de mémoriser vos préférences clés. En particulier, nous conservons :',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1 : Enregistre vos choix en matière de cookies (analytics et publicité) afin de les respecter lors de vos prochaines visites.',
+            'fixthespeaker_cookie_consent_v1 : Conserve les choix d’analyse et de publicité faits avec une version précédente de notre bandeau cookies, afin de continuer à les respecter.',
             'theme : Mémorise votre choix d’interface en mode sombre ou clair.',
             'fix_speaker_mode : Mémorise le dernier mode de nettoyage choisi (Éjection d’eau, Nettoyage de poussière ou Test du haut-parleur).',
           ],
@@ -702,8 +702,8 @@ export const subpagesContent: Record<
         {
           title: '4. Suivi Google Analytics 4 (GA4)',
           paragraphs: [
-            'Nous utilisons Google Analytics 4 (Identifiant de mesure : G-924DECLM9L) pour analyser les tendances de fréquentation globale et les interactions, ainsi que Google Consent Mode v2 pour appliquer vos choix. Si vous visitez le site depuis l’Espace économique européen, le Royaume-Uni ou la Suisse, le stockage analytique et publicitaire (ad_storage, analytics_storage, ad_user_data, ad_personalization) est réglé sur « refusé » par défaut jusqu’à ce que vous l’acceptiez. Ailleurs, le stockage analytique est activé par défaut et le stockage publicitaire est refusé par défaut jusqu’à votre acceptation.',
-            'Tant que le stockage analytique est refusé, la balise Google se charge quand même, mais ne dépose ni ne lit de cookies d’analyse. Elle n’envoie que des signaux limités sans cookies (comme l’adresse de la page, le référent, l’horodatage, le type de navigateur et l’état du consentement ; votre adresse IP est transmise dans le cadre de la requête web) que Google utilise pour estimer la fréquentation globale. Choisir « Tout refuser », ou désactiver l’analyse dans les Préférences, règle le stockage analytique sur refusé où que vous soyez. Vous pouvez modifier ou révoquer votre consentement à tout moment en cliquant sur le lien « Paramètres des cookies » situé dans le pied de page du site.',
+            'Nous utilisons Google Analytics 4 (Identifiant de mesure : G-924DECLM9L) pour comprendre le trafic agrégé et l’usage de l’outil, et Google Consent Mode v2 pour respecter vos choix de consentement. Si vous nous rendez visite depuis l’Espace économique européen, le Royaume-Uni ou la Suisse, le stockage d’analyse et de publicité (ad_storage, analytics_storage, ad_user_data, ad_personalization) est refusé jusqu’à ce que vous donniez votre consentement via le message de consentement Google affiché lors de votre première visite. Dans les autres régions, le stockage d’analyse et de publicité est activé par défaut.',
+            'Tant que le stockage d’analyse est refusé, la balise Google se charge mais ne dépose ni ne lit de cookies d’analyse ; elle n’envoie que des signaux limités sans cookies (adresse de la page, référent, horodatage, type de navigateur et état du consentement, votre adresse IP étant transmise dans la requête web). Vous pouvez modifier ou retirer votre consentement à tout moment via le lien « Paramètres des cookies » en bas de page, qui rouvre le message de consentement Google lorsqu’il s’applique. Vous pouvez aussi désactiver Google Analytics avec le module de navigateur de Google (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -734,7 +734,7 @@ export const subpagesContent: Record<
         {
           title: '8. Données d’Abonnement à la Newsletter',
           paragraphs: [
-            'Si vous choisissez de vous inscrire à notre liste de notification via le formulaire du site, nous recueillons les informations suivantes et les stockons en toute sécurité dans le stockage de données de notre hébergeur (Cloudflare Workers KV) :',
+            'Le site proposait un formulaire facultatif d’inscription aux nouveautés jusqu’en octobre 2026 ; il n’est plus disponible. Pour les personnes inscrites, nous conservons les données suivantes dans le stockage de données de notre hébergeur (Cloudflare Workers KV) :',
           ],
           list: [
             'Adresse e-mail : utilisée uniquement pour vous envoyer des notifications d’actualités sur le produit.',
@@ -840,7 +840,7 @@ export const subpagesContent: Record<
             'Unsere Website nutzt den lokalen Browserspeicher sowie essenzielle Cookies, um grundlegende Benutzereinstellungen zu sichern. Konkret speichern wir:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: Speichert Ihre Cookie-Präferenzen (für Analytik und Werbung), damit Ihre Entscheidung bei künftigen Besuchen gewahrt bleibt.',
+            'fixthespeaker_cookie_consent_v1: Bewahrt Analyse- und Werbeeinstellungen auf, die Sie mit einer früheren Version unseres Cookie-Banners getroffen haben, damit sie weiterhin beachtet werden.',
             'theme: Sichert Ihre Einstellung für den Dunkelmodus oder Hellmodus.',
             'fix_speaker_mode: Speichert den zuletzt gewählten Reinigungsmodus (Wasserauswurf, Staubreinigung oder Lautsprechertest).',
           ],
@@ -848,8 +848,8 @@ export const subpagesContent: Record<
         {
           title: '4. Erfassung mit Google Analytics 4 (GA4)',
           paragraphs: [
-            'Wir setzen Google Analytics 4 (Mess-ID: G-924DECLM9L) ein, um aggregierte Nutzertrends und Interaktionsmuster zu analysieren, und verwenden Google Consent Mode v2, um Ihre Auswahl umzusetzen. Wenn Sie die Website aus dem Europäischen Wirtschaftsraum, dem Vereinigten Königreich oder der Schweiz besuchen, sind Analyse- und Werbespeicher (ad_storage, analytics_storage, ad_user_data, ad_personalization) standardmäßig auf „abgelehnt“ gesetzt, bis Sie zustimmen. In allen anderen Regionen ist der Analysespeicher standardmäßig aktiviert und der Werbespeicher standardmäßig abgelehnt, bis Sie zustimmen.',
-            'Solange der Analysespeicher abgelehnt ist, wird das Google-Tag dennoch geladen, setzt oder liest jedoch keine Analyse-Cookies. Es sendet nur eingeschränkte, cookielose Signale (etwa Seitenadresse, Referrer, Zeitstempel, Browsertyp und Einwilligungsstatus; Ihre IP-Adresse wird dabei als Teil der Webanfrage übermittelt), die Google zur Schätzung des Gesamtverkehrs nutzt. Wenn Sie „Alle ablehnen“ wählen oder Analysen in den Einstellungen deaktivieren, wird der Analysespeicher unabhängig von Ihrem Standort auf abgelehnt gesetzt. Sie können Ihre Einwilligung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile der Website anpassen oder widerrufen.',
+            'Wir setzen Google Analytics 4 (Mess-ID: G-924DECLM9L) ein, um aggregierte Zugriffe und die Nutzung des Tools zu verstehen, und Google Consent Mode v2, um Ihre Einwilligungsentscheidungen umzusetzen. Wenn Sie uns aus dem Europäischen Wirtschaftsraum, dem Vereinigten Königreich oder der Schweiz besuchen, sind Analyse- und Werbespeicher (ad_storage, analytics_storage, ad_user_data, ad_personalization) abgelehnt, bis Sie über die Einwilligungsmeldung von Google bei Ihrem ersten Besuch zustimmen. In anderen Regionen sind Analyse- und Werbespeicher standardmäßig aktiviert.',
+            'Solange der Analysespeicher abgelehnt ist, wird das Google-Tag geladen, setzt oder liest aber keine Analyse-Cookies. Es sendet nur eingeschränkte cookielose Signale (etwa Seitenadresse, Referrer, Zeitstempel, Browsertyp und Einwilligungsstatus; Ihre IP-Adresse wird als Teil der Webanfrage übertragen). Sie können Ihre Einwilligung jederzeit über den Link „Cookie-Einstellungen“ in der Fußzeile ändern oder widerrufen; er öffnet die Einwilligungsmeldung von Google erneut, wo sie gilt. Außerdem können Sie Google Analytics mit dem Browser-Add-on von Google deaktivieren (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -880,7 +880,7 @@ export const subpagesContent: Record<
         {
           title: '8. Newsletter-Abonnementdaten',
           paragraphs: [
-            'Wenn Sie sich über das Formular für unseren Benachrichtigungsdienst eintragen, erfassen wir die folgenden Angaben und speichern diese im Datenspeicher unseres Hosting-Anbieters (Cloudflare Workers KV):',
+            'Die Website bot bis Oktober 2026 ein freiwilliges Anmeldeformular für Neuigkeiten an; es ist nicht mehr verfügbar. Für Personen, die sich angemeldet haben, speichern wir folgende Angaben im Datenspeicher unseres Hosting-Anbieters (Cloudflare Workers KV):',
           ],
           list: [
             'E-Mail-Adresse: dient ausschließlich dem Versand von Produktaktualisierungen.',
@@ -986,7 +986,7 @@ export const subpagesContent: Record<
             'Nosso site utiliza armazenamento local do navegador e cookies essenciais para manter preferências básicas de navegação. Especificamente, armazenamos:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: Registra suas opções de cookies (analítica e publicidade) para respeitar suas escolhas em acessos futuros.',
+            'fixthespeaker_cookie_consent_v1: Mantém as escolhas de análise e publicidade feitas em uma versão anterior do nosso aviso de cookies, para que continuem sendo respeitadas.',
             'theme: Guarda sua preferência de exibição em modo escuro ou claro.',
             'fix_speaker_mode: Lembra o último modo de limpeza selecionado (Expulsar água, Limpar poeira ou Teste de alto-falante).',
           ],
@@ -994,8 +994,8 @@ export const subpagesContent: Record<
         {
           title: '4. Rastreamento com Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizamos o Google Analytics 4 (ID de métrica: G-924DECLM9L) para entender tendências de tráfego agregado e padrões de navegação, e o Google Consent Mode v2 para aplicar suas escolhas. Se você acessar a partir do Espaço Econômico Europeu, do Reino Unido ou da Suíça, o armazenamento de análise e de publicidade (ad_storage, analytics_storage, ad_user_data, ad_personalization) fica definido como "negado" por padrão até que você aceite. Nas demais regiões, o armazenamento de análise fica ativado por padrão e o de publicidade fica negado por padrão até que você aceite.',
-            'Enquanto o armazenamento de análise estiver negado, a tag do Google ainda é carregada, mas não define nem lê cookies de análise. Ela envia apenas sinais limitados sem cookies (como o endereço da página, a página de origem, o horário, o tipo de navegador e o status do consentimento; seu endereço IP é transmitido como parte da solicitação web) que o Google usa para estimar o tráfego agregado. Ao escolher "Rejeitar tudo", ou desativar a análise em Preferências, o armazenamento de análise passa a ser negado onde quer que você esteja. Você pode alterar ou revogar sua permissão a qualquer momento clicando no link "Configurações de Cookies" no rodapé do site.',
+            'Utilizamos o Google Analytics 4 (ID de métricas: G-924DECLM9L) para entender o tráfego agregado e o uso da ferramenta, e o Google Consent Mode v2 para respeitar suas escolhas de consentimento. Se você nos visita do Espaço Econômico Europeu, do Reino Unido ou da Suíça, o armazenamento de análise e publicidade (ad_storage, analytics_storage, ad_user_data, ad_personalization) fica negado até que você dê consentimento pela mensagem de consentimento do Google exibida na primeira visita. Nas demais regiões, o armazenamento de análise e publicidade fica ativado por padrão.',
+            'Enquanto o armazenamento de análise estiver negado, a tag do Google é carregada, mas não grava nem lê cookies de análise; envia apenas sinais limitados sem cookies (como endereço da página, referência, horário, tipo de navegador e status do consentimento, com seu endereço IP transmitido como parte da solicitação web). Você pode alterar ou retirar o consentimento a qualquer momento pelo link "Configurações de cookies" no rodapé, que reabre a mensagem de consentimento do Google quando aplicável. Você também pode desativar o Google Analytics com o complemento de navegador do Google (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -1026,7 +1026,7 @@ export const subpagesContent: Record<
         {
           title: '8. Dados de Inscrição na Newsletter',
           paragraphs: [
-            'Caso opte por se cadastrar na nossa lista de novidades pelo formulário no site, coletamos as informações descritas a seguir e as armazenamos com segurança no armazenamento de dados do nosso provedor de hospedagem (Cloudflare Workers KV):',
+            'O site oferecia um formulário opcional de cadastro para novidades até outubro de 2026; ele não está mais disponível. Para quem se cadastrou, mantemos os seguintes dados no armazenamento de dados do nosso provedor de hospedagem (Cloudflare Workers KV):',
           ],
           list: [
             'Endereço de e-mail: usado exclusivamente para enviar novidades sobre o produto.',
@@ -1132,7 +1132,7 @@ export const subpagesContent: Record<
             '당사 웹사이트는 필수적인 사용자 환경 설정을 유지하기 위해 브라우저 로컬 스토리지와 필수 쿠키를 사용합니다. 저장되는 항목은 다음과 같습니다:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: 다음 방문 시에도 사용자의 선택을 유지할 수 있도록 쿠키 기본 설정(분석 및 광고 동의 여부)을 기록합니다.',
+            'fixthespeaker_cookie_consent_v1: 이전 버전의 쿠키 배너에서 선택하신 분석 및 광고 설정을 보관하여 계속 존중하기 위해 사용됩니다.',
             'theme: 다크 모드 / 라이트 모드 인터페이스 테마 설정을 저장합니다.',
             'fix_speaker_mode: 마지막으로 선택한 청소 모드(물 빼기, 먼지 청소, 스피커 테스트)를 기억합니다.',
           ],
@@ -1140,8 +1140,8 @@ export const subpagesContent: Record<
         {
           title: '4. Google 애널리틱스 4 (GA4) 추적',
           paragraphs: [
-            '당사는 총 트래픽 동향과 서비스 이용 패턴을 분석하기 위해 Google 애널리틱스 4(측정 ID: G-924DECLM9L)를 사용하며, 사용자의 선택을 반영하기 위해 Google 동의 모드 v2(Consent Mode v2)를 사용합니다. 유럽 경제 지역(EEA), 영국 또는 스위스에서 방문하는 경우, 분석 및 광고 스토리지(ad_storage, analytics_storage, ad_user_data, ad_personalization)는 동의하기 전까지 기본적으로 "거부(denied)"로 설정됩니다. 그 밖의 지역에서는 분석 스토리지가 기본적으로 활성화되며, 광고 스토리지는 동의하기 전까지 기본적으로 거부됩니다.',
-            '분석 스토리지가 거부된 상태에서도 Google 태그는 로드되지만 분석 쿠키를 설정하거나 읽지 않습니다. Google이 전체 트래픽을 추정하는 데 사용하는, 쿠키 없는 제한된 신호(페이지 주소, 참조 페이지, 타임스탬프, 브라우저 유형, 동의 상태 등이며, IP 주소는 웹 요청의 일부로 전송됨)만 전송합니다. "모두 거부"를 선택하거나 환경설정에서 분석을 끄면 어느 지역에서든 분석 스토리지가 거부로 설정됩니다. 웹사이트 하단의 "쿠키 설정" 링크를 클릭하여 언제든지 동의 상태를 수정하거나 철회할 수 있습니다.',
+            '당사는 집계된 트래픽과 도구 사용 현황을 파악하기 위해 Google 애널리틱스 4(측정 ID: G-924DECLM9L)를 사용하며, 동의 선택을 반영하기 위해 Google 동의 모드 v2를 사용합니다. 유럽 경제 지역(EEA), 영국 또는 스위스에서 방문하시는 경우, 첫 방문 시 표시되는 Google 동의 메시지에서 동의하실 때까지 분석 및 광고 저장소(ad_storage, analytics_storage, ad_user_data, ad_personalization)는 거부된 상태입니다. 그 외 지역에서는 분석 및 광고 저장소가 기본적으로 활성화됩니다.',
+            '분석 저장소가 거부된 동안에도 Google 태그는 로드되지만 분석 쿠키를 설정하거나 읽지 않습니다. 페이지 주소, 참조 페이지, 시간, 브라우저 유형, 동의 상태 등 제한된 쿠키 없는 신호만 전송됩니다(IP 주소는 웹 요청의 일부로 전송됩니다). 바닥글의 "쿠키 설정" 링크로 언제든지 동의를 변경하거나 철회할 수 있으며, 해당 지역에서는 Google 동의 메시지가 다시 열립니다. Google 브라우저 부가기능(https://tools.google.com/dlpage/gaoptout)으로 Google 애널리틱스를 사용 중지할 수도 있습니다.',
           ],
         },
         {
@@ -1172,7 +1172,7 @@ export const subpagesContent: Record<
         {
           title: '8. 뉴스레터 구독 데이터',
           paragraphs: [
-            '웹사이트 양식을 통해 업데이트 알림 목록을 구독하시는 경우, 다음 정보가 수집되며 호스팅 업체의 데이터 저장소(Cloudflare Workers KV)에 보관됩니다:',
+            '본 사이트는 2026년 10월까지 선택형 업데이트 알림 신청 양식을 제공했으며, 현재는 운영하지 않습니다. 신청하신 분들의 다음 정보는 호스팅 업체의 데이터 저장소(Cloudflare Workers KV)에 보관됩니다:',
           ],
           list: [
             '이메일 주소: 제품 업데이트 알림을 전달하는 목적으로만 사용됩니다.',
@@ -1279,7 +1279,7 @@ export const subpagesContent: Record<
             'Il nostro sito utilizza l’archiviazione locale del browser e cookie tecnici essenziali per memorizzare le preferenze fondamentali dell’utente. In particolare, memorizziamo:',
           ],
           list: [
-            'fixthespeaker_cookie_consent_v1: Registra le tue preferenze sui cookie (scelte analitiche e pubblicitarie) per rispettare le tue decisioni nelle visite successive.',
+            'fixthespeaker_cookie_consent_v1: Conserva le scelte su analisi e pubblicità fatte con una versione precedente del nostro banner dei cookie, per continuare a rispettarle.',
             'theme: Salva la tua scelta dell’interfaccia grafica in modalità scura o chiara.',
             'fix_speaker_mode: Ricorda l’ultima modalità di pulizia selezionata (Espulsione acqua, Pulizia polvere o Test altoparlante).',
           ],
@@ -1287,8 +1287,8 @@ export const subpagesContent: Record<
         {
           title: '4. Monitoraggio con Google Analytics 4 (GA4)',
           paragraphs: [
-            'Utilizziamo Google Analytics 4 (ID di misurazione: G-924DECLM9L) per analizzare le tendenze di traffico aggregato e i modelli di interazione, e Google Consent Mode v2 per applicare le tue scelte. Se visiti il sito dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera, l’archiviazione analitica e pubblicitaria (ad_storage, analytics_storage, ad_user_data, ad_personalization) è impostata su "negata" per impostazione predefinita finché non accetti. Altrove, l’archiviazione analitica è attiva per impostazione predefinita e quella pubblicitaria è negata finché non accetti.',
-            'Mentre l’archiviazione analitica è negata, il tag di Google viene comunque caricato, ma non imposta né legge cookie di analisi. Invia solo segnali limitati senza cookie (come l’indirizzo della pagina, il referrer, l’orario, il tipo di browser e lo stato del consenso; il tuo indirizzo IP viene trasmesso come parte della richiesta web) che Google utilizza per stimare il traffico aggregato. Scegliendo "Rifiuta tutto", o disattivando l’analisi nelle Preferenze, l’archiviazione analitica viene impostata su negata ovunque tu sia. Puoi modificare o revocare il tuo consenso in qualsiasi momento cliccando sul link "Impostazioni Cookie" situato nel piè di pagina del sito.',
+            'Utilizziamo Google Analytics 4 (ID di misurazione: G-924DECLM9L) per capire il traffico aggregato e l’uso dello strumento, e Google Consent Mode v2 per rispettare le tue scelte di consenso. Se visiti il sito dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera, l’archiviazione per analisi e pubblicità (ad_storage, analytics_storage, ad_user_data, ad_personalization) è negata finché non dai il consenso tramite il messaggio di consenso di Google mostrato alla prima visita. Nelle altre regioni, l’archiviazione per analisi e pubblicità è attiva per impostazione predefinita.',
+            'Finché l’archiviazione per analisi è negata, il tag di Google viene caricato ma non imposta né legge cookie di analisi; invia solo segnali limitati senza cookie (come indirizzo della pagina, referrer, orario, tipo di browser e stato del consenso, con il tuo indirizzo IP trasmesso come parte della richiesta web). Puoi modificare o revocare il consenso in qualsiasi momento con il link "Impostazioni cookie" nel piè di pagina, che riapre il messaggio di consenso di Google dove previsto. Puoi anche disattivare Google Analytics con il componente aggiuntivo del browser di Google (https://tools.google.com/dlpage/gaoptout).',
           ],
         },
         {
@@ -1319,7 +1319,7 @@ export const subpagesContent: Record<
         {
           title: '8. Dati di Iscrizione alla Newsletter',
           paragraphs: [
-            'Se decidi di iscriverti alla nostra lista di notifiche tramite il modulo del sito web, raccogliamo i seguenti dati archiviandoli in modo protetto nello spazio di archiviazione dati del nostro provider di hosting (Cloudflare Workers KV):',
+            'Fino a ottobre 2026 il sito offriva un modulo facoltativo di iscrizione agli aggiornamenti; non è più disponibile. Per chi si è iscritto conserviamo i seguenti dati nello spazio di archiviazione dati del nostro provider di hosting (Cloudflare Workers KV):',
           ],
           list: [
             'Indirizzo e-mail: utilizzato unicamente per inviarti aggiornamenti relativi al prodotto.',
