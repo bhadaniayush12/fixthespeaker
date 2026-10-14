@@ -10,6 +10,30 @@ export interface Guide {
 
 export const guides: Guide[] = [
   {
+    slug: 'samsung-moisture-detected-warning',
+    title: 'Samsung "Moisture Detected" Warning: What to Do',
+    description:
+      'Why your Galaxy phone blocks charging with a water drop icon, how long the port takes to dry, what not to do, and what to check when the warning will not go away.',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+  },
+  {
+    slug: 'how-to-clean-phone-speaker-dust',
+    title: 'How to Clean Dust and Lint from a Phone Speaker',
+    description:
+      'A safe, step-by-step way to clear dust and pocket lint from iPhone and Android speaker grilles, what tools to avoid, and when cleaning will not fix the sound.',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+  },
+  {
+    slug: 'how-to-clean-airpods-speaker-mesh',
+    title: 'How to Clean AirPods Speaker Mesh Safely',
+    description:
+      'How to clear dust and earwax from AirPods and AirPods Pro speaker mesh using a dry brush or Apple\'s own cleaning method, plus what never to use.',
+    published: '2026-10-15',
+    updated: '2026-10-15',
+  },
+  {
     slug: 'does-rice-fix-a-wet-phone',
     title: 'Does Putting a Wet Phone in Rice Actually Work?',
     description:

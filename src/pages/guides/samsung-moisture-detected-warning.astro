@@ -1,0 +1,158 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'samsung-moisture-detected-warning')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.published,
+  dateModified: guide.updated,
+  mainEntityOfPage: url,
+  author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+  publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    <strong>Short answer:</strong> unplug the charger, shake the water out of the port, and give it time. Samsung
+    says water in the charging port normally evaporates in about one to two hours. If you need power before then,
+    use a wireless charger once the phone is dry on the outside.
+  </p>
+
+  <h2>What the warning means</h2>
+  <p>
+    Water-resistant Galaxy phones check the USB-C port for moisture when you plug in a cable. If they find any,
+    they block wired charging and show a water drop icon or a "Moisture detected" message, and some models also
+    sound an alarm until you unplug. Samsung explains this as a way to prevent corrosion: charging through a wet
+    port can damage the contacts.
+  </p>
+  <p>
+    In other words, the warning is the phone protecting itself. It is not a fault by itself, and you should not
+    try to get around it while the port is still wet.
+  </p>
+
+  <h2>What to do, step by step</h2>
+  <ol>
+    <li>
+      <strong>Unplug the cable straight away.</strong> Do not keep plugging it back in to "test" the port. Each try
+      pushes current through a wet connector.
+    </li>
+    <li>
+      <strong>Shake the water out.</strong> Hold the phone with the USB-C port facing down and shake it gently a few
+      times. Wipe the outside with a dry, soft cloth.
+    </li>
+    <li>
+      <strong>Rinse first if it was not plain water.</strong> For sea water, pool water, or a drink, Samsung's advice
+      is to rinse with fresh water and then dry the phone thoroughly with a dry, soft cloth. Salt and sugar left to
+      dry inside the port are what cause corrosion later.
+    </li>
+    <li>
+      <strong>Leave it somewhere dry and airy.</strong> Samsung says the port normally dries in about one to two
+      hours. A room with moving air helps more than a closed drawer or a bowl of rice.
+    </li>
+    <li>
+      <strong>Need to charge now? Use wireless charging.</strong> Samsung notes that wireless charging is not affected
+      by moisture in the charging port, on phones that support it. Dry the back of the phone first.
+    </li>
+    <li>
+      <strong>Try the cable again later.</strong> If the warning is gone, charge normally.
+    </li>
+  </ol>
+
+  <h2>What not to do</h2>
+  <ul>
+    <li>
+      <strong>Do not push anything into the port.</strong> Samsung's page is clear about this: no cotton buds, pins,
+      or tissue corners. They can bend the contacts or pack lint deeper.
+    </li>
+    <li>
+      <strong>Do not use heat.</strong> A hair dryer, oven, or radiator can damage the battery and soften the
+      adhesive that keeps water out.
+    </li>
+    <li>
+      <strong>Do not blast it with compressed air.</strong> Samsung advises against air guns around the speaker and
+      microphone holes, because strong air pressure can damage the parts inside.
+    </li>
+    <li>
+      <strong>Do not charge with wet hands</strong> or with the phone sitting somewhere it could get wet again.
+    </li>
+  </ul>
+
+  <h2>If the phone also sounds muffled</h2>
+  <p>
+    The bottom speaker sits right next to the USB-C port on most Galaxy phones, so it often gets wet at the same
+    time. Water held in the speaker grille makes calls and music sound quiet or crackly. While the port is drying,
+    you can hold the phone with the speaker facing down and play a low tone at full volume, which can help shake
+    droplets out of the grille. Our <a href="/eject-water-samsung-galaxy">Samsung water eject page</a> does this in
+    the browser. It only helps the speaker grille; it does not dry the charging port, so keep waiting before you
+    plug in.
+  </p>
+
+  <h2>When the warning will not go away</h2>
+  <p>
+    Sometimes the message keeps coming back even though the phone has been dry for hours, or it appears when the
+    phone has not been near water at all. Some common reasons:
+  </p>
+  <ul>
+    <li>
+      <strong>Lint or dust in the port.</strong> Pocket lint packed into the USB-C port can hold moisture or confuse
+      the sensor. Look into the port with a torch. If you see debris, a phone repair shop or service centre can clean
+      it safely.
+    </li>
+    <li>
+      <strong>A damaged or dirty cable.</strong> Try a different cable and charger. If the warning only appears with
+      one cable, the cable is the problem.
+    </li>
+    <li>
+      <strong>Corrosion.</strong> If salt water or a drink dried inside the port, the contacts may be corroded. This
+      needs a repair, not more drying.
+    </li>
+  </ul>
+  <p>
+    If the steps above do not help, Samsung's advice is to contact Samsung Support or visit a Samsung Service
+    Centre. Bring the phone, the cable you normally use, and a note of when the warning started.
+  </p>
+
+  <h2>Quick answers</h2>
+  <h3>Can I just restart the phone to clear the message?</h3>
+  <p>
+    Restarting may hide the message for a while, but if there really is water in the port it will come back as soon
+    as you plug in. Give the port time to dry first.
+  </p>
+  <h3>Is my phone still water resistant?</h3>
+  <p>
+    Water resistance is rated for fresh water under test conditions and wears down with age and drops. Treat every
+    soaking as a risk, and do not take an older phone swimming.
+  </p>
+  <h3>Does this apply to Samsung tablets?</h3>
+  <p>
+    Samsung notes that most of its tablets are not water resistant. If a tablet got wet, turn it off and have it
+    checked rather than waiting for a warning.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://www.samsung.com/uk/support/mobile-devices/what-to-do-if-your-water-resistant-phone-or-tablet-detects-moisture-in-the-charging-port/" rel="noopener" target="_blank">Samsung UK Support: What to do if there is moisture in your water-resistant Samsung phone or tablet</a>
+    </li>
+    <li>
+      <a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">Samsung Support: There is noise in the speaker sound of the device</a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

@@ -1,0 +1,141 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'how-to-clean-airpods-speaker-mesh')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.published,
+  dateModified: guide.updated,
+  mainEntityOfPage: url,
+  author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+  publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    <strong>Short answer:</strong> for everyday dust, a dry, soft-bristled brush is enough. For built-up earwax,
+    Apple now publishes a mesh-cleaning method for recent AirPods models that uses micellar water, distilled water
+    and a soft children's toothbrush. Whatever you do, never use sharp objects, never run AirPods under the tap,
+    and let them dry for at least two hours before you put them back in the case.
+  </p>
+
+  <h2>Why one AirPod gets quieter</h2>
+  <p>
+    The speaker in each AirPod sits behind a fine mesh. Earwax, skin oil and sweat slowly cover that mesh, and
+    because you usually favour one ear, one side often clogs first. The result is an AirPod that sounds quieter,
+    thinner or muffled compared with the other one.
+  </p>
+  <p>
+    Before cleaning, rule out the easy causes: check the balance slider in your phone's accessibility audio
+    settings, and make sure both AirPods are charged and connected.
+  </p>
+
+  <h2>Option 1: a dry brush (for light dust and lint)</h2>
+  <ol>
+    <li>Take the AirPods out of the case. On models with ear tips, pull the tips off.</li>
+    <li>
+      Hold the AirPod with the mesh facing down and brush lightly with a small, clean, dry, soft-bristled brush.
+      Facing down lets debris fall away instead of deeper in.
+    </li>
+    <li>Wipe the outside with a soft, dry, lint-free cloth.</li>
+  </ol>
+  <p>This is safe to do often and is all most people need.</p>
+
+  <h2>Option 2: Apple's mesh-cleaning method (for earwax)</h2>
+  <p>
+    Apple's support pages for AirPods and AirPods Pro describe a deeper clean for the meshes on recent models. The
+    exact meshes to clean, and which models it applies to, are shown in pictures on Apple's pages, so open the page
+    for your model (linked below) and follow along. In outline:
+  </p>
+  <ol>
+    <li>
+      <strong>Get the supplies.</strong> Micellar water that lists PEG-6 Caprylic/Capric Glycerides as an ingredient,
+      distilled water, a soft-bristled children's toothbrush, two small cups and a paper towel. Apple also mentions a
+      Belkin cleaning kit made for AirPods as an alternative.
+    </li>
+    <li>
+      <strong>Brush with micellar water.</strong> Dip the brush, then brush only the meshes Apple marks, in small
+      circles for about 15 seconds. Blot the AirPod on the paper towel, mesh down. Apple says to repeat this three
+      times.
+    </li>
+    <li>
+      <strong>Rinse with distilled water</strong> the same way, using the second cup.
+    </li>
+    <li>
+      <strong>Let them dry.</strong> Apple says to allow at least two hours before charging them or wearing them.
+    </li>
+  </ol>
+  <p>
+    Do not clean any other part of the AirPod this way. Apple is specific that only the marked meshes should be
+    cleaned.
+  </p>
+
+  <h2>Ear tips and the charging case</h2>
+  <ul>
+    <li>
+      <strong>Ear tips (AirPods Pro):</strong> pull them off and rinse them with water only, no soap or household
+      cleaners. Make sure they are completely dry before you put them back on.
+    </li>
+    <li>
+      <strong>Charging case:</strong> wipe it with a soft, dry, lint-free cloth (Apple says you can slightly dampen
+      the cloth with isopropyl alcohol if needed). Clear the charging port with a dry, soft brush, and keep all
+      liquid out of it.
+    </li>
+  </ul>
+
+  <h2>What not to do</h2>
+  <ul>
+    <li>
+      <strong>No toothpicks, pins or needles.</strong> Apple warns against sharp objects and abrasive materials. A
+      punctured mesh lets wax reach the speaker itself.
+    </li>
+    <li><strong>Do not run them under the tap</strong> or soak them.</li>
+    <li>
+      <strong>Do not put them back in the case wet.</strong> Moisture in the case can reach the charging contacts.
+    </li>
+    <li>
+      <strong>Do not play loud test tones while wearing them.</strong> If you use any sound to check them, take
+      them out of your ears first.
+    </li>
+  </ul>
+
+  <h2>Can a sound clean AirPods?</h2>
+  <p>
+    Not much. A tone can vibrate the mesh and may loosen a little light dust, which is why our
+    <a href="/clean-airpods-speaker">AirPods page</a> offers one, always played with the AirPods out of your ears.
+    But earwax is sticky, and sound will not remove it. Use the brush or Apple's method above.
+  </p>
+
+  <h2>When to get them checked</h2>
+  <p>
+    If one AirPod is still quiet after a careful clean and two hours of drying, or it crackles, the problem may be
+    inside. Contact Apple Support; replacing a single AirPod is often possible.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/102672" rel="noopener" target="_blank">Apple Support: How to clean your AirPods</a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/120409" rel="noopener" target="_blank">Apple Support: How to clean your AirPods Pro</a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

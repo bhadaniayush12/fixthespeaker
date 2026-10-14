@@ -59,6 +59,13 @@ export const subpagesContent: Record<
         'Fix The Speaker (fixthespeaker.com) is a free, privacy-first web tool that helps clear muffled smartphone and laptop speakers. Using tailored sound frequencies generated client-side via the HTML5 Web Audio API, the tool plays a 60-second tone that can help push trapped water out through the speaker grille, with no app installation or sign-up required.',
       sections: [
         {
+          title: 'Who Runs Fix The Speaker',
+          paragraphs: [
+            'Fix The Speaker is built and run by Dev, an independent developer based in Kolkata, India. It is a one-person project, not a company, and it is not affiliated with Apple, Samsung, Google or any other device maker.',
+            'The tool is free to use and is supported by advertising. Questions, corrections and bug reports go straight to Dev at support@fixthespeaker.com.',
+          ],
+        },
+        {
           title: 'Why Fix The Speaker Was Created',
           paragraphs: [
             'Smartphone speakers frequently become muffled after exposure to water from rain, workouts, showers, or accidental spills. Surface tension often traps microscopic droplets inside the dense mesh speaker grille, muting sound output and distorting audio clarity.',
@@ -71,7 +78,7 @@ export const subpagesContent: Record<
             'All audio tones are synthesized dynamically within your web browser using standard Web Audio oscillators. The tool operates across three dedicated acoustic modes:',
           ],
           list: [
-            '165 Hz Water Eject Pulse: Emits a low-frequency square wave optimized to match the mechanical resonant displacement of smartphone micro-speakers. This rapid back-and-forth diaphragm excursion creates high-velocity air pressure pulses behind the speaker mesh, breaking water droplet surface tension and pushing moisture out through the exterior grille.',
+            '165 Hz Water Eject Pulse: Plays a low-frequency pulsing tone. At full volume the speaker cone moves back and forth strongly, and those air pulses can push droplets held in the grille by surface tension out through the mesh.',
             '2.5 kHz – 14.5 kHz Dust Cleaner Sweep: Plays a high-frequency sweep that vibrates the speaker mesh. This may loosen light lint and dust; brush the grille gently with a dry soft brush or microfiber cloth to remove it.',
             'Dual-Channel Stereo Diagnostic Test: Generates calibrated test tones isolated to the left channel, right channel, and stereo center, allowing users to verify channel balance and sound clarity after cleaning.',
           ],

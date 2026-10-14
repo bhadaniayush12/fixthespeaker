@@ -1,0 +1,139 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'how-to-clean-phone-speaker-dust')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.published,
+  dateModified: guide.updated,
+  mainEntityOfPage: url,
+  author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+  publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    <strong>Short answer:</strong> use a small, soft, clean and dry brush, and brush lightly across the grille.
+    Both Apple and Samsung recommend a soft brush, and Samsung specifically advises against air guns. Skip pins,
+    toothpicks, liquids and compressed air.
+  </p>
+
+  <h2>Why phone speakers get clogged</h2>
+  <p>
+    Phone speakers sit behind rows of tiny holes or a slot covered with fine mesh. Pockets and bags are full of lint,
+    and sand, makeup and dust stick to that mesh. Over months it builds up into a grey layer that you can often see
+    with a torch. Less open mesh means less sound gets out, so the speaker sounds quieter or muffled.
+  </p>
+  <p>
+    The earpiece at the top of the phone collects grime too, mostly skin oil and makeup from calls. If callers sound
+    faint but music from the bottom speaker is fine, that top grille is the one to clean.
+  </p>
+
+  <h2>What you need</h2>
+  <ul>
+    <li>
+      <strong>A small soft-bristled brush that is clean and dry.</strong> A new soft toothbrush, a clean makeup or
+      eyeshadow brush, or a small paintbrush all work. Apple's own advice for a blocked speaker opening is exactly
+      this: a small, soft-bristled brush that is clean and dry.
+    </li>
+    <li><strong>A lint-free cloth</strong> for wiping the outside of the phone afterwards.</li>
+    <li><strong>A torch</strong> (another phone works) so you can see the grille.</li>
+  </ul>
+
+  <h2>Step by step</h2>
+  <ol>
+    <li>
+      <strong>Turn the phone off and take off the case.</strong> Cases often hide a ring of lint right at the
+      speaker opening.
+    </li>
+    <li>
+      <strong>Look first.</strong> Shine the torch across the grille at an angle. Dust and lint show up as grey
+      patches over the holes.
+    </li>
+    <li>
+      <strong>Brush with the grille facing down.</strong> Hold the phone so the speaker points at the floor and brush
+      lightly across the holes, side to side. Facing down lets loosened dust fall out instead of into the phone.
+    </li>
+    <li>
+      <strong>Go gently and take your time.</strong> Samsung's guidance is to brush lightly with a brush that will not
+      scratch. Pressing hard can push dirt through the mesh.
+    </li>
+    <li>
+      <strong>Tap out what is left.</strong> Tap the edge of the phone against your palm, speaker side down, then
+      wipe the outside with the cloth.
+    </li>
+    <li>
+      <strong>Test the sound.</strong> Turn the phone on and play something familiar at medium volume. If one side
+      still sounds weaker, brush that grille again.
+    </li>
+  </ol>
+
+  <h2>Can a sound help?</h2>
+  <p>
+    A little. Playing a high-pitched sweep makes the speaker mesh vibrate, which can loosen light dust so the brush
+    lifts it more easily. Our <a href="/">dust cleaner mode</a> plays this kind of sweep. Be realistic, though: a
+    sound will not pull out packed lint or dried grime. The brush does most of the work.
+  </p>
+
+  <h2>What not to use</h2>
+  <ul>
+    <li>
+      <strong>Pins, needles and toothpicks.</strong> They can tear the mesh or push dirt deeper, and a torn mesh lets
+      in more dust and water.
+    </li>
+    <li>
+      <strong>Compressed air.</strong> Samsung warns that strong air pressure forced into the speaker, receiver or
+      microphone holes can damage parts inside.
+    </li>
+    <li>
+      <strong>Liquids, including alcohol and water.</strong> Liquid carries the dirt deeper and can wet the
+      speaker itself.
+    </li>
+    <li>
+      <strong>Sticky putty or tape.</strong> Some people press cleaning putty into the grille. It can leave residue
+      in the holes that is harder to remove than the original dust.
+    </li>
+  </ul>
+
+  <h2>When cleaning is not the answer</h2>
+  <p>
+    If the sound is muffled but the grille looks clean, check a few other things before you blame dust:
+  </p>
+  <ul>
+    <li>Is a case or screen protector covering part of the speaker opening?</li>
+    <li>Is the phone connected to Bluetooth headphones or a car without you noticing?</li>
+    <li>Did the phone get wet recently? Water in the grille sounds a lot like dust. See our guide on <a href="/guides/muffled-phone-speaker-water-dust-or-damage">telling water, dust and damage apart</a>.</li>
+  </ul>
+  <p>
+    If the speaker crackles, buzzes, or makes no sound at all after a careful clean, the speaker itself may be
+    damaged. Apple's troubleshooting page says that in that case your speaker might need service, and the same
+    applies to any Android phone. A repair shop can replace a speaker; no cleaning method can fix a torn one.
+  </p>
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/118432" rel="noopener" target="_blank">Apple Support: If you hear no sound or distorted sound from your iPhone or iPad speaker</a>
+    </li>
+    <li>
+      <a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">Samsung Support: There is noise in the speaker sound of the device</a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>
