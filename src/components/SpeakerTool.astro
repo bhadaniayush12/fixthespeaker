@@ -673,12 +673,11 @@ const i18nConfig = {
     }
   }
 
-  function resizeCanvas() {
+  function sizeCanvas(width, height) {
     if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
     const dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = Math.round(rect.width * dpr);
-    canvas.height = Math.round(rect.height * dpr);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
   }
 
   function setFlex(el, visible) {
@@ -826,6 +825,15 @@ const i18nConfig = {
     }
   } catch (_) { /* ignore */ }
 
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  // ResizeObserver reports the size after layout, so loading the page does not force a synchronous reflow.
+  if (canvas && 'ResizeObserver' in window) {
+    new ResizeObserver(([entry]) => sizeCanvas(entry.contentRect.width, entry.contentRect.height)).observe(canvas);
+  } else if (canvas) {
+    const fallbackResize = () => {
+      const rect = canvas.getBoundingClientRect();
+      sizeCanvas(rect.width, rect.height);
+    };
+    requestAnimationFrame(fallbackResize);
+    window.addEventListener('resize', fallbackResize, { passive: true });
+  }
 </script>

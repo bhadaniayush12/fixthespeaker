@@ -7,7 +7,8 @@ export default defineConfig({
   site: 'https://fixthespeaker.com',
   // Clean URLs: /about is emitted as about.html and served as /about (matches canonical + sitemap)
   trailingSlash: 'never',
-  build: { format: 'file' },
+  // inlineStylesheets: the ~12 KB stylesheet ships inside each page so first paint does not wait on a CSS request.
+  build: { format: 'file', inlineStylesheets: 'always' },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'],

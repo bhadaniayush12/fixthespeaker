@@ -176,8 +176,21 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         var savedConsent = readConsent();
         if (savedConsent) applyConsent(savedConsent, false);
         // Always load GTM (Consent Mode "advanced"): tags respect the consent state above,
-        // sending cookieless pings while storage is denied.
-        loadGtm();
+        // sending cookieless pings while storage is denied. It is deferred until the page has
+        // loaded and the browser is idle (or the first interaction) so it does not compete with
+        // first paint on mobile; dataLayer pushes made earlier are queued and sent once it loads.
+        var gtmTriggers = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+        function loadGtmOnce() {
+          gtmTriggers.forEach(function (type) { window.removeEventListener(type, loadGtmOnce); });
+          loadGtm();
+        }
+        gtmTriggers.forEach(function (type) {
+          window.addEventListener(type, loadGtmOnce, { once: true, passive: true });
+        });
+        window.addEventListener('load', function () {
+          if ('requestIdleCallback' in window) window.requestIdleCallback(loadGtmOnce, { timeout: 2000 });
+          else setTimeout(loadGtmOnce, 1500);
+        });
       })();
     </script>
 
@@ -524,8 +537,8 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     --color-hairline: #1e2536;
     --color-ink: #f4f6fb;
     --color-body: #a4adc0;
-    --color-mute: #6f7889;
-    --color-faint: #4b5366;
+    --color-mute: #828a9b;
+    --color-faint: #798191;
     --color-primary: #06b6d4;
     --color-primary-bright: #22d3ee;
     --color-on-primary: #041019;
@@ -549,9 +562,10 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
       0% { transform: scale(1); opacity: 0.55; }
       100% { transform: scale(1.7); opacity: 0; }
     }
+    /* No opacity fade: hero text must be paintable from the first frame (FCP/LCP on mobile). */
     @keyframes rise {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: none; }
+      from { transform: translateY(10px); }
+      to   { transform: none; }
     }
     @keyframes drip {
       0%   { transform: translateY(0) scale(1); opacity: 0; }
@@ -578,8 +592,8 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
     --color-hairline: #e3e8f1;
     --color-ink: #0f172a;
     --color-body: #475569;
-    --color-mute: #64748b;
-    --color-faint: #94a3b8;
+    --color-mute: #586779;
+    --color-faint: #617187;
     --color-primary: #0891b2;
     --color-primary-bright: #06b6d4;
     --color-on-primary: #ffffff;
