@@ -577,21 +577,10 @@ const i18nConfig = {
   window.addEventListener('offline', updateNetworkStatus);
   updateNetworkStatus();
 
-  function trackToolEvent(eventName, params = {}) {
-    if (typeof window.trackEvent === 'function') {
-      window.trackEvent(eventName, params);
-      return;
-    }
-    const consent = window.fixSpeakerConsent?.read();
-    if (consent?.analytics === false) return;
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', eventName, params);
-    }
-  }
-
   /** @type {ModeId} */
   let mode = 'water';
   let running = false;
+  let completionTracked = false;
   /** @type {AudioContext | null} */
   let ctx = null;
   /** @type {GainNode | null} */
@@ -875,19 +864,12 @@ const i18nConfig = {
     }
 
     running = true;
+    completionTracked = false;
     runStart = t0;
     setRunningUI(true);
     if (status) status.textContent = cfg.running;
 
-    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, unless analytics was explicitly rejected; Consent Mode governs storage)
-    // engagement_time_msec (10000) explicitly triggers GA4's engaged session threshold (>=10s),
-    // ensuring the session is counted as engaged and bounce rate reflects actual tool usage rather than page exits.
-    trackToolEvent('eject_start', {
-      mode: mode,
-      page_type: 'home',
-      engagement_time_msec: 10000,
-      session_engaged: 1,
-    });
+    window.trackToolEvent?.('tool_start', { tool_name: 'speaker_tool', mode });
 
     const postEjectRelated = $('post-eject-related');
     if (postEjectRelated) postEjectRelated.hidden = true;
@@ -904,6 +886,9 @@ const i18nConfig = {
     running = false;
 
     const t = ctx.currentTime;
+    const elapsed = Math.min(MODES[mode].duration, Math.max(0, t - runStart));
+    if (!manual) trackCompletion(MODES[mode].duration);
+    else if (elapsed >= 20) trackCompletion(elapsed);
     master.gain.cancelScheduledValues(t);
     master.gain.setValueAtTime(master.gain.value, t);
     master.gain.linearRampToValueAtTime(0, t + 0.12);
@@ -942,22 +927,21 @@ const i18nConfig = {
         }
       }
     }
+  }
 
-    if (!manual) {
-      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, unless analytics was explicitly rejected; Consent Mode governs storage)
-      trackToolEvent('eject_complete', {
-        mode: mode,
-        page_type: 'home',
-        duration: cfg.duration,
-        engagement_time_msec: cfg.duration * 1000,
-      });
-    }
+  function trackCompletion(duration) {
+    if (completionTracked) return;
+    completionTracked = true;
+    window.trackToolEvent?.('tool_complete', {
+      tool_name: 'speaker_tool', mode, duration_sec: Math.round(duration),
+    });
   }
 
   function tick() {
     if (!running || !ctx) return;
     const cfg = MODES[mode];
     const elapsed = Math.min(cfg.duration, Math.max(0, ctx.currentTime - runStart));
+    if (elapsed >= 20) trackCompletion(elapsed);
     if (count) count.textContent = String(Math.max(0, Math.ceil(cfg.duration - elapsed)));
     if (ring) ring.style.strokeDashoffset = String(RING_C * (1 - elapsed / cfg.duration));
     if (mode === 'test') updateChannels(Math.min(2, Math.floor(elapsed / TEST_SEGMENT)));
@@ -1163,6 +1147,7 @@ const i18nConfig = {
   const copyBookmarkBtn = $('copy-bookmark-btn');
   if (copyBookmarkBtn) {
     copyBookmarkBtn.addEventListener('click', async () => {
+      window.trackToolEvent?.('share_click', { method: 'clipboard' });
       try {
         await navigator.clipboard.writeText(window.location.href);
         const originalText = copyBookmarkBtn.textContent;

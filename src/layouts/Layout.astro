@@ -170,8 +170,19 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
           return false;
         }
 
+        function trackToolEvent(eventName, params) {
+          try {
+            var consent = readConsent();
+            if (consent && consent.analytics === false) return;
+            if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+              window.dataLayer.push({ event: eventName, ...params });
+            }
+          } catch (error) { /* Analytics must never interrupt the tool. */ }
+        }
+
         window.fixSpeakerConsent = { read: readConsent, apply: applyConsent };
         window.trackEvent = trackEvent;
+        window.trackToolEvent = trackToolEvent;
 
         var savedConsent = readConsent();
         if (savedConsent) applyConsent(savedConsent, false);

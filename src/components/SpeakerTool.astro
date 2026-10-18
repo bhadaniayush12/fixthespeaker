@@ -259,8 +259,6 @@ const i18nConfig = {
     }
   });
 
-  const toolSection = $('tool');
-  const deviceSlug = toolSection ? toolSection.dataset.device || '' : '';
   const offlinePill = $('offline-pill');
 
   function updateNetworkStatus() {
@@ -273,20 +271,9 @@ const i18nConfig = {
   window.addEventListener('offline', updateNetworkStatus);
   updateNetworkStatus();
 
-  function trackToolEvent(eventName: string, params: Record<string, any> = {}) {
-    if (typeof (window as any).trackEvent === 'function') {
-      (window as any).trackEvent(eventName, params);
-      return;
-    }
-    const consent = (window as any).fixSpeakerConsent?.read();
-    if (consent?.analytics === false) return;
-    if (typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', eventName, params);
-    }
-  }
-
   let mode: ModeId = 'water';
   let running = false;
+  let completionTracked = false;
   let ctx: AudioContext | null = null;
   let master: GainNode | null = null;
   let analyser: AnalyserNode | null = null;
@@ -566,19 +553,12 @@ const i18nConfig = {
     }
 
     running = true;
+    completionTracked = false;
     runStart = t0;
     setRunningUI(true);
     if (status) status.textContent = cfg.running;
 
-    // GA4 Custom Event: eject_start (fired when user clicks the "Start Ejection"/"Play" button, unless analytics was explicitly rejected; Consent Mode governs storage)
-    // engagement_time_msec (10000) explicitly triggers GA4's engaged session threshold (>=10s),
-    // ensuring the session is counted as engaged and bounce rate reflects actual tool usage rather than page exits.
-    trackToolEvent('eject_start', {
-      mode: mode,
-      ...(deviceSlug ? { device: deviceSlug } : {}),
-      engagement_time_msec: 10000,
-      session_engaged: 1,
-    });
+    (window as any).trackToolEvent?.('tool_start', { tool_name: 'speaker_tool', mode });
 
     startHaptics();
     requestWakeLock();
@@ -592,6 +572,9 @@ const i18nConfig = {
     running = false;
 
     const t = ctx.currentTime;
+    const elapsed = Math.min(MODES[mode].duration, Math.max(0, t - runStart));
+    if (!manual) trackCompletion(MODES[mode].duration);
+    else if (elapsed >= 20) trackCompletion(elapsed);
     master.gain.cancelScheduledValues(t);
     master.gain.setValueAtTime(master.gain.value, t);
     master.gain.linearRampToValueAtTime(0, t + 0.12);
@@ -621,22 +604,21 @@ const i18nConfig = {
         showDone();
       }
     }
+  }
 
-    if (!manual) {
-      // GA4 Custom Event: eject_complete (fired when the 60-second cycle finishes, unless analytics was explicitly rejected; Consent Mode governs storage)
-      trackToolEvent('eject_complete', {
-        mode: mode,
-        ...(deviceSlug ? { device: deviceSlug } : {}),
-        duration: cfg.duration,
-        engagement_time_msec: cfg.duration * 1000,
-      });
-    }
+  function trackCompletion(duration: number) {
+    if (completionTracked) return;
+    completionTracked = true;
+    (window as any).trackToolEvent?.('tool_complete', {
+      tool_name: 'speaker_tool', mode, duration_sec: Math.round(duration),
+    });
   }
 
   function tick() {
     if (!running || !ctx) return;
     const cfg = MODES[mode];
     const elapsed = Math.min(cfg.duration, Math.max(0, ctx.currentTime - runStart));
+    if (elapsed >= 20) trackCompletion(elapsed);
     if (count) count.textContent = String(Math.max(0, Math.ceil(cfg.duration - elapsed)));
     if (ring) ring.style.strokeDashoffset = String(RING_C * (1 - elapsed / cfg.duration));
     if (mode === 'test') updateChannels(Math.min(2, Math.floor(elapsed / TEST_SEGMENT)));
