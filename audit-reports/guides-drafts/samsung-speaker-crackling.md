@@ -4,9 +4,7 @@ description: "Fix a crackling Samsung Galaxy speaker with proven software checks
 slug: "samsung-speaker-crackling"
 target_query: "samsung speaker crackling sound"
 sources:
-  - "https://www.samsung.com/us/support/troubleshooting/TSG01001254/"
   - "https://www.samsung.com/us/support/answer/ANS00077611/"
-  - "https://www.samsung.com/us/support/troubleshooting/TSG01001449/"
 ---
 
 A crackling sound from your Samsung Galaxy speaker usually points to one of three culprits: trapped moisture on the speaker membrane, lint or metallic dust vibrating against the grille, or a temporary software glitch in audio processing. Before assuming your speaker is physically blown, you can resolve the majority of crackles at home using sound ejection, safe physical cleaning, and audio reset settings. If the crackling continues across all apps after these checks, physical driver damage may require authorized repair.
@@ -20,12 +18,10 @@ Work through these manufacturer-recommended troubleshooting steps in order:
 1. **Restart your Samsung Galaxy.** A simple reboot clears the system audio cache and stops background apps causing digital audio clipping. Hold Power (or Side) and Volume Down, then tap Restart.
 2. **Remove external cases and screen protectors.** Heavy-duty or waterproof cases often fit tightly over the speaker grille. A misaligned case can trap air or vibrate against the speaker frame when volume is high, mimicking a blown speaker.
 3. **Turn off Dolby Atmos and sound equalizers temporarily.** Go to **Settings > Sounds and vibration > Sound quality and effects**. Disable **Dolby Atmos** and set the **Equalizer** to "Normal." Exaggerated bass boosts or sound presets can push amplification past speaker thresholds, inducing crackling on compressed audio.
-4. **Boot into Safe Mode to isolate rogue apps.** According to [Samsung Support's audio troubleshooting guide](https://www.samsung.com/us/support/troubleshooting/TSG01001254/), third-party media players or equalizers can distort audio. Hold Power, long-press Power Off, and tap Safe Mode. Test your speaker audio here. If crackling stops, uninstall recently downloaded sound apps.
+4. **Boot into Safe Mode to isolate rogue apps.** Third-party media players or equalizers can distort audio. Hold Power, long-press Power Off, and tap Safe Mode. Test your speaker audio here. If crackling stops, uninstall recently downloaded sound apps.
 5. **Eject trapped water with a low-frequency sound tone.** If your Galaxy was exposed to water or moisture, surface tension traps droplets in the speaker mesh. Use our free [Eject Water Samsung Galaxy tool](/eject-water-samsung-galaxy) to play a 165Hz tone at maximum volume to push moisture outward.
 6. **Clean the bottom speaker grille with a soft-bristled brush.** Use a clean, dry, soft-bristled toothbrush to gently sweep across the bottom speaker holes at an angle. This loosens dried dust and pocket debris that rattle when audio plays.
 7. **Run the Samsung Members hardware diagnostic.** Open the built-in Samsung Members app, tap **Support > Phone diagnostics > Speaker**, and test both the call speaker and media speaker.
-
-[DEV: tested on my phone — result] Tested on a Galaxy S22 with intermittent crackling during YouTube playback: turning off Dolby Atmos and running a 165Hz tone expelled fine lint and dried water film; crackling ceased completely during high-volume acoustic playback.
 
 ## Why it happens
 
@@ -51,6 +47,10 @@ Samsung’s manufacturer warranty covers speaker failure resulting from factory 
 
 If you are uncertain whether your speaker is merely dusty or permanently torn, review our diagnostic guide on [phone speaker dust vs damage test](/guides/phone-speaker-dust-vs-damage-test).
 
+## How we made this guide
+
+This guide is based on official support pages from Samsung, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
+
 ## Frequently asked questions
 
 ### Can a software update cause my Samsung speaker to crackle?
@@ -63,7 +63,7 @@ No. Samsung specifically advises against using uncooked rice because fine starch
 Modern Samsung phones include digital signal processors (DSP) with built-in limiters to prevent drivers from blowing under normal conditions. However, using third-party volume booster apps that bypass system limiters can over-excurse the cone and tear the membrane.
 
 ### How much does it cost to replace a Samsung speaker?
-If out of warranty, replacing a bottom speaker module at an authorized Samsung service center generally costs between $50 and $110 depending on the Galaxy model, as the repair involves removing the rear glass panel and replacing the modular loudspeaker unit.
+For current pricing on out-of-warranty speaker repairs, contact your nearest Samsung authorized service center directly, as costs vary by model and region.
 
 ## Image plan
 

@@ -5,8 +5,6 @@ slug: "phone-speaker-low-volume-fix"
 target_query: "phone speaker volume low"
 sources:
   - "https://support.google.com/pixelphone/answer/9706190"
-  - "https://support.apple.com/en-us/102665"
-  - "https://www.samsung.com/us/troubleshooting/TSG01001449/"
 ---
 
 When your phone speaker volume suddenly drops or sounds too quiet even at maximum setting, the cause is almost always compacted lint in the speaker grille, an unnoticed software volume limit, or trapped moisture from sweat or steam. Most low-volume issues can be restored without professional repair by disabling software sound limits, cleaning accumulated debris from the acoustic mesh, and playing low-frequency tones to loosen trapped particles.
@@ -24,8 +22,6 @@ Work through these steps in order to diagnose and resolve low speaker volume:
 5. **Run a low-frequency sound tone to dislodge dust.** Play a continuous low-frequency tone at maximum volume. Our [Fix Android Speaker tool](/fix-android-speaker) vibrates the internal speaker diaphragm rapidly, loosening compacted dirt from behind the mesh.
 6. **Check accessibility balance settings.** On iPhone, check **Settings > Accessibility > Audio & Visual** and verify the Left/Right balance slider is centered. On Android, check **Settings > Accessibility > Hearing enhancements > Left/right sound balance**.
 7. **Restart the phone or test in Safe Mode.** Restarting clears temporary audio server crashes in Android and iOS. On Android, boot into Safe Mode (hold Power, long-press Power Off) to ensure a third-party equalizer is not throttling audio.
-
-[DEV: tested on my phone — result] Tested on a Pixel 7 with muffled, low media volume: visual inspection revealed lint compacted into the lower right speaker cutout; a dry soft toothbrush sweep combined with two 30-second 165Hz tone cycles dislodged the lint plug, increasing measured decibel output substantially.
 
 ## Why it happens
 
@@ -59,6 +55,10 @@ If you have cleaned the grille, verified all software settings, and run sound ej
 Authorized service centers can replace the bottom loudspeaker module quickly without replacing the entire logic board.
 
 To verify whether your quiet phone is simply clogged with dust or suffering from permanent physical tear, read our comprehensive guide on [phone speaker dust vs damage test](/guides/phone-speaker-dust-vs-damage-test).
+
+## How we made this guide
+
+This guide is based on official support pages from Google, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

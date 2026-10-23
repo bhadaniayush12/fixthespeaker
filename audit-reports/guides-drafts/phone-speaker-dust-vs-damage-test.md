@@ -4,8 +4,6 @@ description: "Determine whether your phone speaker is clogged with dirt or suffe
 slug: "phone-speaker-dust-vs-damage-test"
 target_query: "is my speaker broken or just dirty"
 sources:
-  - "https://support.apple.com/en-us/102665"
-  - "https://www.samsung.com/us/support/troubleshooting/TSG01001449/"
   - "https://support.google.com/pixelphone/answer/7167687"
 ---
 
@@ -22,8 +20,6 @@ Perform these five diagnostic tests to isolate dirt from genuine hardware failur
 3. **The Frequency Response Test (Bass vs Treble).** Play a high-frequency test tone followed by a bass track. Dirt and moisture primarily absorb high treble frequencies, making speech sound muffled like talking through a pillow, while bass notes sound relatively normal. A torn speaker cone vibrates erratically on low bass notes, producing violent rattling regardless of volume.
 4. **The Acoustic Vibration Purge Test.** Run a high-amplitude low-frequency sound tone at maximum volume. Our [Fix Android Speaker tool](/fix-android-speaker) or [Fix iPhone Speaker tool](/fix-iphone-speaker) outputs a 165Hz tone designed to oscillate the speaker cone. If volume noticeably improves after running the tone or dislodges visible debris, your speaker was dirty. If volume is unchanged and crackling continues, hardware damage is confirmed.
 5. **The Safe Dry-Brushing Test.** Use a completely dry, soft-bristled toothbrush to gently sweep across the grille at a 45-degree angle. If brushing removes a visible layer of lint and immediately restores volume, the speaker driver is healthy.
-
-[DEV: tested on my phone — result] Tested on a phone suspected of having a blown speaker: audio buzzed heavily on pop music at 80% volume; inspecting under 5x magnification revealed a dense plug of pocket lint vibrating against the outer mesh; brushing away the lint plug eliminated all buzzing.
 
 ## Why it happens
 
@@ -68,7 +64,11 @@ No. Standard low-frequency tones (like 165Hz) operate well within the frequency 
 A speaker clogged with water will often improve as moisture evaporates over 24 to 48 hours. However, a speaker clogged with compacted dust or suffering from physical voice coil damage will never fix itself without physical cleaning or hardware repair.
 
 ### How much does it cost to replace a phone speaker?
-Replacing a modular loudspeaker at an authorized repair facility generally costs between $40 and $100 for Android devices, and $70 to $120 for iPhones, depending on the model generation.
+For current pricing on speaker module replacement, contact your manufacturer's authorized service center directly, as costs vary by device model and region.
+
+## How we made this guide
+
+This guide is based on official support pages from Google, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Image plan
 

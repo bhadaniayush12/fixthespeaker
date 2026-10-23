@@ -24,8 +24,6 @@ Follow these official steps to protect your wet AirPods and dry them safely:
 6. **Let them dry completely in open, moving air.** Place the AirPods on a dry microfiber cloth with the speaker mesh facing downward. [Apple's official water resistance guidance](https://support.apple.com/en-us/109525) specifies allowing AirPods to dry naturally before using them or placing them in the case. Setting them near a fan blowing cool air accelerates drying safely.
 7. **Leave the charging case upside down.** If liquid entered the case, invert it with the lid open so moisture drains away from the charging pins, and allow 24 hours to dry.
 
-[DEV: tested on my phone — result] Tested with an AirPod Pro earbud submerged in tap water for 5 seconds: after removing the ear tip and tapping onto a cloth, audio was muffled; playing a 165Hz tone ejected visible micro-droplets from the acoustic port, restoring balanced stereo volume after 90 minutes of open-air drying.
-
 ## Why it happens
 
 Understanding the water resistance limits of your AirPods model is critical to assessing risk:
@@ -59,6 +57,10 @@ If you follow proper drying procedures, AirPods often recover completely. Howeve
 Apple's standard warranty excludes liquid damage. However, Apple offers out-of-warranty replacement for individual earbuds or charging cases.
 
 To understand why sound tones help dislodge trapped liquid from tiny grilles, see our deep dive on [does water eject sound really work](/guides/does-water-eject-sound-really-work).
+
+## How we made this guide
+
+This guide is based on official support pages from Apple, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

@@ -24,8 +24,6 @@ Here is how to manually activate, use, and exit Water Lock on watchOS:
 6. **Wipe down the watch chassis.** Use a clean, dry, lint-free microfiber cloth to dry the watch crystal, casing, band, and speaker slit.
 7. **Use a web eject tool if audio remains muffled.** If notification chimes still sound dull after running the built-in purge, open our [Fix Apple Watch Speaker tool](/fix-apple-watch-speaker) on your paired iPhone or watch browser to run additional low-frequency vibration cycles.
 
-[DEV: tested on my phone — result] Tested on an Apple Watch Series 8 after swimming: exiting Water Lock played the stepped chime sequence; three distinct micro-droplets were visibly ejected onto a paper towel, immediately restoring the sharp tone of notification chimes.
-
 ## Why it happens
 
 To understand Water Lock, you must distinguish between physical water resistance and capacitive touchscreen physics:
@@ -59,6 +57,10 @@ In most instances, running the ejection tone clears trapped water within seconds
 Apple's standard one-year warranty excludes liquid damage. If hardware fails after water contact, out-of-warranty service or AppleCare+ incident fees apply.
 
 To learn more about the physics behind audio drying tools and why low-frequency pulses move fluids, read our guide on [does water eject sound really work](/guides/does-water-eject-sound-really-work).
+
+## How we made this guide
+
+This guide is based on official support pages from Apple, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

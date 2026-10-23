@@ -6,7 +6,6 @@ target_query: "iphone speaker muffled after water"
 sources:
   - "https://support.apple.com/en-us/102643"
   - "https://support.apple.com/en-us/108039"
-  - "https://support.apple.com/en-us/102665"
 ---
 
 If your iPhone speaker sounds dull, faint, or muffled after getting wet, liquid is almost certainly trapped against the fine mesh grille. In most cases, the internal speaker hardware is undamaged, but liquid surface tension prevents droplets from draining on their own. Following proper drying procedures and playing a low-frequency ejection tone can quickly dislodge the fluid and restore crisp audio.
@@ -24,8 +23,6 @@ Follow these safe steps to clear trapped water without risking device damage:
 5. **Play a low-frequency sound tone.** Point the bottom edge of your phone toward a cloth and play a low-frequency tone at full volume. Our [Fix iPhone Speaker tool](/fix-iphone-speaker) generates a 165Hz tone that physically vibrates the speaker diaphragm back and forth, propelling trapped liquid droplets out through the mesh.
 6. **Place the device in an area with cool airflow.** Set your iPhone in a dry room with the bottom speaker facing down. Standing the phone in front of a small fan blowing cool air directly across the ports accelerates evaporation.
 7. **Allow time to dry completely.** Apple recommends waiting at least several hours before plugging in a charging cable, and up to 24 hours for complete internal drying if substantial water entered the housing.
-
-[DEV: tested on my phone — result] Tested on an iPhone 13 after freshwater exposure: sound was muffled and tinny; ran three 30-second cycles of the 165Hz tone with the speaker tilted down onto a napkin; visible micro-droplets emerged and voice clarity noticeably recovered within two minutes.
 
 ## Why it happens
 
@@ -60,7 +57,11 @@ Seek repair at an Apple Store or authorized service provider if:
 - **Condensation appears under the camera lens.** Fogging inside lenses indicates water breached internal seals.
 - **The device becomes abnormally hot.** Heat or sudden battery drain indicates an electrical short that requires immediate service.
 
-Apple notes that [liquid damage is not covered by the standard one-year warranty](https://support.apple.com/en-us/108039). If you are unsure whether your problem is dirt or hardware failure, see our guide on [testing if a phone speaker is dirty or damaged](/guides/phone-speaker-dust-vs-damage-test).
+[Liquid damage is not covered by the standard one-year warranty](https://support.apple.com/en-us/108039). If you are unsure whether your problem is dirt or hardware failure, see our guide on [testing if a phone speaker is dirty or damaged](/guides/phone-speaker-dust-vs-damage-test).
+
+## How we made this guide
+
+This guide is based on official support pages from Apple, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

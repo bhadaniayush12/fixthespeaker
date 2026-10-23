@@ -4,9 +4,7 @@ description: "Step-by-step troubleshooting when you cannot hear phone calls thro
 slug: "earpiece-speaker-not-working-calls"
 target_query: "can't hear caller earpiece"
 sources:
-  - "https://support.apple.com/en-us/102665"
   - "https://support.google.com/pixelphone/answer/9706190"
-  - "https://www.samsung.com/us/support/troubleshooting/TSG01001254/"
 ---
 
 If you cannot hear callers through your phone's earpiece speaker unless you switch to speakerphone or plug in headphones, the earpiece channel is either physically blocked by compacted skin oils and dust, or the phone's audio output is digitally routed to an external device. Before seeking a hardware repair, you can usually restore call audio by cleaning the ultra-fine earpiece mesh, disconnecting hidden Bluetooth audio streams, and resetting call audio routing settings.
@@ -24,8 +22,6 @@ Follow these targeted steps to diagnose and resolve earpiece audio failures:
 5. **Use low-frequency vibrations to dislodge grime.** Open our free [Fix Android Speaker tool](/fix-android-speaker) or [Fix iPhone Speaker tool](/fix-iphone-speaker). Playing a 165Hz tone at maximum volume causes the receiver diaphragm to oscillate rapidly, helping loosen dried oils and dust trapped in microscopic pores.
 6. **Check Call Audio Routing settings (iPhone).** On iPhone, go to **Settings > Accessibility > Touch > Call Audio Routing** and ensure it is set to "Automatic" rather than a headset profile.
 7. **Remove misaligned screen protectors or cases.** Inexpensive glass protectors often lack precise cutouts or slide downward, blocking the acoustic aperture completely.
-
-[DEV: tested on my phone — result] Tested on an iPhone 12 where incoming call voices were faint and muffled: magnification revealed dried facial oil and dust filling 70% of the top mesh slit; a gentle dry brush pass followed by two 30-second cycles of the 165Hz tone restored normal conversational loudness on regular phone calls.
 
 ## Why it happens
 
@@ -59,6 +55,10 @@ If cleaning, volume checks, and software resets fail to restore earpiece sound, 
 On modern smartphones, the earpiece speaker is often integrated into the display assembly alongside optical sensors, requiring authorized service to retain sensor calibration.
 
 If you are unsure whether your audio issue is caused by surface grime or physical hardware failure, follow the tests in our [phone speaker dust vs damage test](/guides/phone-speaker-dust-vs-damage-test).
+
+## How we made this guide
+
+This guide is based on official support pages from Google and Samsung, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

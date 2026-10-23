@@ -25,14 +25,12 @@ To get maximum ejection efficiency when using a sound-based water ejector tool, 
 6. **Gently tap the phone against your hand during playback.** As [Apple Support advises](https://support.apple.com/en-us/102643), tapping the phone against your palm with the connector facing down helps release stubborn meniscus seals while sound plays.
 7. **Allow ambient airflow to complete drying.** Sound ejection removes bulk fluid, but microscopic moisture films remain. Set your phone in front of a cool fan blowing air across the ports for 1 to 2 hours before plugging in a charging cable.
 
-[DEV: tested on my phone — result] Tested with water droplets placed directly onto a smartphone speaker grille: playing a 165Hz tone at maximum volume with the grille facing down visibly ejected fine water beads within 8 seconds; speaker tone shifted from dull and muffled to clear and bright within two 30-second cycles.
-
 ## Why it happens
 
 The science of acoustic water ejection rests on fluid dynamics, acoustic radiation pressure, and mechanical displacement:
 
 - **Surface tension and the meniscus problem:** Smartphone grilles feature microscopic pores designed to repel water while letting sound waves through. When liquid contacts the mesh, intermolecular cohesion creates high surface tension. The liquid forms a curved meniscus across each pore. Because capillary pressure in micro-pores is strong, water will not drain out through gravity alone.
-- **Why low frequencies (165Hz) are ideal:** A speaker is an electromagnetic piston. Higher frequencies (like 5,000Hz) vibrate rapidly but with microscopic cone movement. Low frequencies (130Hz to 175Hz), played at full volume, maximize forward-and-backward movement of the speaker cone, pumping substantial air volume with each cycle.
+- **Why low frequencies (165Hz) are ideal:** A speaker is an electromagnetic piston. Low frequencies played at full volume maximize forward-and-backward movement of the speaker cone, pumping substantial air volume with each cycle. Higher frequencies vibrate rapidly but with much smaller cone movement.
 - **Acoustic radiation pressure and kinetic transfer:** As the speaker cone pushes forward, it compresses air inside the sealed acoustic chamber behind the mesh. When this localized pressure exceeds the surface tension holding the droplet in place, the droplet breaks free and is propelled outward.
 
 To see how Apple applies this technology inside wearable hardware, read our breakdown of [Apple Watch Water Lock explained](/guides/apple-watch-water-lock-explained). If your phone was recently submerged, follow our guide on the [phone fell in water first 10 minutes](/guides/phone-fell-in-water-first-10-minutes).
@@ -59,6 +57,10 @@ Manufacturer warranties do not cover liquid damage. Authorized service providers
 
 For a diagnostic breakdown of whether your muffled sound is dirt, water, or hardware failure, see our guide on [phone speaker dust vs damage test](/guides/phone-speaker-dust-vs-damage-test).
 
+## How we made this guide
+
+This guide is based on official support pages from Apple and Samsung, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
+
 ## Frequently asked questions
 
 ### Can playing water eject sound damage my phone speaker?
@@ -82,5 +84,5 @@ No. Smartphone speaker assemblies are sealed acoustic boxes. The only exit path 
 
 2. **Cone Excursion Comparison: High vs Low Frequency**
    - **Type:** Technical displacement diagram.
-   - **Visual contents:** Top: 5,000Hz wave showing rapid vibration but near-zero cone movement. Bottom: 165Hz wave showing deep physical excursion of the speaker cone driving air like a piston.
+   - **Visual contents:** Top: high-frequency wave showing rapid vibration but near-zero cone movement. Bottom: 165Hz wave showing deep physical excursion of the speaker cone driving air like a piston.
    - **Callout labels:** "High frequency: rapid vibration, minimal air movement", "165Hz frequency: maximum cone excursion, high air displacement", "Piston effect pushes water outward".

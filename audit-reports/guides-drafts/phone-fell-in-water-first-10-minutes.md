@@ -26,8 +26,6 @@ Act quickly and execute these seven steps within the first ten minutes:
 6. **Rinse with fresh tap water if dropped in salt or pool water.** Both [Apple](https://support.apple.com/en-us/108039) and [Samsung](https://www.samsung.com/us/support/answer/ANS00077611/) state that if your phone contacts non-fresh liquids (sea water, pool water, soda), gently rinse the affected area with fresh tap water, then wipe it dry. Salt and chemicals form corrosive crystals as they dry.
 7. **Position the device under cool, moving air.** Prop your phone upright with the ports facing down in front of a household desk fan blowing cool air across the openings.
 
-[DEV: tested on my phone — result] Tested on a water-submerged test phone: turning off power within 15 seconds, tapping out bottom port water, and using fan airflow for 4 hours prevented internal moisture breach and cleared the speaker with no corrosion on charging pins.
-
 ## Why it happens
 
 Modern flagship smartphones carry water resistance ratings certified under [IEC standard 60529 (IP67 or IP68)](https://support.apple.com/en-us/108039). These ratings mean the phone is engineered to resist freshwater immersion at specified depths (usually 1.5 to 6 meters) for up to 30 minutes in static lab conditions. However:
@@ -60,6 +58,10 @@ Even with prompt action, liquid may breach internal seals. Seek authorized profe
 Manufacturer warranties explicitly exclude liquid damage. If repairs are necessary, technicians inspect internal Liquid Contact Indicators (LCIs) to determine out-of-warranty replacement options.
 
 To learn more about the science of clearing water from speakers using low-frequency acoustics, see our analysis on [does water eject sound really work](/guides/does-water-eject-sound-really-work).
+
+## How we made this guide
+
+This guide is based on official support pages from Apple, Samsung, and Google, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Frequently asked questions
 

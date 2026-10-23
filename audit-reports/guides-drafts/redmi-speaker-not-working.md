@@ -4,7 +4,6 @@ description: "Troubleshoot no sound or low volume on your Redmi or Xiaomi phone 
 slug: "redmi-speaker-not-working"
 target_query: "redmi speaker not working"
 sources:
-  - "https://www.mi.com/global/support/"
   - "https://support.google.com/android/answer/9083864"
 ---
 
@@ -14,17 +13,15 @@ Redmi smartphones use modular construction, meaning the loudspeaker module sits 
 
 ## Quick fix steps
 
-Work through these Xiaomi-recommended troubleshooting steps in order:
+Work through these troubleshooting steps in order:
 
 1. **Restart your Redmi phone.** A simple reboot restarts Android audio servers, clearing temporary process crashes caused by media apps or call recorders.
-2. **Run Xiaomi's built-in "Clear speaker" tool.** Xiaomi includes an acoustic cleaning utility in MIUI and HyperOS. Go to **Settings > Additional settings > Clear speaker**. Toggle the feature on to play a high-amplitude 30-second audio sweep designed to blow dust and moisture out of the chamber. Run this cycle 2 to 5 times while gently shaking the device.
+2. **Run Xiaomi's built-in "Clear speaker" tool.** Xiaomi includes an acoustic cleaning utility in MIUI and HyperOS. On many models, go to **Settings > Additional settings > Clear speaker**. Toggle the feature on to play a high-amplitude 30-second audio sweep designed to blow dust and moisture out of the chamber. Run this cycle 2 to 5 times while gently shaking the device.
 3. **Check for a stuck headphone icon in the status bar.** A common fault on Redmi phones with 3.5mm jacks is lint or moisture inside the jack triggering the hardware sensor. If your phone displays a headset icon when nothing is plugged in, audio routes to the empty jack. Inspect the 3.5mm port and remove lint using a dry wooden toothpick.
 4. **Use an online acoustic ejection tone.** If your Redmi model lacks the built-in "Clear speaker" menu, open our [Fix Android Speaker tool](/fix-android-speaker). Playing our 165Hz tone at maximum volume replicates the diaphragm vibration of the native Xiaomi tool.
 5. **Clean the bottom grille perforations gently.** Use a clean, dry, soft-bristled toothbrush to lightly sweep across the bottom speaker holes at an angle. Avoid poking pins or sharp objects into the holes.
 6. **Disable Absolute Volume and sound effects in settings.** Navigate to **Settings > Sound & vibration > Sound effects**. Reset equalizers and preset profiles to standard.
 7. **Run the CIT hardware diagnostic test.** Go to **Settings > About phone > Detailed info and specs**, then tap **Kernel version** five times. In the CIT menu, tap **Speaker** or **Receiver** to test raw hardware output.
-
-[DEV: tested on my phone — result] Tested on a Redmi Note 11 with faint speaker output: running the MIUI Clear Speaker tool for three consecutive 30-second cycles dislodged accumulated fabric dust from the bottom ports, noticeably restoring ringtone and video volume.
 
 ## Why it happens
 
@@ -71,7 +68,11 @@ This happens when dirt, lint, or moisture shorts the sensor pins inside the 3.5m
 A factory reset only fixes audio problems caused by corrupt system files or rogue third-party equalizer apps. If the CIT hardware test fails to produce sound, a factory reset will not solve the issue because the fault is physical.
 
 ### How much does it cost to fix a broken Redmi speaker?
-Because the loudspeaker in most Redmi phones is a small, modular part mounted on the lower sub-board, replacement parts are inexpensive, typically costing between $20 and $50 at authorized repair shops.
+For current pricing on speaker module replacement, contact your nearest Xiaomi authorized service center directly, as costs vary by model and region.
+
+## How we made this guide
+
+This guide is based on official support pages from Google, linked above. We have not tested every phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
 
 ## Image plan
 
