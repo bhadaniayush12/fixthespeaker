@@ -5,6 +5,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import Hreflang from '../components/Hreflang.astro';
 import { languages, type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { isTranslatedSubpageIndexed } from '../data/indexing';
+import { isIndexableDevicePath } from '../data/indexable-devices';
 
 // Resolve the hashed URL for the critical latin font so we can preload it.
 // Vite's ?url suffix returns the build-output path (e.g. /_astro/geist-latin-wght-normal.<hash>.woff2).
@@ -61,7 +62,12 @@ const subpageSegments = hasLangPrefix ? pathSegments.slice(1) : pathSegments;
 const subpagePath = localized ? subpageSegments.join('/') : '';
 
 // Translated pages without a full translation stay live but are noindexed and ad-free.
-const isThinTranslation = lang !== defaultLang && localized && !isTranslatedSubpageIndexed(subpageSegments.join('/'));
+// Allowlisted translated device pages (src/data/indexable-devices.ts) are the exception.
+const isThinTranslation =
+  lang !== defaultLang &&
+  localized &&
+  !isTranslatedSubpageIndexed(subpageSegments.join('/')) &&
+  !isIndexableDevicePath(cleanPath);
 const noindex = noindexProp || isThinTranslation;
 const showAds = (showAdsProp ?? true) && !noindex;
 

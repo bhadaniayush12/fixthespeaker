@@ -5,6 +5,7 @@ import DeviceDirectory from '../DeviceDirectory.astro';
 import { type SupportedLang, defaultLang, useTranslations } from '../../i18n/ui';
 import { type DeviceData, devices } from '../../data/devices';
 import { getLocalizedDevice } from '../../i18n/deviceTranslations';
+import { isIndexableDevice } from '../../data/indexable-devices';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const HUB_SLUGS = new Set([
@@ -24,7 +25,7 @@ export interface Props {
 const {
   device,
   lang = defaultLang,
-  noindex = !HUB_SLUGS.has(device.slug) && device.category !== 'hub',
+  noindex = !HUB_SLUGS.has(device.slug) && device.category !== 'hub' && !isIndexableDevice(device.slug, lang),
 } = Astro.props;
 const t = useTranslations(lang);
 const localizedDevice = getLocalizedDevice(device, lang);
@@ -313,7 +314,7 @@ const relatedDevices = localizedDevice.relatedSlugs
           {relatedDevices.map((rel) => (
             <a
               href={lang === defaultLang ? `/${rel.slug}` : `/${lang}/${rel.slug}`}
-              rel={HUB_SLUGS.has(rel.slug) ? undefined : 'nofollow'}
+              rel={HUB_SLUGS.has(rel.slug) || isIndexableDevice(rel.slug, lang) ? undefined : 'nofollow'}
               data-hub-link={rel.slug}
               class="group rounded-2xl border border-hairline bg-elevated/60 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
             >

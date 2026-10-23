@@ -2,6 +2,7 @@
 import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { deviceList } from '../data/devices';
 import { getLocalizedDevice } from '../i18n/deviceTranslations';
+import { isIndexableDevice } from '../data/indexable-devices';
 
 export interface Props {
   lang?: SupportedLang;
@@ -202,7 +203,7 @@ const clientDevicesPayload = localizedDevices.map((device) => ({
         {localizedDevices.map((device) => (
           <a
             href={getDeviceUrl(device.slug)}
-            rel={device.category === 'hub' ? undefined : 'nofollow'}
+            rel={device.category === 'hub' || isIndexableDevice(device.slug, lang) ? undefined : 'nofollow'}
             class="rounded px-1.5 py-1 transition-colors hover:text-primary hover:bg-elevated"
           >
             {device.name}
