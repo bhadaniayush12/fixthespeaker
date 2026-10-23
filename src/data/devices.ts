@@ -2113,9 +2113,9 @@ const coreHubs: Record<string, DeviceData> = {
     shortName: 'Samsung Galaxy',
     brand: 'Samsung',
     category: 'hub',
-    metaTitle: 'Eject Water from Samsung Galaxy Speaker: Sound Cleaner Tool',
+    metaTitle: 'Water Eject Samsung: Free Instant Tool, All Galaxy Phones',
     metaDescription:
-      'Clear water from Samsung Galaxy S25, S24, S23, S22, Z Fold, Z Flip & A-series speakers. A 165 Hz water ejection sound helps clear muffled audio in about 60 seconds.',
+      'Free water eject sound for every Samsung Galaxy phone: S, Z Fold, Z Flip, A series. Starts instantly in your browser, no app. Helps clear muffled audio.',
     eyebrow: 'Samsung Galaxy Acoustic Water Eject',
     heroHeading: 'Eject Water from Samsung Galaxy Speakers',
     heroSubtitle:
@@ -2345,9 +2345,9 @@ const coreHubs: Record<string, DeviceData> = {
     shortName: 'Android',
     brand: 'Universal',
     category: 'hub',
-    metaTitle: 'Fix Android Speaker: Water Eject Sound & Speaker Dust Cleaner',
+    metaTitle: 'Fix Android Speaker: Free Instant Water Eject Sound, No App',
     metaDescription:
-      'Eject water from Google Pixel, Samsung, Xiaomi, OnePlus, Motorola & Android speakers. 165 Hz water eject sound and high-frequency sweep fix muffled audio in 60s.',
+      'Free water eject sound for any Android phone: Pixel, Samsung, Xiaomi, OnePlus, Motorola. Instant, in your browser, no app. Helps clear muffled audio.',
     eyebrow: 'Universal Android Speaker Cleaner & Water Eject',
     heroHeading: 'Fix Android Phone Speaker & Eject Water',
     heroSubtitle:
