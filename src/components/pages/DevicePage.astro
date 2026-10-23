@@ -6,6 +6,7 @@ import { type SupportedLang, defaultLang, useTranslations } from '../../i18n/ui'
 import { type DeviceData, devices } from '../../data/devices';
 import { getLocalizedDevice } from '../../i18n/deviceTranslations';
 import { isIndexableDevice } from '../../data/indexable-devices';
+import { getDeviceSpecifics, deviceSpecificLabels } from '../../data/deviceSpecifics';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 const HUB_SLUGS = new Set([
@@ -37,6 +38,11 @@ const pageUrl = lang === defaultLang
 
 const homeUrl = getRelativeLocaleUrl(lang);
 const isHub = HUB_SLUGS.has(device.slug) || device.category === 'hub';
+
+// Sourced, model-specific section (only on the pages listed in src/data/deviceSpecifics.ts).
+const specifics = getDeviceSpecifics(device.slug, lang);
+const specificLabels = deviceSpecificLabels[lang] ?? deviceSpecificLabels.en!;
+const faqs = specifics ? [specifics.faq, ...localizedDevice.faqs] : localizedDevice.faqs;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -114,7 +120,7 @@ const jsonLd = {
     {
       '@type': 'FAQPage',
       '@id': `${pageUrl}#faq`,
-      mainEntity: localizedDevice.faqs.map(({ q, a }) => ({
+      mainEntity: faqs.map(({ q, a }) => ({
         '@type': 'Question',
         name: q,
         acceptedAnswer: { '@type': 'Answer', text: a },
@@ -227,6 +233,39 @@ const relatedDevices = localizedDevice.relatedSlugs
       </div>
     </section>
 
+    <!-- Device-Specific Notes (sourced from the manufacturer) -->
+    {specifics && (
+      <section class="container-site pb-14 sm:pb-20" aria-labelledby="device-specific-heading" data-device-specific>
+        <div class="mx-auto max-w-3xl rounded-3xl border border-hairline bg-elevated/40 p-6 sm:p-8">
+          <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{specificLabels.eyebrow}</p>
+          <h2 id="device-specific-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+            {localizedDevice.shortName}
+          </h2>
+
+          <h3 class="mt-6 text-base font-semibold text-ink">{specificLabels.speakers}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-body">{specifics.speakers}</p>
+
+          <h3 class="mt-5 text-base font-semibold text-ink">{specificLabels.ipRating}</h3>
+          <p class="mt-1.5 text-sm leading-relaxed text-body">{specifics.ipRating}</p>
+
+          <h3 class="mt-5 text-base font-semibold text-ink">{specificLabels.steps}</h3>
+          <ol class="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-body">
+            {specifics.steps.map((step) => <li>{step}</li>)}
+          </ol>
+
+          <p class="mt-6 border-t border-hairline pt-4 text-xs text-mute">
+            {specificLabels.sources}:{' '}
+            {specifics.sources.map((source, i) => (
+              <>
+                {i > 0 && ' · '}
+                <a href={source.url} target="_blank" rel="noopener" class="underline decoration-hairline underline-offset-2 hover:text-ink">{source.label}</a>
+              </>
+            ))}
+          </p>
+        </div>
+      </section>
+    )}
+
     <!-- Step-by-Step How-To Guide -->
     <section class="container-site pb-14 sm:pb-20" aria-labelledby="howto-heading">
       <div class="mx-auto max-w-3xl">
@@ -284,7 +323,7 @@ const relatedDevices = localizedDevice.relatedSlugs
         </h2>
         
         <div class="mt-6 sm:mt-8 divide-y divide-hairline rounded-2xl border border-hairline bg-elevated/70">
-          {localizedDevice.faqs.map(({ q, a }) => (
+          {faqs.map(({ q, a }) => (
             <details class="group px-5 sm:px-6">
               <summary class="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 py-4 sm:py-5 text-left text-[15px] font-medium text-ink touch-manipulation [&::-webkit-details-marker]:hidden">
                 <span>{q}</span>

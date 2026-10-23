@@ -1,6 +1,6 @@
 // Device model pages that are indexable (index, follow) and may show ads, listed by URL path.
 // Hub pages are always indexable in English; every other model page stays noindexed.
-// Add a path here only once the page has sourced, device-specific content of its own.
+// Add a path here only once the page has a sourced entry in src/data/deviceSpecifics.ts.
 export const INDEXABLE_DEVICE_PATHS: readonly string[] = [
   '/fix-motorola-edge-50-ultra-speaker',
   '/eject-water-samsung-galaxy-s25',
