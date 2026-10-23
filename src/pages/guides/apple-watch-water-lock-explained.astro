@@ -1,0 +1,279 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'apple-watch-water-lock-explained')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const faqs = [
+  {
+    q: 'Does turning on Water Lock physically seal the speaker?',
+    a: 'No. Water Lock is entirely a software feature. It does not move any physical shutters or valves. Its only functions are locking the touch screen against accidental inputs and playing the acoustic ejection tone when unlocked.',
+  },
+  {
+    q: 'What should I do if I forgot to turn on Water Lock before swimming?',
+    a: "Don't worry. Your Apple Watch is already water-resistant by design. Turning on Water Lock simply stops water from tapping buttons. Once out of the pool, manually activate Water Lock in Control Center and unlock it to trigger the water-ejection sound.",
+  },
+  {
+    q: 'How do I clean my Apple Watch after swimming in the ocean?',
+    a: 'Apple advises gently rinsing the watch under lightly running, warm, fresh tap water immediately after ocean swimming. This washes away salt crystals that could otherwise dry inside the speaker cavity and crown. Dry thoroughly with a microfiber cloth.',
+  },
+  {
+    q: 'Why does my Apple Watch make a funny buzzing noise when unlocking?',
+    a: 'That buzzing sound is the water ejection feature working as intended. The watch drives the speaker driver at maximum excursion using low-frequency acoustic vibrations specifically designed to push water droplets out of the cavity.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  localized={false}
+  jsonLd={jsonLd}
+>
+  <p>
+    Apple Watch Water Lock does not make your watch waterproof; instead, it prevents accidental touchscreen taps
+    while submerged and uses an acoustic tone to expel trapped water when turned off. Turning on Water Lock disables
+    touch sensitivity so water droplets cannot trigger phantom swipes or end a workout prematurely. When you exit
+    Water Lock by pressing and holding the Digital Crown, the speaker emits a sequence of low-frequency tones that
+    physically eject liquid from the speaker cavity.
+  </p>
+  <p>
+    Because water conducts electricity similarly to human skin, water droplets hitting the capacitive display would
+    otherwise trigger unintended app launches, calls, or workout cancellations.
+  </p>
+
+  <h2>Quick fix steps</h2>
+  <p>Here is how to manually activate, use, and exit Water Lock on watchOS:</p>
+  <ol>
+    <li>
+      <strong>Open Control Center on your Apple Watch.</strong> Press the side button (<a href="https://support.apple.com/en-us/108352" rel="noopener" target="_blank">Apple</a>).
+    </li>
+    <li>
+      <strong>Tap the Water Lock icon.</strong> Tap the water droplet icon. A cyan droplet will appear at the top
+      center of your watch face, indicating that touch input is locked.
+    </li>
+    <li>
+      <strong>Engage in your water activity.</strong> You can now swim, shower, or run in heavy rain without water
+      registering as touches. If you start a swimming workout in the Workout app, Water Lock turns on automatically.
+    </li>
+    <li>
+      <strong>Exit Water Lock after leaving the water.</strong> When you finish, press and hold the Digital Crown
+      until the display says "Unlocked" (on watchOS 8 or earlier, rotate the Digital Crown instead). A series of
+      tones plays to clear any water left in the speaker on the side of your watch.
+    </li>
+    <li>
+      <strong>Listen for the ejection chimes.</strong> The watch will announce "Unlocked" while playing a stepped
+      sequence of low-frequency acoustic vibrations. As the tones sound, hold the watch speaker slit angled downward
+      over a soft cloth or tissue.
+    </li>
+    <li>
+      <strong>Wipe down the watch chassis.</strong> Use a clean, dry, lint-free microfiber cloth to dry the watch
+      crystal, casing, band, and speaker slit.
+    </li>
+    <li>
+      <strong>Use a web eject tool if audio remains muffled.</strong> If notification chimes still sound dull
+      after running the built-in purge, open our
+      <a href="/fix-apple-watch-speaker">Fix Apple Watch Speaker tool</a> on your paired iPhone or watch browser to
+      run additional low-frequency vibration cycles.
+    </li>
+  </ol>
+
+  <figure class="my-8">
+    <img
+      src="/images/guides/apple-watch-water-lock-sequence.svg"
+      alt="Step-by-step diagram showing Apple Watch Water Lock activation in Control Center, water droplet lock indicator on watch face, and holding the Digital Crown for acoustic water ejection."
+      class="w-full rounded-2xl border border-hairline bg-elevated"
+      width="720"
+      height="360"
+      loading="lazy"
+    />
+    <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">
+      3-step operation: activation in Control Center, touch-locked display, and acoustic Digital Crown purge
+    </figcaption>
+  </figure>
+
+  <h2>Why it happens</h2>
+  <p>To understand Water Lock, you must distinguish between physical water resistance and capacitive touchscreen physics:</p>
+  <ul>
+    <li>
+      <strong>Capacitive touch mechanics:</strong> Modern touchscreens detect touch by measuring tiny electrostatic
+      charges from fingertips. Water contains ions and conducts electricity. When droplets land on an active screen,
+      the watch registers them as fingers, causing phantom taps. Water Lock disables capacitive sensor sampling.
+    </li>
+    <li>
+      <strong>Acoustic cavity fluid retention:</strong> Loudspeakers must move air to create sound waves, leaving an
+      open acoustic port on the side of the case. Water enters this port and is held by surface tension, muting
+      sound.
+    </li>
+    <li>
+      <strong>The acoustic ejection mechanism:</strong> When unlocking Water Lock, the audio amplifier drives the
+      speaker voice coil at specific low frequencies with maximum cone excursion. This motion acts as a micro-pump,
+      overcoming surface tension and forcing liquid out through the side acoustic slot.
+    </li>
+  </ul>
+  <p>
+    According to Apple's
+    <a href="https://support.apple.com/en-us/109522" rel="noopener" target="_blank">official watch water resistance specifications</a>,
+    Apple Watch Series 2 and later carry a 50-meter water resistance rating under ISO standard 22810:2010 (Apple Watch
+    Ultra carries a 100-meter rating). However, water resistance is not permanent and decreases over time as seals
+    age.
+  </p>
+  <p>
+    If you dropped your phone in water at the same time, follow our advice for the
+    <a href="/guides/phone-fell-in-water-first-10-minutes">phone fell in water first 10 minutes</a>.
+  </p>
+
+  <figure class="my-8">
+    <img
+      src="/images/guides/apple-watch-speaker-port-diagram.svg"
+      alt="Anatomy diagram of the Apple Watch side speaker port showing acoustic barrier, speaker cone motion, escaping water droplets, and note confirming no mechanical valves."
+      class="w-full rounded-2xl border border-hairline bg-elevated"
+      width="720"
+      height="360"
+      loading="lazy"
+    />
+    <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">
+      Watch speaker cutaway: acoustic slot, protective membrane barrier, and fluid expulsion path
+    </figcaption>
+  </figure>
+
+  <h2>What Water Lock does not do</h2>
+  <p>Several widespread misconceptions about Water Lock can lead to accidental damage:</p>
+  <ul>
+    <li>
+      <strong>Water Lock does not close mechanical doors or physical valves.</strong> There are no moving shutters
+      inside the speaker ports. The speaker slit remains open whether Water Lock is on or off.
+    </li>
+    <li>
+      <strong>Water Lock does not increase water resistance.</strong> Enabling Water Lock will not protect an older
+      Apple Watch (Series 1) that lacks factory water resistance.
+    </li>
+    <li>
+      <strong>Water Lock does not protect against high-velocity water.</strong> Standard Apple Watch models should
+      not be worn while scuba diving or waterskiing.
+    </li>
+    <li>
+      <strong>Water Lock cannot protect against soaps and solvents.</strong> Apple explicitly warns that exposing
+      your watch to soaps, shampoos, sunscreen, detergents, or saunas degrades waterproof gaskets.
+    </li>
+  </ul>
+
+  <h2>When it's real damage (and when to get repairs)</h2>
+  <p>
+    In most instances, running the ejection tone clears trapped water within seconds. However, if water breaches
+    internal seals, seek authorized Apple service if:
+  </p>
+  <ul>
+    <li>
+      <strong>Digital Crown becomes sticky or non-functional.</strong> Mineral or salt deposits drying inside the
+      crown can stop rotation. If it stays stuck after the watch is dry, contact Apple Support.
+    </li>
+    <li>
+      <strong>The screen flickers or displays vertical green lines.</strong> Internal liquid ingress into the OLED
+      display panel requires panel replacement.
+    </li>
+    <li>
+      <strong>Speaker remains distorted after multiple purge cycles.</strong> If sound remains raspy or muffled
+      after 24 hours of drying, the speaker driver membrane may be damaged.
+    </li>
+    <li>
+      <strong>The watch fails to charge or overheats on the puck.</strong> Liquid reaching the rear sensor array
+      can short-circuit inductive charging coils.
+    </li>
+  </ul>
+  <p>
+    Apple's standard one-year warranty excludes liquid damage. If hardware fails after water contact,
+    out-of-warranty service or AppleCare+ incident fees apply.
+  </p>
+  <p>
+    To learn more about the physics behind audio drying tools and why low-frequency pulses move fluids, read our
+    guide on <a href="/guides/does-water-eject-sound-really-work">does water eject sound really work</a>.
+  </p>
+
+  <h2>How we made this guide</h2>
+  <p>
+    This guide is based on official support pages from Apple, linked above. We have not tested every phone model
+    ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map(({ q, a }) => (
+    <>
+      <h3>{q}</h3>
+      <p>{a}</p>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/108352" rel="noopener" target="_blank">
+        Apple Support: How to use Water Lock and eject water from your Apple Watch
+      </a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/109522" rel="noopener" target="_blank">
+        Apple Support: About Apple Watch water resistance
+      </a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

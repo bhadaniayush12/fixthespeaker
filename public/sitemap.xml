@@ -443,7 +443,37 @@
   </url>
   <url>
     <loc>https://fixthespeaker.com/guides</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fixthespeaker.com/guides/iphone-speaker-muffled-after-water</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fixthespeaker.com/guides/airpods-water-damage-what-to-do</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fixthespeaker.com/guides/phone-fell-in-water-first-10-minutes</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fixthespeaker.com/guides/apple-watch-water-lock-explained</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://fixthespeaker.com/guides/does-water-eject-sound-really-work</loc>
+    <lastmod>2026-10-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
