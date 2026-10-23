@@ -63,6 +63,17 @@ for (const file of ['de.html', 'es/privacy.html']) {
 }
 assert(!hubHtml.includes('hreflang="de"'), 'English hub does not advertise noindexed translations via hreflang');
 
+// 7b. Allowlisted device pages (src/data/indexable-devices.ts) are indexable and carry the sourced section;
+// the same models in other locales, and non-allowlisted models, stay noindexed and ad-free
+for (const file of ['fix-pixel-7-speaker.html', 'es/fix-motorola-edge-50-ultra-speaker.html', 'it/fix-iphone-17-speaker.html']) {
+  const html = read(file);
+  assert(!html.includes(NOINDEX) && html.includes('data-device-specific'), `Allowlisted ${file} is indexable with a device-specific section`);
+}
+for (const file of ['fix-iphone-17-pro-max-speaker.html', 'de/fix-pixel-7-speaker.html', 'fix-iphone-15-pro-max-speaker.html']) {
+  const html = read(file);
+  assert(html.includes(NOINDEX) && !html.includes('pagead2.googlesyndication.com'), `Non-allowlisted ${file} stays noindexed and ad-free`);
+}
+
 // 8. Template text must not leak internal catalogue names
 for (const file of ['fix-apple-watch-speaker.html', 'de/clean-airpods-speaker.html', 'de/fix-iphone-speaker.html']) {
   assert(!/(AirPods|Apple Watch|Android) Hub|\(All Models\)-/.test(read(file)), `${file} has no leaked template names`);
