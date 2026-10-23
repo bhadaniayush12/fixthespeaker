@@ -87,10 +87,6 @@ const SRC = {
     url: 'https://www.motorola.com/gb/en/p/phones/motorola-edge/50-ultra/pmipmgn36m2',
   },
   g84Page: { label: 'Motorola: moto g84 5G product page', url: 'https://www.motorola.com/au/en/p/phones/moto-g/84-5g/pmipmgf35mx' },
-  g84Specs: {
-    label: 'Motorola: moto g84 5G specifications',
-    url: 'https://en-us.support.motorola.com/app/answers/detail/a_id/176650',
-  },
   redmi13cFaq: { label: 'Xiaomi: REDMI 13C FAQ', url: 'https://www.mi.com/global/support/faq/details/KA-47262/' },
   redmi13c5gFaq: { label: 'Xiaomi: REDMI 13C 5G FAQ', url: 'https://www.mi.com/global/support/faq/details/KA-142672/' },
   redmi13cSpecs: { label: 'Xiaomi: Redmi 13C specs', url: 'https://www.mi.com/global/product/redmi-13c/specs/' },
@@ -439,7 +435,7 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
       speakers:
         'Motorola says the moto g84 5G has stereo speakers with Dolby Atmos. Motorola does not publish a grille diagram, so we do not name exact positions. With two speakers, the Speaker Test’s left and right channels make it easy to hear which one is still affected.',
       ipRating:
-        'Motorola’s spec sheet lists IP54 for the moto g84 5G, and its product page describes a water-repellent design that helps protect against moderate exposure to water such as accidental spills, splashes or light rain. It is not designed to be submerged or exposed to pressurised water, and it is not waterproof.',
+        'Motorola’s product page describes a water-repellent design for the moto g84 5G that helps protect against moderate exposure to water such as accidental spills, splashes or light rain. It is not designed to be submerged or exposed to pressurised water, and it is not waterproof.',
       steps: [
         'If it was splashed or caught in light rain, the exposure the design is meant for, wipe it dry and run the eject tone with the speakers facing down.',
         'If it was submerged or hit by pressurised water, that is outside the design. Turn it off and let it dry fully before running the tone, and do not charge it while it is wet.',
@@ -447,9 +443,9 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
       ],
       faq: {
         q: 'Is the moto g84 5G waterproof?',
-        a: 'No. Motorola describes the moto g84 5G as water-repellent and lists it as IP54. The design helps protect against accidental spills, splashes or light rain, but Motorola says it is not designed to be submerged in water or exposed to pressurised water, and the protection may diminish over time.',
+        a: 'No. Motorola describes the moto g84 5G as water-repellent. The design helps protect against accidental spills, splashes or light rain, but Motorola says it is not designed to be submerged in water or exposed to pressurised water, and the protection may diminish over time.',
       },
-      sources: [SRC.g84Page, SRC.g84Specs],
+      sources: [SRC.g84Page],
     },
   },
 
