@@ -4,14 +4,14 @@ description: "Explore how low-frequency acoustic vibrations push water out of ph
 slug: "does-water-eject-sound-really-work"
 target_query: "does water eject sound work"
 sources:
-  - "https://support.apple.com/en-us/109522"
+  - "https://support.apple.com/en-us/108352"
   - "https://support.apple.com/en-us/102643"
   - "https://www.samsung.com/us/support/answer/ANS00077611/"
 ---
 
 Yes, water eject sounds genuinely work for clearing liquid droplets trapped in phone and smartwatch speaker grilles. Playing a sustained low-frequency tone (around 165Hz) forces the speaker diaphragm to vibrate with maximum physical displacement, generating rapid air pressure pulses that overcome surface tension and propel water out through the mesh. However, acoustic ejection only clears liquid sitting directly on the speaker grille; it cannot remove water from inside the phone chassis, dry a wet charging port, or reverse physical hardware damage.
 
-The principle is mechanically proven and used by major manufacturers: Apple includes a sound ejection frequency in Apple Watch, and Xiaomi provides a native "Clear speaker" audio purge feature across its smartphones.
+Apple uses the same idea in Apple Watch: when you turn off Water Lock, the watch plays tones to clear water from the speaker ([Apple](https://support.apple.com/en-us/108352)).
 
 ## Quick fix steps
 
@@ -64,7 +64,7 @@ This guide is based on official support pages from Apple and Samsung, linked abo
 ## Frequently asked questions
 
 ### Can playing water eject sound damage my phone speaker?
-No. Playing a 165Hz tone at 100% volume is completely safe. Modern operating systems contain digital signal processors (DSP) that prevent audio signals from exceeding safe physical limits of the speaker driver.
+A short tone at normal maximum volume is the same as playing loud music, which phone speakers are built for. Run it in short cycles, and stop if you hear rattling or distortion; if the speaker still sounds damaged after it has dried, contact your manufacturer's service center.
 
 ### Why is 165Hz commonly used for water ejection?
 165Hz falls into the sweet spot of smartphone micro-transducer resonance: it is low enough to produce large cone excursion (pumping maximum air) while generating sufficient acoustic pressure to break surface tension.

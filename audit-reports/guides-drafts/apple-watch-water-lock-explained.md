@@ -4,8 +4,8 @@ description: "Understand Apple Watch Water Lock: what it locks, how the speaker 
 slug: "apple-watch-water-lock-explained"
 target_query: "apple watch water lock"
 sources:
+  - "https://support.apple.com/en-us/108352"
   - "https://support.apple.com/en-us/109522"
-  - "https://support.apple.com/en-us/108783"
 ---
 
 Apple Watch Water Lock does not make your watch waterproof; instead, it prevents accidental touchscreen taps while submerged and uses an acoustic tone to expel trapped water when turned off. Turning on Water Lock disables touch sensitivity so water droplets cannot trigger phantom swipes or end a workout prematurely. When you exit Water Lock by pressing and holding the Digital Crown, the speaker emits a sequence of low-frequency tones that physically eject liquid from the speaker cavity.
@@ -16,10 +16,10 @@ Because water conducts electricity similarly to human skin, water droplets hitti
 
 Here is how to manually activate, use, and exit Water Lock on watchOS:
 
-1. **Open Control Center on your Apple Watch.** Press the side button (watchOS 10 or later) or swipe up from the bottom of the watch face (watchOS 9 and earlier).
+1. **Open Control Center on your Apple Watch.** Press the side button ([Apple](https://support.apple.com/en-us/108352)).
 2. **Tap the Water Lock icon.** Tap the water droplet icon. A cyan droplet will appear at the top center of your watch face, indicating that touch input is locked.
 3. **Engage in your water activity.** You can now swim, shower, or run in heavy rain without water registering as touches. If you start a swimming workout in the Workout app, Water Lock turns on automatically.
-4. **Exit Water Lock after leaving the water.** When you finish, press and hold (or rotate on older watchOS versions) the Digital Crown on the side of your watch.
+4. **Exit Water Lock after leaving the water.** When you finish, press and hold the Digital Crown until the display says "Unlocked" (on watchOS 8 or earlier, rotate the Digital Crown instead). A series of tones plays to clear any water left in the speaker on the side of your watch.
 5. **Listen for the ejection chimes.** The watch will announce "Unlocked" while playing a stepped sequence of low-frequency acoustic vibrations. As the tones sound, hold the watch speaker slit angled downward over a soft cloth or tissue.
 6. **Wipe down the watch chassis.** Use a clean, dry, lint-free microfiber cloth to dry the watch crystal, casing, band, and speaker slit.
 7. **Use a web eject tool if audio remains muffled.** If notification chimes still sound dull after running the built-in purge, open our [Fix Apple Watch Speaker tool](/fix-apple-watch-speaker) on your paired iPhone or watch browser to run additional low-frequency vibration cycles.
@@ -32,7 +32,7 @@ To understand Water Lock, you must distinguish between physical water resistance
 - **Acoustic cavity fluid retention:** Loudspeakers must move air to create sound waves, leaving an open acoustic port on the side of the case. Water enters this port and is held by surface tension, muting sound.
 - **The acoustic ejection mechanism:** When unlocking Water Lock, the audio amplifier drives the speaker voice coil at specific low frequencies with maximum cone excursion. This motion acts as a micro-pump, overcoming surface tension and forcing liquid out through the side acoustic slot.
 
-According to Apple's [official watch water resistance specifications](https://support.apple.com/en-us/108783), Apple Watch Series 2 and later carry a 50-meter water resistance rating under ISO standard 22810:2010 (Apple Watch Ultra carries a 100-meter rating). However, water resistance is not permanent and decreases over time as seals age.
+According to Apple's [official watch water resistance specifications](https://support.apple.com/en-us/109522), Apple Watch Series 2 and later carry a 50-meter water resistance rating under ISO standard 22810:2010 (Apple Watch Ultra carries a 100-meter rating). However, water resistance is not permanent and decreases over time as seals age.
 
 If you dropped your phone in water at the same time, follow our advice for the [phone fell in water first 10 minutes](/guides/phone-fell-in-water-first-10-minutes).
 
@@ -49,7 +49,7 @@ Several widespread misconceptions about Water Lock can lead to accidental damage
 
 In most instances, running the ejection tone clears trapped water within seconds. However, if water breaches internal seals, seek authorized Apple service if:
 
-- **Digital Crown becomes sticky or non-functional.** Mineral or salt deposits drying inside the crown can stop rotation. [Apple recommends](https://support.apple.com/en-us/108783) holding the crown under light running fresh water while turning it to rinse away debris.
+- **Digital Crown becomes sticky or non-functional.** Mineral or salt deposits drying inside the crown can stop rotation. If it stays stuck after the watch is dry, contact Apple Support.
 - **The screen flickers or displays vertical green lines.** Internal liquid ingress into the OLED display panel requires panel replacement.
 - **Speaker remains distorted after multiple purge cycles.** If sound remains raspy or muffled after 24 hours of drying, the speaker driver membrane may be damaged.
 - **The watch fails to charge or overheats on the puck.** Liquid reaching the rear sensor array can short-circuit inductive charging coils.
