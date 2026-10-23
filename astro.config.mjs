@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
+import { checkSitemap } from './scripts/check-sitemap.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -19,4 +21,15 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  integrations: [
+    {
+      // Build fails if any sitemap URL is noindexed or was not built (scripts/check-sitemap.mjs).
+      name: 'sitemap-noindex-check',
+      hooks: {
+        'astro:build:done': ({ dir, logger }) => {
+          logger.info(`Sitemap check passed: ${checkSitemap(fileURLToPath(dir))} URLs, none noindexed.`);
+        },
+      },
+    },
+  ],
 });

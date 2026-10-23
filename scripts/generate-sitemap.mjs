@@ -25,6 +25,7 @@ async function main() {
   const devices = devicesModule.devices;
   const deviceSlugs = Object.keys(devices);
   const { isTranslatedSubpageIndexed } = await import('../src/data/indexing.ts');
+  const { INDEXABLE_DEVICE_PATHS, indexableDeviceLocales } = await import('../src/data/indexable-devices.ts');
   const HUB_SLUGS = new Set([
     'fix-iphone-speaker',
     'eject-water-samsung-galaxy',
@@ -37,7 +38,15 @@ async function main() {
     (slug) => HUB_SLUGS.has(slug) || devices[slug].category === 'hub'
   );
 
-  console.log(`Found ${deviceSlugs.length} total device profiles; indexing only ${indexableDeviceSlugs.length} hub pages in sitemap.`);
+  // Allowlisted model pages (src/data/indexable-devices.ts), each with only its indexable locales.
+  const allowlistedDeviceSlugs = [
+    ...new Set(INDEXABLE_DEVICE_PATHS.map((p) => p.split('/').filter(Boolean).pop())),
+  ].filter((slug) => !indexableDeviceSlugs.includes(slug));
+  for (const slug of allowlistedDeviceSlugs) {
+    if (!devices[slug]) throw new Error(`Allowlisted device "${slug}" does not exist in src/data/devices.ts`);
+  }
+
+  console.log(`Found ${deviceSlugs.length} total device profiles; indexing ${indexableDeviceSlugs.length} hub pages and ${INDEXABLE_DEVICE_PATHS.length} allowlisted model URLs in sitemap.`);
 
   const staticPages = [
     { slug: '', priority: '1.0', changefreq: 'weekly' },
@@ -111,7 +120,31 @@ async function main() {
     }
   }
 
-  // 3. English-only guides (no localized versions, so no hreflang alternates)
+  // 3. Allowlisted model pages: hreflang alternates list only the indexable locales of the same model
+  for (const slug of allowlistedDeviceSlugs) {
+    const deviceLangs = LANGS.filter((l) => indexableDeviceLocales(slug).includes(l.code));
+    const hasDefault = deviceLangs.some((l) => l.code === 'en');
+    for (const lang of deviceLangs) {
+      const isDefault = lang.code === 'en';
+      const loc = isDefault ? `${SITE_URL}/${slug}` : `${SITE_URL}/${lang.code}/${slug}`;
+
+      xml += `  <url>\n`;
+      xml += `    <loc>${loc}</loc>\n`;
+      xml += `    <lastmod>${TODAY}</lastmod>\n`;
+      xml += `    <changefreq>monthly</changefreq>\n`;
+      xml += `    <priority>${isDefault ? '0.70' : '0.65'}</priority>\n`;
+      if (hasDefault) {
+        xml += `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}/${slug}" />\n`;
+      }
+      for (const l of deviceLangs) {
+        const altUrl = l.code === 'en' ? `${SITE_URL}/${slug}` : `${SITE_URL}/${l.code}/${slug}`;
+        xml += `    <xhtml:link rel="alternate" hreflang="${l.code}" href="${altUrl}" />\n`;
+      }
+      xml += `  </url>\n`;
+    }
+  }
+
+  // 4. English-only guides (no localized versions, so no hreflang alternates)
   const { guides } = await import('../src/data/guides.ts');
   const guidePages = [
     { loc: `${SITE_URL}/guides`, lastmod: guides.map((g) => g.updated).sort().at(-1) ?? TODAY },
