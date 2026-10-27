@@ -413,28 +413,6 @@ const logo = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-
         try { stored = localStorage.getItem('theme'); } catch (_) { /* storage blocked */ }
         if (!stored) apply(e.matches);
       });
-
-      // GA4 Custom Event: language_switch (fired when user changes language, only when analytics consent is granted)
-      const currentLang = document.documentElement.lang || 'en';
-      document.querySelectorAll<HTMLAnchorElement>('[data-lang-code]').forEach((link) => {
-        link.addEventListener('click', () => {
-          const targetLang = link.dataset.langCode;
-          if (targetLang && targetLang !== currentLang) {
-            const consent = (window as any).fixSpeakerConsent?.read();
-            if (typeof (window as any).gtag === 'function' && consent?.analytics === true) {
-              const deviceMain = document.querySelector('main[data-device-slug]');
-              const currentDevice = deviceMain?.getAttribute('data-device-slug');
-              (window as any).gtag('event', 'language_switch', {
-                from_language: currentLang,
-                to_language: targetLang,
-                language: targetLang,
-                ...(currentDevice ? { device: currentDevice } : {}),
-                transport_type: 'beacon',
-              });
-            }
-          }
-        });
-      });
     </script>
 
     {/* Register PWA Service Worker for offline capability */}

@@ -577,8 +577,8 @@ const i18nConfig = {
 
   const i18nEl = document.getElementById('i18n-data');
   const MODES = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : {
-    water: { hint: '165 Hz pulse · 60 s', duration: 60, gain: 1.0, cta: 'Start Ejection', steps: ['Remove case', 'Face speaker down', 'Volume to 100%', 'Start ejection'], idle: 'Tap to start.', running: 'Ejecting...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
-    dust: { hint: '8–15 kHz sweep · 60 s', duration: 60, gain: 1.0, cta: 'Start Cleaning', steps: ['Remove case', 'Face speaker up', 'Volume to 100%', 'Start cleaning'], idle: 'Tap to start.', running: 'Cleaning...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    water: { hint: '165 Hz pulse · 60 s', duration: 60, gain: 1.0, cta: 'Start Ejection', steps: ['Remove case', 'Face speaker down', 'Volume up', 'Start ejection'], idle: 'Tap to start.', running: 'Ejecting...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    dust: { hint: '8–15 kHz sweep · 60 s', duration: 60, gain: 1.0, cta: 'Start Cleaning', steps: ['Remove case', 'Face speaker up', 'Volume up', 'Start cleaning'], idle: 'Tap to start.', running: 'Cleaning...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
     test: { hint: 'Left · Right · Stereo · 9 s', duration: 9, gain: 1.0, cta: 'Start Test', steps: ['Unplug headphones', 'Volume to 50%', 'Listen to each side', 'Start test'], idle: 'Tap to start.', running: 'Testing...', done: 'Done.', next: { mode: 'water', label: 'Water Eject' } },
   };
 

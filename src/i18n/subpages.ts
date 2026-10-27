@@ -78,7 +78,7 @@ export const subpagesContent: Record<
             'All audio tones are synthesized dynamically within your web browser using standard Web Audio oscillators. The tool operates across three dedicated acoustic modes:',
           ],
           list: [
-            '165 Hz Water Eject Pulse: Plays a low-frequency pulsing tone. At full volume the speaker cone moves back and forth strongly, and those air pulses can push droplets held in the grille by surface tension out through the mesh.',
+            'Water Eject: Plays a low-frequency tone (165 Hz) through the speaker. Many people use it after water exposure, with the speaker facing down. Results vary, and it cannot repair hardware damage.',
             '2.5 kHz – 14.5 kHz Dust Cleaner Sweep: Plays a high-frequency sweep that vibrates the speaker mesh. This may loosen light lint and dust; brush the grille gently with a dry soft brush or microfiber cloth to remove it.',
             'Dual-Channel Stereo Diagnostic Test: Generates calibrated test tones isolated to the left channel, right channel, and stereo center, allowing users to verify channel balance and sound clarity after cleaning.',
           ],
@@ -90,7 +90,7 @@ export const subpagesContent: Record<
           ],
           list: [
             'Disconnect all wired headphones, earbuds, and charging cables from the device.',
-            'Set your device master media volume to 100% for maximum acoustic displacement.',
+            'Turn the volume up, and keep the device away from your ears while the tone plays.',
             'Hold the device with the affected speaker grille facing downward over a dry cloth or paper towel.',
             'Activate the Water Eject tone and allow it to run for the full 60-second cycle.',
             'Wipe away expelled water droplets immediately with a clean, lint-free cloth.',

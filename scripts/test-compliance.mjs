@@ -70,9 +70,14 @@ for (const slug of INDEXABLE_DEVICE_SLUGS) {
   const html = read(`${slug}.html`);
   assert(!html.includes(NOINDEX) && html.includes('data-device-specific'), `Allowlisted ${slug} is indexable with a device-specific section`);
 }
-const { mainText } = await import('./check-similarity.mjs');
-const claimHits = publishedSlugs.filter((slug) => UNSOURCED.test(mainText(read(`${slug}.html`))));
-assert(claimHits.length === 0, `Device pages have no unsourced frequency/excursion/100% claims${claimHits.length ? `: ${claimHits.join(', ')}` : ''}`);
+// Visible text plus title, meta descriptions and image alt text, on every built page.
+const readerText = (html) =>
+  html
+    .replace(/<(script|style)\b[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<(?:meta|img)\b[^>]*\b(?:content|alt)="([^"]*)"[^>]*>/gi, ' $1 ')
+    .replace(/<[^>]+>/g, ' ');
+const claimHits = builtPages.filter((p) => UNSOURCED.test(readerText(read(`${p === '/' ? 'index' : p.slice(1)}.html`))));
+assert(claimHits.length === 0, `No page has unsourced resonance/excursion/100% claims in reader-facing text${claimHits.length ? `: ${claimHits.join(', ')}` : ''}`);
 
 // 7c. Every internal link on a built page points to a built page (no links into redirects)
 const broken = new Set();
