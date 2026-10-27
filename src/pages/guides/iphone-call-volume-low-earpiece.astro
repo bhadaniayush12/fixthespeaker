@@ -1,0 +1,145 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'iphone-call-volume-low-earpiece')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+const faqs = [
+  {
+    "q": "When should I press the volume buttons?",
+    "a": "Press them while you are on the call. Apple places the side-button volume adjustment in its instructions for changing audio during a phone call.",
+    "source": "https://support.apple.com/guide/iphone/while-on-a-call-iph3c9951d7/ios",
+    "sourceLabel": "Apple: While on a call on iPhone"
+  },
+  {
+    "q": "Why is Phone Noise Cancellation missing?",
+    "a": "Apple documents this setting for iPhone 12 and earlier. Its absence on a later model is not evidence that your receiver is faulty.",
+    "source": "https://support.apple.com/en-euro/guide/iphone/-iphb80ab7516/ios",
+    "sourceLabel": "Apple: Adjust audio settings on iPhone"
+  },
+  {
+    "q": "Can a screen protector affect the receiver?",
+    "a": "Apple includes removing screen protectors, films and cases in its sound troubleshooting, then checking whether the receiver is blocked or dirty.",
+    "source": "https://support.apple.com/en-gb/118432",
+    "sourceLabel": "Apple: No sound or distorted speaker sound"
+  },
+  {
+    "q": "What should I use to clean the earpiece opening?",
+    "a": "Apple specifies a small, soft-bristled brush. It should be clean and dry. Follow that receiver-specific instruction rather than introducing liquid into the opening.",
+    "source": "https://support.apple.com/en-gb/118432",
+    "sourceLabel": "Apple: No sound or distorted speaker sound"
+  },
+  {
+    "q": "Does clear speakerphone audio prove the earpiece is broken?",
+    "a": "Apple recommends a speakerphone call as part of troubleshooting, but does not say that a difference between modes proves a particular component has failed. Persistent issues may need service.",
+    "source": "https://support.apple.com/en-gb/118432",
+    "sourceLabel": "Apple: No sound or distorted speaker sound"
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  jsonLd={jsonLd}
+>
+<p>When a caller sounds quiet through the receiver, begin with the controls available during the call. Apple's iPhone User Guide explains how to change call volume and choose where call audio plays. These are the relevant controls for this situation, so start there before working through the physical checks below. <a href="https://support.apple.com/guide/iphone/while-on-a-call-iph3c9951d7/ios" rel="noopener" target="_blank">Apple: While on a call on iPhone</a>.</p>
+<p>This guide focuses on hearing the other person while holding the phone to your ear. Keep your description specific: quiet voices, crackling, or no sound at all. That distinction helps you explain the issue when asking for help, without needing to decide in advance whether the receiver is broken.</p>
+<h2>Adjust volume while the call is connected</h2>
+<p>During an active call, press the volume buttons on the side of the iPhone to change the listening level. Use the call itself as the context for this adjustment. Apple's instructions place this control under adjusting audio during a call; changing a setting elsewhere is not a substitute for following that instruction. <a href="https://support.apple.com/guide/iphone/while-on-a-call-iph3c9951d7/ios" rel="noopener" target="_blank">Apple: While on a call on iPhone</a>.</p>
+<p>Open the call controls and look at Audio to choose the destination. Apple documents switching between the phone, speaker and Bluetooth devices. Select iPhone when you want to listen at the receiver. If the audio was going somewhere else, describe that as a routing issue rather than a failed receiver. <a href="https://support.apple.com/guide/iphone/while-on-a-call-iph3c9951d7/ios" rel="noopener" target="_blank">Apple: While on a call on iPhone</a>.</p>
+<figure class="my-8">
+  <img src="/images/guides/iphone-call-volume-low-earpiece.svg" alt="Earpiece checklist: call controls, supported settings, receiver opening, then Apple service." class="w-full rounded-2xl border border-hairline bg-elevated" width="720" height="440" loading="lazy" />
+  <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">Earpiece checklist: call controls, supported settings, receiver opening, then Apple service.</figcaption>
+</figure>
+<h2>Check Phone Noise Cancellation only where supported</h2>
+<p>Apple lists Phone Noise Cancellation as available on iPhone 12 and earlier, and says it is on by default. On those models, open Settings, Accessibility, Audio &amp; Visual and check Phone Noise Cancellation. Apple allows it to be turned off or on for comfort. This is an optional listening adjustment for the models Apple identifies. <a href="https://support.apple.com/en-euro/guide/iphone/-iphb80ab7516/ios" rel="noopener" target="_blank">Apple: Adjust audio settings on iPhone</a>.</p>
+<p>If the setting is absent on a newer model, do not treat that absence as a fault or search for a hidden switch to restore it. The model limit is part of Apple's documentation. Checking a supported option is different from claiming that this feature repairs a quiet receiver, and Apple does not present it as a receiver repair. <a href="https://support.apple.com/en-euro/guide/iphone/-iphb80ab7516/ios" rel="noopener" target="_blank">Apple: Adjust audio settings on iPhone</a>.</p>
+<h2>Look for a covered receiver</h2>
+<p>Apple's distorted-sound troubleshooting says to remove cases, films and screen protectors, and check whether the receiver is blocked or dirty. Follow those checks before buying a replacement part. Pay attention to the opening used at your ear rather than assuming that checking a different opening answers the same question. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>For the cleaning preparation, disconnect cables and switch off your iPhone. Apple's cleaning instructions say to keep moisture away from openings and avoid compressed air. Treat the receiver area with that same care: the aim is an exterior cleaning task, not an attempt to reach internal components. <a href="https://support.apple.com/en-am/108765" rel="noopener" target="_blank">Apple: Cleaning your iPhone</a>.</p>
+<h2>Clean the opening using Apple’s method</h2>
+<p>If cleaning is needed, Apple specifies a small, soft-bristled brush that is clean and dry for the speaker or receiver opening. Keep to that method. A dirty opening is a reason to follow the cleaning instructions; it is not a reason to escalate to stronger products or improvised tools. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>Apple's broader cleaning guidance warns against getting moisture into openings and using cleaning products outside its disinfecting instructions. Permission to wipe an exterior surface does not amount to permission to put liquid into the receiver. Use the speaker-specific dry-brush instruction alongside those general precautions. <a href="https://support.apple.com/en-am/108765" rel="noopener" target="_blank">Apple: Cleaning your iPhone</a>; <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<h2>Separate receiver trouble from reception trouble</h2>
+<p>If call sound remains poor, Apple's troubleshooting includes making a call with speakerphone. Static or crackling can be related to network reception; Apple suggests calling later or from another location. Note whether the complaint is quiet sound at your ear or poor call quality that also happens through speakerphone. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>That comparison gives you a clearer account for support, but it does not name the faulty component. Avoid turning a difference between listening modes into a definite diagnosis. Tell Apple which mode you used, what the caller sounded like, and whether taking off the cover or adjusting call volume made a difference.</p>
+<h2>When to contact Apple</h2>
+<p>Apple says persistent sound issues may need service. Its troubleshooting also identifies no sound from the Ringtone and Alerts slider, or a dimmed speaker control there, as a reason the speaker may need service. That is a separate check from receiver loudness, so explain your call symptom as well. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>Contact Apple through the service link in its sound troubleshooting page if the problem continues. You do not need to promise that cleaning should have worked or describe the receiver as permanently damaged. Give support the outcome of the relevant checks and let the service assessment determine what is needed. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<h2>Related guides</h2>
+<p>For related reading, see <a href="/guides/how-to-clean-phone-speaker-dust">phone speaker dust cleaning</a> and <a href="/guides/muffled-phone-speaker-water-dust-or-damage">sorting out muffled phone sound</a>. Visit the <a href="/fix-iphone-speaker">iPhone speaker hub</a> for the rest of our iPhone speaker help.</p>
+<h2>How we made this guide</h2>
+<p>This guide follows the official manufacturer instructions linked beside the relevant steps. The diagram is an original checklist of those steps. Use the instructions for your own model when a menu or control differs; the checks here do not establish which internal component needs repair.</p>
+<h2>Frequently asked questions</h2>
+{faqs.map(({ q, a, source, sourceLabel }) => (
+  <>
+    <h3>{q}</h3>
+    <p>{a} <a href={source} rel="noopener" target="_blank">{sourceLabel}</a></p>
+  </>
+))}
+<h2>Sources</h2>
+<ul>
+<li><a href="https://support.apple.com/guide/iphone/while-on-a-call-iph3c9951d7/ios" rel="noopener" target="_blank">Apple: While on a call on iPhone</a></li>
+<li><a href="https://support.apple.com/en-euro/guide/iphone/-iphb80ab7516/ios" rel="noopener" target="_blank">Apple: Adjust audio settings on iPhone</a></li>
+<li><a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a></li>
+<li><a href="https://support.apple.com/en-am/108765" rel="noopener" target="_blank">Apple: Cleaning your iPhone</a></li>
+</ul>
+<p><a href="/guides">More guides</a></p>
+</ContentLayout>
