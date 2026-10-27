@@ -1,0 +1,138 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'why-is-my-phone-speaker-crackling')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+const faqs = [
+  {
+    "q": "Does crackling always mean the speaker is damaged?",
+    "a": "No. Google distinguishes faulty sound files from distortion across playback, while its guidance also includes volume and connection checks. A noise alone does not establish a hardware fault.",
+    "source": "https://support.google.com/pixelphone/answer/9706190?hl=en",
+    "sourceLabel": "Google: Fix unclear or low volume sound on Pixel"
+  },
+  {
+    "q": "Should I turn the volume all the way up?",
+    "a": "Google notes that some music can sound distorted when played loudly. Try adjusting the volume down as well as up rather than treating maximum volume as a required diagnostic setting.",
+    "source": "https://support.google.com/pixelphone/answer/9706190?hl=en",
+    "sourceLabel": "Google: Fix unclear or low volume sound on Pixel"
+  },
+  {
+    "q": "Why does it happen only on phone calls?",
+    "a": "Apple says reception or the network could be involved when calls have static or crackling. Its advice is to call again later or from another location.",
+    "source": "https://support.apple.com/en-gb/118432",
+    "sourceLabel": "Apple: No sound or distorted speaker sound"
+  },
+  {
+    "q": "Can an installed app affect speaker sound?",
+    "a": "Yes. Samsung uses safe mode to check whether downloaded apps are involved. If sound is normal there, investigate recently installed apps using its troubleshooting instructions.",
+    "source": "https://www.samsung.com/us/support/troubleshoot/TSG10001510/",
+    "sourceLabel": "Samsung: Speaker does not work properly"
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  jsonLd={jsonLd}
+>
+<p>Crackling describes what you hear, but it does not identify the failed part. Before treating it as a broken speaker, separate a call problem from a playback problem. Apple's guidance includes reception as a possible cause of call static; Google's Pixel guidance distinguishes distorted files from distortion across different apps. Those are useful starting points for deciding which support instructions to follow. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>; <a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a>.</p>
+<p>Work through the checks below in order and stop when the symptom is resolved. The goal is to describe the problem clearly, rather than attach a hardware diagnosis to a noise. Keep the distinction between what changed and what you can actually conclude from that change.</p>
+<h2>Start with playback and volume</h2>
+<p>On Pixel, adjust the listening volume, including lowering it if loud music sounds distorted. Google also recommends restarting and playing different songs or videos from different apps. Follow that documented comparison rather than downloading a speaker stress test. If the trouble is limited to particular files, Google's guidance points to those files as a possible explanation. <a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a>.</p>
+<p>For a Galaxy phone, Samsung recommends restarting and checking the sound again. Open the power menu, choose Restart, and confirm. If a restart helps, record that result as a resolved symptom; it is not evidence that dirt was removed or a damaged component healed. <a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a>.</p>
+<figure class="my-8">
+  <img src="/images/guides/why-is-my-phone-speaker-crackling.svg" alt="Crackling checklist: playback, call checks, outside openings, then manufacturer support." class="w-full rounded-2xl border border-hairline bg-elevated" width="720" height="440" loading="lazy" />
+  <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">Crackling checklist: playback, call checks, outside openings, then manufacturer support.</figcaption>
+</figure>
+<h2>Separate an app problem from a phone problem</h2>
+<p>If an iPhone app is behaving unexpectedly, Apple's app troubleshooting starts with closing and reopening it, then restarting the device and checking for app updates. If no app update is available, Apple directs you to check the iPhone software. Follow that branch when the app itself is failing, rather than assuming every unusual sound means speaker damage. <a href="https://support.apple.com/en-ca/119876" rel="noopener" target="_blank">Apple: If an app does not work as expected</a>.</p>
+<p>On Galaxy, Samsung's speaker guidance includes safe mode, which disables downloaded apps. If sound is normal there, a downloaded app is a likely cause. Follow Samsung's safe-mode instructions for your model before removing recently installed apps. An improvement in that mode is a reason to investigate software, not a reason to clean deeper into the grille. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a>.</p>
+<h2>If the crackling happens during calls</h2>
+<p>For iPhone call static, Apple recommends trying speakerphone and calling again later or from another location because reception may be involved. Keep that result separate from music playback: a difficult call is not the same observation as every sound coming from the phone being distorted. <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>Samsung also documents poor Wi-Fi Calling connections as a possible source of call-quality problems. On supported Galaxy models, go to Settings, Connections, Wi-Fi Calling and turn it off for a cellular call comparison. This is a call-specific check; do not use its result to diagnose a music file or the condition of the speaker mesh. <a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a>.</p>
+<h2>Check covers and visible debris</h2>
+<p>Remove a case or screen protector that may be covering a sound opening. Samsung specifically includes those accessories and debris among possible obstructions. Inspect the outside of the speaker grille before deciding that more software changes are needed. If removing a cover helps, that is useful information about the setup you were using. <a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a>.</p>
+<p>For iPhone cleaning, unplug cables and turn the phone off. Keep moisture out of openings and do not use compressed air. Apple's general cleaning instructions apply to the exterior; they are not permission to wash the speaker opening or spray a cleaner into it. Follow the model-specific cleaning page if you need to clean the rest of the device. <a href="https://support.apple.com/en-am/108765" rel="noopener" target="_blank">Apple: Cleaning your iPhone</a>.</p>
+<h2>Know when the next step is support</h2>
+<p>Persistent distortion after these checks belongs with the manufacturer. Google directs Pixel owners to support if all sounds remain distorted after its playback checks. Samsung provides service options in its speaker troubleshooting, and Apple says continuing sound issues may need service. Share the checks you completed instead of naming an internal part as the cause. <a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a>; <a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a>; <a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a>.</p>
+<p>A useful support description separates media from calls, identifies the affected app if there is one, and says whether restarting or removing a cover changed anything. Present those as observations. There is no need to turn an uncertain symptom into a confident repair claim before asking for help.</p>
+<h2>Related guides</h2>
+<p>For the cleaning branch, read <a href="/guides/how-to-clean-phone-speaker-dust">cleaning dust and lint from a phone speaker</a>. For a broader symptom comparison, see <a href="/guides/muffled-phone-speaker-water-dust-or-damage">muffled sound: water, dust or damage</a>. The <a href="/fix-android-speaker">Android speaker hub</a> brings together Android speaker help.</p>
+<h2>How we made this guide</h2>
+<p>This guide follows the official manufacturer instructions linked beside the relevant steps. The diagram is an original checklist of those steps. Use the instructions for your own model when a menu or control differs; the checks here do not establish which internal component needs repair.</p>
+<h2>Frequently asked questions</h2>
+{faqs.map(({ q, a, source, sourceLabel }) => (
+  <>
+    <h3>{q}</h3>
+    <p>{a} <a href={source} rel="noopener" target="_blank">{sourceLabel}</a></p>
+  </>
+))}
+<h2>Sources</h2>
+<ul>
+<li><a href="https://support.apple.com/en-gb/118432" rel="noopener" target="_blank">Apple: No sound or distorted speaker sound</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a></li>
+<li><a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a></li>
+<li><a href="https://support.apple.com/en-ca/119876" rel="noopener" target="_blank">Apple: If an app does not work as expected</a></li>
+<li><a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a></li>
+<li><a href="https://support.apple.com/en-am/108765" rel="noopener" target="_blank">Apple: Cleaning your iPhone</a></li>
+</ul>
+<p><a href="/guides">More guides</a></p>
+</ContentLayout>

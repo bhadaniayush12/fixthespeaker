@@ -50,6 +50,7 @@ const builtPages = fs
   .map((file) => `/${file.replace(/\.html$/, '').replace(/^index$/, '')}`);
 const isBuilt = (urlPath) => builtPages.includes(urlPath.replace(/\/+$/, '') || '/');
 const { devices } = await import('../src/data/devices.ts');
+const { guides } = await import('../src/data/guides.ts');
 const { INDEXABLE_DEVICE_SLUGS, isPublishedDevice } = await import('../src/data/indexable-devices.ts');
 const publishedSlugs = Object.values(devices).filter(isPublishedDevice).map((d) => d.slug);
 const retiredSlugs = Object.values(devices).filter((d) => !isPublishedDevice(d)).map((d) => d.slug);
@@ -57,7 +58,8 @@ const retiredSlugs = Object.values(devices).filter((d) => !isPublishedDevice(d))
 // 6. Only English pages are built: home, about, contact, privacy, terms, 404/500, guides, hubs, allowlisted models
 const LOCALES = ['es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'];
 assert(!builtPages.some((p) => LOCALES.some((l) => p === `/${l}` || p.startsWith(`/${l}/`))), 'No translated (/[lang]/) pages are built');
-assert(builtPages.length === 8 + publishedSlugs.length + 10, `Built pages are exactly the kept set (${builtPages.length})`);
+assert(builtPages.length === 8 + publishedSlugs.length + guides.length, `Built pages are exactly the kept set (${builtPages.length})`);
+assert(guides.every(({ slug }) => isBuilt(`/guides/${slug}`)), 'Every catalogued guide is built');
 assert(retiredSlugs.every((slug) => !isBuilt(`/${slug}`)), `Retired model pages (${retiredSlugs.length}) are not built`);
 
 // 7. No hreflang alternates or language switcher anywhere
@@ -116,10 +118,11 @@ assert(LOCALES.every((l) => staticFrom.has(`/${l}`) && dynamicRules.some(([from]
 // 8. Template text must not leak internal catalogue names
 assert(!/(AirPods|Apple Watch|Android) Hub|\(All Models\)-/.test(read('fix-apple-watch-speaker.html')), 'fix-apple-watch-speaker.html has no leaked template names');
 
-// 8b. No pair of device pages is a near-duplicate
+// 8b. No pair of published device or guide pages is a near-duplicate
 const { compareDevicePages, DEFAULT_THRESHOLD } = await import('./check-similarity.mjs');
-const [top] = compareDevicePages(distDir, publishedSlugs).pairs;
-assert(top.containment < DEFAULT_THRESHOLD, `No device page pair reaches ${DEFAULT_THRESHOLD * 100}% similarity (highest ${(top.containment * 100).toFixed(1)}%: ${top.a} <> ${top.b})`);
+const contentSlugs = [...publishedSlugs, ...guides.map(({ slug }) => `guides/${slug}`)];
+const [top] = compareDevicePages(distDir, contentSlugs).pairs;
+assert(top.containment < DEFAULT_THRESHOLD, `No device or guide page pair reaches ${DEFAULT_THRESHOLD * 100}% similarity (highest ${(top.containment * 100).toFixed(1)}%: ${top.a} <> ${top.b})`);
 
 // 9. EEA consent comes from the Google consent message; the site has no own banner or newsletter form
 assert(!indexHtml.includes('id="cookie-consent"'), 'Homepage has no custom cookie banner');
