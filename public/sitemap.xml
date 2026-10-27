@@ -1,445 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fixthespeaker.com/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/es</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/ja</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/fr</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/de</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/pt</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/ko</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/it</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/about</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/about" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/about" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/es/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/ja/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/fr/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/de/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/pt/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/ko/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/it/privacy</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/privacy" />
-    <xhtml:link rel="alternate" hreflang="ja" href="https://fixthespeaker.com/ja/privacy" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://fixthespeaker.com/fr/privacy" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://fixthespeaker.com/de/privacy" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://fixthespeaker.com/pt/privacy" />
-    <xhtml:link rel="alternate" hreflang="ko" href="https://fixthespeaker.com/ko/privacy" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/privacy" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/terms</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/terms" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/terms" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/contact</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/contact" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/contact" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-iphone-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-iphone-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-iphone-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/eject-water-samsung-galaxy</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/eject-water-samsung-galaxy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/eject-water-samsung-galaxy" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/clean-airpods-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/clean-airpods-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/clean-airpods-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-apple-watch-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-apple-watch-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-apple-watch-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-android-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-android-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-android-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-motorola-edge-50-ultra-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-motorola-edge-50-ultra-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-motorola-edge-50-ultra-speaker" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/fix-motorola-edge-50-ultra-speaker" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/es/fix-motorola-edge-50-ultra-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-motorola-edge-50-ultra-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-motorola-edge-50-ultra-speaker" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/fix-motorola-edge-50-ultra-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/eject-water-samsung-galaxy-s25</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s25" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s25" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/clean-pixel-buds-pro-2-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/clean-pixel-buds-pro-2-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/clean-pixel-buds-pro-2-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-redmi-13c-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-redmi-13c-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-redmi-13c-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/eject-water-samsung-galaxy-s24-ultra</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s24-ultra" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s24-ultra" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-pixel-8-pro-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-pixel-8-pro-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-pixel-8-pro-speaker" />
   </url>
   <url>
-    <loc>https://fixthespeaker.com/es/fix-iphone-17-pro-max-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://fixthespeaker.com/fix-iphone-17-pro-max-speaker</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/fix-iphone-17-pro-max-speaker" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/fix-iphone-17-pro-max-speaker" />
+    <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://fixthespeaker.com/it/fix-iphone-17-pro-max-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://fixthespeaker.com/eject-water-samsung-galaxy-s24</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/fix-iphone-17-pro-max-speaker" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/fix-iphone-17-pro-max-speaker" />
-  </url>
-  <url>
-    <loc>https://fixthespeaker.com/es/eject-water-samsung-galaxy-s24</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://fixthespeaker.com/es/eject-water-samsung-galaxy-s24" />
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-pixel-7-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-pixel-7-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-pixel-7-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-redmi-note-13-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-redmi-note-13-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-redmi-note-13-speaker" />
   </url>
   <url>
-    <loc>https://fixthespeaker.com/it/fix-iphone-17-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://fixthespeaker.com/fix-iphone-17-speaker</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-    <xhtml:link rel="alternate" hreflang="it" href="https://fixthespeaker.com/it/fix-iphone-17-speaker" />
+    <priority>0.70</priority>
   </url>
   <url>
     <loc>https://fixthespeaker.com/eject-water-samsung-galaxy-s22-ultra</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s22-ultra" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/eject-water-samsung-galaxy-s22-ultra" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-realme-12-pro-plus-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-realme-12-pro-plus-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-realme-12-pro-plus-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-moto-g84-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-moto-g84-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-moto-g84-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/fix-samsung-galaxy-z-fold-6-speaker</loc>
-    <lastmod>2026-10-23</lastmod>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://fixthespeaker.com/fix-samsung-galaxy-z-fold-6-speaker" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://fixthespeaker.com/fix-samsung-galaxy-z-fold-6-speaker" />
   </url>
   <url>
     <loc>https://fixthespeaker.com/guides</loc>

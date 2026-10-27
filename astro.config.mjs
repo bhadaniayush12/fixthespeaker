@@ -13,7 +13,8 @@ export default defineConfig({
   build: { format: 'file', inlineStylesheets: 'always' },
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'es', 'ja', 'fr', 'de', 'pt', 'ko', 'it'],
+    // English only: translated copies were retired in October 2026 and redirect to English (public/_redirects).
+    locales: ['en'],
     routing: {
       prefixDefaultLocale: false,
     },

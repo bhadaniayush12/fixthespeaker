@@ -235,11 +235,11 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
   ];
 
   const metaTitle = `Fix ${raw.name} Speaker: Water Eject Sound & Audio Cleaner`;
-  const metaDescription = `Help eject water from ${raw.name} speakers. A 165 Hz water eject tone can help clear muffled sound from speaker ports and grilles in about 60 seconds.`;
+  const metaDescription = `Muffled ${raw.name} speaker after water? Play a low-frequency tone in your browser and read what the manufacturer says about this model's water rating and drying.`;
   const eyebrow = `${raw.name} Water Eject & Diagnostics`;
   const heroHeading = `Fix ${raw.name} Speaker & Eject Water`;
-  const heroSubtitle = `Play the specialized 165 Hz acoustic pulse to clear muffled audio and expel trapped water from ${raw.name} speaker grilles without installing apps.`;
-  const badge = `165 Hz ${raw.shortName} Water Eject`;
+  const heroSubtitle = `Play a low-frequency tone through the ${raw.shortName} speaker to help shake water out of the grille, then follow the manufacturer's own drying advice below. No app to install.`;
+  const badge = `${raw.shortName} water eject`;
 
   const overview = [
     `The ${raw.name} features ${raw.ipRating} water protection, but water surface tension frequently traps microscopic droplets inside speaker ports and grilles after exposure to rain, sweat, or submersion. This creates a muffled, low, or crackly sound.`,
@@ -1547,7 +1547,7 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-redmi-13c-speaker',
-    name: 'Redmi 13C & 12C',
+    name: 'Redmi 13C',
     shortName: 'Redmi 13C',
     brand: 'Xiaomi',
     category: 'smartphone',
@@ -1884,7 +1884,7 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-moto-g84-speaker',
-    name: 'Motorola Moto G84 & G54',
+    name: 'Motorola Moto G84',
     shortName: 'Moto G84',
     brand: 'Motorola',
     category: 'smartphone',
@@ -1918,12 +1918,12 @@ const coreHubs: Record<string, DeviceData> = {
     category: 'hub',
     metaTitle: 'Fix iPhone Speaker: Water Eject Sound & Muffled Audio Fix',
     metaDescription:
-      'Help eject water from iPhone 17, 16, 15, 14, 13 & 12 speakers. A 165 Hz water eject tone clears muffled audio, bottom speaker ports, and earpiece grilles in 60s.',
+      'Help clear water from a muffled iPhone speaker with a low-frequency tone played in your browser, plus safe drying steps and answers to common questions.',
     eyebrow: 'Apple iPhone Water Eject & Diagnostics',
     heroHeading: 'Fix iPhone Speaker & Eject Trapped Water',
     heroSubtitle:
-      'Play the specialized 165 Hz acoustic pulse to clear muffled iPhone audio, expel water from bottom speaker grilles, and test stereo balance without installing apps.',
-    badge: '165 Hz iPhone Water Eject',
+      'Play a low-frequency tone through the iPhone speaker to help shake out trapped water, then check both sides with the Speaker Test. No app to install.',
+    badge: 'iPhone water eject',
     ipRating: 'IP68 (IEC 60529 — maximum depth of 6m up to 30 min on iPhone 12–17)',
     grilleSpecs: 'Laser-machined bottom speaker holes + top earpiece receiver micro-mesh',
     acousticFreq: '165 Hz low-frequency resonant square wave + 82.5 Hz sub-bass',
@@ -1947,31 +1947,31 @@ const coreHubs: Record<string, DeviceData> = {
         text: 'Unplug any Lightning or USB-C charging cables and disconnect Bluetooth headphones or AirPods so audio plays through the iPhone built-in speakers.',
       },
       {
-        name: 'Set Master Volume to 100%',
-        text: 'Turn your iPhone media volume to maximum using the side volume buttons to achieve peak diaphragm displacement and air velocity.',
+        name: 'Turn the Volume Up',
+        text: 'Raise the media volume with the side buttons. Keep the iPhone away from your ears while the tone plays.',
       },
       {
         name: 'Orient iPhone Vertically Facing Down',
         text: 'Hold your iPhone upright with the bottom speaker and charging port facing downward over a clean, dry microfiber cloth or paper towel.',
       },
       {
-        name: 'Start the 165 Hz Water Eject Cycle',
-        text: 'Tap the Start Ejection button and let the pulsing 165 Hz sound run for the full 60-second cycle. Gently shake the device downward as water droplets emerge.',
+        name: 'Start the Water Eject Tone',
+        text: 'Tap Start Ejection and let the low-frequency tone play for the full 60 seconds, keeping the speaker facing down.',
       },
       {
         name: 'Wipe Exterior & Test Stereo Balance',
-        text: 'Wipe away expelled water with a lint-free cloth, then switch to the Speaker Test mode to verify crisp left and right channel audio.',
+        text: 'Wipe away any water with a lint-free cloth, then switch to Speaker Test to check that the left and right channels both sound clear.',
       },
     ],
     technicalTips: [
-      'Never insert cotton swabs, toothpicks, or metal pins into the iPhone speaker holes, as this will puncture the acoustic water-resistant gasket membrane.',
-      'Do not use high-pressure compressed air cans or blow dryers on hot settings; heat degrades the waterproof adhesive seal.',
+      'Do not push cotton swabs, toothpicks or pins into the speaker holes or the charging port.',
+      'Do not dry the iPhone with a hair dryer, another heat source or compressed air.',
       'If your iPhone displays a "Liquid Detected in Lightning/USB-C Connector" alert, allow the port to air dry completely before connecting any charging cable.',
     ],
     faqs: [
       {
         q: 'Does iPhone have a built-in water eject feature like Apple Watch?',
-        a: 'No. While Apple Watch has a built-in Water Lock ejection sound in watchOS, iOS does not include a native button in Control Center. Fix The Speaker provides a similar 165 Hz acoustic pulse directly in your browser without requiring Siri Shortcuts or app store downloads.',
+        a: 'No. Apple Watch has Water Lock, which plays a sound to push water out of the watch speaker, but iOS has no equivalent button. The tool on this page plays a low-frequency tone through the iPhone speaker from your browser, without an app or a shortcut.',
       },
       {
         q: 'Is it OK to play this tone at full volume on an iPhone?',
@@ -1979,11 +1979,11 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Why does my iPhone earpiece speaker sound quiet after getting wet?',
-        a: 'The top earpiece speaker has a very fine protective mesh where surface tension easily traps water droplets. Run the 165 Hz Water Eject mode while tilting the top edge of your iPhone downward to clear the earpiece grille.',
+        a: 'Water can sit in the narrow earpiece opening above the screen. Run the Water Eject tone with the top edge of the iPhone pointing down, then leave it to dry somewhere with some airflow.',
       },
       {
         q: 'How many cycles should I run on an iPhone?',
-        a: 'For light water splashes or rain, one 60-second cycle is usually sufficient. For deeper exposure or muffled sound, run 2 to 3 consecutive cycles while wiping away expelled droplets.',
+        a: 'Start with one 60-second cycle. If the sound is still muffled, wipe the grille and run another, then let the iPhone dry. If it still sounds muffled once it is completely dry, contact Apple Support.',
       },
     ],
     relatedSlugs: ['fix-iphone-16-pro-speaker', 'fix-iphone-15-pro-speaker', 'clean-airpods-speaker', 'fix-apple-watch-speaker'],
@@ -2001,7 +2001,7 @@ const coreHubs: Record<string, DeviceData> = {
     eyebrow: 'Samsung Galaxy Acoustic Water Eject',
     heroHeading: 'Eject Water from Samsung Galaxy Speakers',
     heroSubtitle:
-      'Clear muffled stereo sound on Samsung Galaxy S, Z, and A-series devices. The 165 Hz tone can help push trapped moisture out of the speaker ports.',
+      'Clear muffled stereo sound on Samsung Galaxy S, Z, and A-series devices. A low-frequency tone can help push trapped moisture out of the speaker ports.',
     badge: 'Samsung Galaxy Water Eject',
     ipRating: 'IP68 (Galaxy S-Series) / IP48/IPX8 (Galaxy Z Fold & Flip Series)',
     grilleSpecs: 'Bottom acoustic slot / circular micro-ports + top stereo receiver slit',
@@ -2025,31 +2025,31 @@ const coreHubs: Record<string, DeviceData> = {
         text: 'Remove the USB-C cable and disconnect Galaxy Buds or Bluetooth audio devices so the sound outputs through the built-in stereo speakers.',
       },
       {
-        name: 'Max Out Media Volume',
-        text: 'Use the volume rocker to raise Media Volume to 100%.',
+        name: 'Turn the Volume Up',
+        text: 'Use the volume rocker to raise the media volume, and keep the phone away from your ears while the tone plays.',
       },
       {
         name: 'Position the Phone Facing Downward',
         text: 'Hold your Galaxy phone vertically with the bottom USB-C and speaker grille pointed toward a dry cloth or paper towel.',
       },
       {
-        name: 'Trigger the 165 Hz Water Ejection Sound',
+        name: 'Start the Water Eject Tone',
         text: 'Tap Start Ejection. Allow the full 60-second tone to play while giving the phone gentle downward taps against your palm.',
       },
       {
         name: 'Dry Exterior and Test Both Channels',
-        text: 'Wipe all moisture off the phone frame, then run the Speaker Test mode to confirm clear stereo separation from both the top and bottom drivers.',
+        text: 'Wipe all moisture off the phone frame, then run Speaker Test to check that both speakers sound clear.',
       },
     ],
     technicalTips: [
       'If One UI displays a "Moisture detected in your charger/USB port" notification, do not charge the phone via cable until the icon disappears; use wireless charging if urgent.',
-      'Galaxy Z Fold and Z Flip foldables have unique hinge clearances; avoid running high pressure water along the hinge line.',
-      'Never use rubbing alcohol inside the speaker grille as it can dissolve internal acoustic adhesives and water seals.',
+      'Keep pressurised water away from the hinge of a Galaxy Z Fold or Z Flip.',
+      'Do not put rubbing alcohol or any other liquid into the speaker grille.',
     ],
     faqs: [
       {
         q: 'Why does my Samsung Galaxy sound quiet and distorted after water exposure?',
-        a: 'Water droplets get trapped across the protective mesh behind the bottom speaker slot and the narrow top ear speaker slit. The surface tension dampens membrane vibrations until an acoustic ejection sound forces the droplets out.',
+        a: 'Water can sit in the bottom speaker opening and the narrow earpiece slit above the screen, which dulls the sound. Run the tone with the speaker facing down and let the phone dry in a well-ventilated spot.',
       },
       {
         q: 'Does this work on both Galaxy S Ultra and Galaxy A series phones?',
@@ -2057,11 +2057,11 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'What should I do if Samsung displays a moisture alert?',
-        a: 'The moisture warning protects the USB-C port from short-circuiting. Run the water eject tone with the phone facing downward to clear the speaker, dry the port with a tissue corner, and let it rest in a well-ventilated room.',
+        a: 'The warning means moisture was detected in the USB-C port, and cable charging stops until the port is dry. Unplug the cable, let the phone dry in a well-ventilated room, and run the tone with the speaker facing down.',
       },
       {
         q: 'Can I use this on Galaxy Z Fold or Z Flip?',
-        a: 'Yes, unfold the device fully and run the 165 Hz tone while orienting the primary speaker edge downward.',
+        a: 'Yes. The tone plays through the phone speaker like any other sound; hold the speaker edge facing down while it runs.',
       },
     ],
     relatedSlugs: ['eject-water-samsung-galaxy-s24-ultra', 'fix-samsung-galaxy-z-fold-6-speaker', 'fix-android-speaker', 'fix-iphone-speaker'],
@@ -2075,11 +2075,11 @@ const coreHubs: Record<string, DeviceData> = {
     category: 'hub',
     metaTitle: 'Clean AirPods Speaker Mesh: Water Eject & Earwax Sound Cleaner',
     metaDescription:
-      'Eject water and clear earwax from AirPods Pro and AirPods 2, 3 & 4 speaker mesh. 165 Hz tone and high-frequency sweep restore muffled earbud sound in 60s.',
+      'Help clear water and loosen debris from AirPods and AirPods Pro speaker mesh with a tone played through the earbuds, plus safe cleaning steps.',
     eyebrow: 'AirPods Speaker Cleaning & Water Eject',
     heroHeading: 'Clean AirPods Speaker Mesh & Eject Water',
     heroSubtitle:
-      'Restore clear, loud sound to muffled AirPods and AirPods Pro. Eject sweat, water, and dislodge earwax from acoustic mesh grilles using tuned sound frequencies.',
+      'Help clear sweat and water from AirPods and AirPods Pro speaker mesh by playing a tone through them while they are out of your ears, then brush away dried debris.',
     badge: 'AirPods Mesh Cleaner & Water Eject',
     ipRating: 'IP54 / IPX4 (AirPods 3/4 & AirPods Pro 1/2 sweat and water resistance)',
     grilleSpecs: 'High-density stainless steel acoustic mesh and black acoustic side vents',
@@ -2111,23 +2111,23 @@ const coreHubs: Record<string, DeviceData> = {
         text: 'Place both AirPods with their main acoustic openings facing down on a clean dry tissue or microfiber cloth.',
       },
       {
-        name: 'Set Volume to Maximum & Run Water Eject',
-        text: 'Ensure audio is playing through the connected AirPods, turn volume to 100%, and run the 60-second Water Eject mode.',
+        name: 'Turn the Volume Up & Run Water Eject',
+        text: 'Make sure audio is playing through the connected AirPods, raise the volume and run the 60-second Water Eject mode with the AirPods out of your ears.',
       },
       {
         name: 'Run Dust Cleaner & Gently Brush Mesh',
-        text: 'Switch to Dust Cleaner mode to vibrate loose dried earwax, then gently brush the mesh with a clean, dry, soft-bristled toothbrush.',
+        text: 'Switch to Dust Cleaner mode, then gently brush the mesh with a clean, dry, soft-bristled brush.',
       },
     ],
     technicalTips: [
-      'NEVER submerge AirPods in water or rinse them under running taps; only the outer chassis of certain models is water-resistant, not waterproof.',
-      'Do not use sharp metal objects (like needles or safety pins) to scrape the mesh, as this will puncture the delicate transducer driver inside.',
-      'Ensure the AirPods charging case is completely dry before placing cleaned AirPods back inside.',
+      'Do not submerge AirPods or rinse them under running water; they are not waterproof.',
+      'Do not use needles, pins or other sharp objects on the mesh.',
+      'Make sure the AirPods and the charging case are completely dry before putting the AirPods back in the case.',
     ],
     faqs: [
       {
         q: 'Why is one of my AirPods significantly quieter than the other?',
-        a: 'Uneven volume is almost always caused by microscopic earwax or sweat clogging the acoustic mesh on the quiet side. Gently brushing the mesh with a dry soft brush, together with the Dust Cleaner mode, often helps. If one side stays quiet, Apple Support can check it.',
+        a: 'Earwax or sweat on the mesh of the quiet side is a common cause. Gently brushing the mesh with a dry soft brush, together with the Dust Cleaner mode, often helps. If one side stays quiet, Apple Support can check it.',
       },
       {
         q: 'Is it safe to play high volume tones through AirPods?',
@@ -2135,7 +2135,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'What should I do if my AirPods fell in water or the washing machine?',
-        a: 'Dry the outside immediately, remove silicone tips, orient the main speaker ports downward on a towel, and run 2–3 cycles of the 165 Hz Water Eject tone. Let them dry in a ventilated area for 12 hours before charging.',
+        a: 'Dry the outside right away, remove any silicone tips, rest them speaker side down on a towel and run the Water Eject tone. Let them dry completely before you put them back in the case or charge them.',
       },
       {
         q: 'Can this remove earwax from AirPods mesh?',
@@ -2233,7 +2233,7 @@ const coreHubs: Record<string, DeviceData> = {
     eyebrow: 'Universal Android Speaker Cleaner & Water Eject',
     heroHeading: 'Fix Android Phone Speaker & Eject Water',
     heroSubtitle:
-      'Clear muffled audio, eject trapped water, and clean dust from Google Pixel, Xiaomi, OnePlus, Moto, and all Android smartphone speakers using 165 Hz acoustic sound.',
+      'Clear muffled audio, eject trapped water, and clean dust from Google Pixel, Xiaomi, OnePlus, Moto, and all Android smartphone speakers using a low-frequency tone played in your browser.',
     badge: 'Universal Android Water Eject',
     ipRating: 'IP68 / IP67 / IP54 (Varies by Android manufacturer)',
     grilleSpecs: 'Bottom USB-C acoustic speaker ports + top stereo earpiece speaker',
@@ -2256,16 +2256,16 @@ const coreHubs: Record<string, DeviceData> = {
         text: 'Disconnect any wired or Bluetooth audio devices so playback routes through the Android phone built-in speaker system.',
       },
       {
-        name: 'Increase Media Volume to 100%',
-        text: 'Press the Volume Up button and ensure Media Volume (not Call or Notification volume) is set to maximum.',
+        name: 'Turn Media Volume Up',
+        text: 'Press Volume Up and make sure it is the media volume (not call or notification volume) that goes up. Keep the phone away from your ears.',
       },
       {
         name: 'Hold Android Device Speaker-Down',
         text: 'Hold the phone vertically with the bottom speaker grille pointing downward over a clean towel or tissue.',
       },
       {
-        name: 'Play the 165 Hz Water Eject Frequency',
-        text: 'Tap Start Ejection to begin the 60-second acoustic pulse. Gently tap the phone frame against your palm to help droplets escape.',
+        name: 'Start the Water Eject Tone',
+        text: 'Tap Start Ejection to play the 60-second tone. Gently tap the phone frame against your palm to help droplets escape.',
       },
       {
         name: 'Run Dust Cleaner & Perform Stereo Test',
@@ -2274,8 +2274,8 @@ const coreHubs: Record<string, DeviceData> = {
     ],
     technicalTips: [
       'If your Android device displays a "Liquid or debris in USB port" system notification, do not charge via cable until the port is completely dry.',
-      'Avoid using hair dryers or heat guns; high temperatures melt the internal adhesive gaskets that provide water resistance.',
-      'Never poke needles, SIM ejector tools, or toothpicks into the speaker holes as this can tear the waterproof acoustic mesh membrane.',
+      'Do not dry the phone with a hair dryer or a heat gun.',
+      'Do not poke needles, SIM ejector tools or toothpicks into the speaker holes.',
     ],
     faqs: [
       {
@@ -2284,7 +2284,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Why does my Android speaker sound crackly after getting wet?',
-        a: 'Crackling occurs when water droplets sit directly on the moving speaker diaphragm. As the diaphragm vibrates, it hits the trapped liquid. Playing the 165 Hz tone with the speaker facing down can shake those droplets loose; if crackling continues after the phone has dried, the speaker may be damaged.',
+        a: 'Droplets sitting in the speaker opening can make it crackle. Playing the tone with the speaker facing down can shake them loose; if the crackling continues after the phone has fully dried, the speaker may be damaged.',
       },
       {
         q: 'How long should I play the sound to eject water from an Android phone?',
@@ -2292,7 +2292,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Can this fix a blown or torn speaker on Android?',
-        a: 'No. The tool expels water and cleans dust. If the speaker cone itself is physically torn from dropping the device or extreme electrical overload, it must be replaced by a repair technician.',
+        a: 'No. The tone can help clear water and loose dust, but a damaged speaker has to be repaired or replaced.',
       },
     ],
     relatedSlugs: ['eject-water-samsung-galaxy', 'fix-pixel-9-pro-speaker', 'fix-xiaomi-14-speaker', 'fix-oneplus-12-speaker'],

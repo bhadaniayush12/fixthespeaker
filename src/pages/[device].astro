@@ -1,12 +1,21 @@
 ---
 import DevicePage from '../components/pages/DevicePage.astro';
 import { devices, type DeviceData } from '../data/devices';
+import { getDeviceSpecifics } from '../data/deviceSpecifics';
+import { INDEXABLE_DEVICE_SLUGS, isPublishedDevice } from '../data/indexable-devices';
 
+// Only the brand hubs and the allowlisted models are built; every other model URL redirects (public/_redirects).
 export async function getStaticPaths() {
-  return Object.values(devices).map((device) => ({
-    params: { device: device.slug },
-    props: { device },
-  }));
+  for (const slug of INDEXABLE_DEVICE_SLUGS) {
+    if (!devices[slug]) throw new Error(`Allowlisted device "${slug}" does not exist in src/data/devices.ts`);
+    if (!getDeviceSpecifics(slug, 'en')) throw new Error(`Allowlisted device "${slug}" has no sourced entry in src/data/deviceSpecifics.ts`);
+  }
+  return Object.values(devices)
+    .filter(isPublishedDevice)
+    .map((device) => ({
+      params: { device: device.slug },
+      props: { device },
+    }));
 }
 
 export interface Props {
@@ -16,4 +25,4 @@ export interface Props {
 const { device } = Astro.props;
 ---
 
-<DevicePage device={device} lang="en" />
+<DevicePage device={device} />
