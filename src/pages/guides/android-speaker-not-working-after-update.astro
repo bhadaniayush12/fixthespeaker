@@ -1,0 +1,145 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'android-speaker-not-working-after-update')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+const faqs = [
+  {
+    "q": "Does the timing prove the update broke the speaker?",
+    "a": "The timing alone is not a diagnosis. Samsung lists settings and temporary system errors in its no-sound guidance, so work through those documented checks before deciding what failed.",
+    "source": "https://www.samsung.com/us/support/troubleshoot/TSG10013264/",
+    "sourceLabel": "Samsung: Troubleshoot no sound issues"
+  },
+  {
+    "q": "Why do videos play but notifications stay silent?",
+    "a": "Pixel has separate volume levels for media and notifications. Review the relevant named controls rather than assuming media playback confirms every sound setting is correct.",
+    "source": "https://support.google.com/pixelphone/answer/2819577?hl=en-AS",
+    "sourceLabel": "Google: Change volume, sound and vibrate settings"
+  },
+  {
+    "q": "What does sound returning in safe mode mean?",
+    "a": "Google says a downloaded app is likely involved when the issue disappears in safe mode. Its next steps include removing recent apps individually and checking after each removal.",
+    "source": "https://support.google.com/pixelphone/answer/2852139?hl=en",
+    "sourceLabel": "Google: Find problem apps using safe mode"
+  },
+  {
+    "q": "Should I factory reset immediately after an update?",
+    "a": "A reset is an advanced step in Samsung speaker troubleshooting and erases data. Complete the relevant checks and discuss the next step with support before following reset instructions.",
+    "source": "https://www.samsung.com/us/support/troubleshoot/TSG10001510/",
+    "sourceLabel": "Samsung: Speaker does not work properly"
+  }
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  jsonLd={jsonLd}
+>
+<p>If sound disappears after a system update, the timing is useful information for support, but it does not by itself establish the cause. Begin with the sound controls and troubleshooting documented for your device. Samsung's no-sound guidance includes settings and temporary system errors, while Google recommends restarting, checking updates and investigating downloaded apps. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10013264/" rel="noopener" target="_blank">Samsung: Troubleshoot no sound issues</a>; <a href="https://support.google.com/pixelphone/answer/7109524?hl=en" rel="noopener" target="_blank">Google: Get help with your Pixel phone</a>.</p>
+<p>Use the Galaxy instructions for a Samsung phone and the Pixel instructions for a Google phone. Keep a simple account of what is missing: music, incoming alerts, or the other person's voice.</p>
+<h2>Restart before changing more settings</h2>
+<p>On Galaxy, open Quick settings, tap the power icon and choose Restart. Samsung recommends restarting when a temporary system error may be affecting audio. After the restart, check whether the original sound problem remains before moving to another setting. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10013264/" rel="noopener" target="_blank">Samsung: Troubleshoot no sound issues</a>.</p>
+<p>For Pixel, follow Google's restart instructions for your model. Its sound troubleshooting uses Power and Volume up to reach Restart on Pixel 6 and later; earlier models have a different button procedure. <a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a>.</p>
+<figure class="my-8">
+  <img src="/images/guides/android-speaker-not-working-after-update.svg" alt="After-update checklist: restart, sound controls, safe mode, then manufacturer support." class="w-full rounded-2xl border border-hairline bg-elevated" width="720" height="440" loading="lazy" />
+  <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">After-update checklist: restart, sound controls, safe mode, then manufacturer support.</figcaption>
+</figure>
+<h2>Check the right volume control</h2>
+<p>On Galaxy, open Settings, Sounds and vibration, then Volume. Review the slider for the sound that is missing. Samsung separates sound types in these controls, so describe whether it is media, notifications or another type that is quiet. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10005176/" rel="noopener" target="_blank">Samsung: Troubleshoot volume controls</a>.</p>
+<p>On Pixel, press a volume button and open the expanded menu beside the slider. Google lists separate media, call, ring, notification and alarm levels. The active volume control depends on what the phone is doing, so check the named slider rather than relying on a single press outside the affected activity. <a href="https://support.google.com/pixelphone/answer/2819577?hl=en-AS" rel="noopener" target="_blank">Google: Change volume, sound and vibrate settings</a>.</p>
+<h2>Review Do Not Disturb and mute settings</h2>
+<p>For Galaxy, go to Settings, Notifications, Do not disturb and turn it off while checking missing call or notification alerts. Samsung also documents Mute all sounds under Settings, Accessibility, Hearing enhancements. If that switch is on, it can silence media and call voices as well as other sound. Turn it off if it is responsible for the unwanted silence. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10013264/" rel="noopener" target="_blank">Samsung: Troubleshoot no sound issues</a>.</p>
+<p>On current Pixel software, Google's missed-call guidance says to swipe down, open Modes and check that Do Not Disturb is off. Review the active modes as well. <a href="https://support.google.com/pixelphone/answer/12206413?hl=en" rel="noopener" target="_blank">Google: Check phone settings to avoid missed calls</a>.</p>
+<h2>Check app behavior using safe mode</h2>
+<p>Samsung's call-audio troubleshooting recommends safe mode to identify interference from downloaded apps. Open the power menu, touch and hold Power off, then confirm Safe mode when offered. Check the speaker in that mode. If the issue goes away, Samsung points to a downloaded app as the likely cause and recommends removing recently installed apps. <a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a>.</p>
+<p>For Pixel, use Google's model-specific safe-mode guide. It warns that some Home screen widgets may be removed, so save a screenshot if you need to restore their arrangement. Safe mode automatically enables airplane mode; turn airplane mode off before comparing call behavior. Otherwise, the changed connection state can make your comparison unhelpful. <a href="https://support.google.com/pixelphone/answer/2852139?hl=en" rel="noopener" target="_blank">Google: Find problem apps using safe mode</a>.</p>
+<p>If the Pixel problem disappears in safe mode, Google recommends leaving that mode and uninstalling recently downloaded apps individually, restarting normally after each removal. Record whether the issue returns. If safe mode makes no difference, do not keep deleting apps on the assumption that the newest app must be responsible. <a href="https://support.google.com/pixelphone/answer/2852139?hl=en" rel="noopener" target="_blank">Google: Find problem apps using safe mode</a>.</p>
+<h2>Use the result to choose the next step</h2>
+<p>Google's general Pixel help recommends checking app and system updates alongside restarting and safe mode. Check the official update controls rather than assuming the update you just installed must be the final available software. For app updates, use Play Store, your profile, Manage apps and device; for system updates, use Settings, System, System update. <a href="https://support.google.com/pixelphone/answer/7109524?hl=en" rel="noopener" target="_blank">Google: Get help with your Pixel phone</a>.</p>
+<p>On Galaxy, Samsung directs owners to Settings, Software Update, Download and Install to check available software. Report the version already installed when you ask for help. <a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a>.</p>
+<h2>When to contact Samsung or Google</h2>
+<p>If sound is still missing after the applicable checks, use the support route for your phone. Samsung's speaker page provides support and repair options. Google's Pixel help page explains how to get help for the device. Share the symptom, the update involved and the safe-mode result so support can guide the next action. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a>; <a href="https://support.google.com/pixelphone/answer/7109524?hl=en" rel="noopener" target="_blank">Google: Get help with your Pixel phone</a>.</p>
+<p>Do not jump straight from an unsuccessful restart to erasing the phone. Samsung's speaker troubleshooting warns that a factory reset erases data and requires preparation. If support proposes that step, follow its backup and account instructions first. <a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a>.</p>
+<h2>Related guides</h2>
+<p>For physical obstructions, read <a href="/guides/how-to-clean-phone-speaker-dust">cleaning a dusty phone speaker</a>. For a wider comparison of symptoms, see <a href="/guides/muffled-phone-speaker-water-dust-or-damage">water, dust or damage</a>. Continue from the <a href="/fix-android-speaker">Android speaker hub</a>, or the <a href="/eject-water-samsung-galaxy">Samsung speaker hub</a> for Galaxy phones.</p>
+<h2>How we made this guide</h2>
+<p>This guide follows the official manufacturer instructions linked beside the relevant steps. The diagram is an original checklist of those steps. Use the instructions for your own model when a menu or control differs; the checks here do not establish which internal component needs repair.</p>
+<h2>Frequently asked questions</h2>
+{faqs.map(({ q, a, source, sourceLabel }) => (
+  <>
+    <h3>{q}</h3>
+    <p>{a} <a href={source} rel="noopener" target="_blank">{sourceLabel}</a></p>
+  </>
+))}
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.samsung.com/us/support/troubleshoot/TSG10013264/" rel="noopener" target="_blank">Samsung: Troubleshoot no sound issues</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/7109524?hl=en" rel="noopener" target="_blank">Google: Get help with your Pixel phone</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/9706190?hl=en" rel="noopener" target="_blank">Google: Fix unclear or low volume sound on Pixel</a></li>
+<li><a href="https://www.samsung.com/us/support/troubleshoot/TSG10005176/" rel="noopener" target="_blank">Samsung: Troubleshoot volume controls</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/2819577?hl=en-AS" rel="noopener" target="_blank">Google: Change volume, sound and vibrate settings</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/12206413?hl=en" rel="noopener" target="_blank">Google: Check phone settings to avoid missed calls</a></li>
+<li><a href="https://www.samsung.com/ae/support/mobile-devices/what-to-do-if-your-microphone-or-speaker-is-not-working-properly/" rel="noopener" target="_blank">Samsung: Microphone or speaker issues on Galaxy</a></li>
+<li><a href="https://support.google.com/pixelphone/answer/2852139?hl=en" rel="noopener" target="_blank">Google: Find problem apps using safe mode</a></li>
+<li><a href="https://www.samsung.com/us/support/troubleshoot/TSG10001510/" rel="noopener" target="_blank">Samsung: Speaker does not work properly</a></li>
+</ul>
+<p><a href="/guides">More guides</a></p>
+</ContentLayout>

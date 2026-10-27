@@ -10,6 +10,28 @@ export interface Guide {
 
 export const guides: Guide[] = [
   {
+    slug: 'why-is-my-phone-speaker-crackling',
+    title: 'Why Is My Phone Speaker Crackling? What to Check First',
+    description: 'Check crackling phone audio in a sensible order: playback and apps, blocked openings, then manufacturer support for persistent distortion.',
+    published: '2026-10-27',
+    updated: '2026-10-27',
+  },
+  {
+    slug: 'iphone-call-volume-low-earpiece',
+    title: 'iPhone Call Volume Low in the Earpiece: What to Check',
+    description: 'Check iPhone call volume, audio routing, supported noise cancellation settings and receiver cleaning before contacting Apple.',
+    published: '2026-10-27',
+    updated: '2026-10-27',
+  },
+  {
+    slug: 'android-speaker-not-working-after-update',
+    title: 'Android Speaker Not Working After an Update: What to Check',
+    description: 'Restore missing or quiet Android audio with manufacturer guidance on restart, sound settings, Do Not Disturb, safe mode and support.',
+    published: '2026-10-27',
+    updated: '2026-10-27',
+  },
+
+  {
     slug: 'iphone-speaker-muffled-after-water',
     title: 'iPhone Speaker Muffled After Water: How to Fix It',
     description:
