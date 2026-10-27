@@ -84,7 +84,7 @@
 
     <!-- Bottom Description -->
     <text x="0" y="42" fill="#f4f6fb" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" text-anchor="middle">Prop in Airflow</text>
-    <text x="0" y="60" fill="#828a9b" font-family="system-ui, -apple-system, sans-serif" font-size="11" text-anchor="middle">Wait 5–24 hours before</text>
+    <text x="0" y="60" fill="#828a9b" font-family="system-ui, -apple-system, sans-serif" font-size="11" text-anchor="middle">Wait until fully dry before</text>
     <text x="0" y="75" fill="#828a9b" font-family="system-ui, -apple-system, sans-serif" font-size="11" text-anchor="middle">charging or turning on</text>
   </g>
 

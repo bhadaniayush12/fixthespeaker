@@ -28,7 +28,7 @@
 
     <!-- Tiny Excursion Bracket -->
     <line x1="57" y1="42" x2="57" y2="62" stroke="#64748b" stroke-width="1" />
-    <text x="63" y="55" fill="#828a9b" font-family="system-ui, -apple-system, sans-serif" font-size="10">±0.05 mm</text>
+    <text x="63" y="55" fill="#828a9b" font-family="system-ui, -apple-system, sans-serif" font-size="10"></text>
 
     <!-- Rapid high-frequency sine waves -->
     <path d="M 125,52 
