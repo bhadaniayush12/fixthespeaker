@@ -1,33 +1,21 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import SpeakerTool from '../SpeakerTool.astro';
-import DeviceDirectory from '../DeviceDirectory.astro';
 import { type SupportedLang, defaultLang, useTranslations } from '../../i18n/ui';
 import { type DeviceData, devices } from '../../data/devices';
 import { getLocalizedDevice } from '../../i18n/deviceTranslations';
-import { isIndexableDevice } from '../../data/indexable-devices';
+import { isPublishedDevice } from '../../data/indexable-devices';
 import { getDeviceSpecifics, deviceSpecificLabels } from '../../data/deviceSpecifics';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-
-const HUB_SLUGS = new Set([
-  'fix-iphone-speaker',
-  'eject-water-samsung-galaxy',
-  'clean-airpods-speaker',
-  'fix-apple-watch-speaker',
-  'fix-android-speaker',
-]);
+import { guides } from '../../data/guides';
 
 export interface Props {
   device: DeviceData;
   lang?: SupportedLang;
-  noindex?: boolean;
 }
 
-const {
-  device,
-  lang = defaultLang,
-  noindex = !HUB_SLUGS.has(device.slug) && device.category !== 'hub' && !isIndexableDevice(device.slug, lang),
-} = Astro.props;
+// Only published devices (brand hubs + allowlisted models) are built, so every device page is indexable.
+const { device, lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 const localizedDevice = getLocalizedDevice(device, lang);
 
@@ -37,12 +25,27 @@ const pageUrl = lang === defaultLang
   : `${SITE_URL}/${lang}/${localizedDevice.slug}`;
 
 const homeUrl = getRelativeLocaleUrl(lang);
-const isHub = HUB_SLUGS.has(device.slug) || device.category === 'hub';
+const isHub = device.category === 'hub';
+
+// Brand hub that each model page sits under (also the 301 target for retired model URLs of that brand).
+const hubSlugFor = (d: DeviceData): string =>
+  d.category === 'earbuds'
+    ? 'clean-airpods-speaker'
+    : d.brand === 'Apple'
+    ? 'fix-iphone-speaker'
+    : d.brand === 'Samsung'
+    ? 'eject-water-samsung-galaxy'
+    : 'fix-android-speaker';
+const parentHub = isHub ? undefined : devices[hubSlugFor(device)];
 
 // Sourced, model-specific section (only on the pages listed in src/data/deviceSpecifics.ts).
 const specifics = getDeviceSpecifics(device.slug, lang);
 const specificLabels = deviceSpecificLabels[lang] ?? deviceSpecificLabels.en!;
-const faqs = specifics ? [specifics.faq, ...localizedDevice.faqs] : localizedDevice.faqs;
+// Model pages show only the sourced steps and FAQ; hubs keep their own hand-written steps, tips and FAQs.
+const steps = specifics ? specifics.steps.map((text, i) => ({ name: `Step ${i + 1}`, text })) : localizedDevice.steps;
+const faqs = specifics ? [specifics.faq] : localizedDevice.faqs;
+// Only show a water rating that comes from an official source (src/data/deviceSpecifics.ts).
+const sourcedIpRating = specifics?.ipRating.match(/\bIP[0-9X]{2}\b/)?.[0];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -60,7 +63,7 @@ const jsonLd = {
       '@id': `${SITE_URL}/#website`,
       url: `${SITE_URL}/`,
       name: 'Fix The Speaker',
-      description: 'Free online tool to fix muffled smartphone and laptop speakers using 165 Hz water eject sound.',
+      description: 'Free browser tool that plays a low-frequency tone through your speaker to help clear water and dust.',
       inLanguage: lang,
       publisher: { '@id': `${SITE_URL}/#organization` },
     },
@@ -75,9 +78,12 @@ const jsonLd = {
           name: 'Fix The Speaker',
           item: `${SITE_URL}/`,
         },
+        ...(parentHub
+          ? [{ '@type': 'ListItem', position: 2, name: parentHub.shortName, item: `${SITE_URL}/${parentHub.slug}` }]
+          : []),
         {
           '@type': 'ListItem',
-          position: 2,
+          position: parentHub ? 3 : 2,
           name: localizedDevice.shortName,
           item: pageUrl,
         },
@@ -95,11 +101,7 @@ const jsonLd = {
       browserRequirements: 'Requires a modern web browser with HTML5 Web Audio API support',
       isAccessibleForFree: true,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      featureList: [
-        '165 Hz Multi-Layer Water Eject Tone',
-        '2.5 kHz - 14.5 kHz High-Frequency Dust Cleaner Sweep',
-        'Stereo Channel Diagnostic Speaker Test',
-      ],
+      featureList: ['Low-frequency water eject tone', 'Dust cleaner sweep', 'Left and right speaker test'],
     },
     // --- HowTo ---
     {
@@ -107,8 +109,7 @@ const jsonLd = {
       '@id': `${pageUrl}#howto`,
       name: `${t.howToCleanPrefix} ${localizedDevice.shortName}`,
       description: localizedDevice.metaDescription,
-      totalTime: 'PT2M',
-      step: localizedDevice.steps.map((step, i) => ({
+      step: steps.map((step, i) => ({
         '@type': 'HowToStep',
         position: i + 1,
         name: step.name,
@@ -129,10 +130,28 @@ const jsonLd = {
   ],
 };
 
-const relatedDevices = localizedDevice.relatedSlugs
-  .map((slug) => devices[slug])
-  .filter(Boolean)
-  .map((dev) => getLocalizedDevice(dev, lang));
+// Related pages: a hub lists its models and the other hubs; a model lists its hub and the other models under it.
+const publishedDevices = Object.values(devices).filter(isPublishedDevice);
+const relatedDevices = (
+  isHub
+    ? [
+        ...publishedDevices.filter((d) => d.category !== 'hub' && hubSlugFor(d) === device.slug),
+        ...publishedDevices.filter((d) => d.category === 'hub' && d.slug !== device.slug),
+      ]
+    : [parentHub!, ...publishedDevices.filter((d) => d.category !== 'hub' && d.slug !== device.slug && d.brand === device.brand)]
+).map((dev) => getLocalizedDevice(dev, lang));
+
+const RELATED_GUIDE_SLUGS: Record<string, string[]> = {
+  'fix-iphone-speaker': ['iphone-speaker-muffled-after-water', 'phone-fell-in-water-first-10-minutes'],
+  'eject-water-samsung-galaxy': ['samsung-moisture-detected-warning', 'phone-fell-in-water-first-10-minutes'],
+  'fix-android-speaker': ['muffled-phone-speaker-water-dust-or-damage', 'phone-fell-in-water-first-10-minutes'],
+  'clean-airpods-speaker': ['airpods-water-damage-what-to-do', 'how-to-clean-airpods-speaker-mesh'],
+  'fix-apple-watch-speaker': ['apple-watch-water-lock-explained', 'does-water-eject-sound-really-work'],
+};
+// Hubs link their guides; model pages link the water eject guide from the tone note instead.
+const deviceRelatedGuides = (isHub ? RELATED_GUIDE_SLUGS[device.slug] ?? [] : [])
+  .map((slug) => guides.find((g) => g.slug === slug))
+  .filter(Boolean);
 ---
 
 <Layout
@@ -140,7 +159,6 @@ const relatedDevices = localizedDevice.relatedSlugs
   description={localizedDevice.metaDescription}
   lang={lang}
   jsonLd={jsonLd}
-  noindex={noindex}
 >
   <main id="main" class="flex-1" data-device-slug={device.slug}>
     
@@ -155,6 +173,12 @@ const relatedDevices = localizedDevice.relatedSlugs
         <nav aria-label="Breadcrumb" class="mb-4 inline-flex items-center gap-2 text-xs text-mute font-mono">
           <a href={homeUrl} class="transition-colors hover:text-ink">{t.navHome}</a>
           <span>/</span>
+          {parentHub && (
+            <>
+              <a href={`/${parentHub.slug}`} class="transition-colors hover:text-ink">{parentHub.shortName}</a>
+              <span>/</span>
+            </>
+          )}
           <span class="text-primary">{localizedDevice.shortName}</span>
         </nav>
 
@@ -175,63 +199,23 @@ const relatedDevices = localizedDevice.relatedSlugs
 
         <!-- Hardware Tags -->
         <div class="animate-rise mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-mute [animation-delay:240ms] sm:mt-6 sm:gap-x-4">
-          <span class="inline-flex items-center gap-1.5 text-body">
-            <svg viewBox="0 0 16 16" class="size-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="m5.5 8 2 2 3.5-3.5"/></svg>
-            {localizedDevice.ipRating.split('(')[0].trim()}
-          </span>
-          <span class="text-faint">·</span>
-          <span class="text-body">{localizedDevice.acousticFreq.split('+')[0].trim()}</span>
-          <span class="text-faint">·</span>
+          {sourcedIpRating && (
+            <>
+              <span class="inline-flex items-center gap-1.5 text-body">
+                <svg viewBox="0 0 16 16" class="size-3.5 text-primary" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="m5.5 8 2 2 3.5-3.5"/></svg>
+                {sourcedIpRating}
+              </span>
+              <span class="text-faint">·</span>
+            </>
+          )}
           <span class="text-primary/90">{t.noAppRequired}</span>
         </div>
       </div>
     </section>
 
     <!-- Interactive Tool Component -->
-    {/* The Apple Watch hub's steps describe Water Lock on the watch; the tool itself runs on the phone, so it keeps the default phone steps. */}
-    <SpeakerTool lang={lang} customSteps={device.slug === 'fix-apple-watch-speaker' ? undefined : localizedDevice.steps} device={device.slug} />
-
-    <!-- Device Hardware Specifications Profile Card -->
-    <section class="container-site pb-14 sm:pb-20" aria-labelledby="specs-heading">
-      <div class="rounded-3xl border border-hairline bg-elevated/70 p-6 sm:p-8 backdrop-blur-sm shadow-[0_1px_0_rgb(255_255_255/0.04)_inset]">
-        <h2 id="specs-heading" class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-primary">
-          {t.hardwareProfileHeading}
-        </h2>
-        <h3 class="mt-2 text-xl font-semibold tracking-[-0.02em] text-ink sm:text-2xl">
-          {localizedDevice.name}
-        </h3>
-
-        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.waterProtectionLabel}</p>
-            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.ipRating}</p>
-          </div>
-          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.acousticGrilleLabel}</p>
-            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.grilleSpecs}</p>
-          </div>
-          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.optimalFreqLabel}</p>
-            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.acousticFreq}</p>
-          </div>
-          <div class="rounded-2xl border border-hairline bg-canvas/80 p-4">
-            <p class="font-mono text-[11px] uppercase tracking-[0.12em] text-mute">{t.cleaningDurationLabel}</p>
-            <p class="mt-1 text-sm font-semibold text-ink">{localizedDevice.recommendedDuration}</p>
-          </div>
-        </div>
-
-        <div class="mt-6 border-t border-hairline pt-6">
-          <p class="text-xs font-mono uppercase tracking-[0.12em] text-faint mb-3">{t.compatibleModelsLabel}</p>
-          <div class="flex flex-wrap gap-2">
-            {localizedDevice.compatibilityList.map((model) => (
-              <span class="rounded-pill border border-hairline bg-canvas/60 px-3 py-1 text-xs text-body">
-                {model}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    {/* Hubs label the tool with their own steps (except Apple Watch, whose steps describe Water Lock on the watch); model pages keep the tool's default steps. */}
+    <SpeakerTool lang={lang} customSteps={isHub && device.slug !== 'fix-apple-watch-speaker' ? localizedDevice.steps : undefined} device={device.slug} />
 
     <!-- Device-Specific Notes (sourced from the manufacturer) -->
     {specifics && (
@@ -250,7 +234,7 @@ const relatedDevices = localizedDevice.relatedSlugs
 
           <h3 class="mt-5 text-base font-semibold text-ink">{specificLabels.steps}</h3>
           <ol class="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-body">
-            {specifics.steps.map((step) => <li>{step}</li>)}
+            {specifics.steps.map((step, i) => <li id={`step-${i + 1}`}>{step}</li>)}
           </ol>
 
           <p class="mt-6 border-t border-hairline pt-4 text-xs text-mute">
@@ -266,6 +250,21 @@ const relatedDevices = localizedDevice.relatedSlugs
       </section>
     )}
 
+    <!-- What the tone does (the same tone plays on every page) -->
+    {specifics && (
+      <section class="container-site pb-14 sm:pb-20" aria-labelledby="tone-heading">
+        <div class="mx-auto max-w-3xl">
+          <h2 id="tone-heading" class="text-base font-semibold text-ink">About the tone</h2>
+          <p class="mt-1.5 text-sm leading-relaxed text-body">
+            Water Eject plays one low-frequency tone, the same on every page; nothing is tuned to the {localizedDevice.shortName}.
+            It can shake loose droplets in the grille but cannot dry the inside or repair a damaged speaker.
+            <a href="/guides/does-water-eject-sound-really-work" class="underline decoration-hairline underline-offset-2 hover:text-ink">How water eject sounds work</a>.
+          </p>
+        </div>
+      </section>
+    )}
+
+    {!specifics && (<>
     <!-- Step-by-Step How-To Guide -->
     <section class="container-site pb-14 sm:pb-20" aria-labelledby="howto-heading">
       <div class="mx-auto max-w-3xl">
@@ -313,6 +312,7 @@ const relatedDevices = localizedDevice.relatedSlugs
         </ul>
       </div>
     </section>
+    </>)}
 
     <!-- Device-Specific FAQ Section -->
     <section class="container-site pb-16 sm:pb-20" aria-labelledby="device-faq-heading">
@@ -338,65 +338,76 @@ const relatedDevices = localizedDevice.relatedSlugs
       </div>
     </section>
 
-    <!-- Cross-Device Linking Section -->
+    <!-- Related Troubleshooting & Care Guides -->
+    {deviceRelatedGuides.length > 0 && (
+      <section class="container-site border-t border-hairline py-14 sm:py-20" aria-labelledby="related-guides-heading">
+        <div class="mx-auto max-w-4xl text-left">
+          <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Troubleshooting &amp; Care</p>
+          <div class="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+            <h2 id="related-guides-heading" class="text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+              Related Guides
+            </h2>
+            <a href="/guides" class="text-xs font-medium text-primary hover:underline">
+              View all guides →
+            </a>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {deviceRelatedGuides.map((g) => (
+              <a
+                href={`/guides/${g.slug}`}
+                class="group rounded-2xl border border-hairline bg-elevated/60 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
+              >
+                <h3 class="text-base font-semibold text-ink group-hover:text-primary transition-colors">
+                  {g.title}
+                </h3>
+                <p class="mt-2 text-xs leading-relaxed text-body line-clamp-2">
+                  {g.description}
+                </p>
+                <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
+                  Read guide
+                  <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Related device pages -->
     <section class="container-site border-t border-hairline py-14 sm:py-20" aria-labelledby="crosslinks-heading">
       <div class="mx-auto max-w-4xl text-center">
         <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.otherDevicesEyebrow}</p>
         <h2 id="crosslinks-heading" class="mt-2 text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
           {t.otherDevicesHeading}
         </h2>
-        <p class="mt-2 text-sm text-mute">
-          {t.otherDevicesSubtitle}
-        </p>
+        {isHub && (
+          <p class="mt-2 text-sm text-mute">
+            {t.otherDevicesSubtitle}
+          </p>
+        )}
 
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
+        <div class="mt-8 flex flex-wrap justify-center gap-2.5">
           {relatedDevices.map((rel) => (
             <a
-              href={lang === defaultLang ? `/${rel.slug}` : `/${lang}/${rel.slug}`}
-              rel={HUB_SLUGS.has(rel.slug) || isIndexableDevice(rel.slug, lang) ? undefined : 'nofollow'}
+              href={`/${rel.slug}`}
               data-hub-link={rel.slug}
-              class="group rounded-2xl border border-hairline bg-elevated/60 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
+              class="inline-flex min-h-[44px] items-center gap-2 rounded-xl border border-hairline bg-elevated/60 px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-primary/50 hover:text-primary touch-manipulation"
             >
-              <span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <svg viewBox="0 0 24 24" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M11 5 6 9H3v6h3l5 4V5z" />
-                  <path d="M15.5 8.5a5 5 0 0 1 0 7" />
-                </svg>
-              </span>
-              <p class="mt-3 text-sm font-semibold text-ink group-hover:text-primary transition-colors">
-                {rel.shortName}
-              </p>
-              <p class="mt-1 text-xs text-mute line-clamp-2">
-                {rel.metaDescription}
-              </p>
-              <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
-                {t.ejectWaterCta}
-                <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 8h10M9 4l4 4-4 4" />
-                </svg>
-              </span>
+              {rel.shortName}
+              <svg viewBox="0 0 16 16" class="size-3 text-mute" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 12l4-4-4-4"/></svg>
             </a>
           ))}
         </div>
-      </div>
-    </section>
 
-    <!-- All Devices Searchable Directory: hubs link to the homepage copy so the indexed hub pages are not dominated by the shared device list -->
-    {isHub ? (
-      <div class="container-site border-t border-hairline py-10 text-center">
-        <a href={`${homeUrl}#device-directory`} class="btn btn-ghost min-h-[44px] px-5 text-sm">
+        <a href={`${homeUrl}#device-directory`} class="btn btn-ghost mt-8 min-h-[44px] px-5 text-sm">
           {t.searchDirectoryTitle} →
         </a>
       </div>
-    ) : (
-      <div class="border-t border-hairline pt-8">
-        <DeviceDirectory
-          lang={lang}
-          title={t.searchDirectoryTitle}
-          subtitle={t.searchDirectorySubtitle}
-        />
-      </div>
-    )}
+    </section>
 
   </main>
 

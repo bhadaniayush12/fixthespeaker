@@ -10,6 +10,46 @@ export interface Guide {
 
 export const guides: Guide[] = [
   {
+    slug: 'iphone-speaker-muffled-after-water',
+    title: 'iPhone Speaker Muffled After Water: How to Fix It',
+    description:
+      'Learn how to clear trapped water from your iPhone speaker using safe drying steps and sound ejection, plus when hardware repair is required.',
+    published: '2026-10-23',
+    updated: '2026-10-23',
+  },
+  {
+    slug: 'airpods-water-damage-what-to-do',
+    title: 'AirPods Fell in Water: Safe Steps and What to Do',
+    description:
+      'Dropped your AirPods or AirPods Pro in water? Follow Apple-safe drying and cleaning steps, avoid costly mistakes, and test audio safely.',
+    published: '2026-10-23',
+    updated: '2026-10-23',
+  },
+  {
+    slug: 'phone-fell-in-water-first-10-minutes',
+    title: 'Phone Fell in Water: What to Do in the First 10 Mins',
+    description:
+      'Crucial first 10 minutes when your phone falls in water: immediate actions, drying methods that work, and common mistakes that cause damage.',
+    published: '2026-10-23',
+    updated: '2026-10-23',
+  },
+  {
+    slug: 'apple-watch-water-lock-explained',
+    title: 'Apple Watch Water Lock Explained: How It Works',
+    description:
+      'Understand Apple Watch Water Lock: what it locks, how the speaker tone ejects water, water resistance limits, and when you need it.',
+    published: '2026-10-23',
+    updated: '2026-10-23',
+  },
+  {
+    slug: 'does-water-eject-sound-really-work',
+    title: 'Does Water Eject Sound Work? How It Clears Speakers',
+    description:
+      'Explore how low-frequency acoustic vibrations push water out of phone speakers, what science says, and where audio clearing reaches its limits.',
+    published: '2026-10-23',
+    updated: '2026-10-23',
+  },
+  {
     slug: 'samsung-moisture-detected-warning',
     title: 'Samsung "Moisture Detected" Warning: What to Do',
     description:

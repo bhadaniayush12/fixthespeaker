@@ -1,60 +1,188 @@
 # ==============================================================================
-# Cloudflare 301 Redirects: Trailing Slash Enforcement & URL Canonicalization
+# Cloudflare 301 redirects (limits: 2,000 static + 100 dynamic rules; first match wins,
+# static rules must come before dynamic ones). Redirects apply even when an asset exists
+# at the same path, so never list a URL here that is still built.
 # ==============================================================================
 
-# Root English Subpages
+# Trailing-slash canonicalization
 /about/ /about 301
 /privacy/ /privacy 301
 /terms/ /terms 301
 /contact/ /contact 301
 
-# Localized Root Directories
-/es/ /es 301
-/ja/ /ja 301
-/fr/ /fr 301
-/de/ /de 301
-/pt/ /pt 301
-/ko/ /ko 301
-/it/ /it 301
+# ------------------------------------------------------------------------------
+# Retired device model pages (October 2026): only the brand hubs and the models in
+# src/data/indexable-devices.ts are built. Each retired model goes to its brand hub.
+# ------------------------------------------------------------------------------
 
-# Spanish (es) Subpages
-/es/about/ /es/about 301
-/es/privacy/ /es/privacy 301
-/es/terms/ /es/terms 301
-/es/contact/ /es/contact 301
+# iPhone models -> /fix-iphone-speaker
+/fix-iphone-17-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-17-air-speaker /fix-iphone-speaker 301
+/fix-iphone-16-speaker /fix-iphone-speaker 301
+/fix-iphone-16-plus-speaker /fix-iphone-speaker 301
+/fix-iphone-16-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-16-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-15-speaker /fix-iphone-speaker 301
+/fix-iphone-15-plus-speaker /fix-iphone-speaker 301
+/fix-iphone-15-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-15-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-14-speaker /fix-iphone-speaker 301
+/fix-iphone-14-plus-speaker /fix-iphone-speaker 301
+/fix-iphone-14-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-14-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-13-speaker /fix-iphone-speaker 301
+/fix-iphone-13-mini-speaker /fix-iphone-speaker 301
+/fix-iphone-13-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-13-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-12-speaker /fix-iphone-speaker 301
+/fix-iphone-12-mini-speaker /fix-iphone-speaker 301
+/fix-iphone-12-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-12-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-11-speaker /fix-iphone-speaker 301
+/fix-iphone-11-pro-speaker /fix-iphone-speaker 301
+/fix-iphone-11-pro-max-speaker /fix-iphone-speaker 301
+/fix-iphone-xr-speaker /fix-iphone-speaker 301
+/fix-iphone-xs-speaker /fix-iphone-speaker 301
+/fix-iphone-x-speaker /fix-iphone-speaker 301
+/fix-iphone-se-speaker /fix-iphone-speaker 301
 
-# Japanese (ja) Subpages
-/ja/about/ /ja/about 301
-/ja/privacy/ /ja/privacy 301
-/ja/terms/ /ja/terms 301
-/ja/contact/ /ja/contact 301
+# Earbuds (AirPods, Galaxy Buds, Pixel Buds Pro, OnePlus Buds) -> /clean-airpods-speaker
+/clean-airpods-pro-2-speaker /clean-airpods-speaker 301
+/clean-airpods-pro-speaker /clean-airpods-speaker 301
+/clean-airpods-4-speaker /clean-airpods-speaker 301
+/clean-airpods-3-speaker /clean-airpods-speaker 301
+/clean-airpods-2-speaker /clean-airpods-speaker 301
+/clean-airpods-max-speaker /clean-airpods-speaker 301
+/clean-galaxy-buds-3-pro-speaker /clean-airpods-speaker 301
+/clean-galaxy-buds-2-pro-speaker /clean-airpods-speaker 301
+/clean-galaxy-buds-fe-speaker /clean-airpods-speaker 301
+/clean-pixel-buds-pro-speaker /clean-airpods-speaker 301
+/clean-oneplus-buds-pro-3-speaker /clean-airpods-speaker 301
 
-# French (fr) Subpages
-/fr/about/ /fr/about 301
-/fr/privacy/ /fr/privacy 301
-/fr/terms/ /fr/terms 301
-/fr/contact/ /fr/contact 301
+# Apple Watch models -> /fix-apple-watch-speaker
+/eject-water-apple-watch-ultra-2 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-ultra /fix-apple-watch-speaker 301
+/eject-water-apple-watch-series-10 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-series-9 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-series-8 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-series-7 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-series-6 /fix-apple-watch-speaker 301
+/eject-water-apple-watch-se /fix-apple-watch-speaker 301
 
-# German (de) Subpages
-/de/about/ /de/about 301
-/de/privacy/ /de/privacy 301
-/de/terms/ /de/terms 301
-/de/contact/ /de/contact 301
+# iPad and MacBook (no hub; the homepage tool) -> /
+/fix-ipad-pro-speaker / 301
+/fix-ipad-air-speaker / 301
+/fix-ipad-mini-speaker / 301
+/fix-ipad-speaker / 301
+/fix-macbook-pro-speaker / 301
+/fix-macbook-air-speaker / 301
 
-# Portuguese (pt) Subpages
-/pt/about/ /pt/about 301
-/pt/privacy/ /pt/privacy 301
-/pt/terms/ /pt/terms 301
-/pt/contact/ /pt/contact 301
+# Samsung Galaxy phones and watches -> /eject-water-samsung-galaxy
+/eject-water-samsung-galaxy-s25-ultra /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s25-plus /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s24-plus /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s24-fe /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s23-ultra /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s23-plus /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s23 /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s23-fe /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s22-plus /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s22 /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s21-ultra /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s21 /eject-water-samsung-galaxy 301
+/eject-water-samsung-galaxy-s20 /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-z-fold-5-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-z-fold-4-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-z-flip-6-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-z-flip-5-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-z-flip-4-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a55-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a54-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a35-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a34-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a25-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a15-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-a14-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-m54-speaker /eject-water-samsung-galaxy 301
+/fix-samsung-galaxy-m34-speaker /eject-water-samsung-galaxy 301
+/eject-water-galaxy-watch-ultra /eject-water-samsung-galaxy 301
+/eject-water-galaxy-watch-7 /eject-water-samsung-galaxy 301
+/eject-water-galaxy-watch-6 /eject-water-samsung-galaxy 301
 
-# Korean (ko) Subpages
-/ko/about/ /ko/about 301
-/ko/privacy/ /ko/privacy 301
-/ko/terms/ /ko/terms 301
-/ko/contact/ /ko/contact 301
+# Other Android phones and watches (Google, Xiaomi, OnePlus, Vivo, Oppo, realme, Motorola) -> /fix-android-speaker
+/fix-pixel-9-pro-fold-speaker /fix-android-speaker 301
+/fix-pixel-9-pro-xl-speaker /fix-android-speaker 301
+/fix-pixel-9-pro-speaker /fix-android-speaker 301
+/fix-pixel-9-speaker /fix-android-speaker 301
+/fix-pixel-8-speaker /fix-android-speaker 301
+/fix-pixel-8a-speaker /fix-android-speaker 301
+/fix-pixel-7-pro-speaker /fix-android-speaker 301
+/fix-pixel-7a-speaker /fix-android-speaker 301
+/fix-pixel-6-pro-speaker /fix-android-speaker 301
+/fix-pixel-6-speaker /fix-android-speaker 301
+/fix-pixel-6a-speaker /fix-android-speaker 301
+/eject-water-pixel-watch-3 /fix-android-speaker 301
+/eject-water-pixel-watch-2 /fix-android-speaker 301
+/fix-xiaomi-14-ultra-speaker /fix-android-speaker 301
+/fix-xiaomi-14-speaker /fix-android-speaker 301
+/fix-xiaomi-13-ultra-speaker /fix-android-speaker 301
+/fix-xiaomi-13-pro-speaker /fix-android-speaker 301
+/fix-xiaomi-13t-pro-speaker /fix-android-speaker 301
+/fix-xiaomi-12-pro-speaker /fix-android-speaker 301
+/fix-redmi-note-13-pro-plus-speaker /fix-android-speaker 301
+/fix-redmi-note-13-pro-speaker /fix-android-speaker 301
+/fix-redmi-note-12-pro-speaker /fix-android-speaker 301
+/fix-redmi-note-12-speaker /fix-android-speaker 301
+/fix-poco-f6-pro-speaker /fix-android-speaker 301
+/fix-poco-f6-speaker /fix-android-speaker 301
+/fix-poco-x6-pro-speaker /fix-android-speaker 301
+/fix-poco-x6-speaker /fix-android-speaker 301
+/fix-poco-m6-pro-speaker /fix-android-speaker 301
+/fix-oneplus-13-speaker /fix-android-speaker 301
+/fix-oneplus-12-speaker /fix-android-speaker 301
+/fix-oneplus-12r-speaker /fix-android-speaker 301
+/fix-oneplus-11-speaker /fix-android-speaker 301
+/fix-oneplus-10-pro-speaker /fix-android-speaker 301
+/fix-oneplus-open-speaker /fix-android-speaker 301
+/fix-oneplus-nord-4-speaker /fix-android-speaker 301
+/fix-oneplus-nord-ce-4-speaker /fix-android-speaker 301
+/eject-water-oneplus-watch-2 /fix-android-speaker 301
+/fix-vivo-x100-pro-speaker /fix-android-speaker 301
+/fix-vivo-x100-ultra-speaker /fix-android-speaker 301
+/fix-vivo-v30-pro-speaker /fix-android-speaker 301
+/fix-vivo-v30-speaker /fix-android-speaker 301
+/fix-vivo-y200-speaker /fix-android-speaker 301
+/fix-oppo-find-x7-ultra-speaker /fix-android-speaker 301
+/fix-oppo-find-x7-speaker /fix-android-speaker 301
+/fix-oppo-find-n3-speaker /fix-android-speaker 301
+/fix-oppo-reno-12-pro-speaker /fix-android-speaker 301
+/fix-oppo-reno-11-pro-speaker /fix-android-speaker 301
+/fix-realme-gt-6-speaker /fix-android-speaker 301
+/fix-realme-gt-neo-6-speaker /fix-android-speaker 301
+/fix-realme-12-pro-speaker /fix-android-speaker 301
+/fix-realme-c67-speaker /fix-android-speaker 301
+/fix-motorola-edge-50-pro-speaker /fix-android-speaker 301
+/fix-motorola-edge-50-fusion-speaker /fix-android-speaker 301
+/fix-motorola-razr-50-ultra-speaker /fix-android-speaker 301
 
-# Italian (it) Subpages
-/it/about/ /it/about 301
-/it/privacy/ /it/privacy 301
-/it/terms/ /it/terms 301
-/it/contact/ /it/contact 301
+# ------------------------------------------------------------------------------
+# Retired translations (October 2026): the site is English-only.
+# Locale home pages go to the English home page; every other translated URL goes to
+# its English equivalent (a retired model then takes one more hop to its brand hub).
+# ------------------------------------------------------------------------------
+/es / 301
+/ja / 301
+/fr / 301
+/de / 301
+/pt / 301
+/ko / 301
+/it / 301
+
+# Dynamic rules last
+/es/* /:splat 301
+/ja/* /:splat 301
+/fr/* /:splat 301
+/de/* /:splat 301
+/pt/* /:splat 301
+/ko/* /:splat 301
+/it/* /:splat 301

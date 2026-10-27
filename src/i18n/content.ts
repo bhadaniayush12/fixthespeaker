@@ -25,7 +25,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
   en: {
     title: 'Fix The Speaker: Water Eject Sound & Phone Speaker Cleaner',
     description:
-      'Free online tool to fix the speaker on my iPhone, Android, or laptop. Play a 165 Hz water eject sound or high-frequency sweep to clean speaker dust in 60s.',
+      'Free browser tool for a muffled phone speaker: play a low-frequency water eject tone or a dust cleaner sweep through your speaker. No app to install.',
     keywords: [
       'fix the speaker',
       'how to fix the speaker on my iphone',
@@ -44,26 +44,23 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
     canonicalPath: '/',
     articleHeading: 'How to Fix the Speaker on Your iPhone & Android with Water Eject Sound Waves',
     articleIntro:
-      'Accidentally dropped your smartphone in a swimming pool, sink, bath, or caught in heavy rain? When liquid penetrates the acoustic mesh, surface tension traps droplets inside the speaker chamber. This causes muffled sound, distorted bass, low playback volume, or crackling audio. Fix The Speaker is a free, web-based water eject shortcut alternative designed to unclog speaker grilles in 60 seconds without installing apps.',
+      'Dropped your phone in a pool, sink or bath, or got caught in heavy rain? Water sitting in the speaker grille can make the sound muffled, quiet or crackly until it dries. Fix The Speaker is a free tool that runs in your browser: it plays a low-frequency tone through your speaker, which many people use after water exposure while the phone dries. Results vary, and it cannot repair a speaker that is damaged.',
     sections: [
       {
-        heading: 'The Physics of Water Ejection: How 165 Hz Acoustic Sound Waves Work',
+        heading: 'What the Water Eject Tone Does',
         paragraphs: [
-          'A phone speaker consists of an ultra-thin diaphragm (cone) driven by an electromagnetic voice coil inside a micro-acoustic cavity. When liquid enters the speaker grille, the droplets form a liquid barrier over the fine mesh perforations due to capillary action and liquid surface tension.',
-          'Fix The Speaker generates a calibrated 165 Hz square wave tone. At 165 Hz, the speaker diaphragm operates at its mechanical resonant frequency, producing maximum physical cone excursion (displacement). Unlike smooth sine waves, square waves deliver steep rise times and sharp pressure differentials.',
-          'These rapid pressure bursts push against the trapped liquid from behind the grille. Each pulse physically forces droplets outward through the tiny mesh perforations, allowing gravity to carry the water away when the speaker faces downward.',
+          'The Water Eject mode plays a low-frequency tone (165 Hz) through your speaker for 60 seconds. The speaker moves as it plays any sound, and with the grille facing down that movement can help shake loose droplets sitting in the opening.',
+          'It is not a repair. It does not dry the inside of the phone, and it cannot fix a speaker that was damaged by water, a drop or wear. If the sound is still muffled once the phone is completely dry, contact the manufacturer or a repair shop. Our guide on whether water eject sounds work goes into what is and is not known.',
         ],
       },
       {
-        heading: 'Water Eject vs. Dust Cleaner: Choosing the Right Frequency Mode',
-        paragraphs: [
-          'Different acoustic obstructions require distinct vibrational frequencies. Using the wrong tone will not effectively dislodge particles or water:',
-        ],
+        heading: 'The Three Modes',
+        paragraphs: ['The tool has three modes. Each plays a different sound through the speaker of the device you open it on:'],
         listType: 'ul',
         listItems: [
-          'Water Eject Mode (165 Hz Bass Wave + Sub-Harmonics): Optimized specifically for liquid extraction after rain, pool splashes, or gym sweat. Low frequencies generate maximum volume of air displacement with high bass resonance.',
-          'Dust Cleaner Mode (2.5 kHz to 14.5 kHz Turbo Sawtooth Sweep): Over months of daily use, dry pocket lint, sand, and fine dust accumulate inside the exterior mesh. Our high-frequency sweep produces intense micro-vibrations that crack loose dried debris and lint without physical prodding.',
-          'Speaker Test Mode (Dual-Layer Stereo Diagnostics): Plays calibrated isolated left, right, and combined stereo tones. This enables you to pinpoint whether muffled sound is resolved or if hardware damage exists on a specific channel.',
+          'Water Eject: a low-frequency tone, for use after rain, a splash or a spill.',
+          'Dust Cleaner: a high-frequency sweep. Lint and dust in the grille mostly come off with a soft, dry brush; the sweep is an optional extra before brushing.',
+          'Speaker Test: plays a tone on the left, the right and both channels, so you can hear whether one side is quieter than the other.',
         ],
       },
       {
@@ -75,19 +72,19 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
         listItems: [
           'Remove Protective Cases: Thick silicone or leather cases trap expelled water against the exterior speaker port. Always take off the case first.',
           'Face Speaker Grille Downward: Hold your iPhone or Android phone vertically over a soft microfiber cloth or paper towel with the bottom speaker pointing down.',
-          'Turn Device Volume to 100%: Sound wave ejection requires maximum diaphragm amplitude. Ensure your media volume slider is at absolute maximum.',
-          'Start Water Eject and Complete the 60-Second Cycle: Tap Start Ejection and let the full cycle run. Wipe away expelled droplets and repeat 2 to 3 times for stubborn moisture.',
-          'Run Speaker Test Verification: After wiping dry, switch to Speaker Test to confirm balanced stereo volume across all channels.',
+          'Turn the Volume Up: Raise the media volume, and keep the phone away from your ears while the tone plays.',
+          'Start Water Eject and Let the 60-Second Cycle Finish: Tap Start Ejection and let it run. Wipe away any water, and run another cycle if the sound is still muffled.',
+          'Check with Speaker Test: Once the phone is wiped dry, switch to Speaker Test and listen to each side.',
         ],
       },
       {
-        heading: 'Why You Should Never Use Rice, Hairdryers, or Needles',
+        heading: 'Skip the Rice, Heat and Pins',
         paragraphs: [
-          'Common internet myths often cause permanent hardware damage to delicate smartphone acoustic components:',
-          'Uncooked rice contains starch powder and small grains that enter charging ports and speaker grilles, swelling with moisture and permanently cementing the mesh.',
-          'Hairdryers blow pressurized heat that melts water-resistant rubber gaskets, compromises internal adhesive seals, and pushes moisture deeper into the motherboard.',
-          'Needles, pins, or cotton swabs can easily puncture the acoustic waterproof membrane (IP68 acoustic mesh), destroying water resistance and damaging the driver cone.',
-          'In contrast, acoustic sound wave water ejection is non-invasive and relies on pure mechanical air displacement.',
+          'Some popular fixes do more harm than good. Apple, for example, advises against them for a wet iPhone:',
+          'Do not put the phone in a bag of rice. Apple warns that small particles of rice can get into the phone and damage it.',
+          'Do not dry it with a hair dryer, another heat source or compressed air.',
+          'Do not push cotton swabs, paper towels, pins or needles into the speaker grille or the charging port.',
+          'Instead, wipe the phone, let it dry somewhere with some airflow, and wait until it is completely dry before charging it with a cable.',
         ],
       },
       {
@@ -101,7 +98,7 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
     faqs: [
       {
         q: 'How does the water eject sound fix the speaker on my iPhone?',
-        a: 'The water eject sound plays a 165 Hz pulsing square wave that vibrates the speaker diaphragm at its maximum physical limit. This creates rapid air pressure behind the grille that forces trapped water droplets out through the mesh holes.',
+        a: 'It plays a low-frequency tone through the iPhone speaker. Many people use it after water exposure, holding the phone with the speaker facing down so the vibration can help shake out droplets in the grille. Results vary: it does not dry the inside of the phone and cannot repair a damaged speaker.',
       },
       {
         q: 'Is this water eject sound safe for my phone speakers?',
@@ -109,23 +106,23 @@ export const seoContent: Record<SupportedLang, SEOContent> = {
       },
       {
         q: 'How long should I run the speaker water eject sound?',
-        a: 'One 60-second cycle clears most everyday water exposure. If your audio still sounds muffled or quiet, wipe the grille with a lint-free cloth and run a second or third cycle.',
+        a: 'Start with one 60-second cycle. If the sound is still muffled or quiet, wipe the grille with a lint-free cloth and run another, then let the phone dry. If it stays muffled once the phone is completely dry, the problem may not be water.',
       },
       {
         q: 'How is this different from the Apple Watch water eject or Siri water eject shortcut?',
-        a: 'Apple Watch has its own Water Lock feature, which plays a sound from the watch speaker; this website cannot play sound through the watch. Our tool uses a similar idea, a low tone at full volume, for phones, tablets and laptops in any web browser, with no shortcut or app to install.',
+        a: 'Apple Watch has its own Water Lock feature, which plays a sound from the watch speaker; this website cannot play sound through the watch. Our tool uses a similar idea, a low tone played through the speaker, for phones, tablets and laptops in any web browser, with no shortcut or app to install.',
       },
       {
         q: 'How do I clean my speaker dust with sound?',
-        a: 'Switch to the Dust Cleaner mode. It plays an aggressive 2.5 kHz to 14.5 kHz harmonic sweep that creates fast micro-vibrations. This loosens dried lint and dirt so you can easily brush it off with a soft dry toothbrush.',
+        a: 'Dust and lint mostly come off with a soft, dry toothbrush brushed gently over the grille. The Dust Cleaner mode plays a high-frequency sweep you can run first, but brushing does most of the work.',
       },
       {
         q: 'Why does my speaker still sound muffled after water ejection?',
-        a: 'If sound remains muffled after 3 cycles, surface minerals or lint may be blocking the grille, or moisture may have travelled beyond the mesh. Run Dust Cleaner, allow the device to air dry in a well-ventilated area, and verify with Speaker Test.',
+        a: 'Water may still be drying, or lint or dirt may be blocking the grille. Let the device air dry in a well-ventilated area, brush the grille gently, and check with Speaker Test. If it is still muffled once fully dry, the speaker may be damaged and need a repair.',
       },
       {
         q: 'Does this tool require microphone access or record anything?',
-        a: 'No. All sound waves are synthesized client-side directly on your device using the Web Audio API. We never request microphone permissions and zero audio data is recorded or uploaded.',
+        a: 'No. The sounds are generated on your device with the Web Audio API. The site never asks for microphone access, and nothing is recorded or uploaded.',
       },
       {
         q: 'Can I use this water eject tool on AirPods, earbuds, or Bluetooth speakers?',

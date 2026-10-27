@@ -1,0 +1,221 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'does-water-eject-sound-really-work')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const faqs = [
+  {
+    q: 'Can playing water eject sound damage my phone speaker?',
+    a: "A short tone at normal maximum volume is the same as playing loud music, which phone speakers are built for. Run it in short cycles, and stop if you hear rattling or distortion; if the speaker still sounds damaged after it has dried, contact your manufacturer's service center.",
+  },
+  {
+    q: 'Why does the tool use 165 Hz?',
+    a: 'It is a low bass note that phone speakers can play. We have not found manufacturer data showing that 165 Hz, or any other single frequency, works best for a particular phone, so we do not claim one. The tool plays the same tone on every device.',
+  },
+  {
+    q: 'Does water eject sound work on the top earpiece speaker?',
+    a: 'You can try it: hold the phone with the top edge pointing down while the tone plays. If the earpiece still sounds muffled, let the phone dry completely before deciding anything is wrong.',
+  },
+  {
+    q: 'Can water eject sound push water deeper into my phone?',
+    a: 'We have not seen a manufacturer say so either way. Keep the speaker facing down while the tone plays, and dry the phone the way your manufacturer recommends.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  jsonLd={jsonLd}
+>
+  <p>
+    A water eject sound plays a low-frequency tone through the speaker. Many people use one after their phone gets
+    wet, holding the speaker facing down so the vibration can help shake loose droplets sitting in the grille.
+    Results vary. It can only reach water in the speaker opening: it does not dry the inside of the phone or the
+    charging port, and it cannot repair a damaged speaker.
+  </p>
+  <p>
+    Apple uses the same idea in Apple Watch: when you turn off Water Lock, the watch plays tones to clear water from
+    the speaker (<a href="https://support.apple.com/en-us/108352" rel="noopener" target="_blank">Apple</a>).
+  </p>
+
+  <h2>Quick fix steps</h2>
+  <p>If you want to try a water eject sound, this is a sensible order:</p>
+  <ol>
+    <li>
+      <strong>Wipe the outside dry first.</strong> Use a dry, lint-free cloth on the glass, the frame and the
+      openings.
+    </li>
+    <li>
+      <strong>Take off the case.</strong> A case can hold water against the speaker openings.
+    </li>
+    <li>
+      <strong>Turn the volume up.</strong> Keep the phone away from your ears while the tone plays.
+    </li>
+    <li>
+      <strong>Point the speaker down.</strong> Hold the phone upright with the bottom speaker facing a paper towel
+      or cloth.
+    </li>
+    <li>
+      <strong>Play the tone.</strong> Open the free <a href="/fix-iphone-speaker">iPhone speaker tool</a> or the
+      <a href="/fix-android-speaker">Android speaker tool</a> and let one 60-second cycle run. For an Apple Watch,
+      use its built-in Water Lock instead; see the <a href="/fix-apple-watch-speaker">Apple Watch page</a>.
+    </li>
+    <li>
+      <strong>Tap the phone gently against your hand.</strong>
+      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support advises</a>
+      tapping an iPhone against your hand with the connector facing down to help remove water from the port.
+    </li>
+    <li>
+      <strong>Let it dry with some airflow.</strong> Leave the phone somewhere dry, for example in front of a fan
+      blowing cool air, and do not charge it with a cable until it is completely dry.
+    </li>
+  </ol>
+
+  <h2>Why sound can help</h2>
+  <p>
+    A speaker makes sound by moving back and forth. When water sits in the speaker opening, that movement can help
+    shake it loose, and pointing the speaker down lets gravity take the droplets away. That is the same idea Apple
+    uses in Apple Watch Water Lock. How much it helps on a given phone is not something manufacturers publish, so
+    treat it as one step alongside drying, not a guaranteed fix.
+  </p>
+  <p>
+    Read <a href="/guides/apple-watch-water-lock-explained">Apple Watch Water Lock explained</a> for how the watch
+    does it. If your phone was just submerged, start with
+    <a href="/guides/phone-fell-in-water-first-10-minutes">what to do in the first 10 minutes</a>.
+  </p>
+
+  <h2>What water eject sound cannot do</h2>
+  <ul>
+    <li>
+      <strong>It cannot dry the charging port.</strong> Do not plug in a charger on the assumption that the tone
+      dried the port.
+    </li>
+    <li>
+      <strong>It cannot dry the inside of the phone.</strong> If water got past the outside openings, sound will not
+      reach it.
+    </li>
+    <li>
+      <strong>It cannot repair a damaged speaker.</strong>
+    </li>
+    <li>
+      <strong>It cannot remove sticky or salty residue.</strong> As
+      <a href="https://www.samsung.com/us/support/answer/ANS00077611/" rel="noopener" target="_blank">Samsung Support notes</a>,
+      liquids other than fresh water should be rinsed off gently with tap water before drying.
+    </li>
+  </ul>
+
+  <h2>When to get it checked</h2>
+  <p>
+    If the phone has dried completely and you still notice any of the following, contact the manufacturer or a
+    repair shop rather than running more cycles:
+  </p>
+  <ul>
+    <li>The speaker crackles, buzzes or distorts.</li>
+    <li>There is no sound at all from alarms, music or speakerphone.</li>
+    <li>A liquid-detection or moisture alert keeps coming back.</li>
+    <li>You can see condensation behind the camera glass or the display.</li>
+  </ul>
+  <p>
+    Liquid damage is generally not covered by the manufacturer's standard warranty, though consumer law may give
+    you rights.
+  </p>
+  <p>
+    For a diagnostic breakdown of whether your muffled sound is dirt, water, or hardware failure, see our guide on
+    <a href="/guides/muffled-phone-speaker-water-dust-or-damage">phone speaker dust vs damage test</a>.
+  </p>
+
+  <h2>How we made this guide</h2>
+  <p>
+    This guide is based on official support pages from Apple and Samsung, linked above. We have not tested every
+    phone model ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the
+    manufacturer.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map(({ q, a }) => (
+    <>
+      <h3>{q}</h3>
+      <p>{a}</p>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/108352" rel="noopener" target="_blank">
+        Apple Support: How to use Water Lock and eject water from your Apple Watch
+      </a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">
+        Apple Support: If you see a liquid-detection alert on your iPhone
+      </a>
+    </li>
+    <li>
+      <a href="https://www.samsung.com/us/support/answer/ANS00077611/" rel="noopener" target="_blank">
+        Samsung Support: Water and dust resistance on your Galaxy phone
+      </a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>

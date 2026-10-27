@@ -287,12 +287,12 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'eject-water-samsung-galaxy-s24': {
     en: {
       speakers:
-        'Samsung’s Galaxy S24 series specifications list stereo speakers. Samsung’s water guidance for Galaxy phones names the openings to keep clear: the earpiece, the external speaker and the primary microphone, which salt residue can block once it dries.',
+        'The S24 has stereo speakers, according to Samsung’s series spec sheet. If it got wet, the three openings Samsung tells Galaxy owners to keep clear are the earpiece, the external speaker and the main microphone, because dried salt can clog them.',
       ipRating:
-        'The Galaxy S24 is rated IP68. Samsung’s spec sheet breaks this down as IP6X, dust resistant, and IPX8, water resistant up to 1.5 metres of water for 30 minutes. Samsung notes that this resistance is not permanent and can diminish with normal wear, and that the touch screen may not respond while it is wet.',
+        'Samsung’s spec sheet gives the Galaxy S24 an IP68 rating: IP6X for dust and IPX8 for water, tested to 1.5 metres for 30 minutes. That protection is not permanent and wears down with normal use. Samsung also warns that the touch screen may not respond properly while it is wet.',
       steps: [
         'Dry the screen before you start the tone. Samsung notes that the touch screen may not work properly while it is wet, so the Start button may not respond to a wet finger.',
-        'If the water drop icon appears and charging stops, unplug the cable, gently shake the phone 5 to 10 times with the port facing down and leave it in a well-ventilated spot or in front of a fan.',
+        'If charging stops and the water drop icon shows, disconnect the cable. Shake the phone gently 5 to 10 times with the port facing down, then let it dry somewhere ventilated or in front of a fan.',
         'After salt water, rinse it with fresh water and dry it with a clean, soft cloth first, as Samsung advises, so salt does not dry inside the earpiece or speaker.',
       ],
       faq: {
@@ -322,12 +322,12 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'fix-pixel-7-speaker': {
     en: {
       speakers:
-        'Google’s hardware diagram for the Pixel 7 labels two speakers, a top speaker and a bottom speaker, separate from the top, bottom and rear-facing microphones and the USB-C port. The spec sheet lists stereo speakers and three microphones, so do not mistake the microphone holes for a speaker.',
+        'On the Pixel 7, sound comes from a stereo pair: Google’s diagram marks one speaker at the top and one at the bottom. The phone also has three microphones (top, bottom and rear-facing) plus the USB-C port, so of the small openings on the frame only two are speakers.',
       ipRating:
-        'The Pixel 7 is designed to comply with IP68 under IEC 60529 when it leaves the factory. Google stresses that it is not waterproof, that the accessories are not water resistant, and that resistance diminishes with wear, repair, disassembly or a drop. Google does not publish a test depth for it.',
+        'Google rates the Pixel 7 IP68 under IEC 60529, as designed at the time it leaves the factory, without giving a test depth. It is not waterproof, its accessories are not water resistant, and wear, repair, disassembly or a drop all reduce the protection.',
       steps: [
-        'If the Pixel 7 fell in water: lift it out, turn it off, dry it with a soft cloth and set it on a flat surface to finish drying at room temperature, as Google advises.',
-        'Run the tone with the bottom edge pointing down to clear the bottom speaker, then flip it so the top edge points down for the top speaker.',
+        'Google’s advice after a dunk is to take the phone out, switch it off, wipe it with a soft cloth and leave it flat at room temperature until it is dry.',
+        'Point the bottom edge down for the first cycle, then turn the phone over so the top edge faces down for a second one; that way both speakers get a turn.',
         'Keep the charger and cable away until everything is dry, because Google notes the accessories are not water resistant.',
       ],
       faq: {
@@ -400,8 +400,8 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
         'The Galaxy S22 Ultra and its S Pen are rated IP68. Samsung bases this on test conditions for submersion in up to 1.5 metres of fresh water for up to 30 minutes, and says it is not advised for beach or pool use. Rinse off residue and dry it if it gets wet.',
       steps: [
         'If it went into the sea or a pool, rinse off the residue with fresh water first, as Samsung advises, then dry it thoroughly with a clean, soft cloth.',
-        'If the water drop icon appears, unplug the cable and gently shake the phone 5 to 10 times with the USB-C port facing down, then dry it in a well-ventilated spot or in front of a fan.',
-        'If the icon stays once the port is dry, clear the USB cache: Settings > Apps > Filter and sort > Show system apps > USB Settings > Storage > Clear cache.',
+        'A water drop icon means moisture is in the port: take the cable out, give the phone 5 to 10 gentle shakes with the USB-C port pointing down, and let it dry where air moves, such as in front of a fan.',
+        'Still seeing the icon after the port has dried? Samsung’s fix is to clear the USB Settings cache (Settings > Apps > Filter and sort > Show system apps > USB Settings > Storage > Clear cache).',
       ],
       faq: {
         q: 'Is the Galaxy S22 Ultra safe to use at the beach or pool?',
@@ -452,12 +452,12 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'fix-samsung-galaxy-z-fold-6-speaker': {
     en: {
       speakers:
-        'Samsung’s water guidance for Galaxy phones names the earpiece, the external speaker and the primary microphone as the openings that salt residue can block. Samsung’s Z Fold6 spec sheet does not give grille positions, so we do not guess them.',
+        'Samsung’s Z Fold6 spec sheet does not show where the speaker grilles sit, so we leave positions out. What Samsung does say for all Galaxy phones is that dried salt can block the earpiece, the external speaker and the main microphone, so those are the openings to rinse and dry.',
       ipRating:
-        'The Galaxy Z Fold6 is rated IP48, not IP68 like the Galaxy S phones. Samsung bases the water part on lab tests of submersion in up to 1.5 metres of fresh water for up to 30 minutes, says it is not advised for beach or pool use, and notes the resistance is not permanent. Rinse off residue and dry it if it gets wet.',
+        'Unlike the IP68 Galaxy S phones, the Z Fold6 carries IP48. Its water rating rests on Samsung’s lab test of up to 1.5 metres of fresh water for up to 30 minutes. Samsung does not advise taking it to the beach or pool, and the protection is not permanent, so rinse off any residue and dry it after it gets wet.',
       steps: [
         'Keep sand and grit away from it while it is wet. With an IP48 rating rather than IP68, the Fold6 does not carry the dust rating of the Galaxy S phones, and Samsung does not advise beach use.',
-        'If the water drop icon appears, unplug the cable, gently shake it 5 to 10 times with the USB-C port facing down, and dry it in a well-ventilated spot or in front of a fan.',
+        'When the water drop icon shows, unplug the charger. Hold the phone with the USB-C port pointing down, shake it gently 5 to 10 times, then leave it to dry somewhere airy or in front of a fan.',
         'If you need power while the port dries, Samsung says to close a foldable and place it with the back facing the wireless charger, centred on the pad.',
       ],
       faq: {

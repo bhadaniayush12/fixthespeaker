@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import DeviceDirectory from './DeviceDirectory.astro';
 import { type SupportedLang, defaultLang, useTranslations } from '../i18n/ui';
 import { seoContent } from '../i18n/content';
+import { guides } from '../data/guides';
 
 export interface Props {
   lang?: SupportedLang;
@@ -28,6 +29,16 @@ const pageUrl = lang === defaultLang ? `${SITE_URL}/` : `${SITE_URL}/${lang}`;
 // Structured data dates — datePublished is the original launch; dateModified tracks rebuilds.
 const SITE_DATE_PUBLISHED = '2026-09-06';
 const SITE_DATE_MODIFIED = new Date().toISOString().slice(0, 10);
+
+const generalGuideSlugs = [
+  'phone-fell-in-water-first-10-minutes',
+  'does-water-eject-sound-really-work',
+  'iphone-speaker-muffled-after-water',
+  'muffled-phone-speaker-water-dust-or-damage',
+];
+const homeGuides = lang === defaultLang
+  ? generalGuideSlugs.map((slug) => guides.find((g) => g.slug === slug)).filter(Boolean)
+  : [];
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -515,6 +526,45 @@ const i18nConfig = {
         </div>
       </div>
     </section>
+
+    <!-- Related Troubleshooting & Care Guides (English Home Page) -->
+    {homeGuides.length > 0 && (
+      <section class="container-site border-t border-hairline py-14 sm:py-20" aria-labelledby="home-guides-heading">
+        <div class="mx-auto max-w-3xl">
+          <p class="font-mono text-xs uppercase tracking-[0.14em] text-primary">Troubleshooting &amp; Care</p>
+          <div class="mt-2 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2">
+            <h2 id="home-guides-heading" class="text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl">
+              Related Guides
+            </h2>
+            <a href="/guides" class="text-xs font-medium text-primary hover:underline">
+              View all guides →
+            </a>
+          </div>
+
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            {homeGuides.map((g) => (
+              <a
+                href={`/guides/${g.slug}`}
+                class="group rounded-2xl border border-hairline bg-elevated/60 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:bg-elevated cursor-pointer touch-manipulation"
+              >
+                <h3 class="text-[15px] font-semibold text-ink group-hover:text-primary transition-colors">
+                  {g.title}
+                </h3>
+                <p class="mt-2 text-xs leading-relaxed text-body line-clamp-2">
+                  {g.description}
+                </p>
+                <span class="mt-3 inline-flex items-center gap-1 text-xs font-medium text-primary">
+                  Read guide
+                  <svg viewBox="0 0 16 16" class="size-3 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8h10M9 4l4 4-4 4" />
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
   </main>
 </Layout>
 
@@ -527,8 +577,8 @@ const i18nConfig = {
 
   const i18nEl = document.getElementById('i18n-data');
   const MODES = i18nEl ? JSON.parse(i18nEl.textContent || '{}') : {
-    water: { hint: '165 Hz pulse · 60 s', duration: 60, gain: 1.0, cta: 'Start Ejection', steps: ['Remove case', 'Face speaker down', 'Volume to 100%', 'Start ejection'], idle: 'Tap to start.', running: 'Ejecting...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
-    dust: { hint: '8–15 kHz sweep · 60 s', duration: 60, gain: 1.0, cta: 'Start Cleaning', steps: ['Remove case', 'Face speaker up', 'Volume to 100%', 'Start cleaning'], idle: 'Tap to start.', running: 'Cleaning...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    water: { hint: '165 Hz pulse · 60 s', duration: 60, gain: 1.0, cta: 'Start Ejection', steps: ['Remove case', 'Face speaker down', 'Volume up', 'Start ejection'], idle: 'Tap to start.', running: 'Ejecting...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
+    dust: { hint: '8–15 kHz sweep · 60 s', duration: 60, gain: 1.0, cta: 'Start Cleaning', steps: ['Remove case', 'Face speaker up', 'Volume up', 'Start cleaning'], idle: 'Tap to start.', running: 'Cleaning...', done: 'Done.', next: { mode: 'test', label: 'Test' } },
     test: { hint: 'Left · Right · Stereo · 9 s', duration: 9, gain: 1.0, cta: 'Start Test', steps: ['Unplug headphones', 'Volume to 50%', 'Listen to each side', 'Start test'], idle: 'Tap to start.', running: 'Testing...', done: 'Done.', next: { mode: 'water', label: 'Water Eject' } },
   };
 

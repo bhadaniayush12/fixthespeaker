@@ -1,0 +1,279 @@
+---
+import ContentLayout from '../../layouts/ContentLayout.astro';
+import { guides } from '../../data/guides';
+
+const guide = guides.find((g) => g.slug === 'airpods-water-damage-what-to-do')!;
+const url = `https://fixthespeaker.com/guides/${guide.slug}`;
+
+const faqs = [
+  {
+    q: 'Can AirPods survive being submerged in water?',
+    a: 'Yes, many AirPods survive brief accidental drops into sinks or puddles if retrieved within seconds and dried properly before being used or charged. However, survival depends on water depth, whether the water was salty or chlorinated, and avoiding the charging case while wet.',
+  },
+  {
+    q: 'Can I wear wet AirPods while working out?',
+    a: 'No. While AirPods 3, 4, and Pro models are sweat-resistant, they are not designed for direct water exposure. Wearing damp earbuds creates a seal against your ear canal that prevents moisture from evaporating, risking internal corrosion.',
+  },
+  {
+    q: 'How do I dry an AirPods charging case?',
+    a: 'Keep the case open and inverted so gravity pulls moisture away from the internal charging pins. Place the case in a well-ventilated room with cool air circulation for at least 24 to 48 hours before connecting it to a power adapter.',
+  },
+  {
+    q: 'Can water cause the buzzing or static sound in AirPods Pro?',
+    a: 'Yes. Trapped water in the exterior microphone mesh disrupts the Active Noise Cancellation and Transparency algorithms, leading to static, crackling, or high-pitched squealing. Disabling Noise Control in Control Center while the earbuds dry can confirm if the issue is microphone-related.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${url}#article`,
+      headline: guide.title,
+      description: guide.description,
+      datePublished: guide.published,
+      dateModified: guide.updated,
+      mainEntityOfPage: url,
+      author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
+      publisher: { '@id': 'https://fixthespeaker.com/#organization' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Fix The Speaker',
+          item: 'https://fixthespeaker.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Guides',
+          item: 'https://fixthespeaker.com/guides',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: guide.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      mainEntity: faqs.map(({ q, a }) => ({
+        '@type': 'Question',
+        name: q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: a,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<ContentLayout
+  title={`${guide.title} | Fix The Speaker`}
+  description={guide.description}
+  heading={guide.title}
+  eyebrow="Guide"
+  updated={guide.updated}
+  jsonLd={jsonLd}
+>
+  <p>
+    If your AirPods or AirPods Pro fell into water, immediately dry them with a lint-free cloth and do not put
+    them back inside the charging case. Placing wet earbuds into the case can short-circuit the internal battery pins
+    and permanently ruin both the earbuds and the case. Most accidental drops can be survived if you let the earbuds
+    dry completely under cool airflow and use sound vibrations to clear residual water from the speaker mesh before
+    attempting to play music.
+  </p>
+  <p>
+    Because wireless earbuds are compact and rely on tiny acoustic chambers, even a single droplet of moisture
+    trapped across the speaker mesh will block sound output or cause a muffled, distorted tone.
+  </p>
+
+  <h2>Quick fix steps</h2>
+  <p>Follow these official steps to protect your wet AirPods and dry them safely:</p>
+  <ol>
+    <li>
+      <strong>Retrieve the earbuds immediately and keep them out of the charging case.</strong> If the AirPods were
+      in the case when dropped, remove them and leave the lid open. Inserting damp earbuds into the case can
+      short-circuit the charging contacts at the bottom of the stem.
+    </li>
+    <li>
+      <strong>Wipe down all exterior surfaces.</strong> Use a clean, dry, lint-free microfiber cloth to dry the
+      plastic housing, ear tip recesses, and stem contacts.
+    </li>
+    <li>
+      <strong>Remove silicone ear tips (AirPods Pro).</strong> If you use AirPods Pro, gently pull off the
+      silicone ear tips. Water often pools in the groove around the black speaker grille. Wipe the tips dry and leave
+      them off while the earbuds dry.
+    </li>
+    <li>
+      <strong>Tap out excess water gently.</strong> Hold each AirPod with the main speaker opening pointed
+      downwards. Gently tap the AirPod against the palm of your hand or a soft cloth to dislodge trapped droplets.
+    </li>
+    <li>
+      <strong>Use sound vibration to clear the speaker mesh.</strong> Once external liquid is wiped away, hold the
+      earbuds facing downward and play a low-frequency tone at moderate volume. Our
+      <a href="/clean-airpods-speaker">Clean AirPods Speaker tool</a> generates specific frequencies that help
+      vibrate surface liquid out of the acoustic mesh.
+    </li>
+    <li>
+      <strong>Let them dry completely in open, moving air.</strong> Place the AirPods on a dry microfiber cloth with
+      the speaker mesh facing downward.
+      <a href="https://support.apple.com/en-us/109525" rel="noopener" target="_blank">Apple's official water resistance guidance</a>
+      specifies allowing AirPods to dry naturally before using them or placing them in the case. Setting them near a
+      fan blowing cool air accelerates drying safely.
+    </li>
+    <li>
+      <strong>Leave the charging case upside down.</strong> If liquid entered the case, invert it with the lid open
+      so moisture drains away from the charging pins, and allow 24 hours to dry.
+    </li>
+  </ol>
+
+  <figure class="my-8">
+    <img
+      src="/images/guides/airpods-drying-orientation.svg"
+      alt="Illustration showing AirPods facing down on a microfiber cloth and inverted open charging case drying under cool fan airflow with no rice and no heat."
+      class="w-full rounded-2xl border border-hairline bg-elevated"
+      width="720"
+      height="360"
+      loading="lazy"
+    />
+    <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">
+      Correct drying posture: earbuds mesh-down on microfiber cloth alongside inverted case
+    </figcaption>
+  </figure>
+
+  <h2>Why it happens</h2>
+  <p>Understanding the water resistance limits of your AirPods model is critical to assessing risk:</p>
+  <ul>
+    <li>
+      <strong>Standard AirPods (1st and 2nd gen):</strong> Have zero water resistance or IP rating. Any moisture
+      poses an immediate risk to microphones and logic circuitry.
+    </li>
+    <li>
+      <strong>AirPods (3rd and 4th gen) and AirPods Pro:</strong> Feature an
+      <a href="https://support.apple.com/en-us/109525" rel="noopener" target="_blank">IPX4 or IP54 rating under IEC standard 60529</a>,
+      providing sweat and splash resistance, but not waterproofing against submersion.
+    </li>
+    <li>
+      <strong>Charging cases:</strong> Older cases have no water resistance. Only select newer cases carry an IP54
+      rating.
+    </li>
+  </ul>
+  <p>
+    When submerged, water coats the fine metallic mesh covering the driver. Water surface tension prevents air from
+    escaping, acting like an acoustic plug. If water reaches internal batteries or circuitry while current is
+    flowing, short circuits can corrode solder joints.
+  </p>
+  <p>
+    If your phone was also exposed to liquid during the incident, refer to our protocol for the
+    <a href="/guides/phone-fell-in-water-first-10-minutes">phone fell in water first 10 minutes</a> to protect the
+    device.
+  </p>
+
+  <figure class="my-8">
+    <img
+      src="/images/guides/airpods-liquid-entry-points.svg"
+      alt="Diagram of an AirPod showing acoustic mesh where water traps, detachable ear tip, stem charging contacts to keep dry, and external microphone grille."
+      class="w-full rounded-2xl border border-hairline bg-elevated"
+      width="720"
+      height="360"
+      loading="lazy"
+    />
+    <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">
+      Earbud architecture: primary acoustic mesh, silicone tip seal, and stem contacts
+    </figcaption>
+  </figure>
+
+  <h2>Drying mistakes that ruin AirPods</h2>
+  <p>Many users accidentally destroy salvageable AirPods by trying unapproved drying tricks:</p>
+  <ul>
+    <li>
+      <strong>Do not put AirPods in rice.</strong> Starch grains and powdery dust cling to the wet speaker mesh,
+      hardening into crusts that ruin acoustic transparency.
+    </li>
+    <li>
+      <strong>Do not use a hairdryer, radiator, or microwave.</strong> Heat melts internal adhesives, warps silicone
+      seals, and destroys lithium-ion cells.
+    </li>
+    <li>
+      <strong>Do not insert cotton swabs or toothpicks into the mesh.</strong> Apple warns against poking grilles
+      with pointed objects, which easily punctures the delicate speaker membrane.
+    </li>
+    <li>
+      <strong>Do not plug in the charging case while wet.</strong> Connecting power to a damp case creates an
+      instant short circuit that destroys charging circuitry.
+    </li>
+  </ul>
+
+  <h2>When it's real damage (and when to get repairs)</h2>
+  <p>
+    If you follow proper drying procedures, AirPods often recover completely. However, hardware damage has likely
+    occurged if you notice these symptoms after 24 to 48 hours of drying:
+  </p>
+  <ul>
+    <li>
+      <strong>One earbud is noticeably quieter or dead.</strong> If volume balance remains skewed despite cleaning
+      the mesh, the voice coil or amplifier circuit may be damaged.
+    </li>
+    <li>
+      <strong>High-pitched screeching or clicking noise.</strong> In AirPods Pro, moisture on internal microphones
+      causes the Active Noise Cancellation (ANC) feedback loop to howl or chirp.
+    </li>
+    <li>
+      <strong>Failure to charge or connect.</strong> If the status light flashes amber rapidly or the earbuds fail to
+      connect, corrosion has disrupted the battery pins.
+    </li>
+    <li>
+      <strong>Rapid battery drain within minutes.</strong> Water damage to the micro-battery causes internal
+      self-discharge, depleting charges in minutes.
+    </li>
+  </ul>
+  <p>
+    Apple's standard warranty excludes liquid damage. However, Apple offers out-of-warranty replacement for
+    individual earbuds or charging cases.
+  </p>
+  <p>
+    To understand why sound tones help dislodge trapped liquid from tiny grilles, see our deep dive on
+    <a href="/guides/does-water-eject-sound-really-work">does water eject sound really work</a>.
+  </p>
+
+  <h2>How we made this guide</h2>
+  <p>
+    This guide is based on official support pages from Apple, linked above. We have not tested every phone model
+    ourselves. If a step here ever conflicts with your manufacturer's own instructions, follow the manufacturer.
+  </p>
+
+  <h2>Frequently asked questions</h2>
+  {faqs.map(({ q, a }) => (
+    <>
+      <h3>{q}</h3>
+      <p>{a}</p>
+    </>
+  ))}
+
+  <h2>Sources</h2>
+  <ul>
+    <li>
+      <a href="https://support.apple.com/en-us/102672" rel="noopener" target="_blank">
+        Apple Support: How to clean your AirPods
+      </a>
+    </li>
+    <li>
+      <a href="https://support.apple.com/en-us/109525" rel="noopener" target="_blank">
+        Apple Support: About the water and sweat resistance of AirPods Pro and AirPods
+      </a>
+    </li>
+  </ul>
+
+  <p><a href="/guides">More guides</a></p>
+</ContentLayout>
