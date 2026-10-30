@@ -50,6 +50,7 @@ async function main() {
 
   const staticPages = [
     { slug: '', priority: '1.0', changefreq: 'weekly' },
+    { slug: 'how-it-works', priority: '0.6', changefreq: 'monthly' },
     { slug: 'about', priority: '0.6', changefreq: 'monthly' },
     { slug: 'privacy', priority: '0.4', changefreq: 'monthly' },
     { slug: 'terms', priority: '0.4', changefreq: 'monthly' },
