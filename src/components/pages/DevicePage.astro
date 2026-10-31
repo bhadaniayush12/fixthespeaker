@@ -42,7 +42,7 @@ const isHub = HUB_SLUGS.has(device.slug) || device.category === 'hub';
 // Sourced, model-specific section (only on the pages listed in src/data/deviceSpecifics.ts).
 const specifics = getDeviceSpecifics(device.slug, lang);
 const specificLabels = deviceSpecificLabels[lang] ?? deviceSpecificLabels.en!;
-const faqs = specifics ? [specifics.faq, ...localizedDevice.faqs] : localizedDevice.faqs;
+const faqs = specifics?.faq ? [specifics.faq, ...localizedDevice.faqs] : localizedDevice.faqs;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -242,16 +242,94 @@ const relatedDevices = localizedDevice.relatedSlugs
             {localizedDevice.shortName}
           </h2>
 
-          <h3 class="mt-6 text-base font-semibold text-ink">{specificLabels.speakers}</h3>
-          <p class="mt-1.5 text-sm leading-relaxed text-body">{specifics.speakers}</p>
+          {/* Hub-level Official Guidance */}
+          {specifics.hubGuidance && (
+            <div class="mt-6">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.hubGuidanceTitle ?? (lang === 'en' ? `Official ${localizedDevice.brand} water and moisture guidance` : specificLabels.eyebrow)}
+              </h3>
+              <div class="mt-2 space-y-3 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink" set:html={specifics.hubGuidance} />
+            </div>
+          )}
 
-          <h3 class="mt-5 text-base font-semibold text-ink">{specificLabels.ipRating}</h3>
-          <p class="mt-1.5 text-sm leading-relaxed text-body">{specifics.ipRating}</p>
+          {/* Hub-level "Pick your model" List */}
+          {specifics.pickYourModel && specifics.pickYourModel.length > 0 && (
+            <div class="mt-6 border-t border-hairline pt-6">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.pickYourModelTitle ?? 'Pick your model'}
+              </h3>
+              <p class="mt-1 text-sm text-mute">
+                Detailed guides with official hardware layouts, IP ratings, and steps for supported models:
+              </p>
+              <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                {specifics.pickYourModel.map((model) => (
+                  <a
+                    href={model.url}
+                    class="group rounded-2xl border border-hairline bg-canvas/80 p-4 transition-all hover:border-primary/50 hover:bg-elevated"
+                  >
+                    <p class="text-sm font-semibold text-ink group-hover:text-primary transition-colors">
+                      {model.name}
+                    </p>
+                    <p class="mt-1 text-xs text-mute">
+                      {model.description}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
 
-          <h3 class="mt-5 text-base font-semibold text-ink">{specificLabels.steps}</h3>
-          <ol class="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-body">
-            {specifics.steps.map((step) => <li>{step}</li>)}
-          </ol>
+          {/* 1. Where the speakers are on <device> */}
+          {specifics.speakers && (
+            <div class="mt-6">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.speakersTitle ?? (lang === 'en' ? `Where the speakers are on ${localizedDevice.shortName}` : specificLabels.speakers)}
+              </h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink" set:html={specifics.speakers} />
+            </div>
+          )}
+
+          {/* 2. Water resistance */}
+          {specifics.ipRating && (
+            <div class="mt-5">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.ipRatingTitle ?? (lang === 'en' ? 'Water resistance' : specificLabels.ipRating)}
+              </h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink" set:html={specifics.ipRating} />
+            </div>
+          )}
+
+          {/* 3. What <manufacturer> recommends */}
+          {specifics.manufacturerGuidance && (
+            <div class="mt-5">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.manufacturerGuidanceTitle ?? `What ${localizedDevice.brand} recommends`}
+              </h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink" set:html={specifics.manufacturerGuidance} />
+            </div>
+          )}
+
+          {/* 4. Steps for <device> */}
+          {specifics.steps && specifics.steps.length > 0 && (
+            <div class="mt-5">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.stepsTitle ?? (lang === 'en' ? `Steps for ${localizedDevice.shortName}` : specificLabels.steps)}
+              </h3>
+              <ol class="mt-2 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink">
+                {specifics.steps.map((step) => <li set:html={step} />)}
+              </ol>
+            </div>
+          )}
+
+          {/* 5. When to get it checked */}
+          {specifics.serviceGuidance && (
+            <div class="mt-5">
+              <h3 class="text-base font-semibold text-ink">
+                {specifics.serviceGuidanceTitle ?? 'When to get it checked'}
+              </h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-body [&_a]:underline [&_a]:decoration-hairline [&_a]:underline-offset-2 hover:[&_a]:text-ink" set:html={specifics.serviceGuidance} />
+            </div>
+          )}
 
           <p class="mt-6 border-t border-hairline pt-4 text-xs text-mute">
             {specificLabels.sources}:{' '}

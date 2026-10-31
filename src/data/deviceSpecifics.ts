@@ -10,12 +10,30 @@ export interface DeviceSpecificSource {
   url: string;
 }
 
+export interface DeviceModelLink {
+  name: string;
+  url: string;
+  description: string;
+}
+
 export interface DeviceSpecificContent {
-  speakers: string;
-  ipRating: string;
-  steps: [string, string, string];
-  faq: DeviceFAQ;
+  speakers?: string;
+  speakersTitle?: string;
+  ipRating?: string;
+  ipRatingTitle?: string;
+  manufacturerGuidance?: string;
+  manufacturerGuidanceTitle?: string;
+  steps?: string[];
+  stepsTitle?: string;
+  serviceGuidance?: string;
+  serviceGuidanceTitle?: string;
+  faq?: DeviceFAQ;
   sources: DeviceSpecificSource[];
+  // Hub specific
+  hubGuidanceTitle?: string;
+  hubGuidance?: string;
+  pickYourModelTitle?: string;
+  pickYourModel?: DeviceModelLink[];
 }
 
 export const deviceSpecificLabels: Partial<
@@ -97,12 +115,161 @@ const SRC = {
     label: 'realme: realme 12 Pro+ 5G specifications',
     url: 'https://www.realme.com/ph/realme-12-pro-plus-official/specs',
   },
+  samsungService: {
+    label: 'Samsung: repair services and support',
+    url: 'https://www.samsung.com/us/support/service/',
+  },
+  pixelRepair: {
+    label: 'Google: get your Pixel phone repaired',
+    url: 'https://support.google.com/pixelphone/answer/9004345',
+  },
+  budsSupport: {
+    label: 'Google: Pixel Buds Help and support',
+    url: 'https://support.google.com/googlepixelbuds/',
+  },
+  xiaomiSupport: {
+    label: 'Xiaomi: customer support and service centers',
+    url: 'https://www.mi.com/global/support/',
+  },
+  appleWatchWaterLock: {
+    label: 'Apple: how to use Water Lock and eject water from Apple Watch',
+    url: 'https://support.apple.com/en-us/108352',
+  },
+  appleWatchWater: {
+    label: 'Apple: about Apple Watch water resistance',
+    url: 'https://support.apple.com/en-us/109522',
+  },
+  appleWatchRepair: {
+    label: 'Apple: Apple Watch service and repair',
+    url: 'https://support.apple.com/watch/repair',
+  },
+  iphone16ProMaxSpecs: {
+    label: 'Apple: iPhone 16 Pro Max tech specs',
+    url: 'https://support.apple.com/en-us/121033',
+  },
+  appleRepair: {
+    label: 'Apple: iPhone repair and service',
+    url: 'https://support.apple.com/iphone/repair',
+  },
 } satisfies Record<string, DeviceSpecificSource>;
 
 // -------------------------------------------------------------
 // Content per device slug and language
 // -------------------------------------------------------------
 export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, DeviceSpecificContent>>> = {
+  'eject-water-samsung-galaxy': {
+    en: {
+      hubGuidanceTitle: 'Official Samsung moisture warning and water guidance',
+      hubGuidance:
+        'Samsung Galaxy smartphones incorporate a protective moisture detection system in One UI. When the sensor detects liquid or high humidity inside the USB charging port or acoustic channels, the system displays a persistent water drop icon and blocks wired cable charging to prevent electrical short-circuits and galvanic pin corrosion (<a href="https://www.samsung.com/uk/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/" target="_blank" rel="noopener">Samsung Support</a>).<br /><br />' +
+        'According to Samsung’s official water response steps, you should immediately disconnect any charging cable. Hold your Galaxy phone vertically and gently shake it 5 to 10 times with the USB-C port and bottom speaker opening pointed downward over a dry towel to dislodge standing water droplets. If the device came into contact with liquids other than fresh water—such as chlorinated pool water, seawater, or sugary beverages—Samsung directs users to rinse the phone gently in calm, fresh tap water and immediately dry all surfaces with a clean, soft cloth (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Guidance</a>). Never insert cotton swabs, toothpicks, or paper towels into speaker grilles, and never use heat guns or hair dryers.<br /><br />' +
+        'If urgent battery power is required while the USB port dries, Samsung confirms that Qi wireless charging can be safely used once the back of the phone is wiped dry. If the water drop alert persists after 24 hours of complete drying, Samsung recommends clearing the USB system cache: navigate to Settings &gt; Apps, tap the Filter and sort icon, enable "Show system apps", select USB Settings &gt; Storage, and tap "Clear cache".',
+      pickYourModelTitle: 'Pick your model',
+      pickYourModel: [
+        {
+          name: 'Galaxy S25',
+          url: '/eject-water-samsung-galaxy-s25',
+          description: 'Official IP68 rating, stereo speaker layout, USB moisture reset, and step-by-step ejection guide.',
+        },
+        {
+          name: 'Galaxy S24 Ultra',
+          url: '/eject-water-samsung-galaxy-s24-ultra',
+          description: 'Dual speaker modules, IP68 rated titanium chassis and S Pen, and water ejection protocol.',
+        },
+        {
+          name: 'Galaxy S22 Ultra',
+          url: '/eject-water-samsung-galaxy-s22-ultra',
+          description: 'Stereo acoustic grilles, IP68 water resistance specs, and salt water rinse instructions.',
+        },
+        {
+          name: 'Galaxy Z Fold6',
+          url: '/fix-samsung-galaxy-z-fold-6-speaker',
+          description: 'IP48 foldable ingress rating, dual speaker acoustic array, and hinge care guidance.',
+        },
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your Samsung Galaxy speaker continues to produce raspy, distorted, or quiet audio after 24 hours of drying, or if the moisture warning remains stuck on screen despite clearing the USB cache, internal liquid may have reached the acoustic transducer. Schedule a professional hardware assessment with an authorized technician at an official <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Service Center</a>.',
+      sources: [SRC.samsungMoisture, SRC.samsungIp, SRC.samsungService],
+    },
+  },
+
+  'fix-android-speaker': {
+    en: {
+      hubGuidanceTitle: 'Official Android platform water and moisture guidance',
+      hubGuidance:
+        'Android smartphone manufacturers (including Google, Samsung, Xiaomi, and Motorola) engineer acoustic channels with hydrophobic micro-mesh barriers to protect internal speaker transducers from moisture. When water or sweat penetrates these grilles, surface tension traps droplets across the mesh, dampening sound waves and causing muffled, crackly audio (<a href="https://support.google.com/pixelphone/answer/7533279" target="_blank" rel="noopener">Google Pixel Help</a>). Many modern Android devices also feature port-impedance sensors that trigger a "Liquid or debris in USB port" or "Moisture detected" system notification to disable wired charging until the connector dries.<br /><br />' +
+        'The consensus manufacturer recovery procedure across Android platforms consists of three fundamental rules: first, immediately disconnect all charging cables, USB-C adapters, and wired headphones to eliminate electrical current from damp contacts. Second, if the phone was exposed to liquids other than fresh water (such as salt water, pool water, or coffee), rinse the affected exterior gently with clean fresh water and pat thoroughly dry with a soft, lint-free microfiber cloth (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Guidance</a>). Third, hold the phone vertically with speaker grilles and charging ports facing downward, tapping the frame gently against your palm to shake loose trapped droplets.<br /><br />' +
+        'Official support documentation from Google and Samsung explicitly warns against using hair dryers, compressed air cans, or ovens, which melt waterproof acoustic adhesive seals. They also warn against placing phones in uncooked rice, as rice starch particles enter open grilles and solidify when mixed with moisture. Once exterior moisture is wiped clean, playing a low-frequency 165 Hz acoustic wave forces air displacement through the grilles to dislodge remaining water droplets.',
+      pickYourModelTitle: 'Pick your model',
+      pickYourModel: [
+        {
+          name: 'Google Pixel 8 Pro',
+          url: '/fix-pixel-8-pro-speaker',
+          description: 'Dual stereo speakers, IP68 factory compliance rating, and top bezel seam drying steps.',
+        },
+        {
+          name: 'Google Pixel 7',
+          url: '/fix-pixel-7-speaker',
+          description: 'Top earpiece and bottom stereo speaker layout, IP68 rating, and microphone distinction.',
+        },
+        {
+          name: 'Google Pixel Buds Pro 2',
+          url: '/clean-pixel-buds-pro-2-speaker',
+          description: '11 mm drivers, IP54 earbuds / IPX4 case, snout mesh cleaning, and drying guidance.',
+        },
+        {
+          name: 'Samsung Galaxy S25',
+          url: '/eject-water-samsung-galaxy-s25',
+          description: 'IP68 water resistance rating, One UI moisture warning steps, and stereo ejection.',
+        },
+        {
+          name: 'Samsung Galaxy S24 Ultra',
+          url: '/eject-water-samsung-galaxy-s24-ultra',
+          description: 'Dual speaker modules, IP68 titanium chassis, S Pen care, and USB cache reset.',
+        },
+        {
+          name: 'Samsung Galaxy S22 Ultra',
+          url: '/eject-water-samsung-galaxy-s22-ultra',
+          description: 'Stereo acoustic grilles, IP68 fresh water rating, and post-water recovery steps.',
+        },
+        {
+          name: 'Samsung Galaxy Z Fold6',
+          url: '/fix-samsung-galaxy-z-fold-6-speaker',
+          description: 'IP48 foldable protection, dual speaker perimeter array, and hinge drying advice.',
+        },
+        {
+          name: 'Xiaomi Redmi Note 13',
+          url: '/fix-redmi-note-13-speaker',
+          description: 'Dual stereo speakers, Dolby Atmos certification, and IP54 splash resistance guide.',
+        },
+        {
+          name: 'Xiaomi Redmi 13C',
+          url: '/fix-redmi-13c-speaker',
+          description: 'Single bottom loudspeaker, 3.5 mm audio jack precautions, and IP52 splash rating.',
+        },
+        {
+          name: 'Motorola Edge 50 Ultra',
+          url: '/fix-motorola-edge-50-ultra-speaker',
+          description: 'Dual stereo speakers, Dolby Atmos, and official IP68 immersion specifications.',
+        },
+        {
+          name: 'Motorola Moto G84 5G',
+          url: '/fix-moto-g84-speaker',
+          description: 'Stereo speaker channels, Dolby Atmos, and water-repellent design parameters.',
+        },
+        {
+          name: 'Realme 12 Pro+ 5G',
+          url: '/fix-realme-12-pro-plus-speaker',
+          description: 'Hi-Res dual stereo speakers, IP65 dust and splash protection, and drying protocol.',
+        },
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If an Android phone speaker continues to crackle, hiss, or output low volume 24 to 48 hours after drying, liquid may have corroded the voice coil or breached the diaphragm seal. Stop repeating sound pulses and contact the device manufacturer’s authorized repair provider (for example, <a href="https://support.google.com/pixelphone/answer/9004345" target="_blank" rel="noopener">Google Pixel Repair</a> or <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Service</a>).',
+      sources: [SRC.pixelWater, SRC.pixelSpecs, SRC.samsungMoisture, SRC.pixelRepair],
+    },
+  },
   'fix-motorola-edge-50-ultra-speaker': {
     en: {
       speakers:
