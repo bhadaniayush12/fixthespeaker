@@ -333,19 +333,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'clean-pixel-buds-pro-2-speaker': {
     en: {
       speakers:
-        'Each Pixel Buds Pro 2 earbud uses a custom 11 mm dynamic speaker driver, and the charging case has its own small ringtone speaker for Find Hub. Google names three meshes on each earbud that can trap water or earwax: the snout mesh under the ear tip, the rear vent mesh and the microphone mesh.',
+        'According to Google’s official technical specifications, each Pixel Buds Pro 2 earbud houses a custom-designed 11 mm dynamic speaker driver (<a href="https://store.google.com/product/pixel_buds_pro_2_specs" target="_blank" rel="noopener">Google Store Pixel Buds Pro 2 Tech Specs</a>). Google’s official cleaning guide specifies three distinct acoustic mesh surfaces on each earbud where liquids, sweat, and earwax accumulate: the snout acoustic mesh located directly underneath the removable silicone ear tip, the rear acoustic vent mesh that balances chamber air pressure, and the exterior microphone grilles. Furthermore, the charging case incorporates its own dedicated speaker on the bottom casing for Find My Device audio chimes.',
       ipRating:
-        'The earbuds are rated IP54 and the charging case IPX4. That covers sweat and rain, not submersion: Google says not to submerge the earbuds or the case, or hold them under running water, and to dry both after exposure to any liquid.',
+        'The Pixel Buds Pro 2 earbuds carry an official IP54 ingress protection rating, while the charging case carries an IPX4 splash resistance rating under IEC standard 60529 (<a href="https://store.google.com/product/pixel_buds_pro_2_specs" target="_blank" rel="noopener">Google Pixel Buds Pro 2 Specifications</a>). This rating certifies that the earbuds resist dust deposits and splashing water from any angle (such as sweat during workouts or light rain), while the case resists water splashes. Google is clear that neither the earbuds nor the charging case are waterproof, and neither should ever be submerged in water or held under running taps. Resistance decreases over time from regular wear.',
+      manufacturerGuidance:
+        'Google’s official maintenance guide instructs users to remove the earbuds and charging case from moisture immediately and wipe all exterior surfaces with a clean, soft, dry lint-free cloth (<a href="https://support.google.com/googlepixelbuds/answer/9112670" target="_blank" rel="noopener">Google Pixel Buds Cleaning Guide</a>). To clean trapped earwax or moisture from the snout mesh, Google recommends removing the silicone ear tips and using an extra-soft toothbrush lightly dampened with clean water or micellar water, brushing the mesh gently in small circles for 15 seconds. Blot dry on a paper towel and let the earbuds air dry at room temperature for up to 2 hours before placing them back in the charging case. Never place wet earbuds into the charging case, as moisture on the gold contact pins causes terminal corrosion.',
       steps: [
-        'Remove the ear tips before playing the eject tone so the snout mesh is open to the air. Do not clean the earbuds while they are charging.',
-        'For earwax mixed with moisture, Google’s method is an extra-soft toothbrush dipped in water or micellar water, brushed on the mesh in circles for 15 seconds, then blotted on a paper towel and left to air dry for up to 2 hours.',
-        'If the buds respond to touches you did not make, water on the touch sensors can register as a gesture. Turn gestures off in wet conditions until they are dry.',
+        'Remove both earbuds from your ears and detach the silicone ear tips so the front snout acoustic mesh is completely open to the air.',
+        'Keep the charging case closed and dry; never place damp earbuds inside the charging case to prevent short-circuiting charging contacts.',
+        'With the earbuds paired via Bluetooth, hold each bud with the snout mesh facing downward over a towel and run the 165 Hz tone at high volume to eject liquid droplets.',
+        'Switch to the Dust Cleaner sweep to loosen any dried wax particles or mineral deposits from the snout and rear vent meshes.',
+        'Let the earbuds air dry on a clean towel at room temperature for 1 to 2 hours before reattaching the ear tips and returning them to the case.',
       ],
+      serviceGuidance:
+        'If a Pixel Buds Pro 2 earbud remains muffled, exhibits continuous static, or produces screeching feedback in Active Noise Cancellation mode after thorough drying, contact official <a href="https://support.google.com/googlepixelbuds/" target="_blank" rel="noopener">Google Pixel Buds Support</a> for hardware diagnostic and replacement options.',
       faq: {
         q: 'Can I rinse Pixel Buds Pro 2 under the tap since they are IP54?',
-        a: 'No. IP54 on the earbuds and IPX4 on the case cover sweat and splashes. Google says not to submerge Pixel Buds Pro 2 or hold them under running water. To clean the mesh, use a damp extra-soft toothbrush, blot it dry and let it air dry for up to 2 hours.',
+        a: 'No. IP54 on the earbuds and IPX4 on the case protect against sweat and accidental splashes, not running or pressurized water. Google warns against submerging the earbuds or placing them under a faucet. To clean the mesh safely, use a slightly damp extra-soft toothbrush, blot with a towel, and let air dry for up to 2 hours.',
       },
-      sources: [SRC.budsSpecs, SRC.budsClean],
+      sources: [SRC.budsSpecs, SRC.budsClean, SRC.budsSupport],
     },
   },
 
@@ -396,19 +402,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'fix-pixel-8-pro-speaker': {
     en: {
       speakers:
-        'Google’s hardware diagram for the Pixel 8 Pro labels two speakers, a top speaker and a bottom speaker, separate from the top and bottom microphones and the USB-C port. The spec sheet lists stereo speakers. The diagram also labels a separate mmWave antenna cover, which is not a speaker opening.',
+        'Google’s official Pixel 8 Pro hardware diagram labels two dedicated acoustic speakers: a top speaker situated directly in the hairline seam between the front display glass and the aluminum frame above the front-facing camera, and a bottom speaker located on the bottom edge to the right of the USB Type-C port (<a href="https://support.google.com/pixelphone/answer/7157629" target="_blank" rel="noopener">Google Pixel Hardware Diagram</a>). Google’s schematic also identifies bottom and top microphone openings and explicitly labels the mmWave antenna cover along the top edge, confirming that the antenna window is not an acoustic opening and should not be probed.',
       ipRating:
-        'The Pixel 8 Pro is designed to comply with IP68 under IEC 60529 when it leaves the factory, but Google is clear that it is not waterproof. Resistance diminishes over time with wear, repair or a drop, and liquid damage voids the warranty. Google does not state a test depth on its spec page.',
+        'The Pixel 8 Pro is designed to comply with an IP68 dust and water protection rating under IEC standard 60529 when it leaves the factory (<a href="https://support.google.com/pixelphone/answer/7158570" target="_blank" rel="noopener">Google Pixel Tech Specs</a>). Google explicitly clarifies that the device is not waterproof. Water and dust resistance is not a permanent condition and diminishes over time as a consequence of normal wear and tear, phone repairs, disassembly, or drops. Liquid damage voids Google’s manufacturer warranty.',
+      manufacturerGuidance:
+        'Google’s official water damage prevention documentation outlines precise emergency steps when a Pixel phone gets wet: lift the phone out of the liquid immediately, power it off completely, wipe the exterior dry with a clean, soft cloth, and let it rest horizontally on a flat surface to finish air-drying at room temperature (<a href="https://support.google.com/pixelphone/answer/7533279" target="_blank" rel="noopener">Google Pixel Water Care Guide</a>). Google strictly warns against inserting foreign objects like paper towels, toothpicks, or cotton swabs into the USB-C port or speaker grilles, warns against using ovens, microwave ovens, or hair dryers, and advises against burying the phone in rice. Google also reminds users that chargers, cables, and accessories are not water resistant.',
       steps: [
-        'If it fell in water, Google’s order is: lift it out, turn it off, dry it with a soft cloth, then set it on a flat surface to finish drying at room temperature.',
-        'Once it is back on, run the tone with the bottom edge pointing down, then repeat with the top edge down so the top speaker can drain too.',
-        'Use the Speaker Test to check the left and right channels separately. If one stays muffled after it is fully dry, see Google’s repair options; water damage is not covered by the warranty.',
+        'Disconnect all charging cables and accessories; power off the Pixel 8 Pro and wipe the Gorilla Glass Victus 2 display and polished frame with a soft microfiber cloth.',
+        'Hold the device vertically with the bottom speaker grille and USB-C port facing downward, tapping the frame gently against your palm over a dry cloth to dislodge standing water.',
+        'Power on the phone once exterior surfaces are dry, set media volume to 100%, and run the 165 Hz Water Eject tone for 60 seconds with the bottom edge facing down.',
+        'Invert the phone so the top frame points downward and run a second cycle to expel droplets trapped behind the top earpiece receiver seam.',
+        'Switch to the Speaker Test diagnostic to listen to the top and bottom drivers separately and ensure balanced, distortion-free stereo reproduction.',
       ],
+      serviceGuidance:
+        'If your Pixel 8 Pro speaker remains muffled, crackly, or silent after 24 hours of drying at room temperature, internal water may have damaged the acoustic driver or voice coil. Arrange an inspection with an authorized technician through <a href="https://support.google.com/pixelphone/answer/9004345" target="_blank" rel="noopener">Google Pixel Repair &amp; Service</a>.',
       faq: {
         q: 'Is the slot on top of the Pixel 8 Pro frame a speaker?',
-        a: 'Google’s Pixel 8 Pro hardware diagram labels a top speaker and a separate mmWave antenna cover. The antenna cover is not a speaker opening, so there is no need to dry or clean it like a speaker grille. The two speakers are the top speaker and the bottom speaker.',
+        a: 'Google’s Pixel 8 Pro hardware diagram labels a top speaker in the screen bezel seam and a separate mmWave antenna cover on the top frame. The antenna cover is not an acoustic opening and has no speaker behind it. The two speakers are the top earpiece receiver and the bottom loudspeaker.',
       },
-      sources: [SRC.pixelDiagram, SRC.pixelSpecs, SRC.pixelWater],
+      sources: [SRC.pixelDiagram, SRC.pixelSpecs, SRC.pixelWater, SRC.pixelRepair],
     },
   },
 
