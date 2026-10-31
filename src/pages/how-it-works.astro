@@ -12,7 +12,7 @@ const jsonLd = {
   headline: title,
   description: description,
   datePublished: '2026-10-30',
-  dateModified: '2026-10-30',
+  dateModified: '2026-10-31',
   mainEntityOfPage: url,
   author: { '@type': 'Person', name: 'Dev', url: 'https://fixthespeaker.com/about' },
   publisher: { '@id': 'https://fixthespeaker.com/#organization' },
@@ -24,14 +24,12 @@ const jsonLd = {
   description={description}
   heading="How Fix The Speaker Works"
   eyebrow="Technology & Safety"
-  updated="2026-10-30"
+  updated="2026-10-31"
   localized={false}
   jsonLd={jsonLd}
 >
   <p>
-    <strong>Short answer:</strong> Fix The Speaker plays low-frequency sound waves that vibrate the phone's speaker
-    diaphragm. These physical vibrations produce small, rapid air pulses that can help push trapped water droplets and
-    loose dust particles out through the fine mesh of the speaker grille.
+    <strong>Short answer:</strong> The tool plays a low tone at high volume, which makes the speaker move air through the grille to help dislodge trapped water droplets or dust.
   </p>
 
   <h2>What the tool does: exact frequencies</h2>
@@ -60,22 +58,16 @@ const jsonLd = {
     </li>
   </ul>
 
-  <h2>Why it can help and its physical limits</h2>
+  <h2>How acoustic ejection works and its limits</h2>
   <p>
-    When a smartphone is exposed to moisture, water drops often do not penetrate into the phone body; instead, they become
-    trapped across the exterior speaker grille. Surface tension causes tiny water droplets to cling tightly to the mesh
-    pores, blocking the free passage of sound and causing calls, ringtones, and music to sound muffled or distorted.
-  </p>
-  <p>
-    Low-frequency sound waves (such as 165&nbsp;Hz) require larger physical cone excursion than high treble tones. As the
-    speaker diaphragm pumps back and forth at full volume, it pushes and pulls air through the acoustic chamber. This
-    rapid change in air pressure can overcome the surface tension holding the droplets, dislodging them from the grille so
-    they can drop away.
+    The tool plays a low tone at high volume, which makes the speaker move air through the grille.
+    Manufacturers use the same idea (such as Apple Watch Water Lock &mdash; see <a href="https://support.apple.com/en-us/108351" rel="noopener" target="_blank">Apple Support 108351</a>).
+    Beyond moving air at the exterior grille, playing sound does not dry internal components or repair damaged hardware.
   </p>
 
   <h3>Hardware limits: what the tool cannot fix</h3>
   <p>
-    Acoustic vibration is a surface maintenance technique. It only moves air at the speaker chamber and grille. It cannot:
+    Playing sound only moves air at the exterior speaker grille. It cannot:
   </p>
   <ul>
     <li>Repair internal short circuits on the logic board or electronic components.</li>
@@ -94,118 +86,73 @@ const jsonLd = {
   </ul>
 
   <h2>How official manufacturer features compare</h2>
-  <p>Acoustic water ejection and liquid handling are recognized by major device manufacturers in different ways:</p>
+  <p>Device manufacturers handle moisture and liquid contact through specific built-in mechanisms and recommendations:</p>
 
-  <h3>Apple Watch Water Lock</h3>
+  <h3>Apple guidance</h3>
   <p>
-    Starting with Apple Watch Series 2, Apple introduced an official feature called <strong>Water Lock</strong>. When you
-    finish an activity in water, you turn the Digital Crown to unlock the screen. The watch then emits a sequence of
-    low-frequency acoustic tones to eject water from the speaker grille. Apple explains this process in their official
-    support guide on <a href="https://support.apple.com/en-us/108351" rel="noopener" target="_blank">how to use Water Lock and eject water on Apple Watch</a>.
+    On Apple Watch, Apple includes Water Lock, which prevents accidental screen taps while in water and plays a series of tones when turned off to clear water from the speaker grille (<a href="https://support.apple.com/en-us/108351" rel="noopener" target="_blank">Apple Support 108351</a>).
   </p>
   <p>
-    On iPhone, Apple does not include an automatic acoustic ejection button in iOS. Instead, Apple's official advice for
-    a wet phone is to gently tap the iPhone against your hand with the connector facing down to remove excess liquid, and
-    leave it in a dry, ventilated area. You can read Apple's guidance on <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">what to do if you see a liquid-detection alert on iPhone</a>.
+    On iPhone, Apple's official advice for a wet phone is to tap the iPhone gently against your hand with the connector facing down to remove excess liquid, and leave it in a dry area with airflow (<a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support 102643</a>).
   </p>
 
-  <h3>Samsung "Moisture Detected" guidance</h3>
+  <h3>Samsung guidance</h3>
   <p>
-    Water-resistant Samsung Galaxy phones feature hardware sensors that check the USB charging port. If moisture is detected,
-    One UI displays a water drop icon and disables wired charging to prevent corrosion of the charging pins. Samsung explains
-    that water in the charging port typically evaporates naturally within 1 to 2 hours in a well-ventilated space.
+    Water-resistant Samsung Galaxy devices display a moisture detection alert if liquid is present in the USB charging port, disabling wired charging to prevent corrosion of the charging pins (<a href="https://www.samsung.com/uk/support/mobile-devices/what-to-do-if-your-water-resistant-phone-or-tablet-detects-moisture-in-the-charging-port/" rel="noopener" target="_blank">Samsung UK Support</a>).
   </p>
   <p>
-    Samsung also notes that water in the speaker grille can cause quiet or muffled sound until the speaker has dried or
-    cleared. Samsung recommends gently shaking the phone with the speaker and port pointing downward, wiping the device with
-    a clean, soft cloth, and allowing it to air-dry. See Samsung's official support article on <a href="https://www.samsung.com/uk/support/mobile-devices/what-to-do-if-your-water-resistant-phone-or-tablet-detects-moisture-in-the-charging-port/" rel="noopener" target="_blank">what to do if your Galaxy phone detects moisture</a> and their guide on <a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">noise in the speaker sound after liquid contact</a>.
+    Samsung notes that moisture inside the speaker grill can cause crackling or muffled sound, and advises patting the device dry with a clean, soft cloth and allowing it to dry before testing the audio again (<a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">Samsung Support</a>).
   </p>
 
-  <h3>Water-resistance ratings: IP67 vs. IP68 explained</h3>
+  <h3>Water resistance limits</h3>
   <p>
-    Water and dust resistance ratings are governed by the international standard <strong>IEC 60529</strong> published by
-    the International Electrotechnical Commission. An Ingress Protection (IP) code consists of two digits:
-  </p>
-  <ul>
-    <li>
-      <strong>First digit (solids):</strong> A rating of <strong>6</strong> means "dust tight" — full protection against
-      the ingress of dust particles over standard test durations.
-    </li>
-    <li>
-      <strong>Second digit (liquids):</strong>
-      <ul>
-        <li>
-          <strong>7 (IP67):</strong> Protection against the effects of temporary immersion in fresh water up to a depth of
-          <strong>1&nbsp;meter for up to 30&nbsp;minutes</strong> under static test conditions.
-        </li>
-        <li>
-          <strong>8 (IP68):</strong> Protection against continuous immersion in fresh water deeper than 1 meter under
-          conditions specified by the manufacturer (for instance, Apple tests recent flagship iPhones up to 6 meters for
-          30 minutes, while Samsung tests Galaxy flagships up to 1.5 meters for 30 minutes).
-        </li>
-      </ul>
-    </li>
-  </ul>
-  <p>
-    It is important to understand that IP tests are conducted in <em>still fresh water</em> in controlled laboratory
-    environments. They do not certify protection against high-pressure water jets, sea water, hot shower steam, or chlorinated
-    pools. Furthermore, as documented by Apple on their <a href="https://support.apple.com/en-us/108039" rel="noopener" target="_blank">splash, water, and dust resistance page</a>, water resistance is not permanent and decreases naturally over time due to wear, drops, and aging adhesives. Liquid damage is not covered under standard manufacturer warranties.
+    As documented by Apple (<a href="https://support.apple.com/en-us/108039" rel="noopener" target="_blank">Apple Support 108039</a>), water resistance is not a permanent condition and can decrease over time as a result of normal wear. Liquid damage is not covered under standard manufacturer warranties.
   </p>
 
   <h2>Safety and best practices</h2>
-  <p>Follow these safety guidelines when using the acoustic tool:</p>
+  <p>Follow these safety guidelines when using the tool:</p>
   <ul>
     <li>
-      <strong>Volume:</strong> Set your device media volume to 100% so the speaker cone has maximum displacement to push air.
-      <strong>Do not hold the speaker directly against your ear</strong> while the tone is playing, as continuous loud tones
-      can cause hearing discomfort.
+      <strong>Volume:</strong> Set your device media volume to 100% so the speaker moves air through the grille.
+      <strong>Do not hold the speaker directly against your ear</strong> while the tone is playing.
     </li>
     <li>
-      <strong>Duration:</strong> Run the 60-second cycle once or twice. If moisture remains, wait a few minutes before
-      running it again. Running tones non-stop for hours will not dry the device faster and will drain the battery.
+      <strong>Duration:</strong> If moisture remains after playing a tone, allow the phone to rest in a dry area with airflow.
+      Running tones continuously for hours will not dry the device faster and will drain the battery.
     </li>
     <li>
-      <strong>Orientation:</strong> Hold the phone so the speaker grille faces downward over a dry cloth or paper towel.
-      This ensures dislodged droplets fall out rather than settling back into the mesh.
+      <strong>Orientation:</strong> Hold the phone so the speaker grille faces downward over a dry cloth or paper towel so expelled droplets can drop away.
     </li>
     <li>
-      <strong>Do not use heat:</strong> Never use hair dryers, heat guns, ovens, or radiators. External heat damages the
-      lithium-ion battery and softens the waterproof glue seals around the screen and rear glass.
+      <strong>Do not use heat:</strong> Apple and Samsung both advise against using external heat sources such as hair dryers, heat guns, or ovens.
     </li>
     <li>
-      <strong>Do not use compressed air:</strong> High-pressure air can rupture delicate speaker membranes and microphone
-      diaphragms.
+      <strong>Do not use compressed air:</strong> Apple and Samsung both warn against using compressed air or high-pressure air guns on device openings.
     </li>
     <li>
-      <strong>Do not use rice:</strong> Putting a wet phone in a bag of uncooked rice is ineffective and can deposit fine
-      starch powder inside openings. Apple explicitly warns against using rice. For detailed testing and explanation, read our
-      guide on <a href="/guides/does-rice-fix-a-wet-phone">whether rice fixes a wet phone</a>.
+      <strong>Do not use rice:</strong> Apple explicitly warns that putting an iPhone in a bag of rice can allow small particles of rice to damage the phone. For details, read our guide on <a href="/guides/does-rice-fix-a-wet-phone">whether rice fixes a wet phone</a>.
     </li>
     <li>
-      <strong>Do not insert sharp objects:</strong> Never poke toothpicks, pins, or cotton swab tips into the speaker grille
-      mesh or charging port.
+      <strong>Do not insert sharp objects:</strong> Apple and Samsung both advise against inserting foreign objects, such as cotton swabs or pins, into ports or speaker grilles.
     </li>
   </ul>
 
   <h2>Sources</h2>
   <ul>
     <li>
-      <a href="https://support.apple.com/en-us/108351" rel="noopener" target="_blank">Apple Support: How to use Water Lock and eject water from your Apple Watch</a>
+      <a href="https://support.apple.com/en-us/108351" rel="noopener" target="_blank">Apple Support (108351): How to use Water Lock and eject water from your Apple Watch</a>
     </li>
     <li>
-      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support: If you see a liquid-detection alert on your iPhone</a>
+      <a href="https://support.apple.com/en-us/102643" rel="noopener" target="_blank">Apple Support (102643): If you see a liquid-detection alert on your iPhone</a>
     </li>
     <li>
-      <a href="https://support.apple.com/en-us/108039" rel="noopener" target="_blank">Apple Support: About splash, water, and dust resistance of iPhone 7 and later</a>
+      <a href="https://support.apple.com/en-us/108039" rel="noopener" target="_blank">Apple Support (108039): About splash, water, and dust resistance of iPhone 7 and later</a>
     </li>
     <li>
-      <a href="https://www.samsung.com/uk/support/mobile-devices/what-to-do-if-your-water-resistant-phone-or-tablet-detects-moisture-in-the-charging-port/" rel="noopener" target="_blank">Samsung UK Support: What to do if there is moisture in your water-resistant Samsung phone or tablet</a>
+      <a href="https://www.samsung.com/uk/support/mobile-devices/what-to-do-if-your-water-resistant-phone-or-tablet-detects-moisture-in-the-charging-port/" rel="noopener" target="_blank">Samsung Support: What to do if your Galaxy phone detects moisture</a>
     </li>
     <li>
-      <a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">Samsung Support: There is noise in the speaker sound of the device</a>
-    </li>
-    <li>
-      <a href="https://www.iec.ch/ip-ratings" rel="noopener" target="_blank">International Electrotechnical Commission (IEC): IP Ratings and IEC 60529 standard overview</a>
+      <a href="https://www.samsung.com/africa_en/support/mobile-devices/there-is-noise-in-the-speaker-sound-of-the-device/" rel="noopener" target="_blank">Samsung Support: Noise in the speaker sound of the device</a>
     </li>
     <li>
       <a href="/guides/does-rice-fix-a-wet-phone">Fix The Speaker: Does Rice Fix a Wet Phone?</a>

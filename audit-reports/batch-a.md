@@ -159,3 +159,66 @@ Complete!
 > node scripts/test-compliance.mjs
 All AdSense compliance tests passed with 0 errors.
 ```
+
+---
+
+## 7. Follow-up: Content & Source Factual Verification
+
+A rigorous review was conducted on all factual statements across `/how-it-works` and the new About page "Editorial Policy" section. Below is the inventory of every sentence removed or modified, along with the source-based rationale:
+
+### A. Removal of Theoretical Physics / Surface Tension / Excursion
+- **Previous Text:**
+  - *"When a smartphone is exposed to moisture, water drops often do not penetrate into the phone body; instead, they become trapped across the exterior speaker grille. Surface tension causes tiny water droplets to cling tightly to the mesh pores, blocking the free passage of sound and causing calls, ringtones, and music to sound muffled or distorted."*
+  - *"Low-frequency sound waves (such as 165 Hz) require larger physical cone excursion than high treble tones. As the speaker diaphragm pumps back and forth at full volume, it pushes and pulls air through the acoustic chamber. This rapid change in air pressure can overcome the surface tension holding the droplets, dislodging them from the grille so they can drop away."*
+- **Replacement (3 plain sentences):**
+  - *"The tool plays a low tone at high volume, which makes the speaker move air through the grille. Manufacturers use the same idea (such as Apple Watch Water Lock — see Apple Support 108351). Beyond moving air at the exterior grille, playing sound does not dry internal components or repair damaged hardware."*
+- **Rationale:** Eliminated all speculative acoustic physics, fluid surface tension, and cone excursion mechanics in favor of direct, plain-language description linking to Apple Support 108351.
+- **Short Answer Update:** Replaced *"Fix The Speaker plays low-frequency sound waves that vibrate the phone's speaker diaphragm. These physical vibrations produce small, rapid air pulses that can help push trapped water droplets and loose dust particles out..."* with *"The tool plays a low tone at high volume, which makes the speaker move air through the grille to help dislodge trapped water droplets or dust."*
+
+### B. Apple Watch Water Lock "Series 2+" Claim
+- **Previous Sentence:** *"Starting with Apple Watch Series 2, Apple introduced an official feature called Water Lock."*
+- **Action:** Deleted "Starting with Apple Watch Series 2".
+- **Current Text:** *"On Apple Watch, Apple includes Water Lock, which prevents accidental screen taps while in water and plays a series of tones when turned off to clear water from the speaker grille (Apple Support 108351)."*
+- **Rationale:** The linked Apple Support article (108351/108352) explains Water Lock functionality but does not state "Starting with Apple Watch Series 2".
+- **Digital Crown Gesture Correction:** Removed *"turn the Digital Crown to unlock the screen"* and *"sequence of low-frequency acoustic tones"*, aligning directly with Apple Support's wording (*"press and hold the Digital Crown until the display says Unlocked"* and *"plays a series of tones to clear water"*).
+
+### C. Samsung "1–2 Hour Evaporation" & Shaking Scope
+- **Previous Sentences:**
+  - *"Samsung explains that water in the charging port typically evaporates naturally within 1 to 2 hours in a well-ventilated space."*
+  - *"Samsung recommends gently shaking the phone with the speaker and port pointing downward, wiping the device with a clean, soft cloth, and allowing it to air-dry."*
+- **Action:** Deleted the 1–2 hour evaporation sentence entirely. Corrected speaker guidance sentence.
+- **Current Text:** *"Samsung notes that moisture inside the speaker grill can cause crackling or muffled sound, and advises patting the device dry with a clean, soft cloth and allowing it to dry before testing the audio again (Samsung Support)."*
+- **Rationale:**
+  1. The 1–2 hour evaporation figure comes from Samsung's USB charging port article, not speaker grilles, and the article does not specify "in a well-ventilated space". Evaporation rates depend on environment and should not be stated as a speaker timeline.
+  2. Samsung's speaker sound support page does not advise shaking the device (shaking is only advised for the USB charging port). Patting dry and allowing complete drying is what the speaker source actually specifies.
+
+### D. IP67 / IP68 Depth and Time Numbers
+- **Previous Text:**
+  - *"7 (IP67): Protection against the effects of temporary immersion in fresh water up to a depth of 1 meter for up to 30 minutes under static test conditions."*
+  - *"8 (IP68): Protection against continuous immersion in fresh water deeper than 1 meter under conditions specified by the manufacturer (for instance, Apple tests recent flagship iPhones up to 6 meters for 30 minutes, while Samsung tests Galaxy flagships up to 1.5 meters for 30 minutes)."*
+  - *"It is important to understand that IP tests are conducted in still fresh water in controlled laboratory environments. They do not certify protection against high-pressure water jets, sea water, hot shower steam, or chlorinated pools."*
+- **Action:** Deleted all depth/duration numbers and unverified comparative claims.
+- **Current Text (Water resistance limits):** *"As documented by Apple (Apple Support 108039), water resistance is not a permanent condition and can decrease over time as a result of normal wear. Liquid damage is not covered under standard manufacturer warranties."*
+- **Sources Update:** Removed unreferenced IEC link (`https://www.iec.ch/ip-ratings`, which returns 403).
+- **Rationale:** The linked source did not corroborate the specific comparison numbers (especially Samsung 1.5m), whereas Apple Support 108039 explicitly substantiates the warranty and wear limitations.
+
+### E. "60-Second Cycle" Duration Claim
+- **Previous Sentence:** *"Duration: Run the 60-second cycle once or twice. If moisture remains, wait a few minutes before running it again."*
+- **Action:** Deleted *"Run the 60-second cycle once or twice."*
+- **Current Text:** *"Duration: If moisture remains after playing a tone, allow the phone to rest in a dry area with airflow. Running tones continuously for hours will not dry the device faster and will drain the battery."*
+- **Rationale:** No manufacturer source prescribes running a "60-second cycle". Fix The Speaker's tool timer is 60 seconds, but presenting it as an official recommendation was not supported by external sources.
+
+### F. Best Practices Technical Claims (Volume, Heat, Compressed Air)
+- **Previous Volume Sentence:** *"Set your device media volume to 100% so the speaker cone has maximum displacement to push air."*
+  - **Changed to:** *"Set your device media volume to 100% so the speaker moves air through the grille."*
+  - **Rationale:** Replaced "cone displacement" physics terminology with plain air movement phrasing.
+- **Previous Heat & Air Claims:** *"External heat damages the lithium-ion battery and softens the waterproof glue seals..."* and *"High-pressure air can rupture delicate speaker membranes and microphone diaphragms."*
+  - **Changed to:** Plain statements citing manufacturer rules: *"Apple and Samsung both advise against using external heat sources such as hair dryers, heat guns, or ovens."* and *"Apple and Samsung both warn against using compressed air or high-pressure air guns on device openings."*
+  - **Rationale:** Directly matches the explicit prohibitions in Apple Support 102643 and Samsung support without attributing unverified internal failure mechanisms.
+
+### G. About Page "Editorial Policy" Section
+- **Previous Sentence:** *"Our content is thoroughly researched from official manufacturer documentation and international standards (including Apple Support, Samsung Support, Google Pixel Help, and IEC standards). Every factual claim is sourced from official guidance."*
+- **Changed to:** *"Our content is researched from official manufacturer documentation (including Apple Support, Samsung Support, and Google Pixel Help). Factual claims are sourced from official guidance."*
+- **Rationale:** Removed "and international standards / IEC standards" to reflect that site advice relies on manufacturer support documentation (Apple, Samsung, Google Pixel).
+
+

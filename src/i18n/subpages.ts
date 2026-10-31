@@ -107,7 +107,7 @@ export const subpagesContent: Record<
         {
           title: 'Editorial Policy',
           paragraphs: [
-            'Our content is thoroughly researched from official manufacturer documentation and international standards (including Apple Support, Samsung Support, Google Pixel Help, and IEC standards). Every factual claim is sourced from official guidance.',
+            'Our content is researched from official manufacturer documentation (including Apple Support, Samsung Support, and Google Pixel Help). Factual claims are sourced from official guidance.',
             'Pages and guides are regularly reviewed and updated as manufacturer specifications and repair guidance evolve. If you notice an error or have a suggestion, corrections can be sent directly to us via our contact page.',
           ],
         },
