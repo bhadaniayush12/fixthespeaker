@@ -308,19 +308,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'eject-water-samsung-galaxy-s25': {
     en: {
       speakers:
-        'Samsung’s Galaxy S25 specifications list stereo speakers. Samsung’s water-resistance guidance names the openings to watch on Galaxy phones: the earpiece, the external speaker and the primary microphone. Salt left to dry there can block them.',
+        'Samsung’s official Galaxy S25 specifications confirm dual stereo speakers. Audio output is divided between an external bottom-firing speaker port positioned adjacent to the USB Type-C connector, and a top stereo earpiece receiver integrated into the narrow micro-slit along the upper bezel seam above the front camera. Samsung’s official water resistance documentation identifies the external speaker port, the top earpiece, and the primary microphone hole at the bottom frame as primary apertures where trapped moisture dampens acoustic volume.',
       ipRating:
-        'The Galaxy S25 is rated IP68. Samsung’s spec sheet breaks this down as IP6X, dust resistant, and IPX8, water resistant up to 1.5 metres of water for 30 minutes. Samsung adds that water resistance is not permanent and may diminish with normal wear.',
+        'The Galaxy S25 carries an official IP68 rating under IEC standard 60529 (<a href="https://www.samsung.com/hk_en/news/product/Samsung-Galaxy-S25-Series-Revolutionizing-Mobile-AI-Standard/" target="_blank" rel="noopener">Samsung Galaxy S25 Series Specifications</a>). This rating provides IP6X dust tight certification and IPX8 water resistance tested in up to 1.5 metres of fresh water for up to 30 minutes. Samsung’s official support documentation states that water and dust resistance is not permanent and diminishes with regular daily usage (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung Galaxy Dust & Water Resistance Guide</a>). Samsung also emphasizes that the phone is not designed for beach or pool use and that liquid ingress is not covered by the standard warranty.',
+      manufacturerGuidance:
+        'Samsung’s official moisture handling guidelines instruct users to unplug charging cables immediately if moisture enters the device. When liquid is detected in the charging port or grilles, One UI triggers a persistent water drop notification and suspends cable charging to protect internal electrical circuits. Samsung advises holding the phone vertically and shaking it gently 5 to 10 times with the USB-C port facing downwards to dislodge water droplets, followed by wiping with a clean, dry, lint-free cloth (<a href="https://www.samsung.com/uk/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/" target="_blank" rel="noopener">Samsung Water Drop Warning Help</a>). Allow the phone to air-dry in a well-ventilated room with cool airflow. If exposed to salt water or chlorinated liquids, rinse gently in fresh water and dry thoroughly before running acoustic ejection.',
       steps: [
-        'If the water drop icon appears and charging stops, unplug the cable, wipe the phone with a dry cloth or gently shake it 5 to 10 times with the USB-C port facing down, then leave it in a well-ventilated spot or in front of a fan.',
-        'If the icon stays after the port is completely dry, Samsung suggests clearing the USB cache: Settings > Apps > Filter and sort > Show system apps > USB Settings > Storage > Clear cache.',
-        'If it was exposed to salt water, Samsung says to wash it with fresh water and dry it thoroughly with a clean, soft cloth before running the eject tone.',
+        'Disconnect any USB-C cables; if the moisture detected water drop icon is visible, keep cable charging disconnected and wipe the phone dry with a soft cloth.',
+        'Hold the Galaxy S25 with the bottom speaker port and USB connector pointed downward, tapping the lower frame lightly against your palm 5 to 10 times.',
+        'Raise media volume to 100% and run the 165 Hz Water Eject tone for 60 seconds while holding the phone downward over a clean towel.',
+        'Flip the phone so the top display bezel earpiece points downward, running a second pulse to force trapped droplets out of the upper acoustic receiver.',
+        'Open the Speaker Test diagnostic and play each channel separately to verify that both the bottom speaker and upper receiver sound clean and balanced.',
       ],
+      serviceGuidance:
+        'If your Galaxy S25 speaker continues to produce distorted, buzzy, or low sound after 24 hours of drying, or if the water drop alert does not clear after clearing the USB Settings cache in system apps, take the phone to an authorized technician at a <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Support Service Center</a>.',
       faq: {
         q: 'Can I charge my Galaxy S25 while the moisture warning is showing?',
-        a: 'Not with a cable. When moisture in the USB port exceeds a set point, the Galaxy S25 stops cable charging to protect the port from damage and corrosion. Samsung suggests drying the phone and, if you still need power, using a wireless charger with the phone placed in the centre of the pad.',
+        a: 'Not with a cable. When moisture is detected inside the USB-C port, Samsung software halts cable charging to avoid short circuits and port corrosion. Samsung notes that Qi wireless charging can be used safely once the back panel is wiped completely dry.',
       },
-      sources: [SRC.s25Specs, SRC.samsungIp, SRC.samsungMoisture],
+      sources: [SRC.s25Specs, SRC.samsungIp, SRC.samsungMoisture, SRC.samsungService],
     },
   },
 
@@ -365,19 +371,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'eject-water-samsung-galaxy-s24-ultra': {
     en: {
       speakers:
-        'Samsung’s own S24 Ultra materials list a top speaker module and a bottom speaker module, and the spec sheet lists stereo speakers. Samsung’s water guidance for Galaxy phones names the earpiece, the external speaker and the primary microphone as the openings that salt residue can block.',
+        'Samsung’s official S24 Ultra hardware specifications specify dual stereo speaker modules. The primary bottom-firing speaker is located on the bottom frame directly between the USB Type-C port and the integrated S Pen silo. The upper stereo speaker functions as the earpiece receiver and is recessed into the micro-slit at the junction of the display glass and the titanium frame. Samsung’s official water resistance documentation explicitly identifies the external speaker opening, the top earpiece, and the primary microphone hole beside the USB-C port as key acoustic apertures where surface tension can hold moisture.',
       ipRating:
-        'The Galaxy S24 Ultra is rated IP68: IP6X dust resistant and IPX8 water resistant up to 1.5 metres of water for 30 minutes, per Samsung’s spec sheet. The built-in S Pen is IP68 too, and Samsung says it does not need to be inserted for the phone to keep its rating.',
+        'The Galaxy S24 Ultra is rated IP68 under IEC standard 60529 (<a href="https://www.samsung.com/hk_en/news/product/samsung-galaxy-s24-series-introducing-a-new-era-of-mobile-ai-with-the-groundbreaking-implementation-of-galaxy-ai/" target="_blank" rel="noopener">Samsung S24 Series Specifications</a>). This rating denotes IP6X dust tight certification and IPX8 water resistance, tested by Samsung in up to 1.5 metres of fresh water for up to 30 minutes. Samsung’s official support documentation confirms that the built-in S Pen stylus is also individually IP68 certified, and the phone maintains its complete IP68 water seal even when the S Pen is unseated or removed (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). Samsung notes that water resistance is not permanent and diminishes over time through normal wear; damage caused by liquid exposure is excluded from Samsung’s standard warranty.',
+      manufacturerGuidance:
+        'According to Samsung’s official liquid recovery procedure, when a Galaxy device is exposed to fresh water, users must dry the exterior thoroughly with a clean, soft cloth. If the device comes into contact with chlorinated pool water, seawater, or acidic beverages, Samsung instructs users to rinse the phone gently in fresh water and pat dry immediately, preventing corrosive mineral salts from crystallizing inside the acoustic grilles. If One UI displays a "Moisture detected in your charger/USB port" water drop warning, Samsung directs users to unplug all charging cables immediately and gently tap the phone against their hand 5 to 10 times with the USB-C port and bottom speaker facing downward (<a href="https://www.samsung.com/uk/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/" target="_blank" rel="noopener">Samsung Moisture Warning Support</a>). Do not insert cotton swabs or paper into grilles, and avoid using heat guns or hair dryers.',
       steps: [
-        'Since the phone keeps its rating with the S Pen out, you can take the pen out while drying the phone. Samsung rates the S Pen IP68 as well.',
-        'If the water drop icon appears, unplug the cable and gently shake the phone 5 to 10 times with the USB-C port facing down, then dry it in a well-ventilated spot.',
-        'If the icon remains after the port is dry, clear the USB cache: Settings > Apps > Filter and sort > Show system apps > USB Settings > Storage > Clear cache.',
+        'Remove the S Pen from its bottom silo and shake both the stylus and the phone gently 5 to 10 times with the bottom edge facing down over a clean microfiber towel.',
+        'Wipe all exterior moisture off the titanium frame, display, and top earpiece micro-slit with a soft lint-free cloth, leaving any charging cables unplugged.',
+        'Hold the phone vertically with the bottom speaker grille angled downward, set media volume to 100%, and run the 165 Hz Water Eject tone for the full 60 seconds.',
+        'Invert the phone so the top bezel earpiece points downward and play a second cycle to purge trapped water droplets from the upper stereo channel.',
+        'Switch to the Speaker Test diagnostic to play the left and right audio channels independently and verify that stereo sound output is crisp and undistorted.',
       ],
+      serviceGuidance:
+        'If the speaker remains muffled, crackly, or faint after 24 hours of drying at room temperature, or if the moisture detected warning refuses to clear after clearing the USB Settings system cache, schedule an inspection with an authorized technician at an official <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Service Center</a>.',
       faq: {
         q: 'Does the Galaxy S24 Ultra lose its water resistance if the S Pen is removed?',
-        a: 'No. Samsung says the S Pen does not need to be inserted for the phone to keep its IP68 rating, and the S Pen itself is rated IP68. You can remove the pen while you dry the phone and run the water eject tone.',
+        a: 'No. Samsung confirms that the S Pen does not need to be inserted for the phone to maintain its IP68 rating, and the S Pen itself is individually rated IP68. You can safely remove the pen to allow both the silo and stylus to air dry while running the water eject tone.',
       },
-      sources: [SRC.s24Specs, SRC.samsungIp, SRC.samsungMoisture],
+      sources: [SRC.s24Specs, SRC.samsungIp, SRC.samsungMoisture, SRC.samsungService],
     },
   },
 
