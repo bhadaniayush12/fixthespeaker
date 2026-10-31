@@ -430,6 +430,66 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
     },
   },
 
+  'fix-apple-watch-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on Apple Watch',
+      speakers:
+        'Apple’s official hardware schematics identify the speaker ports on the left side of the Apple Watch casing across all modern models (<a href="https://support.apple.com/en-us/108352" target="_blank" rel="noopener">Apple Watch Water Lock &amp; Hardware Support</a>). On standard Series models (including Series 4 through Series 10 and SE), a precision acoustic slot or dual micro-slots sit along the left edge, opposite the Digital Crown and microphone. On Apple Watch Ultra models, dual speakers and an 86-decibel emergency Siren grille occupy the left edge alongside the Action button. Trapped water droplets collect inside these lateral cavities after immersion, dampening speaker volume.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'Apple Watch Series 2 and later (including Series 10, Series 9, and SE) have a water resistance rating of 50 metres under ISO standard 22810:2010 (WR50), meaning they can be used for shallow-water activities like swimming in a pool or ocean (<a href="https://support.apple.com/en-us/109522" target="_blank" rel="noopener">Apple Watch Water Resistance Guide</a>). Apple Watch Ultra and Ultra 2 are water resistant to 100 metres under ISO standard 22810:2010 (WR100) and certified to EN13319 for recreational scuba diving down to 40 metres. Apple states that water resistance is not a permanent condition and diminishes over time through normal wear; water damage is not covered under Apple’s limited warranty.',
+      manufacturerGuidanceTitle: 'What Apple recommends',
+      manufacturerGuidance:
+        'Apple recommends turning on Water Lock before entering water to prevent accidental screen taps from water droplets. When you exit the water, turning off Water Lock (by pressing and holding or turning the Digital Crown) instructs the Apple Watch to emit a sequence of acoustic tones that vibrate the internal speaker diaphragm, physically expelling trapped water from the left-side speaker cavities (<a href="https://support.apple.com/en-us/108352" target="_blank" rel="noopener">Apple Support: How to Use Water Lock</a>). Apple instructs users to wipe the watch exterior with a soft, nonabrasive, lint-free cloth. After swimming in salt water or chlorinated pools, Apple explicitly directs users to rinse the watch gently under warm fresh running tap water and dry thoroughly. Apple warns never to use heat, compressed air, or insert sharp objects into the speaker slots.',
+      stepsTitle: 'Steps for Apple Watch',
+      steps: [
+        'Activate the watch’s built-in Water Lock by opening Control Center and tapping the water drop icon; turn it off by pressing and holding the Digital Crown to initiate the watch’s internal acoustic ejection tone.',
+        'Hold the Apple Watch with the left-side speaker slots pointed downward over a clean microfiber towel so vibrating droplets fall out onto the cloth.',
+        'If you were swimming in the sea or a pool, rinse the watch under a gentle stream of fresh tap water to clear salt or chlorine before running Water Lock.',
+        'If the iPhone you carried near water was also splashed, run the 165 Hz Water Eject tool on this web page using your iPhone to clear its bottom speakers.',
+        'Let the Apple Watch air dry at room temperature for 1 to 2 hours, then test Siri voice feedback or the stopwatch chime to confirm crisp audio.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If Apple Watch notifications, phone calls, or Siri voice prompts remain distorted, buzzing, or inaudible after 24 hours of drying, internal liquid may have compromised the speaker membrane. Book a hardware diagnostic at an Apple Store or authorized service provider through <a href="https://support.apple.com/watch/repair" target="_blank" rel="noopener">Apple Watch Service &amp; Repair</a>.',
+      faq: {
+        q: 'Why does my Apple Watch need its built-in Water Lock instead of a web tone?',
+        a: 'Web browsers running on an iPhone or Mac cannot route sound hardware commands to the Apple Watch speaker. Apple Watch includes its own native Water Lock tone specifically engineered to clear its side speaker cavities. Use Water Lock on the watch, and use this browser tool to eject water from the phone you were carrying.',
+      },
+      sources: [SRC.appleWatchWaterLock, SRC.appleWatchWater, SRC.appleWatchRepair],
+    },
+  },
+
+  'fix-iphone-16-pro-max-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on iPhone 16 Pro Max',
+      speakers:
+        'Apple’s official iPhone 16 Pro Max technical specifications detail built-in stereo speakers (<a href="https://support.apple.com/en-us/121033" target="_blank" rel="noopener">Apple iPhone 16 Pro Max Tech Specs</a>). Audio output is delivered through a primary bottom-firing acoustic speaker grille located along the lower edge to the right of the USB-C connector (with microphone apertures positioned to the left), and an earpiece receiver integrated into the micro-slit along the upper display bezel above the Dynamic Island. Apple does not publish internal grille diagrams, so precise internal acoustic baffle depths are not assumed.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'iPhone 16 Pro Max has a rating of IP68 under IEC standard 60529, tested to a maximum depth of 6 metres for up to 30 minutes in fresh water (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple iPhone Water Resistance Guide</a>). It is built with a Grade 5 Titanium enclosure and Ceramic Shield front glass. Apple emphasizes that splash, water, and dust resistance are not permanent conditions and resistance might decrease as a result of normal wear. Apple warns against swimming, bathing, saunas, or exposure to pressurized water (such as showers or jet skiing). Liquid damage is not covered under Apple’s standard limited warranty.',
+      manufacturerGuidanceTitle: 'What Apple recommends',
+      manufacturerGuidance:
+        'Apple’s official water response guidelines instruct: if liquid splashes on the iPhone, wipe it with a soft, lint-free cloth. If a liquid other than fresh water splashes on the device (such as coffee, juice, or pool water), rinse the affected area gently with tap water and wipe dry immediately (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple Ingress Guidance</a>). To clear water from the speaker and USB-C port, Apple instructs users to tap the iPhone gently against their hand with the connector and speaker grilles facing downward. Leave the device in a dry area with airflow (a cool fan blowing toward the port can assist evaporation). If iOS displays a "Liquid Detected in USB-C Connector" alert, Apple directs users to unplug all cables and wait at least 5 hours before charging via cable (<a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple Liquid Detection Alert Help</a>). Never use heat sources, compressed air, or rice.',
+      stepsTitle: 'Steps for iPhone 16 Pro Max',
+      steps: [
+        'Disconnect any USB-C cables and accessories; if the iOS liquid-detection alert is active, leave the port unplugged to protect internal gold pins.',
+        'Hold the iPhone 16 Pro Max with the bottom speaker ports facing down and tap the lower frame gently against your palm over a clean lint-free cloth.',
+        'Set media volume to 100% and run the 165 Hz Water Eject tone for a full 60 seconds to dislodge water droplets clinging to the bottom speaker chamber.',
+        'Invert the phone so the top earpiece receiver points downward and run a second 60-second cycle to clear the upper stereo speaker.',
+        'Run the Speaker Test diagnostic to listen to left and right channels individually and verify that sound output is clear and balanced across both drivers.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If the speaker remains muffled, crackly, or quiet after 24 hours of drying in an airy environment, or if the liquid detection warning refuses to clear, schedule an inspection with an authorized Apple technician through <a href="https://support.apple.com/iphone/repair" target="_blank" rel="noopener">Apple iPhone Repair &amp; Service</a>.',
+      faq: {
+        q: 'How long should I wait before charging iPhone 16 Pro Max after it got wet?',
+        a: 'Apple advises waiting at least 5 hours before charging with a USB-C cable or connecting accessories to ensure the connector is completely dry. If you need power immediately, Apple confirms that wireless Qi or MagSafe charging is safe as long as the back of the phone is wiped dry.',
+      },
+      sources: [SRC.iphone16ProMaxSpecs, SRC.appleWater, SRC.appleLiquidAlert, SRC.appleRepair],
+    },
+  },
+
   'fix-iphone-17-pro-max-speaker': {
     en: {
       speakers:
