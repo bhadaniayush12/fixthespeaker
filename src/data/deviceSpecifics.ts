@@ -358,19 +358,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'fix-redmi-13c-speaker': {
     en: {
       speakers:
-        'Xiaomi confirms that the Redmi 13C has a speaker and a 3.5 mm headphone jack. Unlike the Redmi Note 13, its spec sheet does not list dual speakers. Xiaomi does not publish a grille diagram, so we do not name exact positions; water can also sit in the headphone jack and the USB Type-C port.',
+        'Xiaomi’s official specifications and support FAQ confirm that the Redmi 13C features a single bottom-firing loudspeaker located on the bottom frame adjacent to the USB Type-C port and primary microphone (<a href="https://www.mi.com/global/product/redmi-13c/specs/" target="_blank" rel="noopener">Xiaomi Redmi 13C Specifications</a>). The top frame houses a 3.5 mm analog headphone jack. Unlike the dual-speaker setup on the Redmi Note series, Xiaomi’s official technical documentation confirms that the Redmi 13C uses a single speaker configuration (<a href="https://www.mi.com/global/support/faq/details/KA-47262/" target="_blank" rel="noopener">Xiaomi Redmi 13C FAQ</a>). Xiaomi does not publish a detailed internal acoustic schematic, so exact internal baffle positions are not assumed.',
       ipRating:
-        'Xiaomi lists the Redmi 13C, and the Redmi 13C 5G, as IP52 for splash and dust resistance. That is a light-splash rating, not protection against submersion. Xiaomi notes that this protection degrades with daily wear, that liquid damage is not covered by the warranty, and says not to charge the phone while it is wet.',
+        'Xiaomi lists both the Redmi 13C and the Redmi 13C 5G as IP52 rated for splash and dust resistance under IEC standard 60529 (<a href="https://www.mi.com/global/support/faq/details/KA-142672/" target="_blank" rel="noopener">Xiaomi Redmi 13C 5G FAQ</a>). This rating indicates light dust protection (IP5X) and resistance to vertically dripping water when tilted up to 15 degrees (IPX2). It is strictly a light splash-resistance rating and provides no protection against water submersion, running taps, or pressurized water jets. Xiaomi emphasizes that ingress protection degrades with daily wear and that damage resulting from liquids is explicitly excluded from warranty coverage.',
+      manufacturerGuidance:
+        'Xiaomi’s official operating instructions advise users to keep the Redmi 13C away from moisture and humid environments, and strictly prohibit charging the phone while it is wet or damp (<a href="https://www.mi.com/global/support/faq/details/KA-142672/" target="_blank" rel="noopener">Xiaomi Device Maintenance Guidelines</a>). If the phone encounters water, Xiaomi directs users to disconnect any wired 3.5 mm headphones and charging cables immediately, wipe all external surfaces with a dry cloth, and allow the ports and acoustic openings to dry fully at room temperature in a well-ventilated area before reconnecting accessories or power.',
       steps: [
-        'Do not charge it until it is dry. Xiaomi’s guidance for the Redmi 13C 5G says not to charge the phone while it is wet.',
-        'Disconnect wired headphones and leave the 3.5 mm jack empty so the tone plays through the phone speaker, not the headphones.',
-        'IP52 is a low rating. If the phone was dropped in water rather than splashed, turn it off and let it dry fully first; if it stays silent or crackles after drying, contact Xiaomi service rather than running repeated cycles.',
+        'Disconnect any 3.5 mm wired headphones and USB-C cables immediately; an empty headphone jack ensures audio plays through the internal loudspeaker.',
+        'Wipe the exterior frame, display glass, and camera module with a dry microfiber cloth, leaving no standing droplets around the bottom port.',
+        'Hold the phone vertically with the bottom speaker grille angled downward over a clean towel or paper tissue.',
+        'Increase media volume to 100% and run the 165 Hz water eject sound to dislodge water droplets trapped across the single bottom speaker grille.',
+        'Run the Dust Cleaner sweep to loosen any dried mineral particles, then test ringtone clarity to ensure normal acoustic volume has returned.',
       ],
+      serviceGuidance:
+        'Because the Redmi 13C has an IP52 light-splash rating, dropping it into water or exposure to heavy rain can allow liquid past internal seals into the logic board or speaker coil. If the speaker crackles, hums, or remains silent after 24 hours of drying, schedule a service appointment at an authorized <a href="https://www.mi.com/global/support/" target="_blank" rel="noopener">Xiaomi Service Center</a>.',
       faq: {
         q: 'Is the Redmi 13C waterproof?',
-        a: 'No. Xiaomi rates the Redmi 13C and Redmi 13C 5G at IP52, which is splash and dust resistance. Xiaomi says the protection degrades with daily wear and that damage from liquids is not covered by the warranty, so keep it away from submersion and do not charge it while it is wet.',
+        a: 'No. Xiaomi rates the Redmi 13C and Redmi 13C 5G at IP52, which provides protection only against light dust and dripping water or splashes. Xiaomi notes that protection degrades with daily wear and liquid damage is not covered under warranty. Never submerge the phone and never charge it while wet.',
       },
-      sources: [SRC.redmi13cFaq, SRC.redmi13c5gFaq, SRC.redmi13cSpecs],
+      sources: [SRC.redmi13cFaq, SRC.redmi13c5gFaq, SRC.redmi13cSpecs, SRC.xiaomiSupport],
     },
   },
 
@@ -532,19 +538,25 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'fix-redmi-note-13-speaker': {
     en: {
       speakers:
-        'Xiaomi’s spec sheet for the Redmi Note 13 lists dual speakers with Dolby Atmos and a 3.5 mm headphone jack. The Redmi Note 13 5G spec sheet lists the headphone jack and Dolby Atmos but does not list dual speakers. Xiaomi does not publish grille positions, so we do not guess them.',
+        'Xiaomi’s official technical specifications specify that the Redmi Note 13 (4G) features dual stereo speakers with Dolby Atmos certification (<a href="https://www.mi.com/global/product/redmi-note-13/specs/" target="_blank" rel="noopener">Xiaomi Redmi Note 13 Specifications</a>). The primary acoustic speaker is positioned on the bottom edge alongside the USB Type-C connector and main microphone, while a secondary top speaker grille is located on the top frame adjacent to the 3.5 mm headphone jack and IR blaster. In contrast, Xiaomi’s spec sheet for the Redmi Note 13 5G variant lists Dolby Atmos audio and a 3.5 mm jack without listing dual speakers (<a href="https://www.mi.com/global/product/redmi-note-13-5g/specs/" target="_blank" rel="noopener">Xiaomi Redmi Note 13 5G Specifications</a>).',
       ipRating:
-        'Both the Redmi Note 13 and Redmi Note 13 5G are rated IP54, tested for splash and dust resistance under IEC 60529. Xiaomi says not to immerse the phone completely or expose it to sea water, chlorinated water or drinks, and that the protection degrades with daily use.',
+        'Both the Redmi Note 13 and Redmi Note 13 5G are rated IP54 for splash and dust resistance under IEC standard 60529 (<a href="https://www.mi.com/global/product/redmi-note-13/specs/" target="_blank" rel="noopener">Xiaomi Note 13 Tech Specs</a>). This rating certifies protection against dust ingress and splashing water from any angle. Xiaomi explicitly warns that IP54 is not a waterproofing or submersion rating: the phone must not be submerged in water or exposed to seawater, chlorinated pool water, or beverages. Xiaomi also notes that laboratory splash protection is not permanent and diminishes over time with normal daily use.',
+      manufacturerGuidance:
+        'Xiaomi’s official documentation cautions users against charging the device in wet or humid conditions, as moisture in the USB-C port or 3.5 mm jack can short-circuit internal circuits (<a href="https://www.mi.com/global/product/redmi-note-13/specs/" target="_blank" rel="noopener">Xiaomi Safety Guidelines</a>). When exposed to liquid, Xiaomi directs users to wipe the phone thoroughly with a dry, clean, soft cloth and allow the speaker grilles, headphone port, and USB connector to air-dry completely at room temperature. Xiaomi explicitly warns against using external heat sources such as hair dryers, which degrade the adhesive gaskets that protect the dual speaker cavities.',
       steps: [
-        'Do not charge it while it is damp. Xiaomi’s spec page says not to charge the phone in a humid condition.',
-        'Unplug wired headphones so the 3.5 mm jack is empty and the tone plays through the speaker. On the 4G model, use the Speaker Test afterwards to check both speakers.',
-        'If it was submerged, or got sea water, pool water or a drink on it, that is outside the IP54 rating. Turn it off, let it dry fully, and contact Xiaomi service if the sound stays muffled.',
+        'Unplug any 3.5 mm headphones and USB-C cables; ensure both top and bottom grilles are free of connected accessories.',
+        'Wipe the phone frame, screen, and upper edge dry with a lint-free towel, patting the top and bottom grilles gently.',
+        'Hold the phone vertically with the bottom speaker facing down and play the 165 Hz water eject tone at maximum volume for 60 seconds.',
+        'Invert the phone so the top frame speaker grille points downward, and replay the tone to purge water from the upper Dolby Atmos speaker.',
+        'Run the Speaker Test diagnostic to play left and right audio channels independently and confirm balanced stereo clarity.',
       ],
+      serviceGuidance:
+        'If your Redmi Note 13 dual speakers continue to produce distorted, muffled, or crackly sound after 24 hours of drying, or if water entered the device during full immersion, request official diagnostic support from <a href="https://www.mi.com/global/support/" target="_blank" rel="noopener">Xiaomi Customer Support</a>.',
       faq: {
         q: 'Do the Redmi Note 13 and Redmi Note 13 5G have the same speakers?',
-        a: 'Not according to Xiaomi’s spec sheets. The Redmi Note 13 lists dual speakers with Dolby Atmos, while the Redmi Note 13 5G lists Dolby Atmos and a 3.5 mm headphone jack without listing dual speakers. Both are rated IP54 for splash and dust resistance.',
+        a: 'Not according to Xiaomi’s official spec sheets. The Redmi Note 13 lists dual stereo speakers with Dolby Atmos, whereas the Redmi Note 13 5G lists Dolby Atmos and a 3.5 mm jack without listing dual speakers. Both models are rated IP54 for splash and dust resistance.',
       },
-      sources: [SRC.redmiNote13Specs, SRC.redmiNote135gSpecs],
+      sources: [SRC.redmiNote13Specs, SRC.redmiNote135gSpecs, SRC.xiaomiSupport],
     },
   },
 
