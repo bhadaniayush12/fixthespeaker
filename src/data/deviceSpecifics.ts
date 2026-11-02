@@ -151,12 +151,130 @@ const SRC = {
     label: 'Apple: iPhone repair and service',
     url: 'https://support.apple.com/iphone/repair',
   },
+  iphone15Specs: {
+    label: 'Apple: iPhone 15 tech specs',
+    url: 'https://support.apple.com/en-us/111831',
+  },
+  pixel7aSpecs: {
+    label: 'Google: Pixel 7a hardware tech specs',
+    url: 'https://support.google.com/pixelphone/answer/7158570',
+  },
+  airpodsCleaning: {
+    label: 'Apple: how to clean your AirPods',
+    url: 'https://support.apple.com/en-us/102672',
+  },
+  airpodsWater: {
+    label: 'Apple: about the water and sweat resistance of AirPods',
+    url: 'https://support.apple.com/en-us/102620',
+  },
+  airpodsRepair: {
+    label: 'Apple: AirPods service and repair',
+    url: 'https://support.apple.com/airpods/repair',
+  },
+  realmeSupport: {
+    label: 'realme: customer support and service centers',
+    url: 'https://www.realme.com/global/support',
+  },
+  motorolaService: {
+    label: 'Motorola: support and repair services',
+    url: 'https://motorola-global-portal.custhelp.com/app/mcp/service/',
+  },
 } satisfies Record<string, DeviceSpecificSource>;
 
 // -------------------------------------------------------------
 // Content per device slug and language
 // -------------------------------------------------------------
 export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, DeviceSpecificContent>>> = {
+  'fix-iphone-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on iPhone',
+      speakers:
+        'Apple’s official iPhone technical specifications confirm that iPhones feature built-in stereo speakers (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple iPhone Water Resistance Guide</a>). Audio output is delivered through a primary bottom-firing acoustic speaker grille located along the lower edge to the right of the Lightning or USB-C connector (microphone openings are positioned to the left). The secondary stereo speaker functions as the earpiece receiver, located in the micro-slit along the upper display bezel or Dynamic Island. Trapped water droplets across these openings can muffle audio output after exposure to liquids.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'Modern iPhone models carry an IP68 or IP67 rating under IEC standard 60529 (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple iPhone Water Resistance Guide</a>). Tested fresh-water depth varies by generation: iPhone 12 through iPhone 16 models are rated for a maximum depth of 6 metres for up to 30 minutes; iPhone 11 Pro models for up to 4 metres; iPhone 11 and XS models for up to 2 metres; and iPhone 7, 8, XR, and SE (2nd and 3rd gen) for up to 1 metre under IP67. Apple stresses that water resistance is not a permanent condition and diminishes over time with normal wear. Apple warns against swimming, showering, saunas, and pressurized water. Liquid damage is not covered under Apple’s limited warranty.',
+      manufacturerGuidanceTitle: 'What Apple recommends',
+      manufacturerGuidance:
+        'Apple’s official instructions for wet iPhones advise: if liquid other than water splashes on the phone, gently rinse the affected area with fresh tap water, then wipe it dry with a soft, lint-free cloth (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple Ingress Guidance</a>). To help remove liquid from the speaker grilles and charging connector, Apple instructs users to tap the iPhone gently against their hand with the connector facing downward. Leave the device in a dry area with airflow; a fan blowing cool air directly toward the port can assist drying. Apple advises waiting at least 5 hours before charging with a cable (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple Ingress Guidance</a>). If a "Liquid Detected" alert appears, unplug the cable; full drying can take up to 24 hours (<a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple Liquid Detection Alert Help</a>). Qi wireless charging remains safe if the back of the device is dry. Never use heat sources, compressed air, or rice.',
+      stepsTitle: 'Steps for iPhone',
+      steps: [
+        'Disconnect charging cables and wired accessories immediately; do not connect a cable if a liquid alert appears.',
+        'Hold the iPhone upright with the bottom speaker facing down and tap it gently against your palm over a lint-free cloth.',
+        'Set playback volume to 100% and run the 165 Hz water eject tone for 60 seconds with the bottom edge pointed downward.',
+        'Invert the phone so the top earpiece receiver points down and run a second 60-second cycle to help clear the upper speaker.',
+        'Run the Speaker Test diagnostic to check left and right audio channels and confirm balanced volume.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your iPhone speaker remains muffled, crackly, or quiet after 24 hours of drying in an airy room, or if a liquid detection alert refuses to clear, book a service appointment through <a href="https://support.apple.com/iphone/repair" target="_blank" rel="noopener">Apple iPhone Repair &amp; Service</a>.',
+      faq: {
+        q: 'Why does my iPhone earpiece sound quiet after getting wet?',
+        a: 'The upper earpiece speaker has a fine protective mesh where water droplets can collect. Tapping the phone gently downward and playing the 165 Hz tone while angling the top edge downward helps clear the moisture.',
+      },
+      sources: [SRC.appleWater, SRC.appleLiquidAlert, SRC.appleRepair],
+    },
+  },
+
+  'fix-iphone-15-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on iPhone 15',
+      speakers:
+        'Apple’s official iPhone 15 technical specifications confirm built-in stereo speakers (<a href="https://support.apple.com/en-us/111831" target="_blank" rel="noopener">Apple iPhone 15 Tech Specs</a>). Sound is produced by a primary bottom-firing speaker located behind the grilles on the bottom edge to the right of the USB-C connector (the microphone holes sit to the left). The secondary stereo speaker doubles as the upper earpiece receiver, embedded in the slim opening at the top of the display glass alongside the Dynamic Island. Moisture can settle across these openings after exposure to liquids, causing muffled or quiet audio.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'The iPhone 15 carries an IP68 rating under IEC standard 60529 (<a href="https://support.apple.com/en-us/111831" target="_blank" rel="noopener">Apple iPhone 15 Tech Specs</a>). Apple tests this model to a maximum depth of 6 metres in fresh water for up to 30 minutes (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple Water and Dust Resistance Guide</a>). Apple notes that splash, water, and dust resistance are not permanent conditions and resistance might decrease as a result of normal wear. Apple advises against swimming, bathing, saunas, high-velocity water, or submerging the phone intentionally. Liquid damage is not covered under Apple’s limited warranty.',
+      manufacturerGuidanceTitle: 'What Apple recommends',
+      manufacturerGuidance:
+        'Apple’s official instructions for liquid exposure state: if liquid other than water splashes on the iPhone 15, gently rinse the affected area with fresh tap water, then wipe it dry with a soft, lint-free cloth (<a href="https://support.apple.com/en-us/108039" target="_blank" rel="noopener">Apple Ingress Guidance</a>). To clear trapped liquid from the bottom grilles and USB-C port, tap the iPhone gently against your hand with the connector facing downward. Leave the device in a dry area with airflow; a fan directing cool air toward the port can assist drying. Apple advises waiting at least 5 hours before plugging in a charging cable. If a "Liquid Detected" alert appears, disconnect the cable immediately (<a href="https://support.apple.com/en-us/102643" target="_blank" rel="noopener">Apple Liquid Detection Alert Help</a>). Do not dry the phone with an external heat source, compressed air, or cotton swabs, and do not put it in rice.',
+      stepsTitle: 'Steps for iPhone 15',
+      steps: [
+        'Disconnect any USB-C cables immediately and leave the port unplugged if a liquid detection alert appears on the screen.',
+        'Hold the iPhone 15 upright with the bottom edge facing down and gently tap it against your hand over a microfiber cloth to shake out excess water.',
+        'Set the playback volume to maximum and play the 165 Hz water eject tone for 60 seconds with the bottom speaker grille pointed downward.',
+        'Turn the phone upside down so the top earpiece faces down and run another tone cycle to clear water from the upper receiver mesh.',
+        'Open the Speaker Test diagnostic to check both stereo channels and verify that playback is clear and balanced.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your iPhone 15 speaker remains muffled, quiet, or crackly after 24 hours of drying in an airy room, or if the liquid detection warning does not turn off, arrange an inspection through <a href="https://support.apple.com/iphone/repair" target="_blank" rel="noopener">Apple iPhone Repair &amp; Service</a>.',
+      faq: {
+        q: 'Can I charge my iPhone 15 after it got wet?',
+        a: 'Apple advises waiting at least 5 hours after water exposure before connecting a USB-C charging cable. If a "Liquid Detected" warning appears, unplug the cable immediately. Qi and MagSafe wireless charging can still be used safely as long as the back of the phone is dry.',
+      },
+      sources: [SRC.iphone15Specs, SRC.appleWater, SRC.appleLiquidAlert, SRC.appleRepair],
+    },
+  },
+
+  'clean-airpods-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on AirPods',
+      speakers:
+        'Apple’s official hardware documentation confirms that AirPods feature speaker grilles and acoustic vents on each earbud (<a href="https://support.apple.com/en-us/102672" target="_blank" rel="noopener">Apple AirPods Cleaning Guide</a>). Audio is delivered through the primary speaker mesh opening at the tip (underneath the detachable silicone ear tip on AirPods Pro). Additional mesh openings include side acoustic vents on the exterior shell that assist bass response and outward-facing microphone grilles. Trapped moisture across the primary mesh dampens sound or causes muffled audio.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'Water resistance varies by AirPods model under IEC standard 60529 (<a href="https://support.apple.com/en-us/102620" target="_blank" rel="noopener">Apple AirPods Water Resistance Guide</a>). AirPods Pro (1st and 2nd gen), AirPods 3, and AirPods 4 are sweat and water resistant with an IPX4 or IP54 rating, meaning they can handle workouts and splashes of water. AirPods (1st and 2nd generation) and AirPods Max are not water resistant or waterproof. Charging cases also vary: only select cases (such as AirPods Pro 2 USB-C case) carry an IP54 rating; older cases are not water resistant. Apple states water resistance is not permanent and diminishes over time. Liquid damage is not covered under warranty.',
+      manufacturerGuidanceTitle: 'What Apple recommends',
+      manufacturerGuidance:
+        'Apple’s official cleaning and care guidelines state: do not run AirPods under running water under any circumstances (<a href="https://support.apple.com/en-us/102672" target="_blank" rel="noopener">Apple AirPods Cleaning Guide</a>). If your AirPods are exposed to liquid, sweat, or moisture, wipe them dry immediately with a soft, dry, lint-free microfiber cloth. If using AirPods Pro, remove the silicone ear tips, wipe away any liquid pooled in the groove, and let them dry before reattaching. Apple directs users to let AirPods dry completely in open air before putting them into the charging case or wearing them (<a href="https://support.apple.com/en-us/102620" target="_blank" rel="noopener">Apple Water Resistance Guide</a>). To clean the speaker mesh, Apple recommends using a clean, dry cotton swab and a soft-bristled brush. Never use sharp objects, abrasive materials, or chemical solvents.',
+      stepsTitle: 'Steps for AirPods',
+      steps: [
+        'Take both AirPods out of the charging case immediately and leave the case open to air dry.',
+        'If using AirPods Pro, pull off the silicone ear tips and wipe the tips and speaker grilles dry with a microfiber cloth.',
+        'Hold the AirPods with the primary speaker mesh facing downward and gently tap them against your hand to shake loose excess moisture.',
+        'Lay the AirPods on a flat surface with the speaker mesh facing downward and run the sound tone at moderate volume to help dislodge water.',
+        'Allow the AirPods to air dry completely for at least 12 to 24 hours before returning them to the charging case.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If an AirPod produces buzzing, crackling, distorted sound, or complete silence after 24 hours of drying, internal liquid may have damaged the audio driver or microphone. Arrange service through <a href="https://support.apple.com/airpods/repair" target="_blank" rel="noopener">Apple AirPods Repair &amp; Service</a>.',
+      faq: {
+        q: 'Can I put wet AirPods back in the charging case?',
+        a: 'No. Apple advises letting AirPods dry completely before putting them into the charging case. Placing wet AirPods into the case can damage both the earbuds and the charging contacts inside the case.',
+      },
+      sources: [SRC.airpodsCleaning, SRC.airpodsWater, SRC.airpodsRepair],
+    },
+  },
+
   'eject-water-samsung-galaxy': {
     en: {
       hubGuidanceTitle: 'Official Samsung moisture warning and water guidance',
@@ -272,20 +390,31 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   },
   'fix-motorola-edge-50-ultra-speaker': {
     en: {
+      speakersTitle: 'Where the speakers are on motorola edge 50 ultra',
       speakers:
-        'Motorola lists dual stereo speakers with Dolby Atmos for the edge 50 ultra. There is no 3.5 mm headphone jack: audio goes through the USB Type-C port, so the speaker openings and the USB-C port are the places water can sit. Motorola does not publish a grille diagram, so we do not guess exact positions.',
+        'Motorola’s official product specifications confirm that the motorola edge 50 ultra features dual stereo speakers with Dolby Atmos tuning and Snapdragon Sound certification (<a href="https://en-us.support.motorola.com/app/answers/detail/a_id/187312" target="_blank" rel="noopener">Motorola Edge 50 Ultra Specs</a>). Sound output is delivered through an external bottom-firing speaker grille located on the lower edge next to the USB Type-C connector, and a top stereo speaker functioning as the earpiece receiver along the top display edge. Motorola does not include a 3.5 mm audio jack, meaning the USB-C connector and the speaker grilles are the primary ports where liquid can gather.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'The edge 50 ultra is rated IP68. Motorola says it withstands immersion in up to 1.5 metres of fresh water for up to 30 minutes, is not designed to work while submerged, and should not be exposed to pressurised water or to liquids other than fresh water. Resistance decreases with normal wear.',
+        'The motorola edge 50 ultra is rated IP68 under IEC standard 60529 (<a href="https://www.motorola.com/gb/en/p/phones/motorola-edge/50-ultra/pmipmgn36m2" target="_blank" rel="noopener">Motorola Edge 50 Ultra Product Page</a>). Motorola states that the device is tested to withstand immersion in up to 1.5 metres of fresh water for up to 30 minutes. Motorola explicitly clarifies that the phone is not designed to operate while submerged underwater, should not be exposed to pressurized water or non-fresh liquids, and is not waterproof. Ingress resistance is not permanent and diminishes over time. Liquid damage is not covered under warranty.',
+      manufacturerGuidanceTitle: 'What Motorola recommends',
+      manufacturerGuidance:
+        'Motorola’s official care instructions advise users to dry wet surfaces immediately with a soft, clean cloth (<a href="https://www.motorola.com/gb/en/p/phones/motorola-edge/50-ultra/pmipmgn36m2" target="_blank" rel="noopener">Motorola Edge 50 Ultra Product Page</a>). Motorola explicitly warns: do not attempt to charge a wet phone using either a wired cable or a wireless charging stand. If the phone encounters salt water, pool water, or beverages, rinse the affected area gently with fresh water and dry thoroughly. Allow the device to dry naturally in an airy environment. Avoid using high heat, hair dryers, or inserting sharp objects or swabs into the acoustic openings.',
+      stepsTitle: 'Steps for motorola edge 50 ultra',
       steps: [
-        'Do not charge it while it is wet. Motorola’s own note says not to attempt to charge a wet phone, and that includes the TurboPower wireless stand.',
-        'Because both speakers play in stereo, run the water eject tone first, then use the Speaker Test to play the left and right channels one at a time and listen for the side that still sounds muffled.',
-        'If it got salt water, pool water or a drink on it, that is outside what the IP68 rating covers. Dry it, run the tone, and if the sound stays dull, contact Motorola support rather than repeating cycles.',
+        'Do not connect a USB-C charger or place the phone on a TurboPower wireless stand while the device or port is wet.',
+        'Wipe down the phone frame and display thoroughly with a soft microfiber cloth to remove external water.',
+        'Hold the phone with the bottom speaker grille facing downward and run the 165 Hz tone at full volume for 60 seconds.',
+        'Turn the phone so the top earpiece points downward and run another cycle to dislodge water from the upper speaker grille.',
+        'Play the left and right channels individually using the Speaker Test tool to confirm that both stereo speakers are operating cleanly.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your motorola edge 50 ultra speaker continues to crackle or sounds dull after 24 hours of drying, arrange a repair service appointment through <a href="https://motorola-global-portal.custhelp.com/app/mcp/service/" target="_blank" rel="noopener">Motorola Support &amp; Repair Services</a>.',
       faq: {
         q: 'Can I use the motorola edge 50 ultra underwater since it is IP68?',
         a: 'No. Motorola states that the edge 50 ultra is tested to withstand immersion in up to 1.5 metres of fresh water for up to 30 minutes, but it is not designed to work while submerged, should not be exposed to pressurised water, and is not waterproof. Damage from conditions beyond the rating is not covered by the warranty.',
       },
-      sources: [SRC.edge50UltraSpecs, SRC.edge50UltraPage],
+      sources: [SRC.edge50UltraSpecs, SRC.edge50UltraPage, SRC.motorolaService],
     },
     es: {
       speakers:
@@ -383,7 +512,7 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
   'eject-water-samsung-galaxy-s24-ultra': {
     en: {
       speakers:
-        'Samsung’s official S24 Ultra hardware specifications specify dual stereo speaker modules. The primary bottom-firing speaker is located on the bottom frame directly between the USB Type-C port and the S Pen slot. The upper stereo speaker functions as the earpiece receiver and is recessed into the micro-slit at the junction of the display glass and the titanium frame. Samsung’s official water resistance documentation explicitly identifies the external speaker opening, the top earpiece, and the primary microphone hole beside the USB-C port as key acoustic apertures where surface tension can hold moisture.',
+        'Samsung’s official S24 Ultra hardware specifications specify dual stereo speaker modules. The primary bottom-firing speaker is located on the bottom frame directly between the USB Type-C port and the S Pen slot. The upper stereo speaker functions as the earpiece receiver and is recessed into the micro-slit at the junction of the display glass and the titanium frame. Samsung’s official water resistance documentation explicitly identifies the external speaker opening, the top earpiece, and the primary microphone hole beside the USB-C port as key acoustic apertures where moisture can collect.',
       ipRating:
         'The Galaxy S24 Ultra is rated IP68 under IEC standard 60529 (<a href="https://www.samsung.com/hk_en/news/product/samsung-galaxy-s24-series-introducing-a-new-era-of-mobile-ai-with-the-groundbreaking-implementation-of-galaxy-ai/" target="_blank" rel="noopener">Samsung S24 Series Specifications</a>). This rating denotes IP6X dust tight certification and IPX8 water resistance, tested by Samsung in up to 1.5 metres of fresh water for up to 30 minutes. Samsung’s official specifications state that the phone and the included S Pen stylus are both rated IP68 (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). Samsung notes that water resistance is not permanent and diminishes over time through normal wear; damage caused by liquid exposure is excluded from Samsung’s standard warranty.',
       manufacturerGuidance:
@@ -578,20 +707,61 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
 
   'fix-pixel-7-speaker': {
     en: {
+      speakersTitle: 'Where the speakers are on Pixel 7',
       speakers:
-        'Google’s hardware diagram for the Pixel 7 labels two speakers, a top speaker and a bottom speaker, separate from the top, bottom and rear-facing microphones and the USB-C port. The spec sheet lists stereo speakers and three microphones, so do not mistake the microphone holes for a speaker.',
+        'Google’s official hardware diagram and specifications for the Pixel 7 identify two distinct speakers: a top stereo speaker integrated into the earpiece slit at the top of the display and a bottom-firing speaker located on the bottom edge (<a href="https://support.google.com/pixelphone/answer/7157629" target="_blank" rel="noopener">Google Pixel 7 Hardware Diagram</a>). Google’s hardware diagram specifically differentiates these speaker ports from the phone’s three microphones (top microphone, bottom microphone next to the USB-C port, and rear microphone). Knowing the exact positions ensures you direct the speaker grilles downward during cleaning.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'The Pixel 7 is designed to comply with IP68 under IEC 60529 when it leaves the factory. Google stresses that it is not waterproof, that the accessories are not water resistant, and that resistance diminishes with wear, repair, disassembly or a drop. Google does not publish a test depth for it.',
+        'The Pixel 7 is designed to comply with water protection rating IP68 under IEC standard 60529 when manufactured (<a href="https://support.google.com/pixelphone/answer/7158570" target="_blank" rel="noopener">Google Pixel Phone Tech Specs</a>). Google emphasizes that the Pixel 7 is not waterproof. Water and dust resistance are not permanent conditions and will be reduced or lost due to normal wear and tear, device repair, disassembly, or damage. Google states that accessories are not water resistant and that liquid damage voids the warranty.',
+      manufacturerGuidanceTitle: 'What Google recommends',
+      manufacturerGuidance:
+        'Google’s official guidelines for water exposure instruct users to remove the phone from liquid immediately, power it down, and wipe it dry with a soft, clean cloth (<a href="https://support.google.com/pixelphone/answer/7533279" target="_blank" rel="noopener">Google Pixel Water Safety Guide</a>). Google advises letting the phone air-dry completely at room temperature on a flat surface. Do not charge the phone while wet, whether by cable or wirelessly, until it has dried thoroughly. Google explicitly warns against using compressed air, hair dryers, microwave ovens, or inserting foreign objects like cotton swabs into speaker openings or the USB-C port.',
+      stepsTitle: 'Steps for Pixel 7',
       steps: [
-        'If the Pixel 7 fell in water: lift it out, turn it off, dry it with a soft cloth and set it on a flat surface to finish drying at room temperature, as Google advises.',
-        'Run the tone with the bottom edge pointing down to clear the bottom speaker, then flip it so the top edge points down for the top speaker.',
-        'Keep the charger and cable away until everything is dry, because Google notes the accessories are not water resistant.',
+        'Turn off the Pixel 7 immediately after water exposure and wipe all exterior surfaces dry with a lint-free cloth.',
+        'Do not plug in a USB-C charging cable until the phone and port have dried completely for several hours.',
+        'Hold the phone vertically with the bottom speaker grille facing down and run the 165 Hz water eject tone at full volume for 60 seconds.',
+        'Flip the phone upright with the top earpiece receiver angled down and run a second tone cycle to clear water from the top speaker.',
+        'Use the channel diagnostic in the Speaker Test to verify that both top and bottom speakers sound clear and balanced.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your Pixel 7 speaker sounds muffled, raspy, or distorted after 24 hours of drying, liquid may have reached the acoustic membrane. Book a diagnostic check through <a href="https://support.google.com/pixelphone/answer/9004345" target="_blank" rel="noopener">Google Pixel Repair</a>.',
       faq: {
         q: 'Which openings on the Pixel 7 are speakers and which are microphones?',
         a: 'Google’s Pixel 7 hardware diagram labels a top speaker and a bottom speaker, plus three separate microphones: top, bottom and rear-facing. The USB-C port is labelled separately too. Only the two speakers need to point down when you run the water eject tone.',
       },
-      sources: [SRC.pixelDiagram, SRC.pixelSpecs, SRC.pixelWater],
+      sources: [SRC.pixelDiagram, SRC.pixelSpecs, SRC.pixelWater, SRC.pixelRepair],
+    },
+  },
+
+  'fix-pixel-7a-speaker': {
+    en: {
+      speakersTitle: 'Where the speakers are on Pixel 7a',
+      speakers:
+        'Google’s official hardware specifications and diagrams confirm that the Pixel 7a features stereo speakers (<a href="https://support.google.com/pixelphone/answer/7158570" target="_blank" rel="noopener">Google Pixel 7a Tech Specs</a>). Sound output is delivered through a primary bottom-firing speaker grille located on the bottom edge alongside the USB Type-C connector and a secondary stereo earpiece speaker built into the narrow bezel slot at the top of the display (<a href="https://support.google.com/pixelphone/answer/7157629" target="_blank" rel="noopener">Google Pixel Hardware Diagram</a>). Google differentiates these speaker outputs from the microphone holes on the top and bottom edges. Trapped liquid droplets over the speaker grilles cause muffled or quiet audio.',
+      ipRatingTitle: 'Water resistance',
+      ipRating:
+        'The Pixel 7a is designed to comply with an IP67 dust and water protection rating under IEC standard 60529 when manufactured (<a href="https://support.google.com/pixelphone/answer/7158570" target="_blank" rel="noopener">Google Pixel 7a Tech Specs</a>). Google emphasizes that the Pixel 7a is not waterproof. Water and dust resistance are not permanent conditions and decrease over time as a result of normal wear and tear, device repair, disassembly, or accidental damage. Google states that Pixel accessories are not water resistant and liquid damage voids Google’s warranty.',
+      manufacturerGuidanceTitle: 'What Google recommends',
+      manufacturerGuidance:
+        'Google’s official guidelines for wet Pixel phones advise users to lift the phone out of liquid immediately, turn it off, and wipe it dry with a soft, clean cloth (<a href="https://support.google.com/pixelphone/answer/7533279" target="_blank" rel="noopener">Google Pixel Water Safety Guide</a>). Google directs users to leave the phone on a flat surface to dry completely at room temperature. Never charge a wet Pixel 7a with a cable or wirelessly. Google explicitly instructs users never to dry a Pixel with a hair dryer, compressed air, microwave, or by inserting objects like cotton swabs into ports or speaker grilles.',
+      stepsTitle: 'Steps for Pixel 7a',
+      steps: [
+        'Power off the Pixel 7a immediately and dry all exterior surfaces with a clean microfiber cloth.',
+        'Keep USB-C charging cables disconnected until the phone and port have air-dried completely.',
+        'Hold the phone with the bottom speaker port angled downward and run the 165 Hz water eject tone at full volume for 60 seconds.',
+        'Flip the phone upside down with the top earpiece pointed downward and play a second cycle to clear droplets from the upper speaker mesh.',
+        'Open the Speaker Test diagnostic and play each channel separately to check that both stereo speakers produce clear sound.',
+      ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your Pixel 7a speaker continues to sound crackly, dull, or muffled after 24 hours of drying, schedule a hardware evaluation through <a href="https://support.google.com/pixelphone/answer/9004345" target="_blank" rel="noopener">Google Pixel Repair</a>.',
+      faq: {
+        q: 'Can I rinse my Pixel 7a if it gets dirty?',
+        a: 'Google advises against rinsing the Pixel 7a under a tap. Although rated IP67, water resistance is not permanent and does not cover pressurized or running water. Instead, wipe the phone with a soft, lightly dampened cloth, dry it thoroughly, and let it air dry before playing sound or charging.',
+      },
+      sources: [SRC.pixelDiagram, SRC.pixel7aSpecs, SRC.pixelWater, SRC.pixelRepair],
     },
   },
 
@@ -657,77 +827,121 @@ export const deviceSpecifics: Record<string, Partial<Record<SupportedLang, Devic
 
   'eject-water-samsung-galaxy-s22-ultra': {
     en: {
+      speakersTitle: 'Where the speakers are on Galaxy S22 Ultra',
       speakers:
-        'Samsung’s water guidance for Galaxy phones names the earpiece, the external speaker and the primary microphone as the openings to keep clear, because salt left to dry there can block them. Samsung’s S22 Ultra spec sheet does not give grille positions, so we do not guess them.',
+        'Samsung’s official Galaxy S22 Ultra technical documentation confirms dual stereo speakers tuned with Dolby Atmos (<a href="https://news.samsung.com/uk/samsung-galaxy-s22-ultra-offers-the-ultimate-and-most-premium-s-series-experience-yet" target="_blank" rel="noopener">Samsung S22 Ultra Specifications</a>). Audio is output through a primary bottom-firing speaker grille positioned along the bottom frame between the USB-C port and the embedded S Pen silo. The secondary stereo speaker functions as the earpiece receiver, recessed into the narrow slit along the upper display bezel. Samsung explicitly notes that the external speaker opening, the top earpiece, and the primary microphone hole are the areas where liquid droplets collect and cause sound dampening.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'The Galaxy S22 Ultra and its S Pen are rated IP68. Samsung bases this on test conditions for submersion in up to 1.5 metres of fresh water for up to 30 minutes, and says it is not advised for beach or pool use. Rinse off residue and dry it if it gets wet.',
+        'The Galaxy S22 Ultra and its bundled S Pen stylus carry an IP68 ingress protection rating under IEC standard 60529 (<a href="https://news.samsung.com/uk/samsung-galaxy-s22-ultra-offers-the-ultimate-and-most-premium-s-series-experience-yet" target="_blank" rel="noopener">Samsung S22 Ultra Specifications</a>). Samsung tests this rating based on fresh-water submersion up to 1.5 metres for up to 30 minutes (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). Samsung states that water and dust resistance is not permanent and decreases naturally over time through normal wear. Samsung explicitly advises against beach or pool use, and standard warranty coverage excludes damage caused by liquids.',
+      manufacturerGuidanceTitle: 'What Samsung recommends',
+      manufacturerGuidance:
+        'Samsung’s official water response guide instructs users to disconnect any charging cables immediately upon contact with moisture. If the phone is exposed to liquids other than clean tap water—such as swimming pool water, seawater, or drinks—Samsung advises rinsing the phone in calm fresh water and drying it thoroughly with a clean, soft cloth (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). To remove water from the speaker openings and USB-C port, Samsung directs users to hold the phone upright and gently shake it 5 to 10 times with the bottom edge facing down. Allow the phone to air-dry in a well-ventilated space. If One UI displays a water drop icon, cable charging is automatically suspended to protect internal circuits (<a href="https://www.samsung.com/uk/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/" target="_blank" rel="noopener">Samsung Moisture Detection Help</a>). Never use a hair dryer, compressed air, or cotton buds in the grilles.',
+      stepsTitle: 'Steps for Galaxy S22 Ultra',
       steps: [
-        'If it went into the sea or a pool, rinse off the residue with fresh water first, as Samsung advises, then dry it thoroughly with a clean, soft cloth.',
-        'If the water drop icon appears, unplug the cable and gently shake the phone 5 to 10 times with the USB-C port facing down, then dry it in a well-ventilated spot or in front of a fan.',
-        'If the icon stays once the port is dry, clear the USB cache: Settings > Apps > Filter and sort > Show system apps > USB Settings > Storage > Clear cache.',
+        'Unplug any USB-C cables immediately; if the water drop icon is displayed, keep cable chargers disconnected until the port is completely dry.',
+        'Hold the Galaxy S22 Ultra vertically with the bottom speaker and USB port facing down and tap the lower frame gently against your palm 5 to 10 times.',
+        'Set the volume to 100% and run the 165 Hz water eject tone for 60 seconds with the bottom frame angled downward over a dry towel.',
+        'Invert the phone so the top earpiece points downward and play a second tone cycle to clear water from the upper receiver opening.',
+        'Test audio output with the stereo Speaker Test tool to ensure both speakers play cleanly without distortion.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If the speaker continues to crackle, distort, or sound muffled after drying for 24 hours, or if the moisture warning remains stuck, schedule service at an authorized <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Support Service Center</a>.',
       faq: {
-        q: 'Is the Galaxy S22 Ultra safe to use at the beach or pool?',
-        a: 'Samsung does not advise it. The S22 Ultra and S Pen are IP68 rated, based on submersion in up to 1.5 metres of fresh water for up to 30 minutes, but Samsung says it is not advised for beach or pool use. If salt or chlorinated water gets on it, rinse it with fresh water and dry it before running the eject tone.',
+        q: 'What should I do if the water drop icon stays on the Galaxy S22 Ultra?',
+        a: 'First, ensure the USB-C port is completely dry by letting the phone sit in a well-ventilated room with airflow. If the alert persists after 24 hours, Samsung recommends clearing the USB cache: go to Settings > Apps, tap the Filter icon, turn on "Show system apps", select USB Settings > Storage, and tap "Clear cache".',
       },
-      sources: [SRC.s22UltraSpecs, SRC.samsungIp, SRC.samsungMoisture],
+      sources: [SRC.s22UltraSpecs, SRC.samsungIp, SRC.samsungMoisture, SRC.samsungService],
     },
   },
 
   'fix-realme-12-pro-plus-speaker': {
     en: {
+      speakersTitle: 'Where the speakers are on realme 12 Pro+ 5G',
       speakers:
-        'realme lists Dolby Atmos dual stereo speakers with Hi-Res Audio certification for the realme 12 Pro+ 5G. realme does not publish a grille diagram, so we do not name exact positions. Because the two speakers play in stereo, a muffled side shows up clearly in a left and right channel test.',
+        'realme’s official specifications confirm that the realme 12 Pro+ 5G features dual stereo speakers certified for Hi-Res Audio and Dolby Atmos (<a href="https://www.realme.com/ph/realme-12-pro-plus-official/specs" target="_blank" rel="noopener">realme 12 Pro+ 5G Specifications</a>). The stereo arrangement uses a bottom-firing loudspeaker along the lower frame next to the USB Type-C port and a secondary stereo earpiece receiver located in the upper bezel seam. When water splashes onto the phone, droplets resting on these speaker grilles dampen sound vibration and muffle acoustic output.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'The realme 12 Pro+ 5G is rated IP65 under IEC 60529:2013. realme describes it as splash-proof and dust-resistant under normal use, says it is not advised for beach or pool use, and notes that water and dust resistance is not permanent and may diminish over time.',
+        'The realme 12 Pro+ 5G carries an IP65 rating under IEC standard 60529:2013 (<a href="https://www.realme.com/global/realme-12-pro-plus" target="_blank" rel="noopener">realme 12 Pro+ 5G Product Page</a>). realme states that the phone is splash-proof and dust-resistant under normal usage conditions. realme explicitly notes that the device is not certified for water submersion, warns that it is not advised for beach or pool use, and clarifies that water and dust resistance is not permanent and may diminish over time as a result of daily wear.',
+      manufacturerGuidanceTitle: 'What realme recommends',
+      manufacturerGuidance:
+        'realme’s official maintenance recommendations state that if the device is splashed with liquid, wipe all surfaces dry immediately with a clean, dry cloth (<a href="https://www.realme.com/global/realme-12-pro-plus" target="_blank" rel="noopener">realme 12 Pro+ 5G Product Page</a>). Because IP65 is a splash rating rather than a submersion rating, realme warns against submerging the device in water or exposing it to running water taps. Never charge the phone while damp. Allow the phone to air dry completely at room temperature in a well-ventilated spot before using wired accessories. Do not use hair dryers or cotton buds on the speaker openings.',
+      stepsTitle: 'Steps for realme 12 Pro+ 5G',
       steps: [
-        'Treat any submersion as outside the rating. IP65 means splash-proof and dust-resistant, so if it went into water, turn it off and let it dry fully before running the tone.',
-        'Run the eject tone, then play the left and right channels separately in the Speaker Test to find out which of the dual speakers is still muffled.',
-        'After beach or pool use, which realme does not advise, dry it fully and contact realme service if the sound stays dull rather than repeating cycles.',
+        'Disconnect any charging cables immediately and power down the device if it has been exposed to heavy liquid splashes.',
+        'Gently wipe the exterior casing and speaker grilles with a clean microfiber towel to absorb standing moisture.',
+        'Angle the phone with the bottom speaker port facing downward and run the 165 Hz water eject tone at maximum volume for 60 seconds.',
+        'Invert the phone so the top earpiece receiver points downward and play a second tone cycle to clear droplets from the upper grille.',
+        'Use the Speaker Test diagnostic to play left and right audio channels independently and verify balanced volume.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If audio output from your realme 12 Pro+ 5G remains muffled or distorted after 24 hours of drying, seek assistance through official <a href="https://www.realme.com/global/support" target="_blank" rel="noopener">realme Customer Support &amp; Service Centers</a>.',
       faq: {
         q: 'Can the realme 12 Pro+ go in a pool if it is IP65?',
         a: 'No. realme says the 12 Pro+ 5G is splash-proof and dust-resistant under normal use and meets IP65 in laboratory tests, but it is not advised for beach or pool use. IP65 is not a submersion rating, and the resistance can diminish over time with normal wear.',
       },
-      sources: [SRC.realme12ProPlus, SRC.realme12ProPlusSpecs],
+      sources: [SRC.realme12ProPlus, SRC.realme12ProPlusSpecs, SRC.realmeSupport],
     },
   },
 
   'fix-moto-g84-speaker': {
     en: {
+      speakersTitle: 'Where the speakers are on moto g84 5G',
       speakers:
-        'Motorola says the moto g84 5G has stereo speakers with Dolby Atmos. Motorola does not publish a grille diagram, so we do not name exact positions. With two speakers, the Speaker Test’s left and right channels make it easy to hear which one is still affected.',
+        'Motorola’s official product documentation confirms that the moto g84 5G features stereo speakers equipped with Dolby Atmos and Moto Spatial Sound (<a href="https://www.motorola.com/au/en/p/phones/moto-g/84-5g/pmipmgf35mx" target="_blank" rel="noopener">Motorola moto g84 5G Product Page</a>). Audio is output through a bottom-firing speaker on the lower frame beside the USB Type-C port and a top stereo earpiece speaker embedded in the top screen border. The moto g84 also features a 3.5 mm audio jack. Water droplets collected across the speaker grilles dampen sound clarity.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'Motorola’s product page describes a water-repellent design for the moto g84 5G that helps protect against moderate exposure to water such as accidental spills, splashes or light rain. It is not designed to be submerged or exposed to pressurised water, and it is not waterproof.',
+        'Motorola describes the moto g84 5G as having a water-repellent design that creates a barrier to help protect against moderate exposure to water (<a href="https://www.motorola.com/au/en/p/phones/moto-g/84-5g/pmipmgf35mx" target="_blank" rel="noopener">Motorola moto g84 5G Product Page</a>). Motorola specifies that this protection covers accidental spills, splashes, or light rain. Motorola explicitly states that the moto g84 is not designed to be submerged in water or exposed to pressurized water or other liquids. The water-repellent coating is not waterproof and protection diminishes over time.',
+      manufacturerGuidanceTitle: 'What Motorola recommends',
+      manufacturerGuidance:
+        'Motorola’s official guidance directs users to wipe spilled liquids off the phone immediately with a soft, dry cloth (<a href="https://www.motorola.com/au/en/p/phones/moto-g/84-5g/pmipmgf35mx" target="_blank" rel="noopener">Motorola moto g84 5G Product Page</a>). Because the moto g84 is water-repellent rather than submersion-rated, do not attempt to wash or rinse the phone. Never plug in a charging cable or 3.5 mm headphones while ports or openings are wet. Allow the phone to air dry thoroughly at room temperature. Avoid heat sources, ovens, hair dryers, or inserting paper towels into grilles.',
+      stepsTitle: 'Steps for moto g84 5G',
       steps: [
-        'If it was splashed or caught in light rain, the exposure the design is meant for, wipe it dry and run the eject tone with the speakers facing down.',
-        'If it was submerged or hit by pressurised water, that is outside the design. Turn it off and let it dry fully before running the tone, and do not charge it while it is wet.',
-        'Use the Speaker Test to check the left and right channels one at a time once it is dry.',
+        'Unplug any charging cables and headphone cords immediately after water contact.',
+        'Dry the phone’s exterior with a soft cloth, taking care to blot moisture away from the speaker grilles and audio jack.',
+        'Position the moto g84 with the bottom speaker pointing downward and play the 165 Hz tone for 60 seconds at high volume.',
+        'Flip the device so the top earpiece faces downward and run a second 60-second cycle to help clear moisture from the upper speaker.',
+        'Run the stereo Speaker Test tool to compare the left and right channels and confirm audio clarity.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your moto g84 speaker remains quiet, muffled, or crackling after 24 hours of drying, request repair assistance via <a href="https://motorola-global-portal.custhelp.com/app/mcp/service/" target="_blank" rel="noopener">Motorola Support &amp; Repair Services</a>.',
       faq: {
         q: 'Is the moto g84 5G waterproof?',
         a: 'No. Motorola describes the moto g84 5G as water-repellent. The design helps protect against accidental spills, splashes or light rain, but Motorola says it is not designed to be submerged in water or exposed to pressurised water, and the protection may diminish over time.',
       },
-      sources: [SRC.g84Page],
+      sources: [SRC.g84Page, SRC.motorolaService],
     },
   },
 
   'fix-samsung-galaxy-z-fold-6-speaker': {
     en: {
+      speakersTitle: 'Where the speakers are on Galaxy Z Fold6',
       speakers:
-        'Samsung’s water guidance for Galaxy phones names the earpiece, the external speaker and the primary microphone as the openings that salt residue can block. Samsung’s Z Fold6 spec sheet does not give grille positions, so we do not guess them.',
+        'Samsung’s official technical specifications confirm that the Galaxy Z Fold6 features dual stereo speakers with Dolby Atmos support (<a href="https://news.samsung.com/global/samsung-galaxy-z-fold-6-and-z-flip-6-elevate-galaxy-ai-to-new-heights" target="_blank" rel="noopener">Samsung Galaxy Z Fold6 Specifications</a>). Sound output is delivered through dedicated speaker grilles located on the top and bottom frame rails, creating balanced audio in both folded and unfolded orientations. Samsung notes that the external speaker openings, top earpiece, and primary microphone holes are the primary apertures where liquid can collect and cause muffled sound.',
+      ipRatingTitle: 'Water resistance',
       ipRating:
-        'The Galaxy Z Fold6 is rated IP48, not IP68 like the Galaxy S phones. Samsung bases the water part on lab tests of submersion in up to 1.5 metres of fresh water for up to 30 minutes, says it is not advised for beach or pool use, and notes the resistance is not permanent. Rinse off residue and dry it if it gets wet.',
+        'The Galaxy Z Fold6 carries an official IP48 rating under IEC standard 60529 (<a href="https://news.samsung.com/global/samsung-galaxy-z-fold-6-and-z-flip-6-elevate-galaxy-ai-to-new-heights" target="_blank" rel="noopener">Samsung Galaxy Z Fold6 Specifications</a>). Samsung explains that the "4" indicates protection against solid objects larger than 1 mm, while the "8" denotes fresh-water submersion tested up to 1.5 metres for up to 30 minutes (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). Unlike Galaxy S series phones with IP68 ratings, the Z Fold6 is not dust-tight. Samsung explicitly advises against beach or pool use. Water resistance is not permanent and diminishes over time. Liquid damage is not covered under warranty.',
+      manufacturerGuidanceTitle: 'What Samsung recommends',
+      manufacturerGuidance:
+        'Samsung’s official moisture guidelines instruct users to unplug all charging cables immediately if liquid enters the device. If exposed to liquids other than clean water (such as chlorinated pool water or salty sea water), Samsung recommends gently rinsing the phone in calm fresh water and drying it immediately with a soft, clean cloth (<a href="https://www.samsung.com/us/support/answer/ANS10001610/" target="_blank" rel="noopener">Samsung IP Rating Guide</a>). Hold the phone firmly and shake it gently 5 to 10 times with the USB port and speaker grilles facing down to dislodge standing water droplets. If One UI displays a water drop icon, cable charging is paused (<a href="https://www.samsung.com/uk/support/mobile-devices/my-device-displays-a-water-drop-icon-and-will-not-charge/" target="_blank" rel="noopener">Samsung Moisture Detection Help</a>). For wireless charging while drying, Samsung advises closing the foldable and centering the back of the device on the wireless charging pad. Never use hair dryers or cotton swabs in the grilles.',
+      stepsTitle: 'Steps for Galaxy Z Fold6',
       steps: [
-        'Keep sand and grit away from it while it is wet. With an IP48 rating rather than IP68, the Fold6 does not carry the dust rating of the Galaxy S phones, and Samsung does not advise beach use.',
-        'If the water drop icon appears, unplug the cable, gently shake it 5 to 10 times with the USB-C port facing down, and dry it in a well-ventilated spot or in front of a fan.',
-        'If you need power while the port dries, Samsung says to close a foldable and place it with the back facing the wireless charger, centred on the pad.',
+        'Disconnect any USB-C cables immediately; if the water drop alert is visible, do not plug in a charging cable until fully dry.',
+        'Hold the folded phone with the bottom speaker and USB port pointing downward and gently shake it 5 to 10 times over a towel.',
+        'Run the 165 Hz water eject tone for 60 seconds at 100% volume with the bottom speaker port angled downward.',
+        'Invert the phone so the top speaker grille points downward and run another 60-second cycle to help dislodge moisture from the top frame.',
+        'Open the Speaker Test diagnostic to play left and right audio channels and verify clear, balanced playback.',
       ],
+      serviceGuidanceTitle: 'When to get it checked',
+      serviceGuidance:
+        'If your Galaxy Z Fold6 speaker remains muffled or distorted after 24 hours of drying, or if moisture detection will not clear, contact an authorized repair technician at a <a href="https://www.samsung.com/us/support/service/" target="_blank" rel="noopener">Samsung Support Service Center</a>.',
       faq: {
         q: 'What does the Galaxy Z Fold6 IP48 rating mean for water?',
         a: 'Samsung bases the Z Fold6 water rating on lab tests of submersion in up to 1.5 metres of fresh water for up to 30 minutes. It is not advised for beach or pool use. Its rating is IP48 rather than IP68, so it does not have the dust rating of the Galaxy S phones.',
       },
-      sources: [SRC.fold6Specs, SRC.samsungIp, SRC.samsungMoisture],
+      sources: [SRC.fold6Specs, SRC.samsungIp, SRC.samsungMoisture, SRC.samsungService],
     },
   },
 };

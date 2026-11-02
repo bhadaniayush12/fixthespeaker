@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Why does my Apple Watch make a funny buzzing noise when unlocking?',
-    a: 'That buzzing sound is the water ejection feature working as intended. The watch drives the speaker driver at maximum excursion using low-frequency acoustic vibrations specifically designed to push water droplets out of the cavity.',
+    a: 'That sound is the water ejection feature working as intended. The watch plays a series of tones through the speaker to help clear water droplets from the speaker opening.',
   },
 ];
 
@@ -89,14 +89,13 @@ const jsonLd = {
 >
   <p>
     Apple Watch Water Lock does not make your watch waterproof; instead, it prevents accidental touchscreen taps
-    while submerged and uses an acoustic tone to expel trapped water when turned off. Turning on Water Lock disables
-    touch sensitivity so water droplets cannot trigger phantom swipes or end a workout prematurely. When you exit
-    Water Lock by pressing and holding the Digital Crown, the speaker emits a sequence of low-frequency tones that
-    physically eject liquid from the speaker cavity.
+    while in water and uses a speaker tone to help clear trapped water when turned off. Turning on Water Lock disables
+    touch sensitivity so water droplets cannot trigger taps or end a workout prematurely. When you exit
+    Water Lock by pressing and holding the Digital Crown, the speaker plays a sequence of tones that
+    helps clear liquid from the speaker opening.
   </p>
   <p>
-    Because water conducts electricity similarly to human skin, water droplets hitting the capacitive display would
-    otherwise trigger unintended app launches, calls, or workout cancellations.
+    Water droplets hitting the screen can register as touches, triggering unintended taps or interrupting a workout.
   </p>
 
   <h2>Quick fix steps</h2>
@@ -106,11 +105,11 @@ const jsonLd = {
       <strong>Open Control Center on your Apple Watch.</strong> Press the side button (<a href="https://support.apple.com/en-us/108352" rel="noopener" target="_blank">Apple</a>).
     </li>
     <li>
-      <strong>Tap the Water Lock icon.</strong> Tap the water droplet icon. A cyan droplet will appear at the top
-      center of your watch face, indicating that touch input is locked.
+      <strong>Tap the Water Lock icon.</strong> Tap the water droplet icon. A droplet will appear at the top
+      of your watch face, indicating that touch input is locked.
     </li>
     <li>
-      <strong>Engage in your water activity.</strong> You can now swim, shower, or run in heavy rain without water
+      <strong>Engage in your water activity.</strong> You can now swim, shower, or run in the rain without water
       registering as touches. If you start a swimming workout in the Workout app, Water Lock turns on automatically.
     </li>
     <li>
@@ -120,7 +119,7 @@ const jsonLd = {
     </li>
     <li>
       <strong>Listen for the ejection chimes.</strong> The watch will announce "Unlocked" while playing a stepped
-      sequence of low-frequency acoustic vibrations. As the tones sound, hold the watch speaker slit angled downward
+      sequence of tones. As the tones sound, hold the watch speaker opening angled downward
       over a soft cloth or tissue.
     </li>
     <li>
@@ -128,10 +127,10 @@ const jsonLd = {
       crystal, casing, band, and speaker slit.
     </li>
     <li>
-      <strong>Use a web eject tool if audio remains muffled.</strong> If notification chimes still sound dull
+      <strong>Use a sound tool if audio remains muffled.</strong> If notification sounds still sound dull
       after running the built-in purge, open our
-      <a href="/fix-apple-watch-speaker">Fix Apple Watch Speaker tool</a> on your paired iPhone or watch browser to
-      run additional low-frequency vibration cycles.
+      <a href="/fix-apple-watch-speaker">Fix Apple Watch Speaker tool</a> on your paired phone to test audio or
+      play additional sound cycles.
     </li>
   </ol>
 
@@ -150,22 +149,16 @@ const jsonLd = {
   </figure>
 
   <h2>Why it happens</h2>
-  <p>To understand Water Lock, you must distinguish between physical water resistance and capacitive touchscreen physics:</p>
+  <p>To understand Water Lock, it helps to separate the touchscreen lock from the speaker clearing sound:</p>
   <ul>
     <li>
-      <strong>Capacitive touch mechanics:</strong> Modern touchscreens detect touch by measuring tiny electrostatic
-      charges from fingertips. Water contains ions and conducts electricity. When droplets land on an active screen,
-      the watch registers them as fingers, causing phantom taps. Water Lock disables capacitive sensor sampling.
+      <strong>Screen lock:</strong> Water droplets landing on an active display can register as touches, causing unwanted taps or accidental app inputs. Water Lock locks the display so water cannot trigger taps.
     </li>
     <li>
-      <strong>Acoustic cavity fluid retention:</strong> Loudspeakers must move air to create sound waves, leaving an
-      open acoustic port on the side of the case. Water enters this port and is held by surface tension, muting
-      sound.
+      <strong>Speaker openings:</strong> Speakers require an opening to produce audio. Water can enter this opening and muffle sound output until it is cleared or dries.
     </li>
     <li>
-      <strong>The acoustic ejection mechanism:</strong> When unlocking Water Lock, the audio amplifier drives the
-      speaker voice coil at specific low frequencies with maximum cone excursion. This motion acts as a micro-pump,
-      overcoming surface tension and forcing liquid out through the side acoustic slot.
+      <strong>Sound clearing:</strong> When unlocking Water Lock, the Apple Watch plays a series of tones through the speaker to help push water droplets out through the side opening.
     </li>
   </ul>
   <p>
@@ -183,14 +176,14 @@ const jsonLd = {
   <figure class="my-8">
     <img
       src="/images/guides/apple-watch-speaker-port-diagram.svg"
-      alt="Anatomy diagram of the Apple Watch side speaker port showing acoustic barrier, speaker cone motion, escaping water droplets, and note confirming no mechanical valves."
+      alt="Diagram of the Apple Watch side speaker opening showing water droplets clearing from the opening."
       class="w-full rounded-2xl border border-hairline bg-elevated"
       width="720"
       height="360"
       loading="lazy"
     />
     <figcaption class="mt-2.5 text-center text-xs text-mute font-mono">
-      Watch speaker cutaway: acoustic slot, protective membrane barrier, and fluid expulsion path
+      Watch speaker port: acoustic slot, protective barrier, and water clearing path
     </figcaption>
   </figure>
 
@@ -243,7 +236,7 @@ const jsonLd = {
     out-of-warranty service or AppleCare+ incident fees apply.
   </p>
   <p>
-    To learn more about the physics behind audio drying tools and why low-frequency pulses move fluids, read our
+    To learn more about how sound tones help clear water from speakers, read our
     guide on <a href="/guides/does-water-eject-sound-really-work">does water eject sound really work</a>.
   </p>
 

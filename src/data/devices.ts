@@ -85,10 +85,10 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
     : 'Bottom USB-C speaker grille and top stereo earpiece receiver';
 
   const defaultFreq = isEarbuds
-    ? '165 Hz water pulse + 2.5 kHz–14.5 kHz harmonic dust/wax sweep'
+    ? '165 Hz low tone + 2.5 kHz–14.5 kHz sound sweep'
     : isWatch
-    ? '165 Hz resonant acoustic ejection wave'
-    : '165 Hz low-frequency resonant square wave + harmonic sweep';
+    ? '165 Hz low tone played at high volume'
+    : '165 Hz low tone played at high volume + sound sweep';
 
   const defaultDuration = isEarbuds ? '60 seconds per mode' : '60–120 seconds';
 
@@ -97,11 +97,11 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
     ? [
         {
           name: 'Remove Earbuds From Your Ears',
-          text: `Take both ${raw.shortName} earbuds out of your ears before starting. High-volume acoustic sweeps should never be played directly inside the ear canal.`,
+          text: `Take both ${raw.shortName} earbuds out of your ears before starting. High-volume sound sweeps should never be played directly inside the ear canal.`,
         },
         {
           name: 'Remove Silicone Tips (If Applicable)',
-          text: 'Detach silicone or foam ear tips to expose the primary black acoustic speaker mesh directly to free air.',
+          text: 'Detach silicone or foam ear tips to expose the primary speaker mesh directly to free air.',
         },
         {
           name: 'Point Speaker Mesh Downward',
@@ -113,7 +113,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Brush Mesh & Test Audio Clarity',
-          text: 'Switch to Dust Cleaner mode to loosen dried wax, gently brush the mesh with a clean soft toothbrush, and test audio balance.',
+          text: 'Switch to Dust Cleaner mode to loosen dried debris, gently brush the mesh with a clean soft toothbrush, and test audio balance.',
         },
       ]
     : isWatch
@@ -128,11 +128,11 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Maximize Volume on Connected Device',
-          text: 'Set the media volume to 100% to maximize speaker diaphragm excursion and air displacement velocity.',
+          text: 'Set the media volume to 100% to help clear water from the speaker openings.',
         },
         {
           name: 'Start 165 Hz Water Ejection Sound',
-          text: `Tap Start Ejection and let the pulsing 165 Hz acoustic wave run for the full 60 seconds on your ${raw.shortName}.`,
+          text: `Tap Start Ejection and let the 165 Hz low tone run for the full 60 seconds on your ${raw.shortName}.`,
         },
         {
           name: 'Wipe Casing & Verify Microphone/Speaker',
@@ -147,7 +147,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Maximize System Media Volume',
-          text: 'Set speaker volume to 100% in system sound settings to allow full transducer air pressure.',
+          text: 'Set speaker volume to 100% in system sound settings.',
         },
         {
           name: 'Tilt Device Toward Speaker Grilles',
@@ -155,7 +155,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Run 165 Hz Water Ejection Cycle',
-          text: 'Start the water eject tool and let the low-frequency acoustic vibrations push trapped moisture out of the sound chambers.',
+          text: 'Start the water eject tool and let the 165 Hz low tone played at high volume help clear trapped moisture from the speaker grilles.',
         },
         {
           name: 'Dry Perimeter & Run Stereo Test',
@@ -169,7 +169,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Turn Media Volume to 100%',
-          text: 'Use the volume rocker to raise media playback volume to maximum for peak acoustic pressure and membrane excursion.',
+          text: 'Use the volume rocker to raise media playback volume to maximum.',
         },
         {
           name: 'Hold Device Speaker-Down',
@@ -177,7 +177,7 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
         },
         {
           name: 'Play 165 Hz Water Eject Frequency',
-          text: 'Tap Start Ejection and let the pulsing sound run for 60 seconds. Gently tap the frame against your palm to help droplets escape.',
+          text: 'Tap Start Ejection and let the 165 Hz low tone run for 60 seconds. Gently tap the frame against your palm to help droplets escape.',
         },
         {
           name: 'Wipe Exterior & Run Speaker Test',
@@ -218,15 +218,15 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
   const faqs: DeviceFAQ[] = raw.customFaqs || [
     {
       q: `How does 165 Hz sound eject water from ${raw.shortName}?`,
-      a: `The 165 Hz frequency matches the physical acoustic resonance of micro-speaker chambers. Playing this low-frequency pulse displaces air rapidly, breaking the surface tension of water droplets trapped in the ${raw.shortName} speaker mesh and forcing them out safely.`,
+      a: `Playing a 165 Hz low tone played at high volume creates vibrations that help dislodge water droplets trapped in the ${raw.shortName} speaker openings.`,
     },
     {
       q: `Is running this water eject sound safe for ${raw.shortName} speakers?`,
-      a: `Yes. The tone operates strictly within standard audio frequency and power limits designed for ${raw.name} transducers and built-in amplifiers.`,
+      a: `Yes. The tone plays within standard audio playback limits for ${raw.name} speakers.`,
     },
     {
       q: `Why does my ${raw.shortName} speaker sound muffled after getting wet?`,
-      a: `When water enters the speaker ports, surface tension forms a thin liquid film across the protective acoustic mesh. This film blocks sound waves from vibrating freely. Ejecting the water restores original audio volume and clarity.`,
+      a: `When water enters the speaker openings, liquid can collect across the protective mesh, dampening sound until the moisture clears or dries.`,
     },
     {
       q: `How many cycles should I run on ${raw.shortName}?`,
@@ -238,12 +238,14 @@ function buildDeviceData(raw: RawDeviceDef): DeviceData {
   const metaDescription = `Help eject water from ${raw.name} speakers. A 165 Hz water eject tone can help clear muffled sound from speaker ports and grilles in about 60 seconds.`;
   const eyebrow = `${raw.name} Water Eject & Diagnostics`;
   const heroHeading = `Fix ${raw.name} Speaker & Eject Water`;
-  const heroSubtitle = `Play the specialized 165 Hz acoustic pulse to clear muffled audio and expel trapped water from ${raw.name} speaker grilles without installing apps.`;
+  const heroSubtitle = `Play a 165 Hz low tone played at high volume to help clear muffled audio and trapped water from ${raw.name} speaker openings without installing apps.`;
   const badge = `165 Hz ${raw.shortName} Water Eject`;
 
   const overview = [
-    `The ${raw.name} features ${raw.ipRating} water protection, but water surface tension frequently traps microscopic droplets inside speaker ports and grilles after exposure to rain, sweat, or submersion. This creates a muffled, low, or crackly sound.`,
-    `Fix The Speaker generates high-displacement 165 Hz resonant sound waves directly in your web browser to dislodge trapped water droplets and clear speaker grilles quickly and safely.`,
+    raw.ipRating === 'Not listed by manufacturer'
+      ? `The ${raw.name} has no official ingress protection rating listed by the manufacturer. Water can collect inside speaker ports and grilles after exposure to rain, sweat, or liquid splashes, causing muffled sound.`
+      : `The ${raw.name} features ${raw.ipRating} water protection, but water can collect inside speaker ports and grilles after exposure to rain, sweat, or liquid splashes, causing muffled sound.`,
+    `Fix The Speaker plays a 165 Hz low tone played at high volume directly in your web browser to help clear trapped water from speaker openings.`,
   ];
 
   return {
@@ -363,8 +365,8 @@ const rawCatalog: RawDeviceDef[] = [
         a: 'Salt water and pool chlorine leave corrosive chemical residues that crystallize inside the acoustic mesh. Immediately turn off the phone and rinse the speaker ports gently under a slow trickle of cool, fresh tap water (never use high water pressure). Pat dry with a lint-free microfiber cloth, tap the phone gently against your palm with the ports facing down, run our 165 Hz water eject tone for 2 to 3 cycles, and allow it to dry thoroughly before plugging into USB-C.',
       },
       {
-        q: 'Can 165 Hz water eject damage the iPhone 16 speaker membrane?',
-        a: 'No. The 165 Hz acoustic pulse generates mechanical air displacement within the safe operational decibel and frequency range of Apple’s custom speaker drivers and audio amplifiers. It safely flexes the diaphragm to break the surface tension of trapped liquid without causing thermal or mechanical stress.',
+        q: 'Can 165 Hz water eject damage the iPhone 16 speaker?',
+        a: 'No. The 165 Hz tone operates within normal audio playback volume limits for iPhone 16 speakers. It vibrates the speaker to help clear trapped water droplets without damaging the hardware.',
       },
       {
         q: 'Why does my iPhone 16 say "Liquid Detected in USB-C Connector" after water ejection?',
@@ -396,8 +398,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'iPhone 16 Pro Max',
     brand: 'Apple',
     category: 'smartphone',
-    ipRating: 'IP68 (Grade 5 Titanium frame, 6m up to 30 min)',
-    compat: ['iPhone 16 Pro Max', 'iPhone 16 Pro', 'iPhone 16 Plus'],
+    ipRating: 'IP68 (6m depth up to 30 min per IEC 60529)',
+    grilleSpecs: 'Built-in stereo speakers (bottom-firing acoustic grille and upper earpiece in Dynamic Island)',
+    compat: ['iPhone 16 Pro Max'],
   },
   {
     slug: 'fix-iphone-15-speaker',
@@ -405,8 +408,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'iPhone 15',
     brand: 'Apple',
     category: 'smartphone',
-    ipRating: 'IP68 (6m depth up to 30 min)',
-    compat: ['iPhone 15', 'iPhone 15 Plus', 'iPhone 15 Pro', 'iPhone 15 Pro Max'],
+    ipRating: 'IP68 (6m depth up to 30 min per IEC 60529)',
+    grilleSpecs: 'Built-in stereo speakers (bottom-firing acoustic grille and upper earpiece in Dynamic Island)',
+    compat: ['iPhone 15'],
   },
   {
     slug: 'fix-iphone-15-plus-speaker',
@@ -628,7 +632,7 @@ const rawCatalog: RawDeviceDef[] = [
     customFaqs: [
       {
         q: 'Where are the speaker and vent ports on AirPods Pro 2 and their charging case?',
-        a: 'Each AirPod Pro 2 earbud has three main acoustic zones: 1) The main high-excursion driver mesh, visible when you snap off the silicone ear tip. 2) The elongated rear acoustic vent on the curved exterior shell, which equalizes air pressure and provides deep bass. 3) Inward and outward-facing ANC microphone grilles along the contour and bottom stem. Additionally, the AirPods Pro 2 charging case has 4 dedicated speaker holes on the bottom edge for Find My chime alerts.',
+        a: 'Each AirPod Pro 2 earbud has three main acoustic zones: 1) The primary speaker driver mesh, visible when you snap off the silicone ear tip. 2) The elongated rear acoustic vent on the curved exterior shell, which equalizes air pressure and provides deep bass. 3) Inward and outward-facing ANC microphone grilles along the contour and bottom stem. Additionally, the AirPods Pro 2 charging case has 4 dedicated speaker holes on the bottom edge for Find My chime alerts.',
       },
       {
         q: 'Are AirPods Pro 2 waterproof against swimming and showers?',
@@ -855,8 +859,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Galaxy S25',
     brand: 'Samsung',
     category: 'smartphone',
-    ipRating: 'IP68',
-    compat: ['Galaxy S25', 'Galaxy S25+', 'Galaxy S24'],
+    ipRating: 'IP68 (1.5m fresh water up to 30 min per IEC 60529)',
+    grilleSpecs: 'Stereo speakers (bottom speaker port and upper earpiece slit)',
+    compat: ['Galaxy S25'],
   },
   {
     slug: 'eject-water-samsung-galaxy-s24-ultra',
@@ -864,8 +869,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Galaxy S24 Ultra',
     brand: 'Samsung',
     category: 'smartphone',
-    ipRating: 'IP68',
-    compat: ['Galaxy S24 Ultra', 'Galaxy S24+', 'Galaxy S24'],
+    ipRating: 'IP68 (1.5m fresh water up to 30 min per IEC 60529)',
+    grilleSpecs: 'Dual stereo speakers (bottom speaker between USB-C and S Pen, upper earpiece slit)',
+    compat: ['Galaxy S24 Ultra'],
     customTips: [
       'If the One UI water drop notification appears ("Moisture has been detected in your charger/USB port"), do not plug in the USB-C cable. Let the port air-dry upright for 2 to 4 hours; you can safely use Fast Wireless Charging if you need immediate power.',
     ],
@@ -903,7 +909,7 @@ const rawCatalog: RawDeviceDef[] = [
       },
       {
         q: 'How does 165 Hz sound clear the Galaxy S24 speaker slot?',
-        a: 'Water entering the Galaxy S24 bottom speaker slot clings to the internal hydrophobic acoustic mesh due to surface tension, muffling sound output. Playing a 165 Hz low-frequency resonant sound wave creates rapid air pressure oscillations in the speaker chamber. This acoustic vibration breaks the liquid meniscus and propels droplets outward through the speaker slot.',
+        a: 'Water entering the Galaxy S24 bottom speaker slot can collect across the protective mesh, muffling sound output. Playing a 165 Hz low tone played at high volume creates vibrations that help dislodge trapped droplets outward through the speaker slot.',
       },
       {
         q: 'What should I do if the Galaxy S24 shows a "Moisture detected in USB port" alert?',
@@ -962,8 +968,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Galaxy S22 Ultra',
     brand: 'Samsung',
     category: 'smartphone',
-    ipRating: 'IP68',
-    compat: ['Galaxy S22 Ultra', 'Galaxy S22+', 'Galaxy S22'],
+    ipRating: 'IP68 (1.5m fresh water up to 30 min per IEC 60529)',
+    grilleSpecs: 'Stereo speakers (bottom speaker slot next to USB-C port, upper earpiece slit)',
+    compat: ['Galaxy S22 Ultra'],
     customTips: [
       'If exposed to pool water or salt water, rinse briefly under a gentle trickle of fresh tap water to prevent mineral corrosion on the acoustic mesh, then dry with a microfiber towel.',
     ],
@@ -1033,8 +1040,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Galaxy Z Fold 6',
     brand: 'Samsung',
     category: 'smartphone',
-    ipRating: 'IP48',
-    compat: ['Galaxy Z Fold 6', 'Galaxy Z Fold 5', 'Galaxy Z Fold 4'],
+    ipRating: 'IP48 (1.5m fresh water up to 30 min per IEC 60529)',
+    grilleSpecs: 'Dual stereo speakers located on top and bottom frame perimeter',
+    compat: ['Galaxy Z Fold 6'],
   },
   {
     slug: 'fix-samsung-galaxy-z-fold-5-speaker',
@@ -1300,7 +1308,8 @@ const rawCatalog: RawDeviceDef[] = [
     brand: 'Google',
     category: 'smartphone',
     ipRating: 'IP68 (IEC 60529)',
-    compat: ['Pixel 8 Pro', 'Pixel 8', 'Pixel 7 Pro'],
+    grilleSpecs: 'Stereo speakers (bottom speaker to right of USB-C port, top earpiece speaker)',
+    compat: ['Pixel 8 Pro'],
     customTips: [
       'If the Android notification "Liquid or debris in USB port - USB port disabled" appears, do not connect a USB-C charger. Allow the port to air-dry for at least 2 to 4 hours. You can safely use a Pixel Stand or Qi wireless charger if you need to recharge immediately.',
       'Never insert SIM ejector keys, paperclips, or compressed air into the microphone pinhole located on the bottom frame near the speaker slot; high pressure can tear the internal waterproof acoustic membrane.',
@@ -1312,7 +1321,7 @@ const rawCatalog: RawDeviceDef[] = [
       },
       {
         q: 'How does 165 Hz sound safely clear water from the Pixel 8 Pro speaker cavity?',
-        a: 'The 165 Hz acoustic pulse generates rapid pressure waves that oscillate the speaker cone at its mechanical resonance frequency. This rhythmic displacement breaks the surface tension of water trapped in the acoustic mesh, atomizing droplets and pushing liquid outward through the exterior grille without stressing Google\'s audio amplifier or drivers.',
+        a: 'Playing a 165 Hz low tone played at high volume creates vibrations that help dislodge water droplets trapped across the exterior grille without exceeding safe audio playback limits.',
       },
       {
         q: 'What does the "Liquid or debris in USB port" notification mean on Pixel 8 Pro?',
@@ -1354,7 +1363,8 @@ const rawCatalog: RawDeviceDef[] = [
     brand: 'Google',
     category: 'smartphone',
     ipRating: 'IP68 (IEC 60529)',
-    compat: ['Pixel 7', 'Pixel 7 Pro', 'Pixel 7a'],
+    grilleSpecs: 'Stereo speakers (bottom speaker to right of USB-C port, top earpiece speaker)',
+    compat: ['Pixel 7'],
   },
   {
     slug: 'fix-pixel-7a-speaker',
@@ -1362,8 +1372,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Pixel 7a',
     brand: 'Google',
     category: 'smartphone',
-    ipRating: 'IP67 (1m depth up to 30 min)',
-    compat: ['Pixel 7a', 'Pixel 6a', 'Pixel 7'],
+    ipRating: 'IP67 (1m depth up to 30 min per IEC 60529)',
+    grilleSpecs: 'Stereo speakers (bottom-firing speaker port and top earpiece speaker)',
+    compat: ['Pixel 7a'],
   },
   {
     slug: 'fix-pixel-6-pro-speaker',
@@ -1398,8 +1409,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Pixel Buds Pro 2',
     brand: 'Google',
     category: 'earbuds',
-    ipRating: 'IP54 (Earbuds) / IPX4 (Case)',
-    compat: ['Pixel Buds Pro 2', 'Pixel Buds Pro'],
+    ipRating: 'IP54 (Earbuds) / IPX4 (Case) under IEC 60529',
+    grilleSpecs: '11 mm dynamic speaker driver with acoustic mesh opening',
+    compat: ['Pixel Buds Pro 2'],
   },
   {
     slug: 'clean-pixel-buds-pro-speaker',
@@ -1506,12 +1518,13 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-redmi-note-13-speaker',
-    name: 'Redmi Note 13 (5G & 4G)',
+    name: 'Redmi Note 13',
     shortName: 'Redmi Note 13',
     brand: 'Xiaomi',
     category: 'smartphone',
-    ipRating: 'IP54 (Dust and splash resistance)',
-    compat: ['Redmi Note 13 5G', 'Redmi Note 13 4G', 'Redmi Note 12'],
+    ipRating: 'IP54 (Splash and dust resistance per Xiaomi specs)',
+    grilleSpecs: 'Dual speakers with Dolby Atmos (bottom speaker and top speaker)',
+    compat: ['Redmi Note 13'],
     customTips: [
       'Important IP54 water resistance notice: Redmi Note 13 is IP54 splash-resistant only — it is NOT waterproof and cannot survive immersion. Never submerge the device in water or hold it under a running faucet. Blot liquid off immediately with a dry cloth.',
       'Check for false headphone mode: if water enters the top 3.5mm headphone jack, it can short the internal detection contacts. The phone will display a headphone icon in the status bar and mute the external speakers. Tap the phone against your palm with the top edge facing down to dislodge trapped droplets.',
@@ -1547,13 +1560,13 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-redmi-13c-speaker',
-    name: 'Redmi 13C & 12C',
+    name: 'Redmi 13C',
     shortName: 'Redmi 13C',
     brand: 'Xiaomi',
     category: 'smartphone',
-    // IP52 per Xiaomi: https://www.mi.com/global/product/redmi-13c/specs/
-    ipRating: 'IP52 (Splash and dust resistance)',
-    compat: ['Redmi 13C 5G', 'Redmi 13C 4G', 'Redmi 12C'],
+    ipRating: 'Not listed by manufacturer',
+    grilleSpecs: 'Single bottom-firing loudspeaker adjacent to USB Type-C port',
+    compat: ['Redmi 13C'],
   },
   {
     slug: 'fix-poco-f6-pro-speaker',
@@ -1812,8 +1825,9 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Realme 12 Pro+',
     brand: 'Realme',
     category: 'smartphone',
-    ipRating: 'IP65 (Dust and water jet protection)',
-    compat: ['Realme 12 Pro+', 'Realme 12 Pro', 'Realme 11 Pro+'],
+    ipRating: 'IP65 (Dust and water jet protection per realme specs)',
+    grilleSpecs: 'Dual stereo speakers with Dolby Atmos (bottom-firing grille and upper earpiece)',
+    compat: ['Realme 12 Pro+ 5G'],
   },
   {
     slug: 'fix-realme-12-pro-speaker',
@@ -1843,15 +1857,16 @@ const rawCatalog: RawDeviceDef[] = [
     shortName: 'Moto Edge 50 Ultra',
     brand: 'Motorola',
     category: 'smartphone',
-    ipRating: 'IP68',
-    compat: ['Motorola Edge 50 Ultra', 'Motorola Edge 50 Pro', 'Motorola Edge 50 Fusion'],
+    ipRating: 'IP68 (1.5m fresh water up to 30 min per Motorola specs)',
+    grilleSpecs: 'Dual stereo speakers with Dolby Atmos (bottom speaker port and upper earpiece)',
+    compat: ['Motorola Edge 50 Ultra'],
     customTips: [
       'Fresh water vs. Pool & Ocean water: if exposed to ocean salt water or swimming pool chlorine, rinse the speaker grilles under a gentle trickle of fresh tap water to prevent corrosive mineral crystallization before running the 165 Hz water eject tone.',
     ],
     customFaqs: [
       {
-        q: 'Is 165 Hz water ejection safe for Motorola Dolby Atmos acoustic chambers?',
-        a: 'Yes. The 165 Hz frequency tone produces mechanical air displacement that targets the acoustic cavity\'s resonant frequency without exceeding the safe excursion limits of Motorola\'s high-output stereo drivers. It safely breaks surface tension on the acoustic mesh to eject water without distorting Dolby Atmos calibration.',
+        q: 'Is 165 Hz water ejection safe for Motorola Dolby Atmos speakers?',
+        a: 'Yes. The 165 Hz tone plays within standard audio volume limits for Motorola stereo speakers and helps clear trapped moisture without damaging speaker components.',
       },
     ],
   },
@@ -1884,12 +1899,13 @@ const rawCatalog: RawDeviceDef[] = [
   },
   {
     slug: 'fix-moto-g84-speaker',
-    name: 'Motorola Moto G84 & G54',
+    name: 'Motorola Moto G84',
     shortName: 'Moto G84',
     brand: 'Motorola',
     category: 'smartphone',
-    ipRating: 'Water-repellent',
-    compat: ['Moto G84 5G', 'Moto G54 5G', 'Moto G34 5G'],
+    ipRating: 'Water-repellent design (protects against spills, splashes, light rain)',
+    grilleSpecs: 'Stereo speakers with Dolby Atmos (bottom speaker port and upper earpiece)',
+    compat: ['Moto G84 5G'],
     customTips: [
       'Check the 3.5mm audio jack: the top edge features an analog 3.5mm headphone jack. Moisture inside this socket can short headphone detection pins, causing the phone to switch to "headphone mode" and mute the stereo speakers. Gently tap the phone against your palm with the top edge down to expel droplets.',
     ],
@@ -1900,7 +1916,7 @@ const rawCatalog: RawDeviceDef[] = [
       },
       {
         q: 'How does 165 Hz sound clear muffled audio on the Moto G84?',
-        a: 'When water covers the fine acoustic mesh of the Moto G84 speakers, surface tension traps a liquid membrane that blocks high and mid frequencies. The 165 Hz resonant wave induces physical vibrations in the speaker diaphragm, creating air pressure pulses that shatter the surface tension and blow water droplets out through the grille holes.',
+        a: 'When water enters the Moto G84 speaker openings, moisture can collect across the mesh, muffling sound. Playing a 165 Hz low tone played at high volume creates vibrations that help dislodge trapped water droplets through the grille openings.',
       },
     ],
   },
@@ -1922,24 +1938,23 @@ const coreHubs: Record<string, DeviceData> = {
     eyebrow: 'Apple iPhone Water Eject & Diagnostics',
     heroHeading: 'Fix iPhone Speaker & Eject Trapped Water',
     heroSubtitle:
-      'Play the specialized 165 Hz acoustic pulse to clear muffled iPhone audio, expel water from bottom speaker grilles, and test stereo balance without installing apps.',
+      'Play a 165 Hz low tone played at high volume to clear muffled iPhone audio, expel water from bottom speaker grilles, and test stereo balance without installing apps.',
     badge: '165 Hz iPhone Water Eject',
-    ipRating: 'IP68 (IEC 60529 — maximum depth of 6m up to 30 min on iPhone 12–17)',
-    grilleSpecs: 'Laser-machined bottom speaker holes + top earpiece receiver micro-mesh',
-    acousticFreq: '165 Hz low-frequency resonant square wave + 82.5 Hz sub-bass',
+    ipRating: 'IP68 / IP67 (Varies by model; 6m on iPhone 12–16 per IEC 60529)',
+    grilleSpecs: 'Bottom-firing speaker grille and top earpiece receiver micro-mesh',
+    acousticFreq: '165 Hz low tone played at high volume + sound sweep',
     recommendedDuration: '60–120 seconds (1–2 cycles)',
     compatibilityList: [
-      'iPhone 17 / 17 Pro / 17 Pro Max / iPhone Air',
-      'iPhone 16 / 16 Plus / 16 Pro / 16 Pro Max',
-      'iPhone 15 / 15 Plus / 15 Pro / 15 Pro Max',
-      'iPhone 14 / 14 Plus / 14 Pro / 14 Pro Max',
-      'iPhone 13 / 13 mini / 13 Pro / 13 Pro Max',
-      'iPhone 12 / 12 mini / 12 Pro / 12 Pro Max',
-      'iPhone 11, XR, XS, X, SE Series',
+      'iPhone 16 Pro Max',
+      'iPhone 15',
+      'iPhone 14',
+      'iPhone 13',
+      'iPhone 12',
+      'iPhone 11',
     ],
     overview: [
-      'Modern iPhones feature IP68 water resistance, but water surface tension frequently traps microscopic droplets inside the bottom speaker grilles and top earpiece receiver mesh. This creates a muffled, distorted, or extremely quiet audio output even after drying the outer chassis.',
-      'Unlike the Apple Watch, iOS does not provide a native built-in water eject button in the Control Center. Fix The Speaker plays a low 165 Hz tone directly in Safari or Chrome so the speaker’s own vibration can help push trapped droplets out of the grille.',
+      'Modern iPhones feature water resistance, but water can collect inside the bottom speaker grilles and top earpiece receiver mesh. This creates a muffled or quiet audio output until the grilles dry.',
+      'Unlike the Apple Watch, iOS does not provide a native built-in water eject button in the Control Center. Fix The Speaker plays a 165 Hz low tone played at high volume directly in Safari or Chrome so speaker vibrations help push trapped droplets out of the grille.',
     ],
     steps: [
       {
@@ -1948,7 +1963,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         name: 'Set Master Volume to 100%',
-        text: 'Turn your iPhone media volume to maximum using the side volume buttons to achieve peak diaphragm displacement and air velocity.',
+        text: 'Turn your iPhone media volume to maximum using the side volume buttons.',
       },
       {
         name: 'Orient iPhone Vertically Facing Down',
@@ -1956,7 +1971,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         name: 'Start the 165 Hz Water Eject Cycle',
-        text: 'Tap the Start Ejection button and let the pulsing 165 Hz sound run for the full 60-second cycle. Gently shake the device downward as water droplets emerge.',
+        text: 'Tap the Start Ejection button and let the 165 Hz low tone run for the full 60-second cycle. Gently tap the device downward against your palm as water droplets emerge.',
       },
       {
         name: 'Wipe Exterior & Test Stereo Balance',
@@ -1979,7 +1994,7 @@ const coreHubs: Record<string, DeviceData> = {
       },
       {
         q: 'Why does my iPhone earpiece speaker sound quiet after getting wet?',
-        a: 'The top earpiece speaker has a very fine protective mesh where surface tension easily traps water droplets. Run the 165 Hz Water Eject mode while tilting the top edge of your iPhone downward to clear the earpiece grille.',
+        a: 'The top earpiece speaker has a fine protective mesh where water droplets can collect. Run the 165 Hz tone while tilting the top edge of your iPhone downward to help clear the earpiece grille.',
       },
       {
         q: 'How many cycles should I run on an iPhone?',
@@ -2003,21 +2018,19 @@ const coreHubs: Record<string, DeviceData> = {
     heroSubtitle:
       'Clear muffled stereo sound on Samsung Galaxy S, Z, and A-series devices. The 165 Hz tone can help push trapped moisture out of the speaker ports.',
     badge: 'Samsung Galaxy Water Eject',
-    ipRating: 'IP68 (Galaxy S-Series) / IP48/IPX8 (Galaxy Z Fold & Flip Series)',
-    grilleSpecs: 'Bottom acoustic slot / circular micro-ports + top stereo receiver slit',
-    acousticFreq: '165 Hz tuned square wave with harmonic acoustic resonance',
+    ipRating: 'IP68 / IP67 (Varies by model; see model guide)',
+    grilleSpecs: 'Bottom speaker port and upper earpiece receiver slit',
+    acousticFreq: '165 Hz low tone played at high volume + sound sweep',
     recommendedDuration: '60–120 seconds',
     compatibilityList: [
-      'Samsung Galaxy S25 / S25+ / S25 Ultra',
-      'Samsung Galaxy S24 / S24+ / S24 Ultra / S24 FE',
-      'Samsung Galaxy S23 / S23+ / S23 Ultra / S23 FE',
-      'Samsung Galaxy S22, S21, S20 Series',
-      'Samsung Galaxy Z Fold 6, Z Fold 5, Z Flip 6, Z Flip 5',
-      'Samsung Galaxy A55, A54, A35, A34, A15 Series',
+      'Galaxy S25',
+      'Galaxy S24 Ultra',
+      'Galaxy S22 Ultra',
+      'Galaxy Z Fold 6',
     ],
     overview: [
-      'Samsung Galaxy devices feature advanced stereo speaker systems tuned by AKG with Dolby Atmos support. When exposed to water during workouts, rain, or swimming, moisture creates a barrier across the bottom speaker acoustic chamber and upper bezel slit, muffling sound and dulling high frequencies.',
-      'Fix The Speaker uses acoustic resonance to drive high air pressure through Samsung speaker channels, breaking surface tension and forcing trapped moisture out of the bottom port and earpiece.',
+      'Samsung Galaxy devices feature stereo speaker systems. When exposed to water during workouts, rain, or splashes, moisture can collect across the bottom speaker port and upper earpiece slit, muffling sound output.',
+      'Fix The Speaker plays a 165 Hz low tone played at high volume to help clear trapped moisture from the bottom speaker port and earpiece.',
     ],
     steps: [
       {
@@ -2049,7 +2062,7 @@ const coreHubs: Record<string, DeviceData> = {
     faqs: [
       {
         q: 'Why does my Samsung Galaxy sound quiet and distorted after water exposure?',
-        a: 'Water droplets get trapped across the protective mesh behind the bottom speaker slot and the narrow top ear speaker slit. The surface tension dampens membrane vibrations until an acoustic ejection sound forces the droplets out.',
+        a: 'Water droplets can collect across the protective mesh behind the bottom speaker slot and the top earpiece slit, muffling audio until the moisture is cleared.',
       },
       {
         q: 'Does this work on both Galaxy S Ultra and Galaxy A series phones?',
@@ -2079,23 +2092,21 @@ const coreHubs: Record<string, DeviceData> = {
     eyebrow: 'AirPods Speaker Cleaning & Water Eject',
     heroHeading: 'Clean AirPods Speaker Mesh & Eject Water',
     heroSubtitle:
-      'Restore clear, loud sound to muffled AirPods and AirPods Pro. Eject sweat, water, and dislodge earwax from acoustic mesh grilles using tuned sound frequencies.',
+      'Restore clear sound to muffled AirPods and AirPods Pro. Eject sweat, water, and dislodge earwax from acoustic mesh grilles using sound frequencies.',
     badge: 'AirPods Mesh Cleaner & Water Eject',
-    ipRating: 'IP54 / IPX4 (AirPods 3/4 & AirPods Pro 1/2 sweat and water resistance)',
-    grilleSpecs: 'High-density stainless steel acoustic mesh and black acoustic side vents',
-    acousticFreq: '165 Hz water pulse + 2.5 kHz–14.5 kHz harmonic dust/wax sweep',
+    ipRating: 'IP54 / IPX4 (Varies by model; AirPods 1/2 and Max not water resistant)',
+    grilleSpecs: 'Acoustic speaker mesh and side air vents on each earbud',
+    acousticFreq: '165 Hz low tone + 2.5 kHz–14.5 kHz sound sweep',
     recommendedDuration: '60 seconds per mode',
     compatibilityList: [
-      'AirPods Pro 2 (USB-C & Lightning)',
-      'AirPods Pro (1st Generation)',
-      'AirPods 4 (Active Noise Cancellation & Standard)',
-      'AirPods 3 (3rd Generation)',
-      'AirPods 2 & 1 (Original Generation)',
-      'AirPods Max (Over-Ear)',
+      'AirPods Pro 2',
+      'AirPods 4',
+      'AirPods 3',
+      'AirPods Pro',
     ],
     overview: [
-      'AirPods and AirPods Pro frequently suffer from muffled volume, quiet output on one side, or weak bass response due to sweat, water droplets, or earwax build-up blocking the fine black acoustic mesh grilles.',
-      'By placing your AirPods outside of your ears and routing audio through them, Fix The Speaker uses low-frequency diaphragm pulses to expel moisture and high-frequency harmonic sweeps to dislodge compacted wax particles.',
+      'AirPods and AirPods Pro frequently suffer from muffled volume, quiet output on one side, or weak bass response due to sweat, water droplets, or earwax build-up blocking the fine acoustic mesh grilles.',
+      'By placing your AirPods outside of your ears and routing audio through them, Fix The Speaker plays a 165 Hz low tone to help clear moisture and frequency sweeps to dislodge compacted wax particles.',
     ],
     steps: [
       {
@@ -2233,22 +2244,24 @@ const coreHubs: Record<string, DeviceData> = {
     eyebrow: 'Universal Android Speaker Cleaner & Water Eject',
     heroHeading: 'Fix Android Phone Speaker & Eject Water',
     heroSubtitle:
-      'Clear muffled audio, eject trapped water, and clean dust from Google Pixel, Xiaomi, OnePlus, Moto, and all Android smartphone speakers using 165 Hz acoustic sound.',
+      'Clear muffled audio, eject trapped water, and clean dust from Google Pixel, Xiaomi, OnePlus, Moto, and all Android smartphone speakers using 165 Hz sound.',
     badge: 'Universal Android Water Eject',
-    ipRating: 'IP68 / IP67 / IP54 (Varies by Android manufacturer)',
-    grilleSpecs: 'Bottom USB-C acoustic speaker ports + top stereo earpiece speaker',
-    acousticFreq: '165 Hz square wave resonance + 2.5 kHz–14.5 kHz turbo dust sweep',
+    ipRating: 'Varies by model (see manufacturer specifications)',
+    grilleSpecs: 'Bottom-firing speaker port and top earpiece receiver (stereo on most models)',
+    acousticFreq: '165 Hz low tone played at high volume + 2.5 kHz–14.5 kHz sound sweep',
     recommendedDuration: '60–120 seconds',
     compatibilityList: [
-      'Google Pixel 9, 8, 7, 6 Series',
-      'Samsung Galaxy S25, S24, S23, Z Series',
-      'Xiaomi 14, 13, Redmi Note & POCO Series',
-      'OnePlus 13, 12, 11, Nord Series',
-      'Vivo, Oppo, Realme, Motorola Series',
+      'Galaxy S25',
+      'Pixel 8 Pro',
+      'Pixel 7',
+      'Redmi Note 13',
+      'Motorola Edge 50 Ultra',
+      'Moto G84 5G',
+      'Realme 12 Pro+',
     ],
     overview: [
-      'Android smartphones utilize stereo speaker configurations where the bottom firing port provides bass and the earpiece provides treble. When water enters these ports, surface tension blocks acoustic sound waves, causing muffled, buzzing, or cracking sound.',
-      'Fix The Speaker synthesizes a high-amplitude 165 Hz square wave in your Android browser to displace air rapidly through the speaker channels, expelling trapped moisture and restoring full audio clarity.',
+      'When water enters smartphone speaker ports, it can cause muffled, low, or crackly sound.',
+      'Fix The Speaker plays a 165 Hz low tone played at high volume in your Android browser to help clear trapped moisture from the speaker channels.',
     ],
     steps: [
       {
