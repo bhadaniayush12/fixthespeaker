@@ -136,9 +136,15 @@ const relatedDevices = localizedDevice.relatedSlugs
   .map((dev) => getLocalizedDevice(dev, lang));
 
 const RELATED_GUIDE_SLUGS: Record<string, string[]> = {
-  'fix-iphone-speaker': ['iphone-speaker-muffled-after-water', 'phone-fell-in-water-first-10-minutes'],
+  'fix-iphone-speaker': ['iphone-speaker-muffled-after-water', 'iphone-call-volume-low-earpiece'],
+  'fix-iphone-16-pro-max-speaker': ['iphone-speaker-muffled-after-water', 'iphone-call-volume-low-earpiece'],
   'clean-airpods-speaker': ['airpods-water-damage-what-to-do', 'how-to-clean-airpods-speaker-mesh'],
   'fix-apple-watch-speaker': ['apple-watch-water-lock-explained', 'does-water-eject-sound-really-work'],
+  'fix-android-speaker': ['android-speaker-not-working-after-update', 'why-is-my-phone-speaker-crackling'],
+  'eject-water-samsung-galaxy': ['samsung-moisture-detected-warning', 'android-speaker-not-working-after-update'],
+  'eject-water-samsung-galaxy-s24-ultra': ['samsung-moisture-detected-warning', 'why-is-my-phone-speaker-crackling'],
+  'fix-pixel-8-pro-speaker': ['android-speaker-not-working-after-update', 'muffled-phone-speaker-water-dust-or-damage'],
+  'fix-pixel-7-speaker': ['why-is-my-phone-speaker-crackling', 'how-to-clean-phone-speaker-dust'],
 };
 const deviceRelatedGuides = (lang === defaultLang && RELATED_GUIDE_SLUGS[device.slug])
   ? RELATED_GUIDE_SLUGS[device.slug].map((slug) => guides.find((g) => g.slug === slug)).filter(Boolean)
